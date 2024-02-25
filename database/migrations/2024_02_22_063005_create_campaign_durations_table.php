@@ -13,19 +13,11 @@ return new class extends Migration
     {
         Schema::create('campaign_durations', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description')->nullable();
-            $table->string('thumbnail')->nullable();
-            $table->string('banner')->nullable();
-            $table->string('type')->comment('quiz','game')->nullable();
-            // for quiz:start
-            $table->float('total_time_limit')->nullable();
-            $table->integer('total_questions')->nullable();
-            $table->integer('per_question_score')->nullable();
-            // for quiz:end
-            $table->integer('status')->comment('0: draft, 1: published, 2: archived')->default(0);
-            $table->bigInteger('created_by')->unsigned();
-            $table->bigInteger('updated_by')->unsigned();
+            $table->string('name');
+            $table->bigInteger('campaign_id')->unsigned();
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

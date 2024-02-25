@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('campaign_score_logs', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('campaign_id')->unsigned();
+            $table->bigInteger('campaign_duration_id')->unsigned();
+            $table->bigInteger('question_id')->unsigned()->nullable();
+            $table->string('answer')->nullable();
+            $table->string('type')->comment('right','wrong')->nullable();
+            $table->time('time_taken')->nullable();
+            $table->integer('score')->default(0);
             $table->timestamps();
         });
     }

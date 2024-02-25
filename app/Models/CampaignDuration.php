@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class CampaignDuration extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'campaign_id',
+        'start_date',
+        'end_date',
+        'status'
+    ];
 }

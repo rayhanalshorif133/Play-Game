@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('campaign_summaries', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('campaign_id')->unsigned();
+            $table->bigInteger('campaign_duration_id')->unsigned();
+            $table->integer('total_score')->default(0);
+            $table->time('total_time_taken')->nullable();
             $table->timestamps();
         });
     }

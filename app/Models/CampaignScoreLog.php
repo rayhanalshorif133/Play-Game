@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class CampaignScoreLog extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'campaign_id',
+        'campaign_duration_id',
+        'question_id',
+        'answer',
+        'type',
+        'time_taken',
+        'score'
+    ];
 }
