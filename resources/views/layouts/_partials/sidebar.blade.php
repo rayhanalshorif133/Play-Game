@@ -75,11 +75,17 @@
     <ul class="menu-inner py-1">
       <!-- Dashboard -->
       <li class="menu-item @if ($currentRoute == 'home' || $currentRoute == 'dashboard')
-          active open
-      @endif">
+          active open @endif">
         <a href="{{route('home')}}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-home-circle"></i>
           <div data-i18n="Analytics">Dashboard</div>
+        </a>
+      </li>
+      <li class="menu-item @if ($currentRoute == 'user.index')
+          active open @endif">
+        <a href="{{route('user.index')}}" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-user"></i>
+          <div data-i18n="Analytics">User</div>
         </a>
       </li>
 
@@ -103,30 +109,7 @@
           </li>
         </ul>
       </li>
-      <!-- Components -->
-      <!-- User interface -->
 
-      <!-- Misc -->
-      <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
-      <li class="menu-item">
-        <a
-          href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-          target="_blank"
-          class="menu-link"
-        >
-          <i class="menu-icon tf-icons bx bx-support"></i>
-          <div data-i18n="Support">Support</div>
-        </a>
-      </li>
-      <li class="menu-item">
-        <a
-          href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-          target="_blank"
-          class="menu-link"
-        >
-          <i class="menu-icon tf-icons bx bx-file"></i>
-          <div data-i18n="Documentation">Documentation</div>
-        </a>
-      </li>
+      {{-- <li class="menu-header small text-uppercase"><span class="menu-header-text">Managemanet</span></li> --}}
     </ul>
   </aside>

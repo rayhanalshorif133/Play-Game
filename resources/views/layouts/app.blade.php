@@ -59,29 +59,16 @@
             <div class="layout-page">
                 <!-- Navbar -->
                 @include('layouts._partials.navbar')
-                <!-- / Navbar -->
-                <!-- Content wrapper -->
                 <div class="content-wrapper">
-                    <!-- Content -->
                     @yield('content')
-                    <!-- / Content -->
-                    <!-- Footer -->
                     @include('layouts._partials.footer')
-                    <!-- / Footer -->
                     <div class="content-backdrop fade"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Overlay -->
         <div class="layout-overlay layout-menu-toggle"></div>
     </div>
-    <!-- / Layout wrapper -->
-
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <!-- Include Bootstrap CSS -->
-    {{-- <link href="{{ asset('assets/vendor/css/bootstrap.css') }}" rel="stylesheet"> --}}
 
     <!-- Include Perfect Scrollbar CSS -->
     <link href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet">
