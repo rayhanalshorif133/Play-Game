@@ -191,7 +191,6 @@
                     $('#email').val(data.email);
                     $('#role').val(data.role);
                     $('#password').val('');
-
                 })
                 .catch(error => {
                     console.log(error);

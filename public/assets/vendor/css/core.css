@@ -2809,9 +2809,10 @@ textarea.form-control-lg {
 }
 
 .btn-sm, .btn-group-sm > .btn {
-  padding: 0.25rem 0.6875rem;
   font-size: 0.75rem;
   border-radius: 0.25rem;
+  height: fit-content;
+  padding: 8px;
 }
 
 .fade {
@@ -15475,6 +15476,7 @@ html:not(.layout-footer-fixed) .content-wrapper {
   }
   .layout-menu-expanded .layout-menu {
     transform: translate3d(0, 0, 0) !important;
+    transition: 0.5s ease-in-out !important;
   }
 
   .layout-menu-expanded body {

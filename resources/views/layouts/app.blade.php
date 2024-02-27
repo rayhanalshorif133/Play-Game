@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 
-<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
-    data-assets-path="../assets/" data-template="vertical-menu-template-free">
+<html lang="en" class="light-style layout-menu-fixed transition"
+dir="ltr" data-theme="theme-default"
+data-assets-path="../assets/"
+data-template="vertical-menu-template-free">
 
 <head>
     <meta charset="utf-8" />
@@ -108,6 +110,8 @@
 
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 
     @stack('scripts')
 </body>

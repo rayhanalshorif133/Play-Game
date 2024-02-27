@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -35,9 +36,23 @@ class UserController extends Controller
         }
     }
     // update
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         try{
+            $id = $request->user_id;
+
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email,'.$id,
+                'role' => 'required',
+                'status' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                toastr()->addError($validator->errors()->first());
+                return redirect()->back();
+            }
+
             $user = User::find($id);
             if($user){
                 $user->name = $request->name;
@@ -45,12 +60,15 @@ class UserController extends Controller
                 $user->role = $request->role;
                 $user->status = $request->status;
                 $user->save();
-                return $this->respondWithSuccess('User updated successfully.');
+                toastr()->addSuccess('User updated successfully.');
+                return redirect()->route('user.index');
             }else{
-                return $this->respondWithError('User not found.');
+                toastr()->addError('User not found.');
+                return redirect()->route('user.index');
             }
         }catch(\Exception $e){
-            return $this->respondWithError($e->getMessage());
+            toastr()->addError($e->getMessage());
+            return redirect()->route('user.index');
         }
     }
 

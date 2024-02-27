@@ -8,6 +8,6 @@ const handleMenu = () => {
     });
 
     $(".layout-menu-toggle").on("click", function () {
-        $('html').toggleClass("layout-menu-100vh layout-navbar-fixed layout-compact  layout-menu-expanded");
+        $('html').toggleClass("layout-menu-100vh layout-menu-fixed layout-navbar-fixed layout-compact  layout-menu-expanded");
     });
 };

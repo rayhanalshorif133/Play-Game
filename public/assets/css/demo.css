@@ -141,3 +141,12 @@
     color: #000;
     font-weight: normal;
 }
+
+
+.transition {
+    transition: all 1s ease-in-out;
+}
+
+.items-center{
+    align-items: center;
+}
