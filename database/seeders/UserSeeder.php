@@ -30,5 +30,8 @@ class UserSeeder extends Seeder
             'status' => 'active',
         ]);
 
+        // UserFactory
+        User::factory()->count(1000)->create();
+
     }
 }

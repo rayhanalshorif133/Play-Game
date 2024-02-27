@@ -110,3 +110,25 @@
 .p-1rem{
     padding: 1rem;
 }
+
+.overflow-x-hidden {
+    overflow-x: hidden;
+}
+
+.required::after {
+    content: " *";
+    color: red;
+    font-weight: bold;
+}
+
+.optional::after {
+    content: " (optional)";
+    color: #999;
+    font-weight: normal;
+}
+
+.tk::after {
+    content: "৳";
+    color: #000;
+    font-weight: normal;
+}

@@ -35,4 +35,8 @@ Route::controller(UserController::class)
     ->prefix('user')
     ->name('user.')->group(function () {
     Route::get('/', 'index')->name('index');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/fetch/{id}', 'fetchUser')->name('edit');
+    Route::put('/update', 'update')->name('update');
+    Route::delete('/{id}', 'delete')->name('delete');
 });
