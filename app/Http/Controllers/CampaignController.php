@@ -5,13 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Campaign;
+use Yajra\DataTables\Facades\DataTables;
 
 class CampaignController extends Controller
 {
     public function index()
     {
-        dd('campaign index');
-        // return view('campaign.index');
+        if (request()->ajax()) {
+            $query = Campaign::orderBy('created_at', 'desc')
+                ->with('createdBy')
+                ->get();
+             return DataTables::of($query)
+             ->addIndexColumn()
+             ->rawColumns(['action'])
+             ->toJson();
+        }
+        return view('campaign.index');
     }
 
     // create
@@ -62,14 +71,16 @@ class CampaignController extends Controller
             if ($request->thumbnail) {
                 $thumbnail = $request->file('thumbnail');
                 $thumbnail_name = time() . '_' . $thumbnail->getClientOriginalName();
-                $thumbnail->move(public_path('/campaign/thumbnail'), $thumbnail_name);
+                $thumbnail->move(public_path('/images/campaign/thumbnail'), $thumbnail_name);
+                $thumbnail_name = 'images/campaign/thumbnail/' . $thumbnail_name;
                 $campaign->thumbnail = $thumbnail_name;
             }
 
             if ($request->banner) {
                 $banner = $request->file('banner');
                 $banner_name = time() . '_' . $banner->getClientOriginalName();
-                $banner->move(public_path('/campaign/banner'), $banner_name);
+                $banner->move(public_path('/images/campaign/banner'), $banner_name);
+                $banner_name = 'images/campaign/banner/' . $banner_name;
                 $campaign->banner = $banner_name;
             }
 
@@ -77,11 +88,11 @@ class CampaignController extends Controller
             $campaign->updated_by = auth()->user()->id;
             $campaign->save();
             toastr()->addSuccess('Campaign added successfully.');
-            return redirect()->route('campaign.index');
+            return redirect()->route('campaigns.index');
 
         } catch (\Throwable $th) {
             toastr()->addError($th->getMessage());
-            return redirect()->route('campaign.index');
+            return redirect()->route('campaigns.index');
         }
     }
 }

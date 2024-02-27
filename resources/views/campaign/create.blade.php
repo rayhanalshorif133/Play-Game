@@ -6,11 +6,11 @@
             <div class="card pb-2">
                 <div class="d-flex justify-content-between px-2">
                     <h5 class="card-header">Campaigns Table</h5>
-                    <a href="{{ route('campaign.index') }}" class="btn btn-danger btn-sm d-block d-flex my-2">
+                    <a href="{{ route('campaigns.index') }}" class="btn btn-danger btn-sm d-block d-flex my-2">
                         <i class='bx bx-arrow-back me-1'></i> Back</a>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('campaign.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('campaigns.store') }}" method="POST" enctype="multipart/form-data">
                         @method('POST')
                         @csrf
                         <div class="row g-1">

@@ -28,8 +28,8 @@ Route::controller(UserController::class)
 // campaign
 Route::controller(CampaignController::class)
     ->middleware('auth')
-    ->prefix('campaign')
-    ->name('campaign.')
+    ->prefix('campaigns')
+    ->name('campaigns.')
     ->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');

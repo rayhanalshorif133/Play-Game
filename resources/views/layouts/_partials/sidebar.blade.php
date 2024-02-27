@@ -78,21 +78,21 @@
           active open @endif">
         <a href="{{route('home')}}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-home-circle"></i>
-          <div data-i18n="Analytics">Dashboard</div>
+          <div data-i18n="Analytics" class="text-semibold">Dashboard</div>
         </a>
       </li>
       <li class="menu-item @if ($currentRoute == 'user.index')
           active open @endif">
         <a href="{{route('user.index')}}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-user"></i>
-          <div data-i18n="Analytics">User</div>
+          <div data-i18n="Analytics" class="text-semibold">Users</div>
         </a>
       </li>
-      <li class="menu-item @if ($currentRoute == 'campaign.index' || $currentRoute == 'campaign.create' || $currentRoute == 'campaign.edit')
+      <li class="menu-item @if ($currentRoute == 'campaigns.index' || $currentRoute == 'campaigns.create' || $currentRoute == 'campaigns.edit')
           active open @endif">
-        <a href="{{route('campaign.index')}}" class="menu-link">
+        <a href="{{route('campaigns.index')}}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-package"></i>
-          <div data-i18n="Analytics">Campaign</div>
+          <div data-i18n="Analytics" class="text-semibold">Campaigns</div>
         </a>
       </li>
 
