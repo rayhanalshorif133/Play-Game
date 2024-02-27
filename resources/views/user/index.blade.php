@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="px-3 container-p-y">
         <div class="row p-1rem">
             <div class="card pb-2">
                 <h5 class="card-header">User Table</h5>
-                <div class="table-responsive text-nowrap overflow-x-hidden">
-                    <table class="table" id="userTableId" style="width:100%">
+                <div class="table-responsive text-nowrap scrollbar-hidden overflow-x-scroll">
+                    <table class="table" id="userTableId">
                         <thead>
                             <tr>
                                 <th>#</th>

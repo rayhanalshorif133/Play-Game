@@ -15360,9 +15360,9 @@ html:not(.layout-menu-fixed) .menu-inner-shadow {
   }
   .layout-navbar .navbar-nav .nav-item.dropdown .dropdown-menu {
     position: absolute;
-    left: 0.9rem;
+    right: 0;
     min-width: auto;
-    width: 92%;
+    width: 50%;
   }
 }
 

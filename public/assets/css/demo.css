@@ -115,6 +115,15 @@
     overflow-x: hidden;
 }
 
+.overflow-x-scroll {
+    overflow-x: scroll;
+}
+
+.scrollbar-hidden {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
 .required::after {
     content: " *";
     color: red;

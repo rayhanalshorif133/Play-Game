@@ -41,11 +41,8 @@
 
     <!-- Template customizer & Theme config files -->
     <script src="{{ asset('assets/js/config.js') }}"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.3.2/css/fixedHeader.bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap.min.css">
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
     <!-- Scripts -->
     {{-- @vite(['resources/js/app.js']) --}}
@@ -56,24 +53,35 @@
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar" id="app">
         <div class="layout-container">
-
-
             @include('layouts._partials.sidebar')
 
             <!-- Layout container -->
             <div class="layout-page">
                 <!-- Navbar -->
                 @include('layouts._partials.navbar')
+                <!-- / Navbar -->
+                <!-- Content wrapper -->
                 <div class="content-wrapper">
+                    <!-- Content -->
                     @yield('content')
+                    <!-- / Content -->
+                    <!-- Footer -->
                     @include('layouts._partials.footer')
+                    <!-- / Footer -->
                     <div class="content-backdrop fade"></div>
                 </div>
             </div>
         </div>
 
+        <!-- Overlay -->
         <div class="layout-overlay layout-menu-toggle"></div>
     </div>
+    <!-- / Layout wrapper -->
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <!-- Include Bootstrap CSS -->
+    {{-- <link href="{{ asset('assets/vendor/css/bootstrap.css') }}" rel="stylesheet"> --}}
 
     <!-- Include Perfect Scrollbar CSS -->
     <link href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet">
@@ -84,13 +92,10 @@
 
     <!-- Vendors JS -->
     <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
     <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Main JS -->
 
@@ -99,15 +104,10 @@
     <script src="{{ asset('js/custom.js') }}"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/fixedheader/3.3.2/js/dataTables.fixedHeader.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-
-
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
 
     @stack('scripts')
 </body>
