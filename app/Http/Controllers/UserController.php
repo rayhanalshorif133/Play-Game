@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -19,6 +20,38 @@ class UserController extends Controller
              ->toJson();
         }
         return view('user.index');
+    }
+
+    // store
+    public function store(Request $request)
+    {
+        try{
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'email' => 'required|email|unique:users',
+                'role' => 'required',
+                'status' => 'required',
+                'password' => 'required|min:6|max:25|confirmed',
+            ]);
+
+            if ($validator->fails()) {
+                toastr()->addError($validator->errors()->first());
+                return redirect()->back();
+            }
+
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->role = $request->role;
+            $user->status = $request->status;
+            $user->password = Hash::make($request->password);
+            $user->save();
+            toastr()->addSuccess('User added successfully.');
+            return redirect()->route('user.index');
+        }catch(\Exception $e){
+            toastr()->addError($e->getMessage());
+            return redirect()->route('user.index');
+        }
     }
 
     // fetch user info
@@ -46,6 +79,7 @@ class UserController extends Controller
                 'email' => 'required|email|unique:users,email,'.$id,
                 'role' => 'required',
                 'status' => 'required',
+                'password'=> 'nullable|min:6|max:25|confirmed'
             ]);
 
             if ($validator->fails()) {
