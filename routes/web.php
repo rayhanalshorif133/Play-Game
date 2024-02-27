@@ -16,19 +16,11 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-
-    if(Auth::check()){
-        return redirect()->route('home');
-    }else{
-        // return view('welcome');
-        return redirect()->route('login');
-    }
-});
+Route::get('/', [HomeController::class, 'isLoginOrNot']);
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::middleware('auth')->get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::controller(UserController::class)
     ->middleware('auth')

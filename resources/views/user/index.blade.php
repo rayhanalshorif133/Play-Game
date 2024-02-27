@@ -6,7 +6,7 @@
             <div class="card pb-2">
                 <div class="d-flex justify-content-between px-2">
                     <h5 class="card-header">User Table</h5>
-                    <button class="btn btn-primary btn-sm d-block d-flex my-2" data-bs-toggle="modal" data-bs-target="#createNewUserinfo">Add User</button>
+                    <button class="btn btn-primary btn-sm d-block d-flex my-2 createNewUser" data-bs-toggle="modal" data-bs-target="#createNewUserinfo">Add User</button>
                 </div>
                 <div class="table-responsive text-nowrap scrollbar-hidden overflow-x-scroll">
                     <table class="table" id="userTableId">
@@ -64,7 +64,6 @@
                     },
                     {
                         render: function(data, type, row) {
-                            // <span class="badge bg-label-primary">Primary</span>
                             var role = '';
                             row.role == 'super-admin'? role = `<span class="badge bg-label-info">Super Admin</span>` :
                             role = `<span class="badge bg-label-primary">Admin</span>`;
@@ -95,6 +94,13 @@
                         targets: 0,
                     }
                 ]
+            });
+
+
+
+            $(".createNewUser").click(function() {
+                $('#user_name').val('');
+                $('#password').val('');
             });
 
 
@@ -143,8 +149,7 @@
                     $('#update_user_email').val(data.email);
                     $('#update_user_role').val(data.role);
                     $('#update_user_status').val(data.status);
-                    $('#password').val('');
-
+                    $('#update_password').val('');
                 })
                 .catch(error => {
                     console.log(error);

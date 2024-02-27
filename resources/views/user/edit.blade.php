@@ -22,8 +22,8 @@
                     </div>
                     <div class="row g-1">
                         <div class="col-12 col-md-6 mb-0">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" id="password" class="form-control" name="password" placeholder="Enter Password" />
+                            <label for="update_password" class="form-label">Password</label>
+                            <input type="password" id="update_password" class="form-control" name="password" placeholder="Enter Password" />
                         </div>
                         <div class="col-12 col-md-6 mb-0">
                             <label for="confirmPassword" class="form-label">Confirm Password</label>
