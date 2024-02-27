@@ -150,3 +150,13 @@
 .items-center{
     align-items: center;
 }
+.space-x-5 > * + * {
+    margin-left: 1.25rem;
+}
+
+/* remove increment and decrement btn from input number */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+   -webkit-appearance: none;
+   margin: 0;
+}

@@ -60,7 +60,7 @@
             </g>
           </svg>
         </span>
-        <span class="app-brand-text demo menu-text fw-bolder ms-2">Play</span>
+        <span class="app-brand-text demo menu-text fw-bolder ms-2" style="text-transform: capitalize;">Play</span>
       </a>
 
       <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -86,6 +86,13 @@
         <a href="{{route('user.index')}}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-user"></i>
           <div data-i18n="Analytics">User</div>
+        </a>
+      </li>
+      <li class="menu-item @if ($currentRoute == 'campaign.index' || $currentRoute == 'campaign.create' || $currentRoute == 'campaign.edit')
+          active open @endif">
+        <a href="{{route('campaign.index')}}" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-package"></i>
+          <div data-i18n="Analytics">Campaign</div>
         </a>
       </li>
 

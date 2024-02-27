@@ -4,17 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CampaignController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+
 
 Route::get('/', [HomeController::class, 'isLoginOrNot']);
 
@@ -31,4 +23,15 @@ Route::controller(UserController::class)
     Route::get('/fetch/{id}', 'fetchUser')->name('edit');
     Route::put('/update', 'update')->name('update');
     Route::delete('/{id}', 'delete')->name('delete');
+});
+
+// campaign
+Route::controller(CampaignController::class)
+    ->middleware('auth')
+    ->prefix('campaign')
+    ->name('campaign.')
+    ->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
 });
