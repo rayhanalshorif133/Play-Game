@@ -13,7 +13,9 @@ class UserController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = User::orderBy('created_at', 'desc')->get();
+            $query = User::orderBy('created_at', 'desc')
+                ->where('id', '!=', auth()->user()->id)
+                ->get();
              return DataTables::of($query)
              ->addIndexColumn()
              ->rawColumns(['action'])
