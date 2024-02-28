@@ -23,6 +23,19 @@ class CampaignController extends Controller
         return view('campaign.index');
     }
 
+    // fetchCampaign
+    public function fetchCampaign($id)
+    {
+        $campaign = Campaign::select()
+            ->where('id', $id)
+            ->with('createdBy','updatedBy')
+            ->first();
+        return $this->respondWithSuccess('Campaign fetched successfully.', $campaign);
+    }
+
+
+
+
     // create
     public function create()
     {
@@ -30,8 +43,6 @@ class CampaignController extends Controller
     }
 
     public function store(Request $request){
-
-
         try {
             $validator = Validator::make($request->all(), [
                 'title' => 'required',
@@ -88,6 +99,95 @@ class CampaignController extends Controller
             $campaign->updated_by = auth()->user()->id;
             $campaign->save();
             toastr()->addSuccess('Campaign added successfully.');
+            return redirect()->route('campaigns.index');
+
+        } catch (\Throwable $th) {
+            toastr()->addError($th->getMessage());
+            return redirect()->route('campaigns.index');
+        }
+    }
+
+    // edit
+    public function edit($id)
+    {
+        $campaign = Campaign::select()
+            ->where('id', $id)
+            ->with('createdBy','updatedBy')
+            ->first();
+        return view('campaign.edit', compact('campaign'));
+    }
+
+    // update
+    public function update(Request $request, $id)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'title' => 'required',
+                'type' => 'required',
+                'status' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                toastr()->addError($validator->errors()->first());
+                return redirect()->back();
+            }
+
+
+            // type
+            if($request->type == 'quiz'){
+                $validator = Validator::make($request->all(), [
+                    'total_time_limit' => 'required',
+                    'total_questions' => 'required',
+                    'per_question_score' => 'required',
+                ]);
+                if ($validator->fails()) {
+                    toastr()->addError($validator->errors()->first());
+                    return redirect()->back();
+                }
+            }
+
+            $campaign = Campaign::find($id);
+            $campaign->title = $request->title;
+            $campaign->type = $request->type;
+            $campaign->total_time_limit = $request->total_time_limit;
+            $campaign->total_questions = $request->total_questions;
+            $campaign->per_question_score = $request->per_question_score;
+            $campaign->status = $request->status;
+            $campaign->description = $request->description;
+
+            if ($request->thumbnail) {
+
+                if ($campaign->thumbnail) {
+                    if (file_exists(public_path($campaign->thumbnail))) {
+                        unlink(public_path($campaign->thumbnail));
+                    }
+                }
+
+                $thumbnail = $request->file('thumbnail');
+                $thumbnail_name = time() . '_' . $thumbnail->getClientOriginalName();
+                $thumbnail->move(public_path('/images/campaign/thumbnail'), $thumbnail_name);
+                $thumbnail_name = 'images/campaign/thumbnail/' . $thumbnail_name;
+                $campaign->thumbnail = $thumbnail_name;
+            }
+
+            if ($request->banner) {
+
+                if ($campaign->banner) {
+                    if (file_exists(public_path($campaign->banner))) {
+                        unlink(public_path($campaign->banner));
+                    }
+                }
+
+                $banner = $request->file('banner');
+                $banner_name = time() . '_' . $banner->getClientOriginalName();
+                $banner->move(public_path('/images/campaign/banner'), $banner_name);
+                $banner_name = 'images/campaign/banner/' . $banner_name;
+                $campaign->banner = $banner_name;
+            }
+
+            $campaign->updated_by = auth()->user()->id;
+            $campaign->save();
+            toastr()->addSuccess('Campaign updated successfully.');
             return redirect()->route('campaigns.index');
 
         } catch (\Throwable $th) {

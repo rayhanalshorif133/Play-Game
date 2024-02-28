@@ -20,7 +20,7 @@ Route::controller(UserController::class)
     ->name('user.')->group(function () {
     Route::get('/', 'index')->name('index');
     Route::post('/store', 'store')->name('store');
-    Route::get('/fetch/{id}', 'fetchUser')->name('edit');
+    Route::get('/fetch/{id}', 'fetchUser')->name('fetch-user');
     Route::put('/update', 'update')->name('update');
     Route::delete('/{id}', 'delete')->name('delete');
 });
@@ -32,6 +32,9 @@ Route::controller(CampaignController::class)
     ->name('campaigns.')
     ->group(function () {
     Route::get('/', 'index')->name('index');
+    Route::get('/fetch/{id}', 'fetchCampaign')->name('fetch-campaign');
     Route::get('/create', 'create')->name('create');
+    Route::get('/{id}/edit', 'edit')->name('edit');
     Route::post('/store', 'store')->name('store');
+    Route::put('/update/{id}', 'update')->name('update');
 });
