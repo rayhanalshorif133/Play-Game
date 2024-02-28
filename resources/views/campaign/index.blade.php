@@ -5,7 +5,7 @@
         <div class="row p-1rem">
             <div class="card pb-2">
                 <div class="d-flex justify-content-between px-2">
-                    <h5 class="card-header">Campaigns Table</h5>
+                    <h5 class="card-header">Campaigns List</h5>
                     <a href="{{ route('campaigns.create') }}" class="btn btn-primary btn-sm d-block d-flex my-3">Add New
                         Capaign</a>
                 </div>

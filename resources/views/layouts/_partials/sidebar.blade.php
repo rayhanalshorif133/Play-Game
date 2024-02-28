@@ -91,30 +91,17 @@
       <li class="menu-item @if ($currentRoute == 'campaigns.index' || $currentRoute == 'campaigns.create' || $currentRoute == 'campaigns.edit')
           active open @endif">
         <a href="{{route('campaigns.index')}}" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-package"></i>
+          <i class="menu-icon tf-icons bx bxl-dropbox"></i>
           <div data-i18n="Analytics" class="text-semibold">Campaigns</div>
         </a>
       </li>
 
-      <!-- Layouts -->
-      <li class="menu-item">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
-          <i class="menu-icon tf-icons bx bx-layout"></i>
-          <div data-i18n="Layouts">Layouts</div>
+      <li class="menu-item @if ($currentRoute == 'campaign-durations.index')
+          active open @endif">
+        <a href="{{route('campaign-durations.index')}}" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-timer"></i>
+          <div data-i18n="Analytics" class="text-semibold">Campaign Durations</div>
         </a>
-
-        <ul class="menu-sub">
-          <li class="menu-item">
-            <a href="layouts-without-menu.html" class="menu-link">
-              <div data-i18n="Without menu">Without menu</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="layouts-without-navbar.html" class="menu-link">
-              <div data-i18n="Without navbar">Without navbar</div>
-            </a>
-          </li>
-        </ul>
       </li>
 
       {{-- <li class="menu-header small text-uppercase"><span class="menu-header-text">Managemanet</span></li> --}}
