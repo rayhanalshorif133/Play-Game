@@ -29,6 +29,8 @@
     </div>
 
     @include('campaign.show')
+    @include('campaign.campaign-durations.create')
+    @include('campaign.campaign-durations.show')
 @endsection
 
 @push('scripts')

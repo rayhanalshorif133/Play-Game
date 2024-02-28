@@ -157,6 +157,11 @@
 .items-center{
     align-items: center;
 }
+
+.space-x-2 > * + * {
+    margin-left: 0.5rem;
+}
+
 .space-x-5 > * + * {
     margin-left: 1.25rem;
 }

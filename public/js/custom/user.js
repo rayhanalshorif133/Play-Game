@@ -11,18 +11,21 @@ $(document).ready(function () {
                 return row.DT_RowIndex;
             },
             targets: 0,
+            width: "auto",
         },
         {
             render: function (data, type, row) {
                 return row.name;
             },
             targets: 0,
+            width: "auto",
         },
         {
             render: function (data, type, row) {
                 return row.email;
             },
             targets: 0,
+            width: "auto",
         },
         {
             render: function (data, type, row) {
@@ -32,6 +35,7 @@ $(document).ready(function () {
                 return role;
             },
             targets: 0,
+            width: "auto",
         },
         {
             render: function (data, type, row) {
@@ -41,6 +45,7 @@ $(document).ready(function () {
                 return status;
             },
             targets: 0,
+            width: "auto",
         },
         {
             render: function (data, type, row) {
@@ -54,6 +59,7 @@ $(document).ready(function () {
                         </div>`;
             },
             targets: 0,
+            width: "auto",
         }
         ]
     });

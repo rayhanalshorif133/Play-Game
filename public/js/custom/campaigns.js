@@ -10,12 +10,14 @@ $(document).ready(function () {
                 return row.DT_RowIndex;
             },
             targets: 0,
+            width: "auto",
         },
         {
             render: function (data, type, row) {
                 return row.title;
             },
             targets: 1,
+            width: "auto",
         },
         {
             render: function (data, type, row) {
@@ -28,6 +30,7 @@ $(document).ready(function () {
                 return type;
             },
             targets: 1,
+            width: "auto",
         },
 
         {
@@ -36,6 +39,7 @@ $(document).ready(function () {
                 return name;
             },
             targets: 1,
+            width: "auto",
         },
         {
             render: function (data, type, row) {
@@ -45,15 +49,22 @@ $(document).ready(function () {
                 return status;
             },
             targets: 0,
+            width: "auto",
         },
         {
             render: function (data, type, row) {
-                return `<span onClick="showCampaignDetails(${row.id})" data-bs-toggle="modal"
-                data-bs-target="#showDetailsCampaign" class="btn btn-primary btn-sm"><i class='bx bx-show'></i></span>
-                <a href="/campaigns/${row.id}/edit" class="btn btn-warning btn-sm"><i class='bx bx-edit-alt'></i></a>
-                <button class="btn btn-danger btn-sm" onclick="deleteCampaign(${row.id})"><i class='bx bxs-trash-alt'></i></button>`;
+                return `
+                <div class="d-flex space-x-2">
+                    <button class="btn btn-info btn-sm d-flex items-center" data-bs-toggle="modal"  data-bs-target="#showCampaignDuration" onClick="showCampaignDuration(${row.id})">
+                    <i class='bx bx-show'></i> <span>Show</span>
+                    </button>
+                    <button class="btn btn-primary btn-sm d-flex items-center createCampaignDuration" data-bs-toggle="modal" data-bs-target="#createNewcampaignDuration" data-title="${row.title}" onClick="createCampaignDuration(${row.id})">
+                    <i class='bx bx-plus'></i> <span>New</span>
+                    </button>
+                </div>`;
             },
             targets: 0,
+            width: "auto",
         },
         {
             render: function (data, type, row) {
@@ -62,6 +73,7 @@ $(document).ready(function () {
                     <button class="btn btn-danger btn-sm" onclick="deleteCampaign(${row.id})"><i class='bx bxs-trash-alt'></i></button>`;
             },
             targets: 0,
+            width: "auto",
         },
         ],
     });
@@ -149,4 +161,20 @@ const deleteCampaign = (id) => {
                 });
         }
     });
+}
+
+const showCampaignDuration = (id) => {
+    console.log(id);
+}
+
+const createCampaignDuration = (id) => {
+    axios.get(`/campaigns/fetch/${id}`)
+        .then(response => {
+            const campaign = response.data.data;
+            $("#selected_campaign").html(campaign.title);
+            $("#campaign_id").val(campaign.id);
+        })
+        .catch(error => {
+            console.log(error);
+        });
 }
