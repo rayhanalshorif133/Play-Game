@@ -144,6 +144,10 @@ class CampaignController extends Controller
                     toastr()->addError($validator->errors()->first());
                     return redirect()->back();
                 }
+            }else{
+                $request->total_time_limit = null;
+                $request->total_questions = null;
+                $request->per_question_score = null;
             }
 
             $campaign = Campaign::find($id);
@@ -190,6 +194,29 @@ class CampaignController extends Controller
             toastr()->addSuccess('Campaign updated successfully.');
             return redirect()->route('campaigns.index');
 
+        } catch (\Throwable $th) {
+            toastr()->addError($th->getMessage());
+            return redirect()->route('campaigns.index');
+        }
+    }
+
+    // delete
+    public function delete($id)
+    {
+        try {
+            $campaign = Campaign::find($id);
+            if ($campaign->thumbnail) {
+                if (file_exists(public_path($campaign->thumbnail))) {
+                    unlink(public_path($campaign->thumbnail));
+                }
+            }
+            if ($campaign->banner) {
+                if (file_exists(public_path($campaign->banner))) {
+                    unlink(public_path($campaign->banner));
+                }
+            }
+            $campaign->delete();
+            return $this->respondWithSuccess('Campaign deleted successfully.');
         } catch (\Throwable $th) {
             toastr()->addError($th->getMessage());
             return redirect()->route('campaigns.index');

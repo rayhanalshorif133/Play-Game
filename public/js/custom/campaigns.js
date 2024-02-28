@@ -114,3 +114,30 @@ const showCampaignDetails = (id) => {
             console.log(error);
         });
 };
+
+const deleteCampaign = (id) => {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You want to delete this campaign?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            axios.delete(`/campaigns/${id}`)
+                .then(response => {
+                    Swal.fire(
+                        'Deleted!',
+                        'Campaign has been deleted.',
+                        'success'
+                    );
+                    $('#campaignsTableId').DataTable().ajax.reload();
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    });
+}

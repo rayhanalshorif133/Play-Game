@@ -33,6 +33,7 @@ data-template="vertical-menu-template-free">
     <link href="{{ asset('assets/vendor/css/theme-default.css') }}" rel="stylesheet"
         class="template-customizer-theme-css">
     <link href="{{ asset('assets/css/demo.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
 
     <!-- Vendors CSS -->
     <link href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet">
@@ -98,6 +99,7 @@ data-template="vertical-menu-template-free">
     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Main JS -->
 

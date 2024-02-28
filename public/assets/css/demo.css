@@ -124,6 +124,13 @@
     -ms-overflow-style: none;
 }
 
+.scrollbar-custom {
+    scrollbar-width: thin;
+    -ms-overflow-style: none;
+}
+
+
+
 .required::after {
     content: " *";
     color: red;

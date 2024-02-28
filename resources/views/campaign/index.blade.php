@@ -9,8 +9,8 @@
                     <a href="{{ route('campaigns.create') }}" class="btn btn-primary btn-sm d-block d-flex my-3">Add New
                         Capaign</a>
                 </div>
-                <div class="table-responsive text-nowrap scrollbar-hidden overflow-x-scroll">
-                    <table class="table" id="campaignsTableId">
+                <div class="table-responsive text-nowrap scrollbar-custom overflow-x-scroll">
+                    <table class="table overflow-x-scroll" id="campaignsTableId">
                         <thead>
                             <tr>
                                 <th>#</th>

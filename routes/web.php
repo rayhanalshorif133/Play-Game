@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\CampaignDurationController;
 
 
 
@@ -37,4 +38,20 @@ Route::controller(CampaignController::class)
     Route::get('/{id}/edit', 'edit')->name('edit');
     Route::post('/store', 'store')->name('store');
     Route::put('/update/{id}', 'update')->name('update');
+    Route::delete('/{id}', 'delete')->name('delete');
+});
+
+// campaign_durations
+Route::controller(CampaignDurationController::class)
+    ->middleware('auth')
+    ->prefix('campaign-durations')
+    ->name('campaign-durations.')
+    ->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/fetch/{id}', 'fetchCampaignDuration')->name('fetch-campaign-duration');
+    Route::get('/create', 'create')->name('create');
+    Route::get('/{id}/edit', 'edit')->name('edit');
+    Route::post('/store', 'store')->name('store');
+    Route::put('/update/{id}', 'update')->name('update');
+    Route::delete('/{id}', 'delete')->name('delete');
 });
