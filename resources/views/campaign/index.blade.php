@@ -18,6 +18,7 @@
                                 <th>Type</th>
                                 <th>Created By</th>
                                 <th>Status</th>
+                                <th>Campaigns Durations</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>

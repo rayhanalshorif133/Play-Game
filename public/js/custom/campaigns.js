@@ -48,9 +48,18 @@ $(document).ready(function () {
         },
         {
             render: function (data, type, row) {
+                return `<span onClick="showCampaignDetails(${row.id})" data-bs-toggle="modal"
+                data-bs-target="#showDetailsCampaign" class="btn btn-primary btn-sm"><i class='bx bx-show'></i></span>
+                <a href="/campaigns/${row.id}/edit" class="btn btn-warning btn-sm"><i class='bx bx-edit-alt'></i></a>
+                <button class="btn btn-danger btn-sm" onclick="deleteCampaign(${row.id})"><i class='bx bxs-trash-alt'></i></button>`;
+            },
+            targets: 0,
+        },
+        {
+            render: function (data, type, row) {
                 return `<span onClick="showCampaignDetails(${row.id})" data-bs-toggle="modal" data-bs-target="#showDetailsCampaign" class="btn btn-primary btn-sm"><i class='bx bx-show'></i></span>
                              <a href="/campaigns/${row.id}/edit" class="btn btn-warning btn-sm"><i class='bx bx-edit-alt'></i></a>
-                             <button class="btn btn-danger btn-sm" onclick="deleteCampaign(${row.id})"><i class='bx bxs-trash-alt'></i></button>`;
+                    <button class="btn btn-danger btn-sm" onclick="deleteCampaign(${row.id})"><i class='bx bxs-trash-alt'></i></button>`;
             },
             targets: 0,
         },
