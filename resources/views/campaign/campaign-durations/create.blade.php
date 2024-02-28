@@ -17,23 +17,23 @@
                     <div class="row g-2 mb-2">
                         <div class="col-12 col-md-6 mb-0">
                             <label for="name" class="form-label required">Name</label>
-                            <input type="text" id="name" required class="form-control"
+                            <input type="text" id="name" name="name" required class="form-control"
                                 placeholder="Enter Name">
                         </div>
                         <div class="col-12 col-md-6 mb-0">
                             <label for="status" class="form-label required">Status</label>
-                            <select class="form-select" id="status" required>
+                            <select class="form-select" name="status" id="status" required>
                                 <option value="active">Active</option>
                                 <option value="inactive">Inactive</option>
                             </select>
                         </div>
                         <div class="col-12 col-md-6 mb-0">
                             <label for="start_date" class="form-label required">Start Date</label>
-                            <input type="date" id="start_date" required class="form-control">
+                            <input type="date" name="start_date" id="start_date" required class="form-control">
                         </div>
                         <div class="col-12 col-md-6 mb-0">
                             <label for="end_date" class="form-label required">End Date</label>
-                            <input type="date" id="end_date" required class="form-control">
+                            <input type="date" name="end_date" id="end_date" required class="form-control">
                         </div>
                     </div>
                 </div>
