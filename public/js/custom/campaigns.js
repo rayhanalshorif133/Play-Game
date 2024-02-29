@@ -55,9 +55,9 @@ $(document).ready(function () {
             render: function (data, type, row) {
                 return `
                 <div class="d-flex space-x-2">
-                    <button class="btn btn-info btn-sm d-flex items-center" data-bs-toggle="modal"  data-bs-target="#showCampaignDuration" onClick="showCampaignDuration(${row.id})">
+                    <a href="campaign-durations/${row.id}" class="btn btn-info btn-sm d-flex items-center">
                     <i class='bx bx-show'></i> <span>Show</span>
-                    </button>
+                    </a>
                     <button class="btn btn-primary btn-sm d-flex items-center createCampaignDuration" data-bs-toggle="modal" data-bs-target="#createNewcampaignDuration" data-title="${row.title}" onClick="createCampaignDuration(${row.id})">
                     <i class='bx bx-plus'></i> <span>New</span>
                     </button>

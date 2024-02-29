@@ -5,24 +5,29 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\CampaignDuration;
+use App\Models\Campaign;
+use Yajra\DataTables\Facades\DataTables;
 
 class CampaignDurationController extends Controller
 {
-    public function index()
+    public function index($campaign_id)
     {
-        return view('campaign-durations.index');
+        if (request()->ajax()) {
+            $query = CampaignDuration::orderBy('created_at', 'asc')
+            ->where('campaign_id', $campaign_id)
+            ->get();
+             return DataTables::of($query)
+             ->addIndexColumn()
+             ->rawColumns(['action'])
+             ->toJson();
+        }
+
+        $campaign = Campaign::find($campaign_id);
+        return view('campaign.campaign-durations.show', compact('campaign'));
     }
 
 
-    public function create()
-    {
-        return view('campaign-durations.create');
-    }
 
-    public function edit($id)
-    {
-        return view('campaign-durations.edit', compact('id'));
-    }
 
     public function store(Request $request)
     {

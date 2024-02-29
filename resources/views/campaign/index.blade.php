@@ -30,9 +30,8 @@
 
     @include('campaign.show')
     @include('campaign.campaign-durations.create')
-    @include('campaign.campaign-durations.show')
 @endsection
 
 @push('scripts')
-    <script src="{{asset('js/custom/campaigns.js')}}"></script>
+    <script src="{{ asset('js/custom/campaigns.js') }}"></script>
 @endpush

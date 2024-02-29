@@ -47,10 +47,7 @@ Route::controller(CampaignDurationController::class)
     ->prefix('campaign-durations')
     ->name('campaign-durations.')
     ->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('/fetch/{id}', 'fetchCampaignDuration')->name('fetch-campaign-duration');
-    Route::get('/create', 'create')->name('create');
-    Route::get('/{id}/edit', 'edit')->name('edit');
+    Route::get('/{campaign_id}', 'index')->name('index');
     Route::post('/store', 'store')->name('store');
     Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/{id}', 'delete')->name('delete');

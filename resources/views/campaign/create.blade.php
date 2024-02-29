@@ -72,9 +72,9 @@
 
 
                             <div class="d-flex space-x-5 my-3">
-                                <button type="button" class="btn btn-outline-secondary">
+                                <a href="{{ route('campaigns.index') }}" type="button" class="btn btn-outline-secondary">
                                     Close
-                                </button>
+                                </a>
                                 <button type="submit" class="btn btn-primary">Create</button>
                             </div>
                     </form>

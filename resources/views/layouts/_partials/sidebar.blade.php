@@ -88,7 +88,7 @@
           <div data-i18n="Analytics" class="text-semibold">Users</div>
         </a>
       </li>
-      <li class="menu-item @if ($currentRoute == 'campaigns.index' || $currentRoute == 'campaigns.create' || $currentRoute == 'campaigns.edit')
+      <li class="menu-item @if ($currentRoute == 'campaigns.index' || $currentRoute == 'campaigns.create' || $currentRoute == 'campaigns.edit' || $currentRoute == 'campaigns.show' || $currentRoute == 'campaign-durations.index' || $currentRoute == 'campaign-durations.create' || $currentRoute == 'campaign-durations.edit' || $currentRoute == 'campaign-durations.show')
           active open @endif">
         <a href="{{route('campaigns.index')}}" class="menu-link">
           <i class="menu-icon tf-icons bx bxl-dropbox"></i>
