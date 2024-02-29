@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\CampaignDurationController;
+use App\Http\Controllers\QuestionController;
 
 
 
@@ -52,4 +53,17 @@ Route::controller(CampaignDurationController::class)
     Route::post('/store', 'store')->name('store');
     Route::put('/update', 'update')->name('update');
     Route::delete('/{id}', 'delete')->name('delete');
+});
+
+// Question
+Route::controller(QuestionController::class)
+    ->middleware('auth')
+    ->prefix('questions')
+    ->name('questions.')
+    ->group(function () {
+    Route::get('/', 'index')->name('index');
+    // Route::get('/fetch/{id}', 'fetch')->name('fetch');
+    // Route::post('/store', 'store')->name('store');
+    // Route::put('/update', 'update')->name('update');
+    // Route::delete('/{id}', 'delete')->name('delete');
 });

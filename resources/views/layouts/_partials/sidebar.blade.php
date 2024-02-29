@@ -95,6 +95,12 @@
           <div data-i18n="Analytics" class="text-semibold">Campaigns</div>
         </a>
       </li>
+      <li class="menu-item @if ($currentRoute == 'questions.index' || $currentRoute == 'questions.create' || $currentRoute == 'questions.edit') active open @endif">
+        <a href="{{route('questions.index')}}" class="menu-link">
+          <i class='menu-icon tf-icons bx bx-question-mark text-semibold' ></i>
+          <div data-i18n="Analytics" class="text-semibold">Questions</div>
+        </a>
+      </li>
 
       {{-- <li class="menu-item @if ($currentRoute == 'campaign-durations.index')
           active open @endif">
