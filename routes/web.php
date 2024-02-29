@@ -48,7 +48,8 @@ Route::controller(CampaignDurationController::class)
     ->name('campaign-durations.')
     ->group(function () {
     Route::get('/{campaign_id}', 'index')->name('index');
+    Route::get('/fetch/{id}', 'fetch')->name('fetch');
     Route::post('/store', 'store')->name('store');
-    Route::put('/update/{id}', 'update')->name('update');
+    Route::put('/update', 'update')->name('update');
     Route::delete('/{id}', 'delete')->name('delete');
 });

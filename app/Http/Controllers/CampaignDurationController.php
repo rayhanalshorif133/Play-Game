@@ -63,6 +63,13 @@ class CampaignDurationController extends Controller
        }
     }
 
+    // fetch
+    public function fetch($id)
+    {
+        $campaignDuration = CampaignDuration::find($id);
+        return $this->respondWithSuccess('Campaign duration fetched successfully', $campaignDuration);
+    }
+
     public function update(Request $request, $id)
     {
         return response()->json(['message' => 'Campaign duration updated successfully']);

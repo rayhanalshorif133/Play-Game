@@ -52,8 +52,13 @@ $(document).ready(function() {
             {
                 render: function(data, type, row) {
                     return `
-                     <a href="/campaigns/${row.id}/edit" class="btn btn-warning btn-sm"><i class='bx bx-edit-alt'></i></a>
-                    <button class="btn btn-danger btn-sm" onclick="deleteCampaignDuration(${row.id})"><i class='bx bxs-trash-alt'></i></button>`;
+                    <button class="btn btn-primary btn-sm" onclick="editcampaignDuration(${row.id})">
+                        <i class='bx bx-edit-alt'></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteCampaignDuration(${row.id})">
+                        <i class='bx bxs-trash-alt'></i>
+                    </button>
+                    `;
                 },
                 targets: 0,
                 width: "auto",
@@ -64,6 +69,22 @@ $(document).ready(function() {
     createCampaignDuration();
 });
 
+
+const editcampaignDuration = (id) => {
+    axios.get(`/campaign-durations/${id}/fetch`)
+        .then((response) => {
+            if (response.status === 200) {
+                const data = response.data;
+                console.log(data);
+                // $("#id").val(data.id);
+                // $("#name").val(data.name);
+                // $("#start_date").val(data.start_date);
+                // $("#end_date").val(data.end_date);
+                // $("#status").val(data.status);
+                // $("#createNewcampaignDuration").modal('show');
+            }
+        });
+};
 
 const createCampaignDuration = () => {
     const campaign_id = $("#GET_campaign_id").val();
