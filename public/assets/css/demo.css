@@ -227,3 +227,19 @@ input[type='number']::-webkit-outer-spin-button {
     margin-top: 0.625rem;
     margin-bottom: 0.625rem;
 }
+
+.selectedIconPopup{
+    animation: selectedIconPopup 2s infinite;
+}
+
+@keyframes selectedIconPopup {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}

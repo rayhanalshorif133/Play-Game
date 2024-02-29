@@ -77,27 +77,30 @@
       <li class="menu-item @if ($currentRoute == 'home' || $currentRoute == 'dashboard')
           active open @endif">
         <a href="{{route('home')}}" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-home-circle"></i>
+          <i class="menu-icon tf-icons bx bx-home-circle @if ($currentRoute == 'home' || $currentRoute == 'dashboard')
+          selectedIconPopup @endif"></i>
           <div data-i18n="Analytics" class="text-semibold">Dashboard</div>
         </a>
       </li>
       <li class="menu-item @if ($currentRoute == 'user.index')
           active open @endif">
         <a href="{{route('user.index')}}" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-user"></i>
+          <i class="menu-icon tf-icons bx bx-user @if ($currentRoute == 'user.index')
+          selectedIconPopup @endif"></i>
           <div data-i18n="Analytics" class="text-semibold">Users</div>
         </a>
       </li>
       <li class="menu-item @if ($currentRoute == 'campaigns.index' || $currentRoute == 'campaigns.create' || $currentRoute == 'campaigns.edit' || $currentRoute == 'campaigns.show' || $currentRoute == 'campaign-durations.index' || $currentRoute == 'campaign-durations.create' || $currentRoute == 'campaign-durations.edit' || $currentRoute == 'campaign-durations.show')
           active open @endif">
         <a href="{{route('campaigns.index')}}" class="menu-link">
-          <i class="menu-icon tf-icons bx bxl-dropbox"></i>
+          <i class="menu-icon tf-icons bx bxl-dropbox @if ($currentRoute == 'campaigns.index' || $currentRoute == 'campaigns.create' || $currentRoute == 'campaigns.edit' || $currentRoute == 'campaigns.show' || $currentRoute == 'campaign-durations.index' || $currentRoute == 'campaign-durations.create' || $currentRoute == 'campaign-durations.edit' || $currentRoute == 'campaign-durations.show')
+          selectedIconPopup @endif"></i>
           <div data-i18n="Analytics" class="text-semibold">Campaigns</div>
         </a>
       </li>
       <li class="menu-item @if ($currentRoute == 'questions.index' || $currentRoute == 'questions.create' || $currentRoute == 'questions.edit') active open @endif">
         <a href="{{route('questions.index')}}" class="menu-link">
-          <i class='menu-icon tf-icons bx bx-question-mark text-semibold' ></i>
+          <i class='menu-icon tf-icons bx bx-question-mark text-semibold @if ($currentRoute == 'questions.index' || $currentRoute == 'questions.create' || $currentRoute == 'questions.edit') selectedIconPopup @endif' ></i>
           <div data-i18n="Analytics" class="text-semibold">Questions</div>
         </a>
       </li>

@@ -19,11 +19,11 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->string('image')->nullable();
-            $table->string('option_a');
-            $table->string('option_b');
+            $table->string('option_a')->nullable();
+            $table->string('option_b')->nullable();
             $table->string('option_c')->nullable();
             $table->string('option_d')->nullable();
-            $table->string('correct_option')->enum('option_a','option_b','option_c','option_d');
+            $table->string('correct_option')->enum('option_a','option_b','option_c','option_d')->nullable();
             $table->integer('score')->default(0);
             $table->string('status')->enum('active','inactive')->default('active');
             $table->timestamps();

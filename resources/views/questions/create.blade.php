@@ -10,7 +10,7 @@
                         <i class='bx bx-arrow-back me-1'></i> Back</a>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('campaigns.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('questions.store') }}" method="POST" enctype="multipart/form-data">
                         @method('POST')
                         @csrf
                         <div class="row g-1">
@@ -77,7 +77,7 @@
 
 
                             <div class="d-flex space-x-5 my-3">
-                                <a href="{{ route('campaigns.index') }}" type="button" class="btn btn-outline-secondary">
+                                <a href="{{ route('questions.index') }}" type="button" class="btn btn-outline-secondary">
                                     Close
                                 </a>
                                 <button type="submit" class="btn btn-primary">Create</button>
