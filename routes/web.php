@@ -62,6 +62,7 @@ Route::controller(QuestionController::class)
     ->name('questions.')
     ->group(function () {
     Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
     // Route::get('/fetch/{id}', 'fetch')->name('fetch');
     // Route::post('/store', 'store')->name('store');
     // Route::put('/update', 'update')->name('update');

@@ -11,4 +11,10 @@ class QuestionController extends Controller
     {
         return view('questions.index');
     }
+
+    // create
+    public function create()
+    {
+        return view('questions.create');
+    }
 }
