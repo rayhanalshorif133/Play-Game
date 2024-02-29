@@ -70,6 +70,12 @@ class CampaignDurationController extends Controller
 
     public function delete($id)
     {
-        return response()->json(['message' => 'Campaign duration deleted successfully']);
+        try {
+            $campaignDuration = CampaignDuration::find($id);
+            $campaignDuration->delete();
+            return $this->respondWithSuccess('Campaign duration deleted successfully');
+        } catch (\Throwable $th) {
+            return $this->respondWithError($th->getMessage());
+        }
     }
 }

@@ -43,6 +43,10 @@
                     <div class="col-12 col-lg-4 col-md-6 mb-1">
                         <h4 class="text-base" id="campaign-updatedBy"></h4>
                     </div>
+                    {{-- des --}}
+                    <div class="col-12 mb-3">
+                        <h4 class="text-base" id="campaign-description"></h4>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

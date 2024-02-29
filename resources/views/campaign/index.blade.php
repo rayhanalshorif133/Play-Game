@@ -33,5 +33,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('js/custom/campaigns.js') }}"></script>
+    <script src="{{ asset('js/custom/campaigns/index.js') }}"></script>
 @endpush

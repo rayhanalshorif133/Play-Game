@@ -130,6 +130,14 @@ const showCampaignDetails = (id) => {
             // campaign-createdBy
             $("#campaign-createdBy").html(`<span class="text-bolder">Created By: </span> ${campaign.created_by.name}`);
             $("#campaign-updatedBy").html(`<span class="text-bolder">Updated By: </span> ${campaign.updated_by.name}`);
+
+            // campaign-description
+            if (campaign.description == null) {
+                $("#campaign-description").addClass('d-none');
+            } else {
+                $("#campaign-description").removeClass('d-none');
+                $("#campaign-description").html(`<span class="text-bolder">Description: </span> ${campaign.description}`);
+            }
         })
         .catch(error => {
             console.log(error);
