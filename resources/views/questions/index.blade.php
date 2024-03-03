@@ -15,7 +15,9 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
+                                <th>Title</th>
+                                <th>Currect Option</th>
+                                <th>CreatedBy</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -35,4 +37,5 @@
 
 {{-- scripts --}}
 @push('scripts')
+    <script src="{{ asset('js/custom/question/index.js') }}"></script>
 @endpush

@@ -5,7 +5,7 @@
         <div class="row p-1rem">
             <div class="card pb-2">
                 <div class="d-flex justify-content-between px-2">
-                    <h5 class="card-header">Add New Questions</h5>
+                    <h5 class="card-header">Add New Question</h5>
                     <a href="{{ route('campaigns.index') }}" class="btn btn-danger btn-sm d-block d-flex my-2">
                         <i class='bx bx-arrow-back me-1'></i> Back</a>
                 </div>
@@ -95,13 +95,19 @@
 @push('scripts')
 <script>
     $(document).ready(function () {
-        $('#campaign_type').on('change', function () {
-            if (this.value === 'quiz') {
-                $('.quiz_option').removeClass('d-none');
-            } else {
-                $('.quiz_option').addClass('d-none');
+        $('#correct_option').on('change', function () {
+            var option = $(this).val();
+            option = '#' + option;
+            const correctOptionValue = $(option).val();
+            if(!correctOptionValue){
+                $(option).focus();
+                $(option).after('<small class="text-danger">This field is required</small>');
             }
+            setTimeout(() => {
+                $(option).next().remove();
+            }, 3000);
         });
+
     });
 </script>
 @endpush

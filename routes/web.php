@@ -64,7 +64,7 @@ Route::controller(QuestionController::class)
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
-    // Route::get('/fetch/{id}', 'fetch')->name('fetch');
-    // Route::put('/update', 'update')->name('update');
+    Route::get('/{id}/edit', 'edit')->name('edit');
+    Route::put('/update', 'update')->name('update');
     // Route::delete('/{id}', 'delete')->name('delete');
 });

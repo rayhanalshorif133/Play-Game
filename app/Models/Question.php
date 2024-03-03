@@ -11,6 +11,7 @@ class Question extends Model
 
     protected $fillable = [
         'created_by',
+        'updated_by',
         'title',
         'description',
         'image',
@@ -22,4 +23,14 @@ class Question extends Model
         'score',
         'status',
     ];
+
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function updatedBy()
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
 }

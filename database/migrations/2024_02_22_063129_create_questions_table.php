@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('created_by')->unsigned();
+
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->string('image')->nullable();
@@ -26,6 +26,8 @@ return new class extends Migration
             $table->string('correct_option')->enum('option_a','option_b','option_c','option_d')->nullable();
             $table->integer('score')->default(0);
             $table->string('status')->enum('active','inactive')->default('active');
+            $table->bigInteger('created_by')->unsigned();
+            $table->bigInteger('updated_by')->unsigned();
             $table->timestamps();
         });
 
