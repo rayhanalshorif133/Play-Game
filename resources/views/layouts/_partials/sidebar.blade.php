@@ -98,12 +98,21 @@
           <div data-i18n="Analytics" class="text-semibold">Campaigns</div>
         </a>
       </li>
+      <li class="menu-item @if ($currentRoute == 'campaign-score-logs.index')
+          active open @endif">
+        <a href="{{route('campaign-score-logs.index')}}" class="menu-link">
+          <i class="menu-icon tf-icons bx bxs-component @if ($currentRoute == 'campaign-score-logs.index')
+          selectedIconPopup @endif"></i>
+          <div data-i18n="Analytics" class="text-semibold">Campaigns Score Logs</div>
+        </a>
+      </li>
       <li class="menu-item @if ($currentRoute == 'questions.index' || $currentRoute == 'questions.create' || $currentRoute == 'questions.edit') active open @endif">
         <a href="{{route('questions.index')}}" class="menu-link">
           <i class='menu-icon tf-icons bx bx-question-mark text-semibold @if ($currentRoute == 'questions.index' || $currentRoute == 'questions.create' || $currentRoute == 'questions.edit') selectedIconPopup @endif' ></i>
           <div data-i18n="Analytics" class="text-semibold">Questions</div>
         </a>
       </li>
+      {{-- campaign_score_logs --}}
 
       {{-- <li class="menu-item @if ($currentRoute == 'campaign-durations.index')
           active open @endif">

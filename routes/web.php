@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\CampaignDurationController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\CampaignScoreLogController;
 
 
 
@@ -54,6 +55,19 @@ Route::controller(CampaignDurationController::class)
     Route::put('/update', 'update')->name('update');
     Route::delete('/{id}', 'delete')->name('delete');
 });
+// campaign_score_logs
+Route::controller(CampaignScoreLogController::class)
+    ->middleware('auth')
+    ->prefix('campaign-score-logs')
+    ->name('campaign-score-logs.')
+    ->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/fetch/{id}', 'fetch')->name('fetch');
+    Route::post('/store', 'store')->name('store');
+    Route::put('/update', 'update')->name('update');
+    Route::delete('/{id}', 'delete')->name('delete');
+});
+
 
 // Question
 Route::controller(QuestionController::class)
