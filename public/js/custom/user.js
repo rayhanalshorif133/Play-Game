@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    url = '/user';
+    url = '/admin/user';
     table = $('#userTableId').DataTable({
         processing: true,
         serverSide: true,
@@ -90,7 +90,7 @@ const deteleBtn = (id) => {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: `/user/${id}`,
+                url: `/admin/user/${id}`,
                 type: 'DELETE',
                 data: {
                     _token: "{{ csrf_token() }}"
@@ -110,7 +110,7 @@ const deteleBtn = (id) => {
 
 const editUserInfoBtn = (id) => {
     $('#update_user_id').val(id);
-    axios.get(`/user/fetch/${id}`)
+    axios.get(`/admin/user/fetch/${id}`)
         .then(response => {
             const data = response.data.data;
             $('#update_user_name').val(data.name);

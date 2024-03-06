@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var url = '/campaigns';
+    var url = '/admin/campaigns';
     $('#campaignsTableId').DataTable({
         processing: true,
         serverSide: true,
@@ -55,7 +55,7 @@ $(document).ready(function () {
             render: function (data, type, row) {
                 return `
                 <div class="d-flex space-x-2">
-                    <a href="campaign-durations/${row.id}" class="btn btn-info btn-sm d-flex items-center">
+                    <a href="/admin/campaign-durations/${row.id}" class="btn btn-info btn-sm d-flex items-center">
                     <i class='bx bx-show'></i> <span>Show</span>
                     </a>
                     <button class="btn btn-primary btn-sm d-flex items-center createCampaignDuration" data-bs-toggle="modal" data-bs-target="#createNewcampaignDuration" data-title="${row.title}" onClick="createCampaignDuration(${row.id})">
@@ -69,7 +69,7 @@ $(document).ready(function () {
         {
             render: function (data, type, row) {
                 return `<span onClick="showCampaignDetails(${row.id})" data-bs-toggle="modal" data-bs-target="#showDetailsCampaign" class="btn btn-primary btn-sm"><i class='bx bx-show'></i></span>
-                             <a href="/campaigns/${row.id}/edit" class="btn btn-warning btn-sm"><i class='bx bx-edit-alt'></i></a>
+                             <a href="/admin/campaigns/${row.id}/edit" class="btn btn-warning btn-sm"><i class='bx bx-edit-alt'></i></a>
                     <button class="btn btn-danger btn-sm" onclick="deleteCampaign(${row.id})"><i class='bx bxs-trash-alt'></i></button>`;
             },
             targets: 0,
@@ -80,7 +80,7 @@ $(document).ready(function () {
 });
 
 const showCampaignDetails = (id) => {
-    axios.get(`/campaigns/fetch/${id}`)
+    axios.get(`/admin/campaigns/fetch/${id}`)
         .then(response => {
             const campaign = response.data.data;
             if (campaign.thumbnail == null) {
@@ -155,7 +155,7 @@ const deleteCampaign = (id) => {
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
-            axios.delete(`/campaigns/${id}`)
+            axios.delete(`/admin/campaigns/${id}`)
                 .then(response => {
                     Swal.fire(
                         'Deleted!',
@@ -176,7 +176,7 @@ const showCampaignDuration = (id) => {
 }
 
 const createCampaignDuration = (id) => {
-    axios.get(`/campaigns/fetch/${id}`)
+    axios.get(`/admin/campaigns/fetch/${id}`)
         .then(response => {
             const campaign = response.data.data;
             $("#selected_campaign").html(campaign.title);

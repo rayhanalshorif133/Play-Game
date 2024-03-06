@@ -5,7 +5,7 @@
                 <h5 class="modal-title">Create New User</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{route('user.store')}}" method="POST">
+            <form action="{{route('admin.user.store')}}" method="POST">
                 @method('POST')
                 @csrf
                 <div class="modal-body">

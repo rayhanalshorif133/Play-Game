@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function isLoginOrNot()
     {
         if(Auth::check()){
-            return redirect()->route('home');
+            return redirect()->route('admin.dashboard');
         }else{
             return redirect()->route('login');
         }
@@ -25,6 +25,6 @@ class HomeController extends Controller
     public function index()
     {
         $this->middleware('auth');
-        return view('user.dashboard');
+        return view('admin.dashboard');
     }
 }

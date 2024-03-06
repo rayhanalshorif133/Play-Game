@@ -74,26 +74,26 @@
 
     <ul class="menu-inner py-1">
       <!-- Dashboard -->
-      <li class="menu-item @if ($currentRoute == 'home' || $currentRoute == 'dashboard')
+      <li class="menu-item @if ($currentRoute == 'admin.dashboard' || $currentRoute == 'admin.dashboard')
           active open @endif">
-        <a href="{{route('home')}}" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-home-circle @if ($currentRoute == 'home' || $currentRoute == 'dashboard')
+        <a href="{{route('admin.dashboard')}}" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-home-circle @if ($currentRoute == 'admin.dashboard')
           selectedIconPopup @endif"></i>
           <div data-i18n="Analytics" class="text-semibold">Dashboard</div>
         </a>
       </li>
-      <li class="menu-item @if ($currentRoute == 'user.index')
+      <li class="menu-item @if ($currentRoute == 'admin.user.index')
           active open @endif">
-        <a href="{{route('user.index')}}" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-user @if ($currentRoute == 'user.index')
+        <a href="{{route('admin.user.index')}}" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-user @if ($currentRoute == 'admin.user.index')
           selectedIconPopup @endif"></i>
           <div data-i18n="Analytics" class="text-semibold">Users</div>
         </a>
       </li>
-      <li class="menu-item @if ($currentRoute == 'campaigns.index' || $currentRoute == 'campaigns.create' || $currentRoute == 'campaigns.edit' || $currentRoute == 'campaigns.show' || $currentRoute == 'campaign-durations.index' || $currentRoute == 'campaign-durations.create' || $currentRoute == 'campaign-durations.edit' || $currentRoute == 'campaign-durations.show')
+      <li class="menu-item @if ($currentRoute == 'admin.campaigns.index' || $currentRoute == 'admin.campaigns.create' || $currentRoute == 'admin.campaigns.edit' || $currentRoute == 'admin.campaigns.show' || $currentRoute == 'campaign-durations.index' || $currentRoute == 'campaign-durations.create' || $currentRoute == 'campaign-durations.edit' || $currentRoute == 'campaign-durations.show')
           active open @endif">
-        <a href="{{route('campaigns.index')}}" class="menu-link">
-          <i class="menu-icon tf-icons bx bxl-dropbox @if ($currentRoute == 'campaigns.index' || $currentRoute == 'campaigns.create' || $currentRoute == 'campaigns.edit' || $currentRoute == 'campaigns.show' || $currentRoute == 'campaign-durations.index' || $currentRoute == 'campaign-durations.create' || $currentRoute == 'campaign-durations.edit' || $currentRoute == 'campaign-durations.show')
+        <a href="{{route('admin.campaigns.index')}}" class="menu-link">
+          <i class="menu-icon tf-icons bx bxl-dropbox @if ($currentRoute == 'admin.campaigns.index' || $currentRoute == 'admin.campaigns.create' || $currentRoute == 'admin.campaigns.edit' || $currentRoute == 'campaigns.show' || $currentRoute == 'campaign-durations.index' || $currentRoute == 'campaign-durations.create' || $currentRoute == 'campaign-durations.edit' || $currentRoute == 'campaign-durations.show')
           selectedIconPopup @endif"></i>
           <div data-i18n="Analytics" class="text-semibold">Campaigns</div>
         </a>

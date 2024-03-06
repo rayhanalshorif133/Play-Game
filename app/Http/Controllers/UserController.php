@@ -49,10 +49,10 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
             $user->save();
             toastr()->addSuccess('User added successfully.');
-            return redirect()->route('user.index');
+            return redirect()->route('admin.user.index');
         }catch(\Exception $e){
             toastr()->addError($e->getMessage());
-            return redirect()->route('user.index');
+            return redirect()->route('admin.user.index');
         }
     }
 
@@ -97,14 +97,14 @@ class UserController extends Controller
                 $user->status = $request->status;
                 $user->save();
                 toastr()->addSuccess('User updated successfully.');
-                return redirect()->route('user.index');
+                return redirect()->route('admin.user.index');
             }else{
                 toastr()->addError('User not found.');
-                return redirect()->route('user.index');
+                return redirect()->route('admin.user.index');
             }
         }catch(\Exception $e){
             toastr()->addError($e->getMessage());
-            return redirect()->route('user.index');
+            return redirect()->route('admin.user.index');
         }
     }
 
