@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CampaignDurationController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\CampaignScoreLogController;
@@ -19,7 +20,10 @@ Auth::routes();
 
 
 Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
+    Route::get('/login', [LoginController::class, 'login'])->name('login');
     Route::get('/dashboard', [DashboardController::class,'dashboard'])->name('dashboard');
+
+
     Route::controller(UserController::class)
         ->prefix('user')
         ->name('user.')->group(function () {
