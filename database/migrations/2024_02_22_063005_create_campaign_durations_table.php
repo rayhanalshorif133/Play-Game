@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('campaign_id')->unsigned();
             $table->date('start_date');
             $table->date('end_date');
-            $table->integer('status')->default(0);
+            $table->string('status')->default('active');
             $table->timestamps();
         });
     }

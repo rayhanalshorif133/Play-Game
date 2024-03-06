@@ -62,10 +62,6 @@ Route::controller(CampaignScoreLogController::class)
     ->name('campaign-score-logs.')
     ->group(function () {
     Route::get('/', 'index')->name('index');
-    Route::get('/fetch/{id}', 'fetch')->name('fetch');
-    Route::post('/store', 'store')->name('store');
-    Route::put('/update', 'update')->name('update');
-    Route::delete('/{id}', 'delete')->name('delete');
 });
 
 
