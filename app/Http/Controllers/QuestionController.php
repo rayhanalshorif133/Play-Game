@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Imports\QuestionImport;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\Question;
 
@@ -86,5 +88,21 @@ class QuestionController extends Controller
     {
         $question = Question::find($id);
         return view('questions.edit', compact('question'));
+    }
+
+    // upload
+    public function upload(Request $request)
+    {
+        try {
+            $file = $request->file('file');
+
+            Excel::import(new QuestionImport, $file);
+            dd($file);
+            toastr()->success('Questions uploaded successfully');
+            return redirect()->route('questions.index');
+        } catch (\Throwable $th) {
+            toastr()->addError($th->getMessage());
+            return redirect()->back();
+        }
     }
 }

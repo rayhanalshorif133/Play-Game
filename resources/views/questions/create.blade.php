@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'Add New Question'])
 
 @section('content')
     <div class="px-3 container-p-y">
@@ -6,7 +6,7 @@
             <div class="card pb-2">
                 <div class="d-flex justify-content-between px-2">
                     <h5 class="card-header">Add New Question</h5>
-                    <a href="{{ route('campaigns.index') }}" class="btn btn-danger btn-sm d-block d-flex my-2">
+                    <a href="{{ route('questions.index') }}" class="btn btn-danger btn-sm d-block d-flex my-2">
                         <i class='bx bx-arrow-back me-1'></i> Back</a>
                 </div>
                 <div class="card-body">
@@ -17,7 +17,7 @@
                             <div class="col-12 col-lg-4 col-md-6 mb-0">
                                 <label for="title" class="form-label required">Title</label>
                                 <input type="text" id="title" required class="form-control" name="title"
-                                    placeholder="Enter campaign title" />
+                                    placeholder="Enter question title" />
                             </div>
                             <div class="col-12 col-lg-4 col-md-6 mb-0">
                                 <label for="image" class="form-label optional">image</label>
@@ -83,6 +83,20 @@
                                 <button type="submit" class="btn btn-primary">Create</button>
                             </div>
                     </form>
+                    <hr>
+                    <div>
+                        <h5>Upload Questions</h5>
+                        <form action="{{ route('questions.upload') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="col-12 col-lg-4 col-md-6 mb-0">
+                                <label for="question_file" class="form-label optional">Upload File</label>
+                                <input type="file" id="question_file" class="form-control" name="file"/>
+                            </div>
+                            <div class="d-flex space-x-5 my-3">
+                                <button type="submit" class="btn btn-primary">Upload</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
 
             </div>
