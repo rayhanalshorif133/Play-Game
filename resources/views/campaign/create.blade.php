@@ -38,10 +38,10 @@
                                 </select>
                             </div>
                             <div class="col-12 col-lg-4 col-md-6 mb-0 quiz_option d-none">
-                                <label for="total_time_limit" class="form-label required">Total Time Limit
-                                    <small>(Min)</small></label>
-                                <input type="number" id="total_time_limit" class="form-control"
-                                    name="total_time_limit" placeholder="Enter total time limit" />
+                                <label for="per_q_time_limit" class="form-label required">Per Q. Time Limit
+                                    <small>(Sec)</small></label>
+                                <input type="number" id="per_q_time_limit" class="form-control"
+                                    name="per_q_time_limit" placeholder="Enter per question time limit" />
                             </div>
                             {{-- total_questions --}}
                             <div class="col-12 col-lg-4 col-md-6 mb-0 quiz_option d-none">
@@ -59,8 +59,8 @@
                                 <label for="status" class="form-label required">Status</label>
                                 <select id="status" required class="form-select" name="status">
                                     <option value="" disabled selected>Select a Status</option>
-                                    <option value="active">Active</option>
-                                    <option value="inactive">Inactive</option>
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
                                 </select>
                             </div>
                             {{-- description --}}
@@ -72,7 +72,7 @@
 
 
                             <div class="d-flex space-x-5 my-3">
-                                <a href="{{ route('campaigns.index') }}" type="button" class="btn btn-outline-secondary">
+                                <a href="{{ route('admin.campaigns.index') }}" type="button" class="btn btn-outline-secondary">
                                     Close
                                 </a>
                                 <button type="submit" class="btn btn-primary">Create</button>

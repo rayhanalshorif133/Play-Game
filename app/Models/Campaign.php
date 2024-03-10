@@ -18,6 +18,7 @@ class Campaign extends Model
         'total_time_limit',
         'total_questions',
         'per_question_score',
+        'per_q_time_limit',
         'status',
         'created_by',
         'updated_by',

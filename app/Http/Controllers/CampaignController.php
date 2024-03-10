@@ -59,9 +59,9 @@ class CampaignController extends Controller
             // type
             if($request->type == 'quiz'){
                 $validator = Validator::make($request->all(), [
-                    'total_time_limit' => 'required',
                     'total_questions' => 'required',
                     'per_question_score' => 'required',
+                    'per_q_time_limit' => 'required',
                 ]);
                 if ($validator->fails()) {
                     toastr()->addError($validator->errors()->first());
@@ -73,7 +73,8 @@ class CampaignController extends Controller
             $campaign = new Campaign();
             $campaign->title = $request->title;
             $campaign->type = $request->type;
-            $campaign->total_time_limit = $request->total_time_limit;
+            $campaign->per_q_time_limit = $request->per_q_time_limit;
+            $campaign->total_time_limit = (int)$request->per_q_time_limit * (int)$request->total_questions;
             $campaign->total_questions = $request->total_questions;
             $campaign->per_question_score = $request->per_question_score;
             $campaign->status = $request->status;
@@ -99,11 +100,11 @@ class CampaignController extends Controller
             $campaign->updated_by = auth()->user()->id;
             $campaign->save();
             toastr()->addSuccess('Campaign added successfully.');
-            return redirect()->route('campaigns.index');
+            return redirect()->route('admin.campaigns.index');
 
         } catch (\Throwable $th) {
             toastr()->addError($th->getMessage());
-            return redirect()->route('campaigns.index');
+            return redirect()->route('admin.campaigns.index');
         }
     }
 

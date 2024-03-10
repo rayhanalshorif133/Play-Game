@@ -10,6 +10,7 @@ class Question extends Model
     use HasFactory;
 
     protected $fillable = [
+        'campaign_id',
         'created_by',
         'updated_by',
         'title',
@@ -23,6 +24,12 @@ class Question extends Model
         'score',
         'status',
     ];
+
+
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class);
+    }
 
     public function createdBy()
     {

@@ -21,13 +21,16 @@ return new class extends Migration
             $table->float('total_time_limit')->nullable();
             $table->integer('total_questions')->nullable();
             $table->integer('per_question_score')->nullable();
+            $table->integer('per_q_time_limit')->nullable();
             // for quiz:end
-            $table->string('status')->comment('active, inactive')->default(0);
+            $table->tinyInteger('status')->default(1);
             $table->text('description')->nullable();
             $table->bigInteger('created_by')->unsigned();
             $table->bigInteger('updated_by')->unsigned();
             $table->timestamps();
         });
+
+
     }
 
     /**
