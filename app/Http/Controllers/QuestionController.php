@@ -15,7 +15,6 @@ class QuestionController extends Controller
     // index
     public function index()
     {
-
         if (request()->ajax()) {
             $query = Question::orderBy('created_at', 'desc')
                 ->with('createdBy')
@@ -40,9 +39,6 @@ class QuestionController extends Controller
     {
 
         try {
-
-
-
             $validator = Validator::make($request->all(), [
                 'campaign_id' => 'required',
                 'title' => 'required',
@@ -53,7 +49,7 @@ class QuestionController extends Controller
 
 
             if ($validator->fails()) {
-                toastr()->addError($validator->errors()->first());
+                flash()->addError($validator->errors()->first());
                 return redirect()->back();
             }
 
@@ -79,11 +75,22 @@ class QuestionController extends Controller
             $question->updated_by = auth()->user()->id;
 
             $question->save();
-            toastr()->success('Question created successfully');
+            flash()->addSuccess('Question created successfully');
             return redirect()->route('admin.questions.index');
         } catch (\Throwable $th) {
-            toastr()->addError($th->getMessage());
+            flash()->addError($th->getMessage());
             return redirect()->back();
+        }
+    }
+
+    // fetch
+    public function fetch($id)
+    {
+        try {
+            $question = Question::find($id);
+            return $this->respondWithSuccess('Question fetched successfully', $question);
+        } catch (\Throwable $th) {
+            return $this->respondWithError($th->getMessage());
         }
     }
 
@@ -108,7 +115,7 @@ class QuestionController extends Controller
             ]);
 
             if ($validator->fails()) {
-                toastr()->addError($validator->errors()->first());
+                flash()->addError($validator->errors()->first());
                 return redirect()->back();
             }
 
@@ -130,14 +137,12 @@ class QuestionController extends Controller
                 $image_name = 'images/question/image/' . $image_name;
                 $question->image = $image_name;
             }
-            $question->created_by = auth()->user()->id;
             $question->updated_by = auth()->user()->id;
-
             $question->save();
-            toastr()->success('Question created successfully');
+            flash()->addSuccess('Question updated successfully');
             return redirect()->route('admin.questions.index');
         } catch (\Throwable $th) {
-            toastr()->addError($th->getMessage());
+            flash()->addError($th->getMessage());
             return redirect()->back();
         }
     }

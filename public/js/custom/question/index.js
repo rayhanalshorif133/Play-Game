@@ -24,13 +24,13 @@ $(document).ready(function () {
             render: function (data, type, row) {
                 const GETCorrectOption = row.correct_option;
                 var correctOption = "";
-                if(GETCorrectOption == 'option_a'){
+                if (GETCorrectOption == 'option_a') {
                     correctOption = row.option_a;
-                }else if(GETCorrectOption == 'option_b'){
+                } else if (GETCorrectOption == 'option_b') {
                     correctOption = row.option_b;
-                }else if(GETCorrectOption == 'option_c'){
+                } else if (GETCorrectOption == 'option_c') {
                     correctOption = row.option_c;
-                }else if(GETCorrectOption == 'option_d'){
+                } else if (GETCorrectOption == 'option_d') {
                     correctOption = row.option_d;
                 }
                 return correctOption;
@@ -70,6 +70,72 @@ $(document).ready(function () {
 });
 
 
+// showQuestionsDetails
+function showQuestionsDetails(id) {
+    axios.get(`/admin/questions/${id}/fetch`)
+        .then((response) => {
+            const data = response.data.data;
+            console.log(data);
+            if (data.image != null) {
+                $('#question-image').html(`<img src="/${data.image}" class="img-fluid w-75" alt="Question Image">`);
+            } else {
+                $('#question-image').html(`<h5 class="text-start text-sm text-red">Image Not Set</h5>`);
+            }
+
+            // question-title
+            $('#question-title').html(`
+                <h5 class="text-start">
+                    <strong>Question Title: </strong> ${data.title}
+                </h5>
+            `);
+
+            const options = [
+                {
+                    option: 'A',
+                    option_title: data.option_a,
+                    is_correct: data.correct_option == 'option_a' ? true : false
+                }, {
+                    option: 'B',
+                    option_title: data.option_b,
+                    is_correct: data.correct_option == 'option_b' ? true : false
+                }, {
+                    option: 'C',
+                    option_title: data.option_c,
+                    is_correct: data.correct_option == 'option_c' ? true : false
+                }, {
+                    option: 'D',
+                    option_title: data.option_d,
+                    is_correct: data.correct_option == 'option_d' ? true : false
+                }
+            ];
+
+            // data.correct_option
+            const correct_option = options.find(option => option.is_correct).option_title;
+
+            var question_options = "";
+
+            options.forEach((item, index) => {
+                if(item.option_title){
+                    question_options += `<div class="col-12 col-lg-4 col-md-6 mb-1">
+                        <h4 class="text-base">
+                        ${item.is_correct ? '✔️' : ''}
+                        ${item.option}. ${item.option_title}</h4>
+                    </div>`;
+                }else{
+                    question_options += `<div class="col-12 col-lg-4 col-md-6 mb-1">
+                        <h4 class="text-base text-red-100">${item.option}. Option Not Set</h4>
+                    </div>`;
+                }
+            });
+
+            $("#question_options_with_ans").html(question_options);
+
+
+
+        });
+}
+
+
 // deleteCampaign
 function deleteCampaign(id) {
     Swal.fire({
@@ -100,6 +166,12 @@ function deleteCampaign(id) {
                     )
                 });
 
+        } else {
+            Swal.fire(
+                'Cancelled',
+                'Your data is safe',
+                'error'
+            )
         }
     });
 }

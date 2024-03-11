@@ -29,8 +29,8 @@
     </div>
 
     {{-- user edit modal:start --}}
-    {{-- @include('user.create')
-    @include('user.edit') --}}
+    {{-- @include('user.create') --}}
+    @include('questions.show')
     {{-- user edit modal:end --}}
 @endsection
 

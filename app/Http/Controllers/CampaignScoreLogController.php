@@ -24,13 +24,5 @@ class CampaignScoreLogController extends Controller
         return view('campaign_score_logs.index');
     }
 
-    /*
-    'campaign_id',
-    'campaign_duration_id',
-    'question_id',
-    'answer',
-    'type',
-    'time_taken',
-    'score'
-    */
+
 }

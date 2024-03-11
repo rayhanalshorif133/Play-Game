@@ -54,11 +54,11 @@ class CampaignDurationController extends Controller
         $campaignDuration->start_date = $request->start_date;
         $campaignDuration->end_date = $request->end_date;
         $campaignDuration->save();
-        toastr()->addSuccess('Campaign duration created successfully');
+        flash()->addSuccess('Campaign duration created successfully');
         return redirect()->back();
 
        } catch (\Throwable $th) {
-            toastr()->addError($th->getMessage());
+            flash()->addError($th->getMessage());
             return redirect()->back();
        }
     }

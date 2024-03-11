@@ -75,6 +75,7 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
         ->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
+        Route::get('/{id}/fetch', 'fetch')->name('fetch');
         Route::post('/store', 'store')->name('store');
         Route::post('/upload', 'upload')->name('upload');
         Route::get('/{id}/edit', 'edit')->name('edit');

@@ -10,7 +10,7 @@
                         <i class='bx bx-arrow-back me-1'></i> Back</a>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.questions.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.questions.update') }}" method="POST" enctype="multipart/form-data">
                         @method('post')
                         @csrf
                         <input type="hidden" name="id" value="{{ $question->id }}">
