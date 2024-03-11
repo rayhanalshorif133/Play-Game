@@ -193,11 +193,11 @@ class CampaignController extends Controller
             $campaign->updated_by = auth()->user()->id;
             $campaign->save();
             toastr()->addSuccess('Campaign updated successfully.');
-            return redirect()->route('campaigns.index');
+            return redirect()->route('admin.campaigns.index');
 
         } catch (\Throwable $th) {
             toastr()->addError($th->getMessage());
-            return redirect()->route('campaigns.index');
+            return redirect()->route('admin.campaigns.index');
         }
     }
 
@@ -220,7 +220,7 @@ class CampaignController extends Controller
             return $this->respondWithSuccess('Campaign deleted successfully.');
         } catch (\Throwable $th) {
             toastr()->addError($th->getMessage());
-            return redirect()->route('campaigns.index');
+            return redirect()->route('admin.campaigns.index');
         }
     }
 }

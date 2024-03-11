@@ -10,10 +10,19 @@
                         <i class='bx bx-arrow-back me-1'></i> Back</a>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('questions.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.questions.store') }}" method="POST" enctype="multipart/form-data">
                         @method('POST')
                         @csrf
                         <div class="row g-1">
+                            <div class="col-12 col-lg-4 col-md-6 mb-0">
+                                <label for="select_campaign" class="form-label required">Select Campaign</label>
+                                <select id="select_campaign" required class="form-select" name="select_campaign">
+                                    <option value="" disabled selected>Select a Campaign</option>
+                                    @foreach ($campaigns as $campaign)
+                                        <option value="{{ $campaign->id }}">{{ $campaign->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="col-12 col-lg-4 col-md-6 mb-0">
                                 <label for="title" class="form-label required">Title</label>
                                 <input type="text" id="title" required class="form-control" name="title"
@@ -86,7 +95,7 @@
                     <hr>
                     <div>
                         <h5>Upload Questions</h5>
-                        <form action="{{ route('questions.upload') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.questions.upload') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="col-12 col-lg-4 col-md-6 mb-0">
                                 <label for="question_file" class="form-label optional">Upload File</label>

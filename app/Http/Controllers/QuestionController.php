@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\Question;
+use App\Models\Campaign;
 
 class QuestionController extends Controller
 {
@@ -30,7 +31,8 @@ class QuestionController extends Controller
     // create
     public function create()
     {
-        return view('admin.questions.create');
+        $campaigns = Campaign::where('status', 'active')->get();
+        return view('questions.create', compact('campaigns'));
     }
 
     // store
