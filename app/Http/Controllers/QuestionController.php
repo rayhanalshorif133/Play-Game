@@ -153,8 +153,7 @@ class QuestionController extends Controller
             $file = $request->file('file');
 
             Excel::import(new QuestionImport, $file);
-            dd($file);
-            toastr()->success('Questions uploaded successfully');
+            flash()->addSuccess('Questions uploaded successfully');
             return redirect()->route('admin.questions.index');
         } catch (\Throwable $th) {
             toastr()->addError($th->getMessage());

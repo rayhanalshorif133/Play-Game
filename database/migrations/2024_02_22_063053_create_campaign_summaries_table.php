@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('campaign_summaries', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('campaign_id')->unsigned();
             $table->bigInteger('campaign_duration_id')->unsigned();
             $table->integer('total_score')->default(0);
