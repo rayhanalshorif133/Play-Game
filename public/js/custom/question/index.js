@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
     var url = window.location.pathname;
     $('#questionsTableId').DataTable({
@@ -67,4 +68,39 @@ $(document).ready(function () {
         ],
     });
 });
+
+
+// deleteCampaign
+function deleteCampaign(id) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You want to delete this question!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            axios.delete(`/admin/questions/${id}`)
+                .then((response) => {
+                    Swal.fire(
+                        'Deleted!',
+                        response.data.message,
+                        'success'
+                    )
+                    $('#questionsTableId').DataTable().ajax.reload();
+                })
+                .catch((error) => {
+                    Swal.fire(
+                        'Error!',
+                        'Something went wrong',
+                        'error'
+                    )
+                });
+
+        }
+    });
+}
 

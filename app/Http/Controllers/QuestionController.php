@@ -156,4 +156,16 @@ class QuestionController extends Controller
             return redirect()->back();
         }
     }
+
+    // delete
+    public function delete($id)
+    {
+        try {
+            $question = Question::find($id);
+            $question->delete();
+            return $this->respondWithSuccess('Question deleted successfully');
+        } catch (\Throwable $th) {
+            return $this->respondWithError($th->getMessage());
+        }
+    }
 }

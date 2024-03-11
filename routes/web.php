@@ -79,7 +79,7 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
         Route::post('/upload', 'upload')->name('upload');
         Route::get('/{id}/edit', 'edit')->name('edit');
         Route::post('/update', 'update')->name('update');
-        // Route::delete('/{id}', 'delete')->name('delete');
+        Route::delete('/{id}', 'delete')->name('delete');
     });
 });
 
