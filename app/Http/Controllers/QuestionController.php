@@ -24,13 +24,13 @@ class QuestionController extends Controller
              ->rawColumns(['action'])
              ->toJson();
         }
-        return view('admin.questions.index');
+        return view('questions.index');
     }
 
     // create
     public function create()
     {
-        return view('questions.create');
+        return view('admin.questions.create');
     }
 
     // store

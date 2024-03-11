@@ -106,9 +106,9 @@
           <div data-i18n="Analytics" class="text-semibold">Campaigns Score Logs</div>
         </a>
       </li>
-      <li class="menu-item @if ($currentRoute == 'admin.questions.index' || $currentRoute == 'questions.create' || $currentRoute == 'questions.edit') active open @endif">
+      <li class="menu-item @if ($currentRoute == 'admin.questions.index' || $currentRoute == 'admin.questions.create' || $currentRoute == 'questions.edit') active open @endif">
         <a href="{{route('admin.questions.index')}}" class="menu-link">
-          <i class='menu-icon tf-icons bx bx-question-mark text-semibold @if ($currentRoute == 'admin.questions.index' || $currentRoute == 'questions.create' || $currentRoute == 'questions.edit') selectedIconPopup @endif' ></i>
+          <i class='menu-icon tf-icons bx bx-question-mark text-semibold @if ($currentRoute == 'admin.questions.index' || $currentRoute == 'admin.questions.create' || $currentRoute == 'questions.edit') selectedIconPopup @endif' ></i>
           <div data-i18n="Analytics" class="text-semibold">Questions</div>
         </a>
       </li>

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var url = '/questions';
+    var url = window.location.pathname;
     $('#questionsTableId').DataTable({
         processing: true,
         serverSide: true,

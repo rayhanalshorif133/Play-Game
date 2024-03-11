@@ -8,32 +8,32 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="line"></div>
-            <form class="form" action="{{route('campaign-durations.update')}}" method="POST">
+            <form class="form" action="{{route('admin.campaign-durations.update')}}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
-                    <h5 class="text-base"><span class="text-bolder">Select Campaign: <span id="selected_campaign" style="color: #7c7c7c"></span></span></h5>
-                    <input type="hidden" id="campaign_id" name="campaign_id">
+                    <h5 class="text-base"><span class="text-bolder">Select Campaign: <span id="update_selected_campaign" style="color: #7c7c7c"></span></span></h5>
+                    <input type="hidden" id="update_campaigndurations_id" name="campaigndurations_id">
                     <div class="row g-2 mb-2">
                         <div class="col-12 col-md-6 mb-0">
                             <label for="name" class="form-label required">Name</label>
-                            <input type="text" id="name" name="name" required class="form-control"
+                            <input type="text" id="update_name" name="name" required class="form-control"
                                 placeholder="Enter Name">
                         </div>
                         <div class="col-12 col-md-6 mb-0">
                             <label for="status" class="form-label required">Status</label>
-                            <select class="form-select" name="status" id="status" required>
+                            <select class="form-select" name="status" id="update_status" required>
                                 <option value="active">Active</option>
                                 <option value="inactive">Inactive</option>
                             </select>
                         </div>
                         <div class="col-12 col-md-6 mb-0">
-                            <label for="start_date" class="form-label required">Start Date</label>
-                            <input type="date" name="start_date" id="start_date" required class="form-control">
+                            <label for="update_start_date" class="form-label required">Start Date</label>
+                            <input type="date" name="start_date" id="update_start_date" required class="form-control">
                         </div>
                         <div class="col-12 col-md-6 mb-0">
-                            <label for="end_date" class="form-label required">End Date</label>
-                            <input type="date" name="end_date" id="end_date" required class="form-control">
+                            <label for="update_end_date" class="form-label required">End Date</label>
+                            <input type="date" name="end_date" id="update_end_date" required class="form-control">
                         </div>
                     </div>
                 </div>

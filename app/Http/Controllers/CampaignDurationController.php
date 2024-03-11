@@ -66,13 +66,38 @@ class CampaignDurationController extends Controller
     // fetch
     public function fetch($id)
     {
-        $campaignDuration = CampaignDuration::find($id);
+        $campaignDuration = CampaignDuration::select()->where('id',$id)->with('campaign')->first();
         return $this->respondWithSuccess('Campaign duration fetched successfully', $campaignDuration);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        return response()->json(['message' => 'Campaign duration updated successfully']);
+        try {
+            $validator = Validator::make($request->all(), [
+                'campaigndurations_id' => 'required',
+                'name' => 'required',
+                'status' => 'required',
+                'start_date' => 'required',
+                'end_date' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                toastr()->addError($validator->errors()->first());
+                return redirect()->back();
+            }
+
+            $campaignDuration = CampaignDuration::find($request->campaigndurations_id);
+            $campaignDuration->name = $request->name;
+            $campaignDuration->status = $request->status;
+            $campaignDuration->start_date = $request->start_date;
+            $campaignDuration->end_date = $request->end_date;
+            $campaignDuration->save();
+            toastr()->addSuccess('Campaign duration updated successfully');
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            toastr()->addError($th->getMessage());
+            return redirect()->back();
+        }
     }
 
     public function delete($id)

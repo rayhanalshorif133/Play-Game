@@ -8,7 +8,7 @@
                     <h5 class="card-header">
                         Questions List
                     </h5>
-                    <a href="{{route('questions.create')}}" class="btn btn-primary btn-sm d-block d-flex my-2">Add New Question</a>
+                    <a href="{{route('admin.questions.create')}}" class="btn btn-primary btn-sm d-block d-flex my-2">Add New Question</a>
                 </div>
                 <div class="table-responsive text-nowrap scrollbar-hidden overflow-x-scroll">
                     <table class="table" id="questionsTableId">

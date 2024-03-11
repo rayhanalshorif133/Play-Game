@@ -52,7 +52,9 @@ $(document).ready(function() {
             {
                 render: function(data, type, row) {
                     return `
-                    <button class="btn btn-primary btn-sm" onclick="editcampaignDuration(${row.id})">
+                    <button class="btn btn-primary btn-sm"
+                    data-bs-toggle="modal" data-bs-target="#editcampaignDuration"
+                    onclick="editcampaignDuration(${row.id})">
                         <i class='bx bx-edit-alt'></i>
                     </button>
                     <button class="btn btn-danger btn-sm" onclick="deleteCampaignDuration(${row.id})">
@@ -74,14 +76,14 @@ const editcampaignDuration = (id) => {
     axios.get(`/admin/campaign-durations/${id}/fetch`)
         .then((response) => {
             if (response.status === 200) {
-                const data = response.data;
-                console.log(data);
-                // $("#id").val(data.id);
-                // $("#name").val(data.name);
-                // $("#start_date").val(data.start_date);
-                // $("#end_date").val(data.end_date);
-                // $("#status").val(data.status);
-                // $("#createNewcampaignDuration").modal('show');
+                const data = response.data.data;
+                $('#update_selected_campaign').html(data.campaign.title);
+                $("#update_campaigndurations_id").val(data.id);
+                // update_name
+                $("#update_name").val(data.name);
+                $("#update_start_date").val(data.start_date);
+                $("#update_end_date").val(data.end_date);
+                $("#update_status").val(data.status);
             }
         });
 };
@@ -104,7 +106,7 @@ const deleteCampaignDuration = (id) => {
         confirmButtonText: "Yes, delete it!"
     }).then((result) => {
         if (result.isConfirmed) {
-            axios.delete(`/campaign-durations/${id}`)
+            axios.delete(`/admin/campaign-durations/${id}`)
                 .then((response) => {
                     if (response.status === 200) {
                         $("#campaignDurationsTableID").DataTable().ajax.reload();

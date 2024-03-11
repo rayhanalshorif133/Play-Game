@@ -16,4 +16,9 @@ class CampaignDuration extends Model
         'end_date',
         'status'
     ];
+
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class);
+    }
 }

@@ -35,6 +35,7 @@
         </div>
     </div>
     @include('campaign.campaign-durations.create')
+    @include('campaign.campaign-durations.edit')
 @endsection
 
 @push('scripts')
