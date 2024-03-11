@@ -91,9 +91,56 @@ class QuestionController extends Controller
     public function edit($id)
     {
         $question = Question::find($id);
-        return view('questions.edit', compact('question'));
+        $campaigns = Campaign::where('status', 1)->get();
+        return view('questions.edit', compact('question', 'campaigns'));
     }
 
+    // update
+    public function update(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'campaign_id' => 'required',
+                'title' => 'required',
+                'correct_option' => 'required',
+                'status' => 'required',
+                'score' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                toastr()->addError($validator->errors()->first());
+                return redirect()->back();
+            }
+
+            $question = Question::find($request->id);
+            $question->campaign_id = $request->campaign_id;
+            $question->title = $request->title;
+            $question->option_a = $request->option_a;
+            $question->option_b = $request->option_b;
+            $question->option_c = $request->option_c;
+            $question->option_d = $request->option_d;
+            $question->correct_option = $request->correct_option;
+            $question->score = $request->score;
+            $question->status = $request->status;
+            $question->description = $request->description;
+            if ($request->image) {
+                $image = $request->file('image');
+                $image_name = time() . '_' . $image->getClientOriginalName();
+                $image->move(public_path('/images/question/image'), $image_name);
+                $image_name = 'images/question/image/' . $image_name;
+                $question->image = $image_name;
+            }
+            $question->created_by = auth()->user()->id;
+            $question->updated_by = auth()->user()->id;
+
+            $question->save();
+            toastr()->success('Question created successfully');
+            return redirect()->route('admin.questions.index');
+        } catch (\Throwable $th) {
+            toastr()->addError($th->getMessage());
+            return redirect()->back();
+        }
+    }
     // upload
     public function upload(Request $request)
     {

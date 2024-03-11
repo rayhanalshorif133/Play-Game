@@ -11,9 +11,20 @@
                 </div>
                 <div class="card-body">
                     <form action="{{ route('admin.questions.store') }}" method="POST" enctype="multipart/form-data">
-                        @method('POST')
+                        @method('post')
                         @csrf
+                        <input type="hidden" name="id" value="{{ $question->id }}">
                         <div class="row g-1">
+                            <div class="col-12 col-lg-4 col-md-6 mb-0">
+                                <label for="select_campaign" class="form-label required">Select Campaign</label>
+                                <select id="select_campaign" required class="form-select" name="campaign_id">
+                                    @foreach ($campaigns as $campaign)
+                                        <option value="{{ $campaign->id }}" @if ($campaign->id == $question->campaign_id)
+                                            selected
+                                        @endif>{{ $campaign->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="col-12 col-lg-4 col-md-6 mb-0">
                                 <label for="title" class="form-label required">Title</label>
                                 <input type="text" id="title" required class="form-control" name="title"
@@ -70,8 +81,8 @@
                             <div class="col-12 col-lg-4 col-md-6 mb-0">
                                 <label for="status" class="form-label required">Status</label>
                                 <select id="status" required class="form-select" name="status">
-                                    <option value="active" @if($question->score == 'active') selected @endif >Active</option>
-                                    <option value="inactive" @if($question->score == 'inactive') selected @endif >Inactive</option>
+                                    <option value="1" @if($question->score == '1') selected @endif >Active</option>
+                                    <option value="0" @if($question->score == '0') selected @endif >Inactive</option>
                                 </select>
                             </div>
                             {{-- description --}}
@@ -86,7 +97,9 @@
                                 <a href="{{ route('admin.questions.index') }}" type="button" class="btn btn-outline-secondary">
                                     Close
                                 </a>
-                                <button type="submit" class="btn btn-primary">Create</button>
+                                <button type="submit" class="btn btn-primary">
+                                    Update
+                                </button>
                             </div>
                     </form>
                 </div>
