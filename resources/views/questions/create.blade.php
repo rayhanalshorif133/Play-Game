@@ -16,7 +16,7 @@
                         <div class="row g-1">
                             <div class="col-12 col-lg-4 col-md-6 mb-0">
                                 <label for="select_campaign" class="form-label required">Select Campaign</label>
-                                <select id="select_campaign" required class="form-select" name="select_campaign">
+                                <select id="select_campaign" required class="form-select" name="campaign_id">
                                     <option value="" disabled selected>Select a Campaign</option>
                                     @foreach ($campaigns as $campaign)
                                         <option value="{{ $campaign->id }}">{{ $campaign->title }}</option>
@@ -73,8 +73,8 @@
                                 <label for="status" class="form-label required">Status</label>
                                 <select id="status" required class="form-select" name="status">
                                     <option value="" disabled selected>Select a Status</option>
-                                    <option value="active">Active</option>
-                                    <option value="inactive">Inactive</option>
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
                                 </select>
                             </div>
                             {{-- description --}}

@@ -44,7 +44,7 @@ $(document).ready(function () {
         {
             render: function (data, type, row) {
                 var status = "";
-                row.status == 'active' ? status = `<span class="badge bg-success">Active</span>` :
+                row.status == 1 ? status = `<span class="badge bg-success">Active</span>` :
                     status = `<span class="badge bg-danger">Inactive</span>`;
                 return status;
             },
@@ -99,8 +99,9 @@ const showCampaignDetails = (id) => {
             var type = `<span class="badge bg-label-info">${campaign.type}</span>`
             $("#campaign-type").html(`<span class="text-bolder">Type: </span> ${type}`);
 
-            var statusBg = campaign.status == 'active' ? 'bg-success' : 'bg-danger';
-            var status = `<span class="badge ${statusBg}">${campaign.status}</span>`;
+            var statusBg = campaign.status == 1 ? 'bg-success' : 'bg-danger';
+            var statusTitle = campaign.status == 1 ? 'Active' : 'Inactive';
+            var status = `<span class="badge ${statusBg}">${statusTitle}</span>`;
             $("#campaign-status").html(`<span class="text-bolder">Status: ${status}</span>`);
 
             // campaign-per_question_score

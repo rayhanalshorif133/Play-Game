@@ -31,7 +31,7 @@ class QuestionController extends Controller
     // create
     public function create()
     {
-        $campaigns = Campaign::where('status', 'active')->get();
+        $campaigns = Campaign::where('status', 1)->get();
         return view('questions.create', compact('campaigns'));
     }
 
@@ -44,6 +44,7 @@ class QuestionController extends Controller
 
 
             $validator = Validator::make($request->all(), [
+                'campaign_id' => 'required',
                 'title' => 'required',
                 'correct_option' => 'required',
                 'status' => 'required',
@@ -57,6 +58,7 @@ class QuestionController extends Controller
             }
 
             $question = new Question();
+            $question->campaign_id = $request->campaign_id;
             $question->title = $request->title;
             $question->option_a = $request->option_a;
             $question->option_b = $request->option_b;

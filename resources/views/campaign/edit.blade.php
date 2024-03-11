@@ -57,8 +57,8 @@
                             <div class="col-12 col-lg-4 col-md-6 mb-0">
                                 <label for="status" class="form-label required">Status</label>
                                 <select id="status" required class="form-select" name="status">
-                                    <option value="active" @if ($campaign->status == 'active') selected @endif>Active</option>
-                                    <option value="inactive" @if ($campaign->status == 'inactive') selected @endif>Inactive</option>
+                                    <option value="1" @if ($campaign->status == '1') selected @endif>Active</option>
+                                    <option value="0" @if ($campaign->status == '0') selected @endif>Inactive</option>
                                 </select>
                             </div>
                             {{-- description --}}
