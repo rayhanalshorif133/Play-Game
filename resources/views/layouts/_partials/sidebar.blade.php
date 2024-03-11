@@ -90,10 +90,10 @@
           <div data-i18n="Analytics" class="text-semibold">Users</div>
         </a>
       </li>
-      <li class="menu-item @if ($currentRoute == 'admin.campaigns.index' || $currentRoute == 'admin.campaigns.create' || $currentRoute == 'admin.campaigns.edit' || $currentRoute == 'admin.campaigns.show' || $currentRoute == 'campaign-durations.index' || $currentRoute == 'campaign-durations.create' || $currentRoute == 'campaign-durations.edit' || $currentRoute == 'campaign-durations.show')
+      <li class="menu-item @if ($currentRoute == 'admin.campaigns.index' || $currentRoute == 'admin.campaigns.create' || $currentRoute == 'admin.campaigns.edit' || $currentRoute == 'admin.campaigns.show' || $currentRoute == 'admin.campaign-durations.index' || $currentRoute == 'admin.campaign-durations.create' || $currentRoute == 'admin.campaign-durations.edit' || $currentRoute == 'admin.campaign-durations.show')
           active open @endif">
         <a href="{{route('admin.campaigns.index')}}" class="menu-link">
-          <i class="menu-icon tf-icons bx bxl-dropbox @if ($currentRoute == 'admin.campaigns.index' || $currentRoute == 'admin.campaigns.create' || $currentRoute == 'admin.campaigns.edit' || $currentRoute == 'campaigns.show' || $currentRoute == 'campaign-durations.index' || $currentRoute == 'campaign-durations.create' || $currentRoute == 'campaign-durations.edit' || $currentRoute == 'campaign-durations.show')
+          <i class="menu-icon tf-icons bx bxl-dropbox @if ($currentRoute == 'admin.campaigns.index' || $currentRoute == 'admin.campaigns.create' || $currentRoute == 'admin.campaigns.edit' || $currentRoute == 'admin.campaigns.show' || $currentRoute == 'admin.campaign-durations.index' || $currentRoute == 'admin.campaign-durations.create' || $currentRoute == 'admin.campaign-durations.edit' || $currentRoute == 'admin.campaign-durations.show')
           selectedIconPopup @endif"></i>
           <div data-i18n="Analytics" class="text-semibold">Campaigns</div>
         </a>

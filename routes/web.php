@@ -54,7 +54,7 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
         ->name('campaign-durations.')
         ->group(function () {
         Route::get('/{campaign_id}', 'index')->name('index');
-        Route::get('/fetch/{id}', 'fetch')->name('fetch');
+        Route::get('/{id}/fetch', 'fetch')->name('fetch');
         Route::post('/store', 'store')->name('store');
         Route::put('/update', 'update')->name('update');
         Route::delete('/{id}', 'delete')->name('delete');

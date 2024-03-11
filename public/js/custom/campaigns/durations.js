@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    var url = '/campaign-durations/1';
+    var url = window.location.pathname;
     $('#campaignDurationsTableID').DataTable({
         processing: true,
         serverSide: true,
@@ -71,7 +71,7 @@ $(document).ready(function() {
 
 
 const editcampaignDuration = (id) => {
-    axios.get(`/campaign-durations/${id}/fetch`)
+    axios.get(`/admin/campaign-durations/${id}/fetch`)
         .then((response) => {
             if (response.status === 200) {
                 const data = response.data;
