@@ -7,7 +7,7 @@
                 <div class="d-flex justify-content-between px-2">
                     <h5 class="card-header">Campaign Durations</h5>
                     <div class="d-flex space-x-5 my-2_5">
-                        <a href="{{ route('campaigns.index') }}" class="btn btn-danger btn-sm d-block d-flex">
+                        <a href="{{ route('admin.campaigns.index') }}" class="btn btn-danger btn-sm d-block d-flex">
                             <i class='bx bx-arrow-back me-1'></i> Back</a>
                         <button class="btn btn-primary btn-sm d-flex items-center createCampaignDuration"
                             data-bs-toggle="modal" data-bs-target="#createNewcampaignDuration">

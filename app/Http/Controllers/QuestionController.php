@@ -24,7 +24,7 @@ class QuestionController extends Controller
              ->rawColumns(['action'])
              ->toJson();
         }
-        return view('questions.index');
+        return view('admin.questions.index');
     }
 
     // create
@@ -76,7 +76,7 @@ class QuestionController extends Controller
 
             $question->save();
             toastr()->success('Question created successfully');
-            return redirect()->route('questions.index');
+            return redirect()->route('admin.questions.index');
         } catch (\Throwable $th) {
             toastr()->addError($th->getMessage());
             return redirect()->back();
@@ -99,7 +99,7 @@ class QuestionController extends Controller
             Excel::import(new QuestionImport, $file);
             dd($file);
             toastr()->success('Questions uploaded successfully');
-            return redirect()->route('questions.index');
+            return redirect()->route('admin.questions.index');
         } catch (\Throwable $th) {
             toastr()->addError($th->getMessage());
             return redirect()->back();

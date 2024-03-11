@@ -8,7 +8,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="line"></div>
-            <form class="form" action="{{route('campaign-durations.store')}}" method="POST">
+            <form class="form" action="{{route('admin.campaign-durations.store')}}" method="POST">
                 @csrf
                 @method('POST')
                 <div class="modal-body">
