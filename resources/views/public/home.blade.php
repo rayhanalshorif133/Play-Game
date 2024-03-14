@@ -875,7 +875,9 @@
                                 </svg>
 
                             </span>
-                            <span class="app-brand-text demo footer-link fw-bold ms-2 ps-1">Sneat</span>
+                            <span class="app-brand-text demo footer-link fw-bold ms-2 ps-1" style="text-transform: capitalize">
+                                Play
+                            </span>
                         </a>
                         <p class="footer-text footer-logo-description mb-4">
                             Most developer friendly &amp; highly customisable Admin Dashboard Template.
@@ -940,14 +942,6 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-lg-3 col-md-4">
-                        <h6 class="footer-title mb-4">Download our app</h6>
-                        <a href="javascript:void(0);" class="d-block footer-link mb-3 pb-2"><img
-                                src="../../assets/img/front-pages/landing-page/apple-icon.png" alt="apple icon"></a>
-                        <a href="javascript:void(0);" class="d-block footer-link"><img
-                                src="../../assets/img/front-pages/landing-page/google-play-icon.png"
-                                alt="google play icon"></a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -966,22 +960,22 @@
                 </div>
                 <div>
                     <a href="https://github.com/themeselection" class="footer-link me-3" target="_blank">
-                        <img src="../../assets/img/front-pages/icons/github-light.png" alt="github icon"
+                        <img src="{{asset('assets/img/front-pages/icons/github-light.png')}}" alt="github icon"
                             data-app-light-img="front-pages/icons/github-light.png"
                             data-app-dark-img="front-pages/icons/github-dark.png">
                     </a>
                     <a href="https://www.facebook.com/ThemeSelections/" class="footer-link me-3" target="_blank">
-                        <img src="../../assets/img/front-pages/icons/facebook-light.png" alt="facebook icon"
+                        <img src="{{asset('assets/img/front-pages/icons/facebook-light.png')}}" alt="facebook icon"
                             data-app-light-img="front-pages/icons/facebook-light.png"
                             data-app-dark-img="front-pages/icons/facebook-dark.png">
                     </a>
                     <a href="https://twitter.com/Theme_Selection" class="footer-link me-3" target="_blank">
-                        <img src="../../assets/img/front-pages/icons/twitter-light.png" alt="twitter icon"
+                        <img src="{{asset('assets/img/front-pages/icons/twitter-light.png')}}" alt="twitter icon"
                             data-app-light-img="front-pages/icons/twitter-light.png"
                             data-app-dark-img="front-pages/icons/twitter-dark.png">
                     </a>
                     <a href="https://www.instagram.com/themeselection/" class="footer-link" target="_blank">
-                        <img src="../../assets/img/front-pages/icons/instagram-light.png" alt="google icon"
+                        <img src="{{asset('assets/img/front-pages/icons/instagram-light.png')}}" alt="google icon"
                             data-app-light-img="front-pages/icons/instagram-light.png"
                             data-app-dark-img="front-pages/icons/instagram-dark.png">
                     </a>
@@ -993,188 +987,25 @@
 
 
 
-    <div class="buy-now">
-        <a href="https://themeselection.com/item/sneat-bootstrap-html-admin-template/" target="_blank"
-            class="btn btn-danger btn-buy-now">Buy Now</a>
-    </div>
-
 
 
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    <script src="../../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../../assets/vendor/js/bootstrap.js"></script>
+    <script src="{{asset('assets/vendor/libs/popper/popper.js')}}"></script>
+    <script src="{{asset('assets/vendor/js/bootstrap.js')}}"></script>
 
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    <script src="../../assets/vendor/libs/nouislider/nouislider.js"></script>
-    <script src="../../assets/vendor/libs/swiper/swiper.js"></script>
 
     <!-- Main JS -->
-    <script src="../../assets/js/front-main.js"></script>
+    <script src="{{asset('assets/js/front-main.js')}}"></script>
 
 
     <!-- Page JS -->
-    <script src="../../assets/js/front-page-landing.js"></script>
+    <script src="{{asset('assets/js/front-page-landing.js')}}"></script>
 
-
-
-
-
-
-
-    <div id="template-customizer" class="invert-bg-white" style="visibility: visible"> <a
-            href="javascript:void(0)" class="template-customizer-open-btn" tabindex="-1"></a>
-        <div class="p-4 m-0 lh-1 border-bottom template-customizer-header position-relative py-3">
-            <h4 class="template-customizer-t-panel_header mb-2">Template Customizer</h4>
-            <p class="template-customizer-t-panel_sub_header mb-0">Customize and preview in real time</p>
-            <div class="d-flex align-items-center gap-2 position-absolute end-0 top-0 mt-4 me-3"> <a
-                    href="javascript:void(0)" class="template-customizer-reset-btn text-body"
-                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Reset Customizer"><i
-                        class="bx bx-refresh fs-4"></i><span
-                        class="badge rounded-pill bg-danger badge-dot badge-notifications d-none"></span></a> <a
-                    href="javascript:void(0)" class="template-customizer-close-btn fw-light text-body"
-                    tabindex="-1"><i class="bx bx-x fs-4"></i></a> </div>
-        </div>
-        <div class="template-customizer-inner pt-4">
-            <div class="template-customizer-theming">
-                <h5 class="m-0 px-4 py-4 lh-1 d-block"> <span
-                        class="template-customizer-t-theming_header bg-label-primary rounded-1 py-1 px-2 fs-big">Theming</span>
-                </h5>
-                <div class="m-0 px-4 pb-3 pt-1 template-customizer-style w-100"> <label for="customizerStyle"
-                        class="form-label d-block template-customizer-t-style_label">Style (Mode)</label>
-                    <div class="row px-1 template-customizer-styles-options">
-                        <div class="col-4 px-2">
-                            <div class="form-check custom-option custom-option-icon mb-0 checked">
-                                <label class="form-check-label custom-option-content p-0"
-                                    for="customRadioIconlight">
-                                    <span class="custom-option-body mb-0">
-                                        <img src="../../assets/img/customizer/light.svg" alt="Light"
-                                            class="img-fluid scaleX-n1-rtl">
-                                    </span>
-                                    <input name="customRadioIcon" class="form-check-input d-none" type="radio"
-                                        value="light" id="customRadioIconlight" checked="checked">
-                                </label>
-                            </div>
-                            <label class="form-check-label small text-nowrap"
-                                for="customRadioIconlight">Light</label>
-                        </div>
-                        <div class="col-4 px-2">
-                            <div class="form-check custom-option custom-option-icon mb-0">
-                                <label class="form-check-label custom-option-content p-0" for="customRadioIcondark">
-                                    <span class="custom-option-body mb-0">
-                                        <img src="../../assets/img/customizer/dark.svg" alt="Dark"
-                                            class="img-fluid scaleX-n1-rtl">
-                                    </span>
-                                    <input name="customRadioIcon" class="form-check-input d-none" type="radio"
-                                        value="dark" id="customRadioIcondark">
-                                </label>
-                            </div>
-                            <label class="form-check-label small text-nowrap" for="customRadioIcondark">Dark</label>
-                        </div>
-                        <div class="col-4 px-2">
-                            <div class="form-check custom-option custom-option-icon mb-0">
-                                <label class="form-check-label custom-option-content p-0"
-                                    for="customRadioIconsystem">
-                                    <span class="custom-option-body mb-0">
-                                        <img src="../../assets/img/customizer/system.svg" alt="System"
-                                            class="img-fluid scaleX-n1-rtl">
-                                    </span>
-                                    <input name="customRadioIcon" class="form-check-input d-none" type="radio"
-                                        value="system" id="customRadioIconsystem">
-                                </label>
-                            </div>
-                            <label class="form-check-label small text-nowrap"
-                                for="customRadioIconsystem">System</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="template-customizer-layout">
-                <hr class="m-0 px-4 my-4">
-                <h5 class="m-0 px-4 pb-4 pt-2 d-block"> <span
-                        class="template-customizer-t-layout_header bg-label-primary rounded-1 py-1 px-2 fs-big">Layout</span>
-                </h5>
-                <div class="m-0 px-4 pb-3 template-customizer-directions w-100"> <label for="customizerDirection"
-                        class="form-label template-customizer-t-direction_label">Direction</label>
-                    <div class="row px-1 template-customizer-directions-options">
-                        <div class="col-4 px-2">
-                            <div class="form-check custom-option custom-option-icon mb-0 checked">
-                                <label class="form-check-label custom-option-content p-0"
-                                    for="directionRadioIconltr">
-                                    <span class="custom-option-body mb-0">
-                                        <img src="../../assets/img/customizer/ltr.svg" alt="Left to Right (En)"
-                                            class="img-fluid scaleX-n1-rtl">
-                                    </span>
-                                    <input name="directionRadioIcon" class="form-check-input d-none"
-                                        type="radio" value="ltr" id="directionRadioIconltr"
-                                        checked="checked">
-                                </label>
-                            </div>
-                            <label class="form-check-label small text-nowrap" for="directionRadioIconltr">Left to
-                                Right (En)</label>
-                        </div>
-                        <div class="col-4 px-2">
-                            <div class="form-check custom-option custom-option-icon mb-0">
-                                <label class="form-check-label custom-option-content p-0"
-                                    for="directionRadioIconrtl">
-                                    <span class="custom-option-body mb-0">
-                                        <img src="../../assets/img/customizer/rtl.svg" alt="Right to Left (Ar)"
-                                            class="img-fluid scaleX-n1-rtl">
-                                    </span>
-                                    <input name="directionRadioIcon" class="form-check-input d-none"
-                                        type="radio" value="rtl" id="directionRadioIconrtl">
-                                </label>
-                            </div>
-                            <label class="form-check-label small text-nowrap" for="directionRadioIconrtl">Right to
-                                Left (Ar)</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="om-bmfrltdyrytgkiod0ppo-holder"></div>
-    <script src="chrome-extension://igkkmokkmlbkkgdnkkancbonkbbmkioc/sm.bundle.js" data-pname="recorder-screenshot-v3"
-        data-asset-path="https://apv3.s3.ap-northeast-2.amazonaws.com"></script>
-    <div style="display: none" class="ubey-RecordingScreen-count-down ubey-RecordingScreen-count-down-container">
-        <style>
-            .ubey-RecordingScreen-count-down-container {
-                position: fixed;
-                height: 100vh;
-                width: 100vw;
-                top: 0;
-                left: 0;
-                z-index: 9999999999999;
-                background-color: rgba(0, 0, 0, 0.2);
-            }
-
-            .ubey-RecordingScreen-count-down-content {
-                position: absolute;
-                display: flex;
-                top: 50%;
-                left: 50%;
-                justify-content: center;
-                align-items: center;
-                color: white;
-                height: 15em;
-                width: 15em;
-                transform: translate(-50%, -100%);
-                background-color: rgba(0, 0, 0, 0.6);
-                border-radius: 50%;
-            }
-
-            #ubey-RecordingScreen-count-count {
-                font-size: 14em;
-                transform: translateY(-2%);
-            }
-        </style>
-        <div class="ubey-RecordingScreen-count-down-content">
-            <span id="ubey-RecordingScreen-count-count"></span>
-        </div>
-    </div>
 </body>
 
 </html>
