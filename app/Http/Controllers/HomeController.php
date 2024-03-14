@@ -18,8 +18,14 @@ class HomeController extends Controller
         if(Auth::check()){
             return redirect()->route('admin.dashboard');
         }else{
-            return redirect()->route('login');
+            return redirect()->route('home');
         }
+    }
+
+    // home
+    public function home()
+    {
+        return view('public.home');
     }
 
     public function index()

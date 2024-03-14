@@ -18,6 +18,8 @@ Route::get('/', [HomeController::class, 'isLoginOrNot']);
 Auth::routes();
 
 
+Route::get('/home', [HomeController::class, 'home'])->name('home');
+
 
 Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::get('/login', [LoginController::class, 'login'])->name('login');
