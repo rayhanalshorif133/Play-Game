@@ -98,13 +98,4 @@ class PublicLoginController extends Controller
         }
     }
 
-    // logout
-    public function logout()
-    {
-        dd('You have been logged out');
-        Auth::logout();
-        flash()->addSuccess('You have been logged out');
-        dd('You have been logged out');
-        return redirect()->route('home');
-    }
 }

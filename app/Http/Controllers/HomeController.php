@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Campaign;
 
 class HomeController extends Controller
 {
@@ -25,7 +26,8 @@ class HomeController extends Controller
     // home
     public function home()
     {
-        return view('public.home');
+        $campaigns = Campaign::all();
+        return view('public.home', compact('campaigns'));
     }
 
     public function index()
