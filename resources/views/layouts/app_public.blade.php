@@ -48,25 +48,25 @@
         rel="stylesheet">
 
 
-    <link rel="stylesheet" href="{{asset('assets/vendor/fonts/boxicons.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/boxicons.css') }}">
 
 
     <!-- Core CSS -->
 
 
-    <link rel="stylesheet" href="{{asset('assets/css/demo.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/css/pages/front-page.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/front-page.css') }}">
     <!-- Vendors CSS -->
 
-    <link rel="stylesheet" href="{{asset('assets/vendor/libs/nouislider/nouislider.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/libs/swiper/swiper.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/nouislider/nouislider.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/swiper/swiper.css') }}">
 
     <!-- Page CSS -->
 
-    <link rel="stylesheet" href="{{asset('assets/vendor/css/pages/front-page-landing.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/front-page-landing.css') }}">
 
     <!-- Helpers -->
-    <script src="{{asset('assets/vendor/js/helpers.js')}}"></script>
+    <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
     <style type="text/css">
         .layout-menu-fixed .layout-navbar-full .layout-menu,
         .layout-menu-fixed-offcanvas .layout-navbar-full .layout-menu {
@@ -83,7 +83,7 @@
     </style>
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
-    <script src="{{asset('assets/vendor/js/template-customizer.js')}}"></script>
+    <script src="{{ asset('assets/vendor/js/template-customizer.js') }}"></script>
     <style>
         #template-customizer {
             font-family: "Open Sans", BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
@@ -402,10 +402,10 @@
         }
     </style>
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="{{asset('assets/js/front-config.js')}}"></script>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/css/rtl/core.css')}}"
+    <script src="{{ asset('assets/js/front-config.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/css/rtl/core.css') }}"
         class="template-customizer-core-css">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/css/rtl/theme-default.css')}}"
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/css/rtl/theme-default.css') }}"
         class="template-customizer-theme-css">
 
     <script type="text/javascript" src="https://a.omappapi.com/app/js/api.min.js" async="" data-user="252882"
@@ -428,13 +428,13 @@
 
 
 
-    <script src="{{asset('assets/vendor/js/dropdown-hover.js')}}"></script>
+    <script src="{{ asset('assets/vendor/js/dropdown-hover.js') }}"></script>
     <script type="text/javascript" id="">
         console.log("TS:GTM Worked!");
     </script>
     <iframe id="_hjSafeContext_16484890" title="_hjSafeContext" tabindex="-1" aria-hidden="true" src="about:blank"
         style="display: none !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important;"></iframe>
-    <script src="{{asset('assets/vendor/js/mega-dropdown.js')}}"></script>
+    <script src="{{ asset('assets/vendor/js/mega-dropdown.js') }}"></script>
 
     <!-- Navbar: Start -->
     <nav class="layout-navbar shadow-none py-0">
@@ -449,7 +449,7 @@
                         <i class="tf-icons bx bx-menu bx-sm align-middle"></i>
                     </button>
                     <!-- Mobile menu toggle: End-->
-                    <a href="landing-page.html" class="app-brand-link">
+                    <a href="{{route('home')}}" class="app-brand-link">
                         <span class="app-brand-logo demo">
 
                             <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -498,7 +498,8 @@
                             </svg>
 
                         </span>
-                        <span class="app-brand-text demo menu-text fw-bold ms-2 ps-1" style="text-transform: capitalize">
+                        <span class="app-brand-text demo menu-text fw-bold ms-2 ps-1"
+                            style="text-transform: capitalize">
                             Play
                         </span>
                     </a>
@@ -514,14 +515,10 @@
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link fw-medium active" aria-current="page"
-                                href="{{route('home')}}">Home</a>
+                                href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fw-medium" href="landing-page.html#landingContact">Contact us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link fw-medium" href="../vertical-menu-template/index.html"
-                                target="_blank">Admin</a>
+                            <a class="nav-link fw-medium" href="#">Contact us</a>
                         </li>
                     </ul>
                 </div>
@@ -530,40 +527,57 @@
                 <!-- Toolbar: Start -->
                 <ul class="navbar-nav flex-row align-items-center ms-auto">
 
-                    <!-- Style Switcher
-                    <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
-                        <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
-                            data-bs-toggle="dropdown">
-                            <i class="bx bx-sm bx-sun"></i>
+                    <!-- navbar button: Start -->
+                    @if (Auth::check())
+                    <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                        <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                            <div class="avatar avatar-online">
+                                <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                            </div>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-styles">
+                        <ul class="dropdown-menu dropdown-menu-end">
                             <li>
-                                <a class="dropdown-item" href="javascript:void(0);" data-theme="light">
-                                    <span class="align-middle"><i class="bx bx-sun me-2"></i>Light</span>
+                                <a class="dropdown-item" href="#">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 me-3">
+                                            <div class="avatar avatar-online">
+                                                <img src="../assets/img/avatars/1.png" alt
+                                                    class="w-px-40 h-auto rounded-circle" />
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <span class="fw-semibold d-block">
+                                                {{ Auth::user()->name }}
+                                            </span>
+                                            <small class="text-muted">
+                                                {{ Auth::user()->role }}
+                                            </small>
+                                        </div>
+                                    </div>
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="javascript:void(0);" data-theme="dark">
-                                    <span class="align-middle"><i class="bx bx-moon me-2"></i>Dark</span>
-                                </a>
+                                <div class="dropdown-divider"></div>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="javascript:void(0);" data-theme="system">
-                                    <span class="align-middle"><i class="bx bx-desktop me-2"></i>System</span>
+
+
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="bx bx-power-off me-2"></i>
+                                    <span class="align-middle">Log Out</span>
                                 </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </li>
                         </ul>
                     </li>
-                -->
-                    <!-- / Style Switcher-->
-
-
-                    <!-- navbar button: Start -->
-                    <li>
-                        <a href="{{route('public.login')}}" class="btn btn-primary">
-                            <span class="tf-icons bx bx-user me-md-1"></span>
-                            <span class="d-none d-md-block">Login</span></a>
-                    </li>
+                    @else
+                        <a href="{{ route('public.login') }}" class="btn btn-primary">
+                        <span class="tf-icons bx bx-user me-md-1"></span>
+                        <span class="d-none d-md-block">Login</span></a>
+                    @endif
                     <!-- navbar button: End -->
                 </ul>
                 <!-- Toolbar: End -->
@@ -580,11 +594,11 @@
         <!-- Hero: Start -->
         <section id="hero-animation">
             <div style="padding-top: 5rem"></div>
-                <div class="container">
-                    @yield('content')
-                </div>
+            <div class="container">
+                @yield('content')
             </div>
-        </section>
+    </div>
+    </section>
 
     </div>
 
@@ -599,19 +613,19 @@
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    <script src="{{asset('assets/vendor/libs/popper/popper.js')}}"></script>
-    <script src="{{asset('assets/vendor/js/bootstrap.js')}}"></script>
+    <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
+    <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
 
     <!-- endbuild -->
 
     <!-- Vendors JS -->
 
     <!-- Main JS -->
-    <script src="{{asset('assets/js/front-main.js')}}"></script>
+    <script src="{{ asset('assets/js/front-main.js') }}"></script>
 
 
     <!-- Page JS -->
-    <script src="{{asset('assets/js/front-page-landing.js')}}"></script>
+    <script src="{{ asset('assets/js/front-page-landing.js') }}"></script>
 
 </body>
 

@@ -30,15 +30,8 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/admin/dashboard';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
+
+
 
     public function login(Request $request)
     {
@@ -60,7 +53,12 @@ class LoginController extends Controller
         }
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('admin/dashboard');
+            if($user->role == 'super-admin' || $user->role == 'admin'){
+                return redirect()->intended('admin/dashboard');
+            }else{
+                return redirect()->intended('user/dashboard');
+
+            }
         }
 
         // Authentication failed...

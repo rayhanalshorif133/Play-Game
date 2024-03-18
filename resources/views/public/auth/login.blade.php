@@ -60,46 +60,39 @@
             <!-- /Logo -->
             <h4 class="mb-2">Welcome to Play!</h4>
             <p class="mb-4">Please sign-in to your account</p>
-            <form id="formAuthentication" class="mb-3 fv-plugins-bootstrap5 fv-plugins-framework" action="index.html"
-                method="GET" novalidate="novalidate">
-                <div class="mb-3 fv-plugins-icon-container">
-                    <label for="email" class="form-label">Email or Username</label>
-                    <input type="text" class="form-control" id="email" name="email-username"
-                        placeholder="Enter your email or username" autofocus="">
-                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            <form class="mb-3" method="POST" action="{{route('user.login')}}">
+                @csrf
+                @method('POST')
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                        name="email" value="b2m-admin@gmail.com" required autocomplete="email" autofocus>
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
-                <div class="mb-3 form-password-toggle fv-plugins-icon-container">
+                <div class="mb-3 form-password-toggle">
                     <div class="d-flex justify-content-between">
                         <label class="form-label" for="password">Password</label>
-                        <a href="auth-forgot-password-cover.html">
-                            <small>Forgot Password?</small>
-                        </a>
                     </div>
-                    <div class="input-group input-group-merge has-validation">
-                        <input type="password" id="password" class="form-control" name="password"
-                            placeholder="············" aria-describedby="password">
+                    <div class="input-group input-group-merge">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                            name="password" required autocomplete="current-password" value="password">
+
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                         <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                     </div>
-                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
                 </div>
                 <div class="mb-3">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="remember-me">
-                        <label class="form-check-label" for="remember-me">
-                            Remember Me
-                        </label>
-                    </div>
+                    <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
                 </div>
-                <button class="btn btn-primary d-grid w-100">
-                    Sign in
-                </button>
-                <input type="hidden">
             </form>
-
-
-
-
-
             <p class="text-center">
                 <span>New on our platform?</span>
                 <a href="auth-register-cover.html">
@@ -116,7 +109,7 @@
                     <i class="tf-icons bx bxl-facebook"></i>
                 </a>
 
-                <a href="javascript:;" class="btn btn-icon btn-label-google-plus me-3">
+                <a href="{{ route('auth.google') }}" class="btn btn-icon btn-label-google-plus me-3">
                     <i class="tf-icons bx bxl-google-plus"></i>
                 </a>
             </div>

@@ -6,11 +6,13 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CampaignController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CampaignDurationController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\CampaignScoreLogController;
 use App\Http\Controllers\public\PublicLoginController;
+use App\Http\Controllers\public\GoogleController;
+use App\Http\Controllers\public\PublicDashboadController;
 
 
 
@@ -21,12 +23,10 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 
+Route::post('user/login', [LoginController::class, 'login'])->name('user.login');
 
 Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
-    Route::get('/login', [LoginController::class, 'login'])->name('login');
     Route::get('/dashboard', [DashboardController::class,'dashboard'])->name('dashboard');
-
-
     Route::controller(UserController::class)
         ->prefix('user')
         ->name('user.')->group(function () {
@@ -91,6 +91,7 @@ Route::controller(PublicLoginController::class)
     ->middleware('guest')
     ->name('public.')
     ->group(function () {
+        // http://127.0.0.1:8000/auth/google/callback
         Route::get('/login', 'login')->name('login');
         Route::post('/login', 'login')->name('login');
         Route::get('/register', 'register')->name('register');
@@ -98,6 +99,14 @@ Route::controller(PublicLoginController::class)
         Route::get('/logout', 'logout')->name('logout');
         Route::get('/dashboard', 'dashboard')->name('dashboard');
     });
+
+Route::controller(GoogleController::class)->group(function(){
+    Route::get('/auth/google', 'redirectToGoogle')->name('auth.google');
+    Route::get('auth/google/callback', 'handleGoogleCallback')->name('auth.google.callback');
+});
+
+// public user dashboard routes
+Route::get('/user/dashboard', [PublicDashboadController::class, 'dashboard'])->name('public.user.dashboard');
 
 
 

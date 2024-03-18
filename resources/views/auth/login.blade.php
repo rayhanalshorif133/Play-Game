@@ -111,8 +111,9 @@
                         <h4 class="mb-2 mx-auto text-center">Welcome to Play!</h4>
                         <p class="mb-4 mx-auto text-center">Please sign-in to your account</p>
 
-                        <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('login') }}">
+                        <form class="mb-3" method="POST" action="{{ route('login') }}">
                             @csrf
+                            @method('POST')
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input id="email" type="email"
