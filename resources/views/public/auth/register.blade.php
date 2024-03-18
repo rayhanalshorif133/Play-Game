@@ -1,11 +1,11 @@
 @extends('layouts.app_public')
 
 @section('content')
-    <div class="w-px-400 mx-auto mt-5">
+    <div class="w-px-600 mx-auto mt-5">
         <!-- Logo -->
         <div class="card px-4 py-2">
             <div class="app-brand mb-3 flex js-center">
-                <a href="index.html" class="app-brand-link gap-2">
+                <a href="{{ route('home') }}" class="app-brand-link gap-2">
                     <span class="app-brand-logo demo">
 
                         <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -59,43 +59,71 @@
             </div>
             <!-- /Logo -->
             <h4 class="mb-2 text-center">Welcome to Play!</h4>
-            <p class="mb-4 text-center">Please sign-in to your account</p>
-            <form class="mb-3" method="POST" action="{{route('user.login')}}">
+            <p class="mb-4 text-center">Register a new account</p>
+            <form class="mb-3" method="POST" action="{{ route('public.register') }}">
                 @csrf
                 @method('POST')
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                        name="email" value="b2m-admin@gmail.com" required autocomplete="email" autofocus>
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-                <div class="mb-3 form-password-toggle">
-                    <div class="d-flex justify-content-between">
-                        <label class="form-label" for="password">Password</label>
-                    </div>
-                    <div class="input-group input-group-merge">
-                        <input id="password" type="password" class="form-control"
-                            name="password" required autocomplete="current-password">
-                        @error('password')
+                <div class="row">
+                    <div class="col-12 col-md-6 mb-3">
+                        <label for="name" class="form-label required">Name</label>
+                        <input id="name" type="text" class="form-control" name="name" required>
+                        @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                        <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                    </div>
+                    <div class="col-12 col-md-6 mb-3">
+                        <label for="email" class="form-label required">Email</label>
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                            name="email" value="b2m-admin@gmail.com" required autocomplete="email" autofocus>
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="col-12 col-md-6 mb-3">
+                        <label for="msisdn" class="form-label required">Phone Number</label>
+                        <input id="msisdn" type="text" class="form-control" name="msisdn" required
+                            autocomplete="phone">
+                        @error('msisdn')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="col-12 col-md-6 mb-3">
+                        <div class="d-flex justify-content-between">
+                            <label class="form-label" for="password">Password</label>
+                        </div>
+                        <div class="input-group input-group-merge">
+                            <input id="password" type="password"
+                                class="form-control @error('password') is-invalid @enderror" name="password">
+                            <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 mb-3">
+                        <div class="d-flex justify-content-between">
+                            <label class="form-label label-password" for="password_confirmation">Confirm Password</label>
+                        </div>
+                        <div class="input-group input-group-merge">
+                            <input id="password_confirmation" type="password" class="form-control"
+                                name="password_confirmation">
+                            <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                        </div>
                     </div>
                 </div>
                 <div class="mb-3">
-                    <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                    <button class="btn btn-primary d-grid w-100" type="submit">
+                        Register Now
+                    </button>
                 </div>
             </form>
             <p class="text-center">
-                <span>New on our platform?</span>
-                <a href="{{route('public.register')}}">
-                    <span>Create an account</span>
+                <span>Aleady have an account?</span>
+                <a href="{{ route('public.login') }}">
+                    <span>Sign in</span>
                 </a>
             </p>
 

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use App\Models\User;
 
 class PublicLoginController extends Controller
 {
@@ -24,12 +26,15 @@ class PublicLoginController extends Controller
             if($method == "GET"){
                 return view('public.auth.register');
             }else{
+
                 $validator = Validator::make($request->all(), [
                     'name' => 'required',
                     'email' => 'required|email',
                     'msisdn' => 'required',
                     'password' => 'required|confirmed'
                 ]);
+
+
 
                 if ($validator->fails()) {
                     flash()->addError($validator->errors()->first());
@@ -39,6 +44,7 @@ class PublicLoginController extends Controller
                 $user = new User();
                 $user->name = $request->name;
                 $user->email = $request->email;
+                $user->role = 'user';
                 $user->msisdn = $request->msisdn;
                 if($request->password){
                     if($request->password != $request->password_confirmation){
@@ -50,10 +56,12 @@ class PublicLoginController extends Controller
                 $user->save();
 
                 flash()->addSuccess('You have been successfully registered');
-                return redirect()->route('user.login');
+                return redirect()->route('public.login');
             }
         } catch (\Throwable $th) {
-            //throw $th;
+            dd($th->getMessage());
+            flash()->addError($th->getMessage());
+            return redirect()->back();
         }
     }
 
