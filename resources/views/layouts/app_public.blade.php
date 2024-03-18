@@ -506,6 +506,10 @@
                 </div>
                 <!-- Menu logo wrapper: End -->
                 <!-- Menu wrapper: Start -->
+                @php
+                    $routeName = Route::currentRouteName();
+
+                @endphp
                 <div class="navbar-collapse landing-nav-menu collapse" id="navbarSupportedContent" style="">
                     <button class="navbar-toggler border-0 text-heading position-absolute end-0 top-0 scaleX-n1-rtl"
                         type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -514,16 +518,19 @@
                     </button>
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link fw-medium active" aria-current="page"
-                                href="{{ route('home') }}">Home</a>
+                            <a class="nav-link fw-medium @if($routeName == 'home') active @endif" href="{{ route('home') }}">Home</a>
                         </li>
+                        @if (Auth::check())
+                        <li class="nav-item">
+                            <a class="nav-link fw-medium @if($routeName == 'public.user.profile') active @endif" href="{{route('public.user.profile')}}">Profile</a>
+                        </li>
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link fw-medium" href="#">Contact us</a>
                         </li>
                     </ul>
                 </div>
                 <div class="landing-menu-overlay d-lg-none"></div>
-                <!-- Menu wrapper: End -->
                 <!-- Toolbar: Start -->
                 <ul class="navbar-nav flex-row align-items-center ms-auto">
 
@@ -532,7 +539,14 @@
                     <li class="nav-item navbar-dropdown dropdown-user dropdown">
                         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                             <div class="avatar avatar-online">
-                                <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                @php
+                                    if(Auth::user()->google_avatar){
+                                        $avatar = Auth::user()->google_avatar;
+                                    }else{
+                                        $avatar = asset('assets/img/avatars/1.png');
+                                    }
+                                @endphp
+                                <img src="{{$avatar}}" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
@@ -541,7 +555,7 @@
                                     <div class="d-flex">
                                         <div class="flex-shrink-0 me-3">
                                             <div class="avatar avatar-online">
-                                                <img src="../assets/img/avatars/1.png" alt
+                                                <img src="{{$avatar}}" alt
                                                     class="w-px-40 h-auto rounded-circle" />
                                             </div>
                                         </div>
@@ -560,8 +574,16 @@
                                 <div class="dropdown-divider"></div>
                             </li>
                             <li>
+                                <a class="dropdown-item" href="{{route('public.user.profile')}}">
+                                    <i class="bx bx-user me-2"></i>
+                                    <span class="align-middle">My Profile</span>
+                                </a>
+                            </li>
 
-
+                            <li>
+                                <div class="dropdown-divider"></div>
+                            </li>
+                            <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i class="bx bx-power-off me-2"></i>
@@ -578,16 +600,12 @@
                         <span class="tf-icons bx bx-user me-md-1"></span>
                         <span class="d-none d-md-block">Login</span></a>
                     @endif
-                    <!-- navbar button: End -->
                 </ul>
-                <!-- Toolbar: End -->
             </div>
         </div>
     </nav>
-    <!-- Navbar: End -->
 
 
-    <!-- Sections:Start -->
 
 
     <div data-bs-spy="scroll" class="scrollspy-example">

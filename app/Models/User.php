@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
         'role',
         'google_id',
+        'msisdn',
         'google_avatar',
         'facebook_id',
         'facebook_avatar',

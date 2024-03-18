@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('msisdn')->nullable();
             $table->string('role')->enum('super-admin','admin','user');
             $table->string('status')->enum('active','inactive')->default('active');
             $table->timestamp('email_verified_at')->nullable();

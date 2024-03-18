@@ -4,10 +4,9 @@
     <div class="w-px-400 mx-auto mt-5">
         <!-- Logo -->
         <div class="card px-4 py-2">
-            <div class="app-brand mb-5">
-                <a href="index.html" class="app-brand-link gap-2">
+            <div class="app-brand mb-3 flex js-center">
+                <a href="{{route('home')}}" class="gap-2 app-brand-link">
                     <span class="app-brand-logo demo">
-
                         <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink">
                             <defs>
@@ -57,17 +56,35 @@
                     </span>
                 </a>
             </div>
-            <!-- /Logo -->
-            <h4 class="mb-2">Welcome to Play!</h4>
-            <p class="mb-4">Please sign-in to your account</p>
-            <form class="mb-3" method="POST" action="{{route('user.login')}}">
+            <h4 class="mb-2">Update Your Profile</h4>
+            <form class="mb-3" method="POST" action="{{route('public.user.profile')}}">
                 @csrf
-                @method('POST')
+                @method('PUT')
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input id="name" type="text" class="form-control"
+                        name="name" value="{{$user->name}}" required>
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                        name="email" value="b2m-admin@gmail.com" required autocomplete="email" autofocus>
+                        name="email" value="{{$user->email}}" required autocomplete="email" autofocus>
                     @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="msisdn" class="form-label">Phone Number</label>
+                    <input id="msisdn" type="text" class="form-control @error('msisdn') is-invalid @enderror"
+                        name="msisdn" value="{{$user->msisdn}}" required autocomplete="phone" autofocus>
+                    @error('msisdn')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -79,40 +96,25 @@
                     </div>
                     <div class="input-group input-group-merge">
                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-                            name="password" required autocomplete="current-password" value="password">
-
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                            name="password">
                         <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                    </div>
+                    {{-- confirm pass --}}
+                    <div class="mb-3 form-password-toggle">
+                        <div class="d-flex justify-content-between">
+                            <label class="form-label label-password" for="password_confirmation">Confirm Password</label>
+                        </div>
+                        <div class="input-group input-group-merge">
+                            <input id="password_confirmation" type="password" class="form-control"
+                                name="password_confirmation">
+                            <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                        </div>
                     </div>
                 </div>
                 <div class="mb-3">
-                    <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                    <button class="btn btn-primary d-grid w-100" type="submit">Update</button>
                 </div>
             </form>
-            <p class="text-center">
-                <span>New on our platform?</span>
-                <a href="{{route('public.register')}}">
-                    <span>Create an account</span>
-                </a>
-            </p>
-
-            <div class="divider my-4">
-                <div class="divider-text">or</div>
-            </div>
-
-            <div class="d-flex justify-content-center">
-                <a href="javascript:;" class="btn btn-icon btn-label-facebook me-3">
-                    <i class="tf-icons bx bxl-facebook"></i>
-                </a>
-
-                <a href="{{ route('auth.google') }}" class="btn btn-icon btn-label-google-plus me-3">
-                    <i class="tf-icons bx bxl-google-plus"></i>
-                </a>
-            </div>
         </div>
 
     </div>

@@ -88,16 +88,15 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
 });
 
 Route::controller(PublicLoginController::class)
-    ->middleware('guest')
     ->name('public.')
     ->group(function () {
         // http://127.0.0.1:8000/auth/google/callback
-        Route::get('/login', 'login')->name('login');
-        Route::post('/login', 'login')->name('login');
-        Route::get('/register', 'register')->name('register');
-        Route::post('/register', 'register')->name('register');
-        Route::get('/logout', 'logout')->name('logout');
-        Route::get('/dashboard', 'dashboard')->name('dashboard');
+        Route::middleware('guest')->get('/login', 'login')->name('login');
+        Route::middleware('guest')->post('/login', 'login')->name('login');
+        Route::middleware('guest')->match(['get', 'post'], '/register', 'register')->name('register');
+        Route::middleware('auth')->get('/logout', 'logout')->name('logout');
+        Route::middleware('auth')->get('/dashboard', 'dashboard')->name('dashboard');
+        Route::middleware('auth')->match(['get', 'put'], '/profile', 'profile')->name('user.profile');
     });
 
 Route::controller(GoogleController::class)->group(function(){

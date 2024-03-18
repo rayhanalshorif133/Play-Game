@@ -16,7 +16,7 @@
 .app-brand-text.demo {
   font-size: 1.75rem;
   letter-spacing: -0.5px;
-  text-transform: lowercase;
+  text-transform: capitalize;
 }
 
 /* ! For .layout-navbar-fixed added fix padding top tpo .layout-page */
@@ -262,4 +262,12 @@ input[type='number']::-webkit-outer-spin-button {
 
 .w-75{
     width: 75%;
+}
+
+.flex{
+    display: flex;
+}
+
+.js-center{
+    justify-content: center;
 }
