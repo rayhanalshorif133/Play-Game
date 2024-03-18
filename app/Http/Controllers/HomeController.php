@@ -26,7 +26,10 @@ class HomeController extends Controller
     // home
     public function home()
     {
-        $campaigns = Campaign::all();
+        $campaigns = Campaign::select()
+            ->where('status', 1)
+            ->with('campaignDuration')
+            ->get();
         return view('public.home', compact('campaigns'));
     }
 

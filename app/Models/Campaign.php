@@ -33,4 +33,9 @@ class Campaign extends Model
     {
         return $this->belongsTo(User::class, 'updated_by');
     }
+
+    public function campaignDuration()
+    {
+        return $this->hasMany(CampaignDuration::class);
+    }
 }
