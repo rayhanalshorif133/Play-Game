@@ -10,6 +10,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CampaignDurationController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\CampaignScoreLogController;
+use App\Http\Controllers\public\PublicLoginController;
 
 
 
@@ -85,6 +86,18 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
         Route::delete('/{id}', 'delete')->name('delete');
     });
 });
+
+Route::controller(PublicLoginController::class)
+    ->middleware('guest')
+    ->name('public.')
+    ->group(function () {
+        Route::get('/login', 'login')->name('login');
+        Route::post('/login', 'login')->name('login');
+        Route::get('/register', 'register')->name('register');
+        Route::post('/register', 'register')->name('register');
+        Route::get('/logout', 'logout')->name('logout');
+        Route::get('/dashboard', 'dashboard')->name('dashboard');
+    });
 
 
 
