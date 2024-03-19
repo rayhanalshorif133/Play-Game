@@ -18,7 +18,7 @@
                                 <div class="col-md-6"><strong>Start Date:</strong> {{ $campaign_duration->start_date }}</div>
                                 <div class="col-md-6"><strong>End Date:</strong> {{ $campaign_duration->end_date }}</div>
                             </div>
-                            <button class="btn btn-primary btn-sm">Join</button>
+                            <a href="#" class="btn btn-primary btn-sm">Join</a>
                         </div>
                         <hr>
                         @endforeach
