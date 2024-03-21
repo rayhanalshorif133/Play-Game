@@ -401,26 +401,19 @@
             padding-right: 0 !important
         }
     </style>
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('assets/js/front-config.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/css/rtl/core.css') }}"
         class="template-customizer-core-css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/css/rtl/theme-default.css') }}"
         class="template-customizer-theme-css">
 
-    <script type="text/javascript" src="https://a.omappapi.com/app/js/api.min.js" async="" data-user="252882"
-        data-account="269977"></script>
+    <script type="text/javascript" src="https://a.omappapi.com/app/js/api.min.js"></script>
     <script async="" src="https://script.hotjar.com/modules.76600994a7e845923464.js" charset="utf-8"></script>
     <link rel="stylesheet" href="https://a.omappapi.com/app/js/api.min.css" id="omapi-css" media="all">
 </head>
 
-<body inmaintabuse="1" cz-shortcut-listen="true">
+<body>
 
-
-    <!-- ?PROD Only: Google Tag Manager (noscript) (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DDHKGP" height="0" width="0"
-            style="display: none; visibility: hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
 
 
@@ -429,11 +422,6 @@
 
 
     <script src="{{ asset('assets/vendor/js/dropdown-hover.js') }}"></script>
-    <script type="text/javascript" id="">
-        console.log("TS:GTM Worked!");
-    </script>
-    <iframe id="_hjSafeContext_16484890" title="_hjSafeContext" tabindex="-1" aria-hidden="true" src="about:blank"
-        style="display: none !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important;"></iframe>
     <script src="{{ asset('assets/vendor/js/mega-dropdown.js') }}"></script>
 
     <!-- Navbar: Start -->
