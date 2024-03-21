@@ -9,28 +9,30 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class GoogleController extends Controller
+class FacebookController extends Controller
 {
-
-    public function redirectToGoogle()
+    // redirectToFacebook
+    public function redirectToFacebook()
     {
-        return Socialite::driver('google')
-            ->redirectUrl('http://localhost:8000/auth/google/callback')
+        return Socialite::driver('facebook')
+            ->redirectUrl('http://localhost:8000/auth/facebook/callback')
             ->redirect();
-
     }
 
-    public function handleGoogleCallback()
+
+    public function handleFacebookCallback()
     {
         try {
 
-            $user = Socialite::driver('google')->user();
+            $user = Socialite::driver('facebook')->user();
+
 
 
             $finduser = User::where('email', $user->email)->first();
 
             if($finduser){
-
+                $finduser->name = $user->name;
+                $newUser->facebook_id = $user->id;
                 $finduser->avatar = $user->avatar;
                 $finduser->save();
                 Auth::login($finduser);
@@ -38,7 +40,7 @@ class GoogleController extends Controller
                 $newUser = new User();
                 $newUser->name = $user->name;
                 $newUser->email = $user->email;
-                $newUser->google_id = $user->id;
+                $newUser->facebook_id = $user->id;
                 $newUser->avatar = $user->avatar;
                 $newUser->password = Hash::make($user->id);
                 $newUser->role = 'user';

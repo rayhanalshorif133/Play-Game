@@ -12,6 +12,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\CampaignScoreLogController;
 use App\Http\Controllers\public\PublicLoginController;
 use App\Http\Controllers\public\GoogleController;
+use App\Http\Controllers\public\FacebookController;
 use App\Http\Controllers\public\PublicDashboadController;
 
 
@@ -102,7 +103,16 @@ Route::controller(PublicLoginController::class)
 Route::controller(GoogleController::class)->group(function(){
     Route::get('/auth/google', 'redirectToGoogle')->name('auth.google');
     Route::get('auth/google/callback', 'handleGoogleCallback')->name('auth.google.callback');
+
 });
+
+
+// facebook
+Route::controller(FacebookController::class)->group(function(){
+    Route::get('/auth/facebook', 'redirectToFacebook')->name('auth.facebook');
+    Route::get('/auth/facebook/callback', 'handleFacebookCallback')->name('auth.facebook.callback');
+});
+
 
 // public user dashboard routes
 Route::get('/user/dashboard', [PublicDashboadController::class, 'dashboard'])->name('public.user.dashboard');

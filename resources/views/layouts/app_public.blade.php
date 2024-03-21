@@ -540,8 +540,8 @@
                         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                             <div class="avatar avatar-online">
                                 @php
-                                    if(Auth::user()->google_avatar){
-                                        $avatar = Auth::user()->google_avatar;
+                                    if(Auth::user()->avatar){
+                                        $avatar = Auth::user()->avatar;
                                     }else{
                                         $avatar = asset('assets/img/avatars/1.png');
                                     }

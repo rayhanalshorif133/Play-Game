@@ -21,9 +21,8 @@ return new class extends Migration
             $table->string('status')->enum('active','inactive')->default('active');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('google_id')->nullable();
-            $table->string('google_avatar')->nullable();
+            $table->string('avatar')->nullable();
             $table->string('facebook_id')->nullable();
-            $table->string('facebook_avatar')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

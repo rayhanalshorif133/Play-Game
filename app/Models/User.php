@@ -24,9 +24,8 @@ class User extends Authenticatable
         'role',
         'google_id',
         'msisdn',
-        'google_avatar',
+        'avatar',
         'facebook_id',
-        'facebook_avatar',
         'status'
     ];
 
