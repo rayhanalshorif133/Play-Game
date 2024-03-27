@@ -106,7 +106,6 @@ Route::controller(PublicLoginController::class)
         Route::middleware('guest')->post('/login', 'login')->name('login');
         Route::middleware('guest')->match(['get', 'post'], '/register', 'register')->name('register');
         Route::middleware('auth')->get('/logout', 'logout')->name('logout');
-        Route::middleware('auth')->get('/dashboard', 'dashboard')->name('dashboard');
         Route::middleware('auth')->match(['get', 'put'], '/profile', 'profile')->name('user.profile');
     });
 
@@ -125,8 +124,11 @@ Route::controller(FacebookController::class)->group(function(){
 
 
 // public user dashboard routes
-Route::get('/user/dashboard', [PublicDashboadController::class, 'dashboard'])->name('public.user.dashboard');
+Route::middleware('auth')->get('/user/dashboard', [PublicDashboadController::class, 'dashboard'])->name('public.user.dashboard');
 
-
+// send notification
+Route::middleware('auth')->controller(SendNotificationController::class)->group(function(){
+    Route::put('/save-auth-user-token', 'saveAuthUserToken')->name('save-auth-user-token');
+});
 
 

@@ -17,7 +17,12 @@ class HomeController extends Controller
     public function isLoginOrNot()
     {
         if(Auth::check()){
-            return redirect()->route('admin.dashboard');
+            $this->middleware('auth');
+            if(Auth::user()->role == 'admin'){
+                return redirect()->route('admin.dashboard');
+            }else{
+                return redirect()->route('public.user.dashboard');
+            }
         }else{
             return redirect()->route('home');
         }

@@ -607,31 +607,13 @@
     </section>
 
     </div>
-
-    <!-- / Sections:End -->
-
-
-
-
-
-
-
-
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
     <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
-
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-
-    <!-- Main JS -->
     <script src="{{ asset('assets/js/front-main.js') }}"></script>
-
-
-    <!-- Page JS -->
     <script src="{{ asset('assets/js/front-page-landing.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js"></script>
+
+    @stack('scripts')
 
 </body>
 
