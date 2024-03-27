@@ -114,13 +114,16 @@
       </li>
       {{-- campaign_score_logs --}}
 
-      {{-- <li class="menu-item @if ($currentRoute == 'campaign-durations.index')
+      <li class="menu-item @if ($currentRoute == 'admin.send-notification.index')
           active open @endif">
-        <a href="{{route('campaign-durations.index')}}" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-timer"></i>
-          <div data-i18n="Analytics" class="text-semibold">Campaign Durations</div>
+        <a href="{{route('admin.send-notification.index')}}" class="menu-link">
+          <i class="menu-icon tf-icons bx bxs-bell-ring @if ($currentRoute == 'admin.send-notification.index')
+            selectedIconPopup @endif"></i>
+          <div data-i18n="Analytics" class="text-semibold">
+            Send Notification
+          </div>
         </a>
-      </li> --}}
+      </li>
 
       {{-- <li class="menu-header small text-uppercase"><span class="menu-header-text">Managemanet</span></li> --}}
     </ul>

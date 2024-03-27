@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CampaignDurationController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\CampaignScoreLogController;
+use App\Http\Controllers\SendNotificationController;
 use App\Http\Controllers\public\PublicLoginController;
 use App\Http\Controllers\public\GoogleController;
 use App\Http\Controllers\public\FacebookController;
@@ -85,6 +86,15 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
         Route::get('/{id}/edit', 'edit')->name('edit');
         Route::post('/update', 'update')->name('update');
         Route::delete('/{id}', 'delete')->name('delete');
+    });
+
+    // SendNotificationController
+    Route::controller(SendNotificationController::class)
+        ->middleware('auth')
+        ->prefix('send-notification')
+        ->name('send-notification.')
+        ->group(function () {
+        Route::get('/', 'index')->name('index');
     });
 });
 

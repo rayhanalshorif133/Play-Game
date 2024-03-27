@@ -26,7 +26,8 @@ class User extends Authenticatable
         'msisdn',
         'avatar',
         'facebook_id',
-        'status'
+        'status',
+        'device_token'
     ];
 
     /**
