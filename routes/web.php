@@ -95,6 +95,7 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
         ->name('send-notification.')
         ->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::post('/user', 'sendNotification')->name('portal');
     });
 });
 
