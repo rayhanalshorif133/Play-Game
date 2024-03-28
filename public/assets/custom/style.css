@@ -6,12 +6,12 @@
 }
 
 body {
-    background: rgb(7 92 125);
+    background: #b8dcdd;
 }
 
 .nav_custom_bg {
-    background: #044554;
-    background: linear-gradient(164deg, rgba(4, 69, 84, 1) 0%, rgba(1, 71, 78, 1) 22%, rgba(2, 83, 62, 1) 52%, rgba(51, 156, 168, 1) 81%, rgba(50, 230, 228, 1) 99%);
+    background: #496989;
+    background: linear-gradient(164deg, #496989 0%, #617D96 22%, #7990A3 52%, #91A4B0 81%, #C0CBC9 99%);
 }
 
 .btn-outline-white {
@@ -33,6 +33,10 @@ body {
     justify-content: center;
 }
 
+.justify-between {
+    justify-content: space-between;
+}
+
 .item-center {
     align-items: center;
 }
@@ -40,13 +44,33 @@ body {
 /* card */
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    background: rgb(68, 83, 180);
-    background: linear-gradient(164deg, rgb(72, 68, 180) 0%, rgba(16, 107, 106, 1) 50%, rgba(6, 73, 72, 1) 92%);
+
     border-radius: 13px;
 }
 
+.card-body {
+    padding: 0 20px;
+}
+
 .card img {
-    width: 100%;
+    width: 90%;
     height: 200px;
     object-fit: cover;
+    border-radius: 13px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 10px auto;
+}
+
+.btn-play-now{
+    background: #044554;
+    background: linear-gradient(164deg, rgba(4, 69, 84, 1) 0%, rgba(1, 71, 78, 1) 22%, rgba(2, 83, 62, 1) 52%, rgba(51, 156, 168, 1) 81%, rgba(50, 230, 228, 1) 99%);
+    border-radius: 13px;
+    padding: 5px 20px;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px auto;
+    cursor: pointer;
 }

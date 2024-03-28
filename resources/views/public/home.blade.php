@@ -2,30 +2,37 @@
 
 @section('content')
     <div class="row">
-        @foreach ($campaigns as $item)
-            <div class="col-md-4">
-                <div class="card h-auto">
-                    <div class="card-body ">
-                        <img src="https://picsum.photos/500/300?random=1" alt="client logo" class="client-logo img-fluid mb-2">
-                        <p>
-                            <strong>Campaign Title:</strong>
-                            {{ $item->title }}
-                        </p>
-                        @foreach ($item->campaignDuration as $campaign_duration)
+        <div class="col-12 col-sm-6 col-md-4 mb-3">
+            <div class="card">
+                <img src="https://picsum.photos/200/300" class="card-img-top" alt="image">
+                <div class="card-body">
+                    <div class="flex justify-between">
                         <div>
-                            <strong>Name:</strong> {{ $campaign_duration->name }}
-                            <div class="row">
-                                <div class="col-md-6"><strong>Start Date:</strong> {{ $campaign_duration->start_date }}</div>
-                                <div class="col-md-6"><strong>End Date:</strong> {{ $campaign_duration->end_date }}</div>
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-gray"></i>
+                            <i class="fa fa-star text-gray"></i>
+                            <i class="fa fa-star text-gray"></i>
+                            <div>
+                                <span class="fw-bold">
+                                    <i class="fa fa-eye text-white"></i>
+                                    <span>2000</span>
+                                </span>
                             </div>
-                            <a href="#" class="btn btn-primary btn-sm">Join</a>
                         </div>
-                        <hr>
-                        @endforeach
+                        <a href="#">
+                            <i class="fa fa-heart text-danger"></i>
+                        </a>
+                    </div>
+                    <div class="flex justify-content"></div>
+                    <div class="mx-auto flex text-center">
+                        <a href="#" class="btn btn-play-now mx-auto flex text-center">
+                            <i class="fa fa-play text-white"></i>
+                        </a>
                     </div>
                 </div>
             </div>
-        @endforeach
+        </div>
     </div>
 @endsection
 
