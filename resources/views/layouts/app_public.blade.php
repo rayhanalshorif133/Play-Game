@@ -21,7 +21,7 @@
                 <div class="flex justify-content item-center">
                     <img src="{{ asset('images/icon.png') }}" alt="logo" class="img-fluid" width="40">
                     {{-- <i class="fa-solid fa-play fa-fw fs-2"></i> --}}
-                    <span class="flex justify-content item-center fw-bolder">গেম খেলুন</span>
+                    <span class="flex justify-content item-center fw-bolder">Play</span>
                 </div>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

@@ -4,6 +4,13 @@
     <div class="row">
         <div class="col-12 col-sm-6 col-md-4 mb-3">
             <div class="card">
+                <div>
+                    <a href="#" class="text-center mx-auto text-decoration-none text-dark w-full">
+                        <span class="fw-bold d-block flex text-center">
+                            Campaign/Tournament Name
+                        </span>
+                    </a>
+                </div>
                 <img src="https://picsum.photos/200/300" class="card-img-top" alt="image">
                 <div class="card-body">
                     <div class="flex justify-between">
@@ -15,7 +22,7 @@
                             <i class="fa fa-star text-gray"></i>
                             <div>
                                 <span class="fw-bold">
-                                    <i class="fa fa-eye text-white"></i>
+                                    <i class="fa fa-eye text-gray"></i>
                                     <span>2000</span>
                                 </span>
                             </div>
