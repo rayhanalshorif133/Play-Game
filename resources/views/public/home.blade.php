@@ -33,15 +33,15 @@
                     </div>
                     <div class="flex justify-content-between">
                         <a href="#" class="btn flex flex-col text-center">
-                            <i class="fa-solid fa-ranking-star fa-fw text-center mx-auto"></i>
-                            Leaderboard
+                            <i class="fa-solid fa-ranking-star fa-fw text-center mx-auto" style="font-size: 25px"></i>
+                            <span style="font-size: 12px">Leaderboard</span>
                         </a>
                         <a href="#" class="btn btn-play-now">
                             <i class="fa fa-play text-white"></i>
                         </a>
                         </a><a href="#" class="btn flex flex-col text-center">
-                            <i class="fa-solid fa-award text-center mx-auto"></i>
-                            Winner List
+                            <i class="fa-solid fa-award text-center mx-auto" style="font-size: 25px"></i>
+                            <span style="font-size: 12px">Winner List</span>
                         </a>
                     </div>
                 </div>
