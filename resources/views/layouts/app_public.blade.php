@@ -15,6 +15,8 @@
             {{ $title }} | Play
         @endisset
     </title>
+
+    @yield('styles')
 </head>
 
 <body>
@@ -49,6 +51,43 @@
     <div class="container my-4">
         @yield('content')
     </div>
+
+    <footer class="fixed bottom-0 bg-footer w-full">
+        <div class="flex justify-content-between footer_container">
+            <div>
+                <a href="#">
+                    <i class="fa-solid fa-home"></i>
+
+                </a>
+                <p>Game</p>
+            </div>
+            <div>
+
+                <a href="#">
+                    <i class="fa-solid fa-home"></i>
+                </a>
+                <p>Tournament</p>
+            </div>
+            <div>
+                <a href="#">
+                    <i class="fa-solid fa-home"></i>
+                </a>
+                <p>Home</p>
+            </div>
+            <div>
+                <a href="#">
+                    <i class="fa-solid fa-home"></i>
+                </a>
+                <p>Winner</p>
+            </div>
+            <div>
+                <a href="#">
+                    <i class="fa-solid fa-home"></i>
+                </a>
+                <p>Leaderboard</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
