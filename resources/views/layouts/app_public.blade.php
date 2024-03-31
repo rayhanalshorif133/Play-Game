@@ -10,7 +10,11 @@
     <link href="{{ asset('assets/custom/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 
-    <title>Hello, world!</title>
+    <title>
+        @isset($title)
+            {{ $title }} | Play
+        @endisset
+    </title>
 </head>
 
 <body>

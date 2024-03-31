@@ -1,4 +1,4 @@
-@extends('layouts.app_public')
+@extends('layouts.app_public', ['title' => 'Home'])
 
 @section('content')
     <div class="row">
@@ -31,10 +31,17 @@
                             <i class="fa fa-heart text-danger"></i>
                         </a>
                     </div>
-                    <div class="flex justify-content"></div>
-                    <div class="mx-auto flex text-center">
-                        <a href="#" class="btn btn-play-now mx-auto flex text-center">
+                    <div class="flex justify-content-between">
+                        <a href="#" class="btn flex flex-col text-center">
+                            <i class="fa-solid fa-ranking-star fa-fw text-center mx-auto"></i>
+                            Leaderboard
+                        </a>
+                        <a href="#" class="btn btn-play-now">
                             <i class="fa fa-play text-white"></i>
+                        </a>
+                        </a><a href="#" class="btn flex flex-col text-center">
+                            <i class="fa-solid fa-award text-center mx-auto"></i>
+                            Winner List
                         </a>
                     </div>
                 </div>
