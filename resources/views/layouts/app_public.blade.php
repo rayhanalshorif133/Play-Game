@@ -74,7 +74,7 @@
                 </a>
                 <p>Home</p>
             </div>
-            <div>
+            <div class="active">
                 <a href="#">
                     <i class="fa-solid fa-home"></i>
                 </a>

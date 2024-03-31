@@ -8,6 +8,14 @@
             color: #000;
         }
 
+        .leaderboard:hover,
+        .winner_list:hover {
+            background-color: #176B87;
+            color: #dbf5ff;
+        }
+
+
+
     </style>
 @endsection
 
