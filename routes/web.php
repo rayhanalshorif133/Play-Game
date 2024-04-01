@@ -134,7 +134,7 @@ Route::middleware('auth')->controller(SendNotificationController::class)->group(
 
 // Public routes
 Route::controller(PublicController::class)->group(function(){
-    Route::get('/leaderboard','leaderboard')->name('public.leaderboard');
+    Route::get('/leaderboard/{id?}','leaderboard')->name('public.leaderboard');
 });
 
 

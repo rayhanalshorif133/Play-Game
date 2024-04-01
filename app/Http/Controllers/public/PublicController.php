@@ -15,8 +15,11 @@ class PublicController extends Controller
     }
 
     // leaderboard
-    public function leaderboard()
+    public function leaderboard($id = null)
     {
+        if ($id) {
+            return view('public.leaderboard.show');
+        }
         return view('public.leaderboard.index');
     }
 }

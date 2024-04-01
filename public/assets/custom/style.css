@@ -6,7 +6,7 @@
 }
 
 body {
-    background: #b8dcdd;
+    background: #F5F5F5;
 }
 
 .nav_custom_bg {
@@ -43,7 +43,8 @@ body {
 
 /* card */
 .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+    box-shadow: 0!important;
 
     border-radius: 13px;
 }
@@ -168,6 +169,15 @@ body {
     border-radius: 10px;
 }
 
+.item_menu .title{
+    border-left: 2px solid 003739;
+    border-radius: 10px;
+    border-bottom: 2px solid #003739;
+    font-size: 1.5rem;
+    text-align: center;
+    align-items: center;
+}
+
 .item_container .goto{
     background: #176B87;
     color: #fff;
@@ -193,6 +203,59 @@ body {
     transition: ease-in-out 0.3s;
     transform: translateX(5px);
 }
+
+.leaderboard_show{}
+
+.leaderboard_show .daily_score{
+    background: #176B87;
+    color: #fff;
+    border-bottom: 2px solid #758DA1;
+    border-radius: 10px;
+    text-align: center;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.leaderboard_show .daily_score h1{
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.leaderboard_show table{
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+.leaderboard_show table thead{
+    background: #176B87;
+    color: #fff;
+}
+
+.leaderboard_show table thead th{
+    padding: 5px 10px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    border: 2px solid #758DA1;
+}
+
+.leaderboard_show table tbody tr{
+    background: #758DA1;
+    color: #fff;
+}
+
+.leaderboard_show table tbody tr td{
+    padding: 5px 10px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    border: 2px solid #176B87;
+}
+
 
 
 

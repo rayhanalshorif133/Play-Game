@@ -12,18 +12,18 @@
 @endsection
 
 @section('content')
-    <div>
-        <h1 class="mx-auto text-center text-xl fw-bold border-b-2 border-lb-rounded-lg">Leaderboard</h1>
+    <div class="item_menu">
+        <h1 class="title fw-bold">Leaderboard</h1>
         <div class="row item_container">
             <div class="col-md-4 col-sm-6 col-12">
                 <img src="https://picsum.photos/200/300" class="card-img" alt="...">
-                <a href="#" class="goto">
+                <a href="{{route('public.leaderboard',1)}}" class="goto">
                     Leaderboard <i class="fa-solid fa-arrow-right px-2"></i>
                 </a>
             </div>
             <div class="col-md-4 col-sm-6 col-12">
                 <img src="https://picsum.photos/200/300" class="card-img" alt="...">
-                <a href="#" class="goto">
+                <a href="{{route('public.leaderboard',2)}}" class="goto">
                     Leaderboard <i class="fa-solid fa-arrow-right px-2"></i>
                 </a>
             </div>
