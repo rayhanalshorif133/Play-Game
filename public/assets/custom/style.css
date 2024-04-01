@@ -150,4 +150,50 @@ body {
     top: -22px;
 }
 
+.text-base {
+    font-size: 1.125rem;
+}
+
+.text-xl{
+    font-size: 1.5rem;
+}
+
+
+.border-b-2 {
+    border-bottom: 2px solid #003739;
+}
+
+.border-lb-rounded-lg {
+    border-left: 2px solid 003739;
+    border-radius: 10px;
+}
+
+.item_container .goto{
+    background: #176B87;
+    color: #fff;
+    border-bottom: 2px solid #758DA1;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.item_container .goto:hover{
+    background: #758DA1;
+    color: #fff;
+}
+
+.item_container .goto:hover i{
+    transition: ease-in-out 0.3s;
+    transform: translateX(5px);
+}
+
+
+
 

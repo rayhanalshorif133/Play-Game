@@ -14,7 +14,7 @@ use App\Http\Controllers\SendNotificationController;
 use App\Http\Controllers\public\PublicLoginController;
 use App\Http\Controllers\public\GoogleController;
 use App\Http\Controllers\public\FacebookController;
-use App\Http\Controllers\public\PublicDashboadController;
+use App\Http\Controllers\public\PublicController;
 
 
 
@@ -125,11 +125,19 @@ Route::controller(FacebookController::class)->group(function(){
 
 
 // public user dashboard routes
-Route::middleware('auth')->get('/user/dashboard', [PublicDashboadController::class, 'dashboard'])->name('public.user.dashboard');
+Route::middleware('auth')->get('/user/dashboard', [PublicController::class, 'dashboard'])->name('public.user.dashboard');
 
 // send notification
 Route::middleware('auth')->controller(SendNotificationController::class)->group(function(){
     Route::put('/save-auth-user-token', 'saveAuthUserToken')->name('save-auth-user-token');
 });
+
+// Public routes
+Route::controller(PublicController::class)->group(function(){
+    Route::get('/leaderboard','leaderboard')->name('public.leaderboard');
+});
+
+
+//
 
 

@@ -1,0 +1,18 @@
+@media only screen and (max-width: 320px) {
+    .item_container div {
+        margin-bottom: 10px;
+    }
+}
+
+
+
+@media only screen and (min-width: 768px) {
+
+}
+
+/* 993 */
+@media only screen and (min-width: 993px) {
+    .mobile_footer{
+        display: none !important;
+    }
+}

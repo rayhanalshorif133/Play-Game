@@ -8,6 +8,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('assets/custom/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/custom/responsive.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 
     <title>
@@ -52,12 +53,11 @@
         @yield('content')
     </div>
 
-    <footer class="fixed bottom-0 bg-footer w-full">
+    <footer class="fixed mobile_footer bottom-0 bg-footer w-full">
         <div class="flex justify-content-between footer_container">
             <div class="@isset($title) @if ($title == 'Game') active @endif @endisset">
                 <a href="#">
                     <i class="fa-solid fa-home"></i>
-
                 </a>
                 <p>Game</p>
             </div>
@@ -69,7 +69,7 @@
                 <p>Tournament</p>
             </div>
             <div class="@isset($title) @if ($title == 'Home') active @endif @endisset">
-                <a href="#">
+                <a href="{{route('home')}}">
                     <i class="fa-solid fa-home"></i>
                 </a>
                 <p>Home</p>
@@ -81,7 +81,7 @@
                 <p>Winner</p>
             </div>
             <div class="@isset($title) @if ($title == 'Leaderboard') active @endif @endisset">
-                <a href="#">
+                <a href="{{route('public.leaderboard')}}">
                     <i class="fa-solid fa-home"></i>
                 </a>
                 <p>Leaderboard</p>
