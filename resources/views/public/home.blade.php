@@ -15,7 +15,34 @@
         }
 
 
+        .btn-play-now {
+            background: #044554;
+            background: linear-gradient(164deg, rgba(4, 69, 84, 1) 0%, rgba(1, 71, 78, 1) 22%, rgba(2, 83, 62, 1) 52%, rgba(51, 156, 168, 1) 81%, rgba(50, 230, 228, 1) 99%);
+            border-radius: 13px;
+            padding: 5px 20px;
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px auto;
+            cursor: pointer;
+        }
 
+        .btn-play-now:hover{
+            background: #044554;
+            background: linear-gradient(164deg,
+            #32e6e4 0%,
+            #339ca8 22%,
+            #02533e 52%,
+            #01474e 81%,
+            #044554 99%,
+            #044554 100%);
+        }
+
+        .btn-play-now:hover i {
+            transform: scale(1.1);
+        }
     </style>
 @endsection
 
@@ -43,8 +70,8 @@
                                     </span>
                                 </div>
                             </div>
-                            <a href="#" class="btn">
-                                Price <i class="fa fa-money"></i> 1000
+                            <a href="#" class="py-1 px-2">
+                                <i class="fa fa-heart text-danger"></i>
                             </a>
                         </div>
                         <div class="flex justify-content-between py-2">
@@ -57,7 +84,9 @@
                             </a>
                             <a href="#" class="btn flex flex-col text-center winner_list">
                                 <i class="fa-solid fa-award text-center mx-auto" style="font-size: 25px"></i>
-                                <span style="font-size: 12px">Winner List</span>
+                                <span style="font-size: 12px">
+                                    Prize List
+                                </span>
                             </a>
                         </div>
                     </div>

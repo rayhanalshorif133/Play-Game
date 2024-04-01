@@ -54,37 +54,33 @@
 
     <footer class="fixed bottom-0 bg-footer w-full">
         <div class="flex justify-content-between footer_container">
-            <div>
+            <div class="@isset($title) @if ($title == 'Game') active @endif @endisset">
                 <a href="#">
                     <i class="fa-solid fa-home"></i>
 
                 </a>
                 <p>Game</p>
             </div>
-            <div>
+            <div class="@isset($title) @if ($title == 'Tournament') active @endif @endisset">
 
                 <a href="#">
                     <i class="fa-solid fa-home"></i>
                 </a>
                 <p>Tournament</p>
             </div>
-            <div class="@isset($title)
-                @if ($title == 'Home')
-                    active
-                @endif
-            @endisset">
+            <div class="@isset($title) @if ($title == 'Home') active @endif @endisset">
                 <a href="#">
                     <i class="fa-solid fa-home"></i>
                 </a>
                 <p>Home</p>
             </div>
-            <div>
+            <div class="@isset($title) @if ($title == 'Winner') active @endif @endisset">
                 <a href="#">
                     <i class="fa-solid fa-home"></i>
                 </a>
                 <p>Winner</p>
             </div>
-            <div>
+            <div class="@isset($title) @if ($title == 'Leaderboard') active @endif @endisset">
                 <a href="#">
                     <i class="fa-solid fa-home"></i>
                 </a>
@@ -93,7 +89,6 @@
         </div>
     </footer>
 
-    <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
