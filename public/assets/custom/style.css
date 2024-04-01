@@ -149,6 +149,12 @@ body {
     background: #176B87;
     color: #DBF5FF;
     border: 3px solid #B8DCDD;
+    height: 45px;
+    width: 45px;
+}
+
+.footer_container .active a i{
+    font-size: 16px;
 }
 
 .active{
