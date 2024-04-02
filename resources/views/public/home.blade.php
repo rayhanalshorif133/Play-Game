@@ -29,15 +29,15 @@
             cursor: pointer;
         }
 
-        .btn-play-now:hover{
+        .btn-play-now:hover {
             background: #044554;
             background: linear-gradient(164deg,
-            #32e6e4 0%,
-            #339ca8 22%,
-            #02533e 52%,
-            #01474e 81%,
-            #044554 99%,
-            #044554 100%);
+                    #32e6e4 0%,
+                    #339ca8 22%,
+                    #02533e 52%,
+                    #01474e 81%,
+                    #044554 99%,
+                    #044554 100%);
         }
 
         .btn-play-now:hover i {
@@ -82,7 +82,7 @@
                             <a href="#" class="btn btn-play-now">
                                 <i class="fa fa-play text-white"></i>
                             </a>
-                            <a href="#" class="btn flex flex-col text-center winner_list">
+                            <a href="#" class="btn flex flex-col text-center winner_list" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <i class="fa-solid fa-award text-center mx-auto" style="font-size: 25px"></i>
                                 <span style="font-size: 12px">
                                     Prize List
@@ -93,9 +93,34 @@
                 </div>
             </div>
         @endforeach
+    </div>
 
-
-
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                        Prize List
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>নোবেল পুরস্কার</li>
+                        <li>গ্র্যামি পুরস্কার</li>
+                        <li>ওসকার পুরস্কার</li>
+                        <li>ইমি পুরস্কার</li>
+                        <li>ফিল্ডস মেডল</li>
+                        <li>টোনি পুরস্কার</li>
+                        <li>গোল্ডেন গ্লোব পুরস্কার</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 

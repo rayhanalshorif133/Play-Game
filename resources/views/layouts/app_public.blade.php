@@ -26,9 +26,9 @@
         <div class="container">
             <a class="navbar-brand text-white" href="#">
                 <div class="flex justify-content item-center">
-                    <img src="{{ asset('images/icon.png') }}" alt="logo" class="img-fluid" width="40">
+                    <img src="{{ asset('images/logo.png') }}" alt="logo" class="img-fluid" width="100">
                     {{-- <i class="fa-solid fa-play fa-fw fs-2"></i> --}}
-                    <span class="flex justify-content item-center fw-bolder">Play</span>
+                    {{-- <span class="flex justify-content item-center fw-bolder">Play</span> --}}
                 </div>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
