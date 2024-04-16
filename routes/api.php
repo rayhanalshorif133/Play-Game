@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\CampaignScoreLogController;
+use App\Http\Controllers\api\BkashController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/campaign-score-logs/create', [CampaignScoreLogController::class, 'create'])
     ->name('campaign-score-logs.create');
+
+
+Route::controller(BkashController::class)
+    ->prefix('bkash')
+    ->name('bkash.')
+    ->group(function(){
+        Route::get('/grent-token','grentToken')->name('grent-token');
+    });
