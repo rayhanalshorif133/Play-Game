@@ -29,4 +29,6 @@ Route::controller(BkashController::class)
     ->name('bkash.')
     ->group(function(){
         Route::get('/grent-token','grentToken')->name('grent-token');
+        Route::get('/create-payment/{msisdn}','createPayment')->name('create-payment');
+        Route::get('/execute-payment/{payment_id}','executePayment')->name('execute-payment');
     });

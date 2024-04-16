@@ -13,8 +13,14 @@ class GrentToken extends Model
         'id_token',
         'token_type',
         'expires_in',
+        'expired_time',
         'refresh_token',
         'created_date',
         'created_time',
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
     ];
 }

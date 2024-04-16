@@ -16,6 +16,7 @@ return new class extends Migration
             $table->longText('id_token');
             $table->string('token_type');
             $table->string('expires_in');
+            $table->time('expired_time');
             $table->longText('refresh_token');
             $table->date('created_date');
             $table->time('created_time');

@@ -15,6 +15,7 @@ use App\Http\Controllers\public\PublicLoginController;
 use App\Http\Controllers\public\GoogleController;
 use App\Http\Controllers\public\FacebookController;
 use App\Http\Controllers\public\PublicController;
+use App\Http\Controllers\BkashController;
 
 
 
@@ -137,7 +138,12 @@ Route::controller(PublicController::class)->group(function(){
     Route::get('/leaderboard/{id?}','leaderboard')->name('public.leaderboard');
 });
 
-
-//
+Route::controller(BkashController::class)
+    ->prefix('bkash')
+    ->name('bkash.')
+    ->group(function(){
+        Route::get('/document','document')->name('Document');
+        Route::get('/create-payment','createPayment')->name('create-payment');
+    });
 
 
