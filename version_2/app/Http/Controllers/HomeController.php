@@ -20,17 +20,15 @@ class HomeController extends Controller
             $this->middleware('auth');
             if(Auth::user()->role == 'admin'){
                 return redirect()->route('admin.dashboard');
-            }else{
-                return redirect()->route('public.user.dashboard');
             }
-        }else{
-            return redirect()->route('home');
         }
+        return redirect()->route('home');
     }
 
     // home
     public function home()
     {
+
         $campaigns = Campaign::select()
             ->where('status', 1)
             ->with('campaignDuration')

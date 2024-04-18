@@ -24,11 +24,9 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm nav_custom_bg">
         <div class="container">
-            <a class="navbar-brand text-white" href="#">
+            <a class="navbar-brand text-white" href="{{route('home')}}">
                 <div class="flex justify-content item-center">
                     <img src="{{ asset('images/logo.png') }}" alt="logo" class="img-fluid" width="100">
-                    {{-- <i class="fa-solid fa-play fa-fw fs-2"></i> --}}
-                    {{-- <span class="flex justify-content item-center fw-bolder">Play</span> --}}
                 </div>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -42,9 +40,24 @@
                         <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <button class="btn btn-outline-white px-2" type="submit">Login</button>
-                </form>
+                <div class="d-flex">
+                    @if(Auth::check())
+                        <a>
+                            <i class="fa fa-user text-white me-2"></i> {{auth()->user()->msisdn}}
+                        </a>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="bx bx-power-off me-2"></i>
+                            <span class="align-middle">Log Out</span>
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    @else
+                    <a href="{{route('public.login')}}" class="btn btn-outline-white px-2" type="button">Login</a>
+                    @endif
+
+                </div>
             </div>
         </div>
     </nav>

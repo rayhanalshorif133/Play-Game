@@ -14,8 +14,9 @@ class FacebookController extends Controller
     // redirectToFacebook
     public function redirectToFacebook()
     {
+        $redirect_url = url('/auth/facebook/callback');
         return Socialite::driver('facebook')
-            ->redirectUrl('http://localhost:8000/auth/facebook/callback')
+            ->redirectUrl($redirect_url)
             ->redirect();
     }
 

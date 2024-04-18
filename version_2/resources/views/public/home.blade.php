@@ -49,7 +49,7 @@
 @section('content')
     <div class="row">
         {{-- 1 to 10 print using foreach --}}
-        @foreach (range(1, 2) as $number)
+        @foreach (range(1, 5) as $number)
             <div class="col-12 col-sm-6 col-md-4 mb-3">
                 <div class="card">
                     <div>
@@ -79,8 +79,8 @@
                                 <i class="fa-solid fa-ranking-star fa-fw text-center mx-auto" style="font-size: 25px"></i>
                                 <span style="font-size: 12px">Leaderboard</span>
                             </a>
-                            <a href="#" class="btn btn-play-now">
-                                <i class="fa fa-play text-white"></i>
+                            <a href="{{route('campaign.play-now',12)}}" class="btn btn-play-now">
+                                <i class="fa fa-play text-white"></i> Play Now
                             </a>
                             <a href="#" class="btn flex flex-col text-center winner_list" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <i class="fa-solid fa-award text-center mx-auto" style="font-size: 25px"></i>

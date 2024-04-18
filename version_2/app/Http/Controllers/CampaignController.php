@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Campaign;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -221,6 +222,18 @@ class CampaignController extends Controller
         } catch (\Throwable $th) {
             toastr()->addError($th->getMessage());
             return redirect()->route('admin.campaigns.index');
+        }
+    }
+
+
+
+    // playNow 
+    public function playNow($campaign_id)
+    {
+        if(Auth::check()){
+            return redirect()->route('consent-page.index',$campaign_id);
+        }else{
+            return redirect()->route('public.login');
         }
     }
 }

@@ -1,5 +1,27 @@
 @extends('layouts.app_public')
 
+@section('styles')
+<style>
+    .btn{
+        background-color: #696cff;
+        color: white;
+    }
+    
+    .btn-icon{
+        background-color: #696cff;
+        color: white;
+    } 
+
+    .btn-label-facebook{
+        background-color: #3b5998;
+    }
+
+    .btn-label-google-plus{
+        background-color: #dd4b39;
+    }
+</style>
+@endsection
+
 @section('content')
     <div class="w-px-400 mx-auto mt-5">
         <!-- Logo -->
@@ -105,11 +127,11 @@
 
             <div class="d-flex justify-content-center">
                 <a href="{{ route('auth.facebook') }}" class="btn btn-icon btn-label-facebook me-3">
-                    <i class="tf-icons bx bxl-facebook"></i>
+                    Facebook 
                 </a>
 
                 <a href="{{ route('auth.google') }}" class="btn btn-icon btn-label-google-plus me-3">
-                    <i class="tf-icons bx bxl-google-plus"></i>
+                    Google 
                 </a>
             </div>
         </div>
