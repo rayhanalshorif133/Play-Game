@@ -17,6 +17,7 @@
         @endisset
     </title>
 
+    @yield('head')
     @yield('styles')
 </head>
 

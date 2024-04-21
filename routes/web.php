@@ -155,12 +155,11 @@ Route::middleware('auth')->put('/save-auth-user-token', [SendNotificationControl
 Route::get('/leaderboard/{id?}',[PublicController::class,'leaderboard'])->name('public.leaderboard');
 
 
-Route::prefix('bkash')
-    ->name('bkash.')
-    ->group(function(){
-        Route::get('/document',[BkashController::class,'document'])->name('Document');
-        Route::get('/create-payment',[BkashController::class,'createPayment'])->name('create-payment');
-    });
+// Payment Routes for bKash
+
+Route::match(['get', 'post'], '/create_payment/{msisdn}', [BkashController::class,'createPayment'])->name('bkash-create-payment');
+Route::match(['get', 'post'], '/execute_payment/{msisdn}/{paymentID}', [BkashController::class,'executePayment'])->name('bkash-execute-payment');
+Route::match(['get', 'post'], '/consent_back/{msisdn}/{trxID}', [BkashController::class,'consentBack'])->name('bkash-consent-back');
 
 
 
