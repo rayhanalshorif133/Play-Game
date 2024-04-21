@@ -53,7 +53,7 @@ Route::get('/home', [HomeController::class, 'home'])->name('home');
 Route::get('/tournament', [TournamentController::class, 'index'])->name('tournament.index');
 
 // Campaign
-Route::get('/play-now/{campaign_id}', [CampaignController::class, 'playNow'])->name('campaign.play-now');
+Route::get('/campaign-details/{campaign_id}', [CampaignController::class, 'campaignDetails'])->name('campaign.campaign-details');
 Route::get('/consent-page/{campaign_id}', [ConsentPageController::class, 'index'])->name('consent-page.index');
 
 Route::post('user/login', [LoginController::class, 'login'])->name('user.login');

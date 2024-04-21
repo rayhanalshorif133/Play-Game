@@ -228,10 +228,10 @@ class CampaignController extends Controller
 
 
     // playNow 
-    public function playNow($campaign_id)
+    public function campaignDetails($campaign_id)
     {
         if(Auth::check()){
-            return redirect()->route('consent-page.index',$campaign_id);
+            return view('public.campaign.details',compact('campaign_id'));
         }else{
             return redirect()->route('public.login');
         }

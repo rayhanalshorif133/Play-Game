@@ -79,7 +79,7 @@
                                 <i class="fa-solid fa-ranking-star fa-fw text-center mx-auto" style="font-size: 25px"></i>
                                 <span style="font-size: 12px">Leaderboard</span>
                             </a>
-                            <a href="{{route('campaign.play-now',12)}}" class="btn btn-play-now">
+                            <a href="{{route('campaign.campaign-details',12)}}" class="btn btn-play-now">
                                 <i class="fa fa-play text-white"></i> Play Now
                             </a>
                             <a href="#" class="btn flex flex-col text-center winner_list" data-bs-toggle="modal" data-bs-target="#exampleModal">
