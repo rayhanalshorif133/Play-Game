@@ -12,13 +12,15 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\CampaignScoreLogController;
 use App\Http\Controllers\SendNotificationController;
 use App\Http\Controllers\web\GoogleController;
-use App\Http\Controllers\web\TournamentController;
 use App\Http\Controllers\web\FacebookController;
 use App\Http\Controllers\web\PublicController;
 use App\Http\Controllers\web\PublicLoginController;
 use App\Http\Controllers\web\ConsentPageController;
 use App\Http\Controllers\BkashController;
 
+use App\Http\Controllers\web\TournamentController;
+use App\Http\Controllers\web\LeaderboardController;
+use App\Http\Controllers\web\AccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +53,8 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 Route::get('/tournament', [TournamentController::class, 'index'])->name('tournament.index');
+Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard.index');
+Route::get('/account', [AccountController::class, 'index'])->name('account.index');
 
 // Campaign
 Route::get('/campaign-details/{campaign_id}', [CampaignController::class, 'campaignDetails'])->name('campaign.campaign-details');

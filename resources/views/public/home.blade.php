@@ -1,127 +1,95 @@
 @extends('layouts.app_public', ['title' => 'Home'])
 
 @section('styles')
-    <style>
-        .leaderboard,
-        .winner_list {
-            background-color: #ececec;
-            color: #000;
-        }
-
-        .leaderboard:hover,
-        .winner_list:hover {
-            background-color: #176B87;
-            color: #dbf5ff;
-        }
-
-
-        .btn-play-now {
-            background: #044554;
-            background: linear-gradient(164deg, rgba(4, 69, 84, 1) 0%, rgba(1, 71, 78, 1) 22%, rgba(2, 83, 62, 1) 52%, rgba(51, 156, 168, 1) 81%, rgba(50, 230, 228, 1) 99%);
-            border-radius: 13px;
-            padding: 5px 20px;
-            color: #fff;
-            font-weight: 600;
-            text-transform: uppercase;
-            text-decoration: none;
-            display: inline-block;
-            margin: 10px auto;
-            cursor: pointer;
-        }
-
-        .btn-play-now:hover {
-            background: #044554;
-            background: linear-gradient(164deg,
-                    #32e6e4 0%,
-                    #339ca8 22%,
-                    #02533e 52%,
-                    #01474e 81%,
-                    #044554 99%,
-                    #044554 100%);
-        }
-
-        .btn-play-now:hover i {
-            transform: scale(1.1);
-        }
-    </style>
 @endsection
 
 @section('content')
-    <div class="row">
-        {{-- 1 to 10 print using foreach --}}
-        @foreach (range(1, 5) as $number)
-            <div class="col-12 col-sm-6 col-md-4 mb-3">
-                <div class="card">
-                    <div>
-                        <a href="#" class="text-center mx-auto text-decoration-none text-dark w-full">
-                            <span class="fw-bold d-block flex text-center">
-                                Campaign Name
-                            </span>
-                        </a>
-                    </div>
-                    <img src="https://picsum.photos/200/300?random={{ $number }}" class="card-img-top" alt="image">
-                    <div class="card-body">
-                        <div class="flex justify-between">
-                            <div>
-                                <div>
-                                    <span class="fw-bold">
-                                        <i class="fa fa-eye text-gray"></i>
-                                        <span>2000</span>
-                                    </span>
-                                </div>
-                            </div>
-                            <a href="#" class="py-1 px-2">
-                                <i class="fa fa-heart text-danger"></i>
-                            </a>
-                        </div>
-                        <div class="flex justify-content-between py-2">
-                            <a href="#" class="btn flex flex-col text-center leaderboard">
-                                <i class="fa-solid fa-ranking-star fa-fw text-center mx-auto" style="font-size: 25px"></i>
-                                <span style="font-size: 12px">Leaderboard</span>
-                            </a>
-                            <a href="{{route('campaign.campaign-details',12)}}" class="btn btn-play-now">
-                                <i class="fa fa-play text-white"></i> Play Now
-                            </a>
-                            <a href="#" class="btn flex flex-col text-center winner_list" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="fa-solid fa-award text-center mx-auto" style="font-size: 25px"></i>
-                                <span style="font-size: 12px">
-                                    Prize List
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">
-                        Prize List
-                    </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <ul>
-                        <li>নোবেল পুরস্কার</li>
-                        <li>গ্র্যামি পুরস্কার</li>
-                        <li>ওসকার পুরস্কার</li>
-                        <li>ইমি পুরস্কার</li>
-                        <li>ফিল্ডস মেডল</li>
-                        <li>টোনি পুরস্কার</li>
-                        <li>গোল্ডেন গ্লোব পুরস্কার</li>
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok</button>
-                </div>
-            </div>
+<main role="main">
+  
+  
+  
+    <!--/ Section one Star /-->
+    <section id="section_one">
+      <div class="container-fluid">
+        <div class="wrap-one  d-flex justify-content-between">
+          <div class="title-box">
+            <h2 class="title-a">Current Campaign</h2>
+          </div>
         </div>
-    </div>
+        <div class="col-md-12">
+          <div class="card my-4 box-shadow">
+            <img class="card-img-top" src="{{asset('web_assets/images/current_campaing_img1.png')}}" alt="Card image cap">
+            <div class="card-body" style="padding-left: 10px;">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group" style="display: block !important;">
+                  <h4 class="font-bold" style="font-size: 1.2rem;
+              font-weight: bold;">Pac Rush Campaign</h4>
+                  <p class="card-text" style="color: red;">Time Remains: 2d 1h 23m</p>
+                </div>
+                <a type="btn" class="btn  btn-outline-secondary text-white common-btn " href="#">Play now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="card my-4 box-shadow">
+            <img class="card-img-top" src="{{asset('web_assets/images/current_campaing_img2.png')}}" alt="">
+            <div class="card-body" style="padding-left: 10px;">
+
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group" style="display: block !important;">
+                  <h4 class="font-bold" style="font-size: 1.2rem;
+              font-weight: bold;">Pac Rush Campaign</h4>
+                  <p class="card-text" style="color: red; ">Time Remains: 2d 1h 23m</p>
+                </div>
+                <a type="btn" class="btn btn-outline-secondary common-btn text-white" href="#">Play now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--/ Section one End /-->
+    <!--/ Section two Star /-->
+    <section id="section_two" style="margin-bottom: 30%;">
+      <div class="container-fluid">
+        <div class="wrap-one  d-flex justify-content-between">
+          <div class="title-box">
+            <h3 class="title-a my-2">Upcoming Campaign</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+
+            <div class="campain-body">
+              <div class="row row-cols-1 row-cols-sm-2">
+
+                <div class="col-6">
+                  <figure style="margin: 0px;">
+                    <img class="card-img" src="{{asset('web_assets/images/turnament_img1.png')}}" alt="Card image" />
+                  </figure>
+
+                </div>
+                <div class="col-6" style="margin-top: 6%;">
+                  <div class="card-body-right">
+                    <h4 class="card-title font-bold" style="font-weight: bold; font-size: 1.3rem;">Snap Card Game</h4>
+                    <p class="card-text " style="color: green;">Starts in : 2d 1h 23m</p>
+                    <a href="#" class="btn btn-primary  common-btn">Explore now</a>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--/ Section one End /-->
+
+  </main>
 @endsection
 
 

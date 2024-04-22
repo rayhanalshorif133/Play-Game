@@ -6,10 +6,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ asset('assets/custom/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/custom/responsive.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <!-- icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
+
+    <!-- Custom styles for this template -->
+    <link href="{{ asset('web_assets/dist/animate/animate.min.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('web_assets/dist/ionicons/css/ionicons.css') }}" rel="stylesheet">
+    <link href="{{ asset('web_assets/dist/owlcarousel/assets/owl.carousel.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('web_assets/css/style.css') }}" rel="stylesheet">
 
     <title>
         @isset($title)
@@ -17,109 +31,242 @@
         @endisset
     </title>
 
+    <style>
+        img {
+            width: 100px;
+            height: 100%;
+        }
+
+        .how-section1 {
+            margin-top: -15%;
+            padding: 10%;
+        }
+
+        body,
+        .footer-body,
+        .top-navbar {
+            background-color: white
+        }
+
+        body.bodyDark,
+        .containerDark,
+        .topNavbar,
+        .topmenubg,
+        .footerbody {
+            background-color: #121212;
+        }
+
+        #darkbutton p {
+
+            padding: 0 0 0 6px;
+            margin: 0px;
+        }
+    </style>
+
     @yield('head')
     @yield('styles')
+
 </head>
 
 <body>
+    <div class="wrapper">
+        <header>
+            <section class="nav-top-item">
+                <div id="nav-container">
+                    <div class="bg"></div>
+                    <div class="button " tabindex="0">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </div>
+                    <div class="top-menu-bg">
+                        <div id="nav-content" tabindex="0">
+                            <ul class="navbar-nav bg-transparent fixed-top" id="sidebar-wrapper">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#">
+                                        &nbsp Home <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link darkmode" href="#" id="darkbutton"
+                                        style="padding-left: 6px;">&nbsp Dark Mode</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">&nbsp About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">&nbsp FAQ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">&nbsp Terms & Conditions</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">&nbsp
+                                        Logout</a>
+                                </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </ul>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm nav_custom_bg">
-        <div class="container">
-            <a class="navbar-brand text-white" href="{{route('home')}}">
-                <div class="flex justify-content item-center">
-                    <img src="{{ asset('images/logo.png') }}" alt="logo" class="img-fluid" width="100">
+                        </div>
+                        <a class="navbar-brand text-left d-block " href="#" style="margin-left: 3.5%;">
+                            <img src="{{ asset('web_assets/images/logo.png') }}" style="height: 40px; width: auto;"
+                                alt="" title="">
+                        </a>
+                    </div>
+                    <!-- top-menu-bg -->
                 </div>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <i class="fa-solid fa-bars text-white"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
-                    </li>
-                </ul>
-                <div class="d-flex">
-                    @if(Auth::check())
-                        <a>
-                            <i class="fa fa-user text-white me-2"></i> {{auth()->user()->msisdn}}
-                        </a>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i class="bx bx-power-off me-2"></i>
-                            <span class="align-middle">Log Out</span>
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    @else
-                    <a href="{{route('public.login')}}" class="btn btn-outline-white px-2" type="button">Login</a>
-                    @endif
+            </section>
+            <div id="mobile-nav-panel">
+                <nav class="navbar navbar-expand-lg navbar-light top-navbar">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img src="{{ asset('web_assets/images/logo.png') }}" style="height: 40px; width: auto;"
+                            alt="" title="">
+                    </a>
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">
+                                    &nbsp Home <span class="sr-only">(current)</span></a>
+                            </li>
 
-                </div>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">&nbsp About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">&nbsp FAQ</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">&nbsp Terms & Conditions</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">&nbsp Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
             </div>
-        </div>
-    </nav>
+            <!-- mobile-nav-panel -->
+            <!-- ================= -->
 
-    <div class="container my-4">
+            <!-- nav-bar-panel -->
+        </header>
+
         @yield('content')
+
+
+        @php
+            $route = Route::currentRouteName();
+        @endphp
+        <footer id="footer-menu-panel">
+            <div class="container-fluid">
+                <div class="row">
+                    <nav class="navbar-expand fixed-bottom">
+                        <ul class="navbar footer-body">
+                            <li class="nav-item">
+                                <a class="nav-link  @if ($route == 'tournament.index') active @endif"
+                                    aria-current="page" href="{{ route('tournament.index') }}">
+                                    <i class="fas fa-trophy" style="font-size:20px"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if ($route == 'home') active @endif"
+                                    href="{{ route('home') }}">
+                                    <i class="fas fa-home fa-2x"></i>
+                                </a>
+                            </li>
+                            </li>
+                            <li class="nav-item">
+                                @if (Auth::check())
+                                    <a class="nav-link @if ($route == 'account.index') active @endif"
+                                        aria-current="page" href="{{ route('account.index') }}">
+                                        <i class="fas fa-user" style="font-size:20px"></i>
+                                    </a>
+                                @else
+                                    <a class="nav-link @if ($route == 'public.login') active @endif"
+                                        aria-current="page" href="{{ route('public.login') }}">
+                                        <i class="fas fa-user" style="font-size:20px"></i>
+                                    </a>
+                                @endif
+                            </li>
+                        </ul>
+
+                    </nav>
+                </div>
+            </div> 
+        </footer>
     </div>
+    <!-- Bootstrap core JavaScript
+      ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <footer class="fixed mobile_footer bottom-0 bg-footer w-full">
-        <div class="flex justify-content-between footer_container">
-            <div class="@isset($title) @if ($title == 'Game') active @endif @endisset">
-                <a href="#">
-                    <i class="fa-solid fa-home"></i>
-                </a>
-                <p>Game</p>
-            </div>
-            <div class="@isset($title) @if ($title == 'Tournament') active @endif @endisset">
+    <script src="{{ asset('web_assets/dist/owlcarousel/owl.carousel.js') }}"></script>
+    <script src="{{ asset('web_assets/dist/scrollreveal/scrollreveal.min.js') }}"></script>
+    <script src="{{ asset('web_assets/js/main.js') }}"></script>
 
-                <a href="#">
-                    <i class="fa-solid fa-home"></i>
-                </a>
-                <p>Tournament</p>
-            </div>
-            <div class="@isset($title) @if ($title == 'Home') active @endif @endisset">
-                <a href="{{route('home')}}">
-                    <i class="fa-solid fa-home"></i>
-                </a>
-                <p>Home</p>
-            </div>
-            <div class="@isset($title) @if ($title == 'Winner') active @endif @endisset">
-                <a href="#">
-                    <i class="fa-solid fa-home"></i>
-                </a>
-                <p>Winner</p>
-            </div>
-            <div class="@isset($title) @if ($title == 'Leaderboard') active @endif @endisset">
-                <a href="{{route('public.leaderboard')}}">
-                    <i class="fa-solid fa-home"></i>
-                </a>
-                <p>Leaderboard</p>
-            </div>
-        </div>
-    </footer>
+    <script>
+        const body = document.querySelector('body');
+        const button = document.querySelector('#darkbutton');
 
+        const containerFluid = document.querySelector('.container-fluid');
+        const footerbody = document.querySelector('.footer-body');
+        const topNavbar = document.querySelector('.top-navbar');
+        const topmenubg = document.querySelector('.top-menu-bg');
+        // const topmenubg = document.querySelector('.top-menu-bg');
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        function toggleDark() {
+
+            if (body.classList.contains('bodyDark')) {
+
+                body.classList.remove('bodyDark');
+                containerFluid.classList.remove('containerDark');
+                topNavbar.classList.remove('topNavbar');
+                topmenubg.classList.remove('topmenubg');
+                footerbody.classList.remove('footerbody');
+
+                localStorage.setItem("theme", "light");
+
+                button.innerHTML = "<p>Dark Mode<p>";
+
+            } else {
+
+                body.classList.add('bodyDark');
+                containerFluid.classList.add('containerDark');
+                topNavbar.classList.add('topNavbar');
+                topmenubg.classList.add('topmenubg');
+                footerbody.classList.add('footerbody');
+                localStorage.setItem("theme", "bodyDark");
+                button.innerHTML = "<p>Light Mode</p>";
+
+            }
+
+        }
+
+        if (localStorage.getItem("theme") === "bodyDark") {
+
+            body.classList.add('bodyDark');
+            containerFluid.classList.add('containerDark');
+            topNavbar.classList.add('topNavbar');
+            topmenubg.classList.add('topmenubg');
+            footerbody.classList.add('footerbody');
+
+            button.innerHTML = "<p>Light Mode</p>";
+
+        }
+
+        document.querySelector('#darkbutton').addEventListener('click', toggleDark);
     </script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
-    </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-
-    <script src="{{ asset('assets/custom/script.js') }}"></script>
 </body>
 
 </html>

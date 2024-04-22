@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 
-class TournamentController extends Controller
+class LeaderboardController extends Controller
 {
     public function index()
     {
-        return view('public.tournament');
+        return view('public.leaderboard');
     }
 
 
