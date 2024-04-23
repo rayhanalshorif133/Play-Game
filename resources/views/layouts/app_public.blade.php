@@ -24,6 +24,8 @@
     <link href="{{ asset('web_assets/dist/owlcarousel/assets/owl.carousel.css') }}" rel="stylesheet">
 
     <link href="{{ asset('web_assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('web_assets/css/custom_style.css') }}" rel="stylesheet">
+
 
     <title>
         @isset($title)
@@ -70,93 +72,93 @@
 
 <body>
     <div class="wrapper">
-        <header>
-            <section class="nav-top-item">
-                <div id="nav-container">
-                    <div class="bg"></div>
-                    <div class="button " tabindex="0">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </div>
-                    <div class="top-menu-bg">
-                        <div id="nav-content" tabindex="0">
-                            <ul class="navbar-nav bg-transparent fixed-top" id="sidebar-wrapper">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="#">
-                                        &nbsp Home <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link darkmode" href="#" id="darkbutton"
-                                        style="padding-left: 6px;">&nbsp Dark Mode</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">&nbsp About</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">&nbsp FAQ</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">&nbsp Terms & Conditions</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">&nbsp
-                                        Logout</a>
-                                </li>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </ul>
+        <header class="sticky-top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="menu-panel">
+                        <section class="nav-top-item">
+                            <div id="nav-container">
+                                <div class="bg"></div>
+                                <div class="button " tabindex="0">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </div>
+                                <div class="top-menu-bg">
+                                    <div id="nav-content" tabindex="0">
+                                        <ul class="navbar-nav bg-transparent fixed-top" id="sidebar-wrapper">
+                                            <li class="nav-item active">
+                                                <a class="nav-link" href="#">
+                                                    &nbsp Home <span class="sr-only">(current)</span></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link darkmode" href="#" id="darkbutton"
+                                                    style="padding-left: 6px;">&nbsp Dark
+                                                    Mode</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">&nbsp About</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">&nbsp FAQ</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">&nbsp Terms & Conditions</a>
+                                            </li>
+                                        </ul>
 
+                                    </div>
+                                    <a class="navbar-brand text-left d-block " href="#"
+                                        style="margin-left: 3.5%;">
+                                        <img src="{{asset('web_assets/images/logo.png')}}" style="height: 40px; width: auto;"
+                                            alt="" title="">
+                                    </a>
+                                </div>
+                                <!-- top-menu-bg -->
+                            </div>
+                        </section>
+                        <div id="mobile-nav-panel">
+                            <nav class="navbar navbar-expand-lg navbar-light top-navbar">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                    data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                                    aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <a class="navbar-brand" href="#">
+                                    <img src="{{asset('web_assets/images/logo.png')}}" style="height: 40px; width: auto;" alt=""
+                                        title="">
+                                </a>
+                                <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="#">
+                                                &nbsp Home <span class="sr-only">(current)</span></a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">&nbsp About</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">&nbsp FAQ</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">&nbsp Terms & Conditions</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
                         </div>
-                        <a class="navbar-brand text-left d-block " href="#" style="margin-left: 3.5%;">
-                            <img src="{{ asset('web_assets/images/logo.png') }}" style="height: 40px; width: auto;"
-                                alt="" title="">
-                        </a>
+                        <!-- mobile-nav-panel -->
+                        <!-- ================= -->
+
+                        <!-- nav-bar-panel -->
+
                     </div>
-                    <!-- top-menu-bg -->
+
+
                 </div>
-            </section>
-            <div id="mobile-nav-panel">
-                <nav class="navbar navbar-expand-lg navbar-light top-navbar">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">
-                        <img src="{{ asset('web_assets/images/logo.png') }}" style="height: 40px; width: auto;"
-                            alt="" title="">
-                    </a>
-                    <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
-                        <ul class="navbar-nav">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#">
-                                    &nbsp Home <span class="sr-only">(current)</span></a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">&nbsp About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">&nbsp FAQ</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">&nbsp Terms & Conditions</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">&nbsp Logout</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
             </div>
-            <!-- mobile-nav-panel -->
-            <!-- ================= -->
-
-            <!-- nav-bar-panel -->
         </header>
 
         @yield('content')
@@ -200,7 +202,7 @@
 
                     </nav>
                 </div>
-            </div> 
+            </div>
         </footer>
     </div>
     <!-- Bootstrap core JavaScript

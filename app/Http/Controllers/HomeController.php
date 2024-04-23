@@ -25,6 +25,13 @@ class HomeController extends Controller
         return redirect()->route('home');
     }
 
+    // admin
+    public function admin()
+    {
+        $this->middleware('auth');
+        return redirect()->route('admin.dashboard');
+    }
+
     // home
     public function home()
     {

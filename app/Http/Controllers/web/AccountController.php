@@ -11,9 +11,24 @@ use App\Models\User;
 
 class AccountController extends Controller
 {
-    public function index()
+
+    public function __construct()
     {
-        return view('public.account');
+        $this->middleware('auth');
+    }
+
+    public function index(Request $request)
+    {
+
+        $method = $request->method();
+
+        if($method == 'POST')
+        {
+            dd($request->all());
+        }
+
+        $auth_user = Auth::user();
+        return view('public.account.index', compact('auth_user'));
     }
 
 

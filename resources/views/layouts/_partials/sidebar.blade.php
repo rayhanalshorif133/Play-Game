@@ -112,7 +112,13 @@
           <div data-i18n="Analytics" class="text-semibold">Questions</div>
         </a>
       </li>
-      {{-- campaign_score_logs --}}
+      
+      <li class="menu-item @if ($currentRoute == 'admin.games.index') active open @endif">
+        <a href="{{route('admin.games.index')}}" class="menu-link">
+          <i class='menu-icon tf-icons bx bxs-game text-semibold @if ($currentRoute == 'admin.game.index') selectedIconPopup @endif' ></i>
+          <div data-i18n="Analytics" class="text-semibold">Games</div>
+        </a>
+      </li>
 
       <li class="menu-item @if ($currentRoute == 'admin.send-notification.index')
           active open @endif">

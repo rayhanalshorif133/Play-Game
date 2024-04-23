@@ -7,14 +7,53 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 use App\Models\User;
 
 class PublicLoginController extends Controller
 {
     // login
-    public function login()
+    public function login(Request $request)
     {
-        return view('public.auth.login');
+        $method = $request->getMethod();
+        if($method == 'GET'){
+            return view('public.auth.login');
+        }
+
+        $validator = Validator::make($request->all(), [
+            'password' => 'required',
+            'email_phone' => 'required'
+        ]);
+
+        if($validator->fails()){
+            flash()->addError('Email or Phone Number and Password is required');
+            return redirect()->back();
+        }
+        
+        // check if email or phone
+        $phoneORemail = $request->email_phone;
+        $password = $request->password;
+
+        $user = User::where('email', $phoneORemail)->orWhere('msisdn', $phoneORemail)->first();
+        
+        if(!$user){
+            flash()->addError('User not found');
+            return redirect()->back();
+        }
+
+        if(Hash::check($password, $user->password)){
+            Auth::login($user);
+            flash()->addSuccess('You have been successfully logged in');
+            if($user->role == 'admin'){
+                return redirect()->route('admin.dashboard');
+            }
+            return redirect()->route('home');
+
+        }else{
+            flash()->addError('Invalid email/phone or password');
+            return redirect()->back();
+        }
+
     }
 
 

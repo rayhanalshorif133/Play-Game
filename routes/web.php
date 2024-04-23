@@ -17,6 +17,7 @@ use App\Http\Controllers\web\PublicController;
 use App\Http\Controllers\web\PublicLoginController;
 use App\Http\Controllers\web\ConsentPageController;
 use App\Http\Controllers\BkashController;
+use App\Http\Controllers\GameController;
 
 use App\Http\Controllers\web\TournamentController;
 use App\Http\Controllers\web\LeaderboardController;
@@ -46,6 +47,7 @@ Route::get('clear', function () {
 });
 
 Route::get('/', [HomeController::class, 'isLoginOrNot']);
+Route::get('/admin', [HomeController::class, 'admin']);
 
 Auth::routes();
 
@@ -54,7 +56,13 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 Route::get('/tournament', [TournamentController::class, 'index'])->name('tournament.index');
 Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard.index');
-Route::get('/account', [AccountController::class, 'index'])->name('account.index');
+
+Route::middleware('auth')
+    ->prefix('account')
+    ->name('account.')->group(function () {
+    Route::get('/', [AccountController::class, 'index'])->name('index');
+    Route::match(['get', 'post'],'/update', [AccountController::class, 'index'])->name('update');
+});
 
 // Campaign
 Route::get('/campaign-details/{campaign_id}', [CampaignController::class, 'campaignDetails'])->name('campaign.campaign-details');
@@ -62,7 +70,9 @@ Route::get('/consent-page/{campaign_id}', [ConsentPageController::class, 'index'
 
 Route::post('user/login', [LoginController::class, 'login'])->name('user.login');
 
-Route::prefix('admin')->middleware('auth')->name('admin.')
+Route::prefix('admin')
+    ->middleware('auth','role')
+    ->name('admin.')
     ->group(function () {
     Route::get('/dashboard', [DashboardController::class,'dashboard'])->name('dashboard');
     Route::prefix('user')
@@ -116,9 +126,19 @@ Route::prefix('admin')->middleware('auth')->name('admin.')
         Route::delete('/{id}', [QuestionController::class,'delete'])->name('delete');
     });
 
+    // Game
+    Route::prefix('games')
+        ->name('games.')
+        ->group(function () {
+        Route::get('/', [GameController::class,'index'])->name('index');
+        Route::get('/{id}/edit', [GameController::class,'edit'])->name('edit');
+        Route::post('/store', [GameController::class,'store'])->name('store');
+        Route::put('/update', [GameController::class,'update'])->name('update');
+        Route::delete('/{id}', [GameController::class,'delete'])->name('delete');
+    });
+
     // SendNotificationController
-    Route::middleware('auth')
-        ->prefix('send-notification')
+    Route::prefix('send-notification')
         ->name('send-notification.')
         ->group(function () {
         Route::get('/', [SendNotificationController::class,'index'])->name('index');
