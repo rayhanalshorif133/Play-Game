@@ -15,7 +15,7 @@ class GoogleController extends Controller
     public function redirectToGoogle()
     {
         return Socialite::driver('google')
-            ->redirectUrl('http://localhost:8000/auth/google/callback')
+            ->redirectUrl('http://ttalksdp.b2mwap.com/auth/google/callback')
             ->redirect();
 
     }
@@ -45,7 +45,11 @@ class GoogleController extends Controller
                 $newUser->save();
                 Auth::login($newUser);
             }
-            return redirect()->intended('/user/dashboard');
+
+            if(Auth::user()->role == 'user' && Auth::user()->msisdn == null){
+                return redirect()->route('account.update');
+            }
+            return redirect()->intended('/home');
 
         } catch (Exception $e) {
             dd($e->getMessage());

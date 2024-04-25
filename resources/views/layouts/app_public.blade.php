@@ -18,13 +18,12 @@
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
 
     <!-- Custom styles for this template -->
-    <link href="{{ asset('web_assets/dist/animate/animate.min.css') }}" rel="stylesheet">
-
-    <link href="{{ asset('web_assets/dist/ionicons/css/ionicons.css') }}" rel="stylesheet">
-    <link href="{{ asset('web_assets/dist/owlcarousel/assets/owl.carousel.css') }}" rel="stylesheet">
 
     <link href="{{ asset('web_assets/css/style.css') }}" rel="stylesheet">
+
     <link href="{{ asset('web_assets/css/custom_style.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('web_assets/css/responsive_style.css') }}" rel="stylesheet">
 
 
     <title>
@@ -63,6 +62,14 @@
             padding: 0 0 0 6px;
             margin: 0px;
         }
+
+        .bg-white {
+            background-color: white;
+        }
+
+        .w-full {
+            width: 100%;
+        }
     </style>
 
     @yield('head')
@@ -72,7 +79,7 @@
 
 <body>
     <div class="wrapper">
-        <header class="sticky-top">
+        <header class="sticky-top bg-white w-full">
             <div class="container-fluid">
                 <div class="row">
                     <div class="menu-panel">
@@ -105,13 +112,23 @@
                                             <li class="nav-item">
                                                 <a class="nav-link" href="#">&nbsp Terms & Conditions</a>
                                             </li>
+                                            @if (Auth::check())
+                                            <li class="nav-item" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                <a class="nav-link" href="#">&nbsp Logout</a>
+                                            </li>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                class="d-none">
+                                                @csrf
+                                            </form>
+                                            @endif
                                         </ul>
 
                                     </div>
                                     <a class="navbar-brand text-left d-block " href="#"
                                         style="margin-left: 3.5%;">
-                                        <img src="{{asset('web_assets/images/logo.png')}}" style="height: 40px; width: auto;"
-                                            alt="" title="">
+                                        <img src="{{ asset('web_assets/images/logo.png') }}"
+                                            style="height: 40px; width: auto;" alt="" title="">
                                     </a>
                                 </div>
                                 <!-- top-menu-bg -->
@@ -125,8 +142,8 @@
                                     <span class="navbar-toggler-icon"></span>
                                 </button>
                                 <a class="navbar-brand" href="#">
-                                    <img src="{{asset('web_assets/images/logo.png')}}" style="height: 40px; width: auto;" alt=""
-                                        title="">
+                                    <img src="{{ asset('web_assets/images/logo.png') }}"
+                                        style="height: 40px; width: auto;" alt="" title="">
                                 </a>
                                 <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
                                     <ul class="navbar-nav">
@@ -145,6 +162,14 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="#">&nbsp Terms & Conditions</a>
                                         </li>
+                                        <li class="nav-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <a class="nav-link" href="#">&nbsp Logout</a>
+                                        </li>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
                                     </ul>
                                 </div>
                             </nav>
@@ -168,7 +193,7 @@
             $route = Route::currentRouteName();
         @endphp
         <footer id="footer-menu-panel">
-            <div class="container-fluid">
+            <div class="container-fluid mobile">
                 <div class="row">
                     <nav class="navbar-expand fixed-bottom">
                         <ul class="navbar footer-body">
@@ -213,9 +238,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="{{ asset('web_assets/dist/owlcarousel/owl.carousel.js') }}"></script>
-    <script src="{{ asset('web_assets/dist/scrollreveal/scrollreveal.min.js') }}"></script>
-    <script src="{{ asset('web_assets/js/main.js') }}"></script>
+    {{-- <script src="{{ asset('web_assets/js/main.js') }}"></script> --}}
 
     <script>
         const body = document.querySelector('body');

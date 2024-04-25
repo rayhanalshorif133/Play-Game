@@ -1,36 +1,161 @@
 @extends('layouts.app_public')
 
 @section('styles')
+    <style>
+        /* ----------------------- */
+        .form-control {
+            border: rgba(211, 65, 116, 1) solid 1px;
+            border-radius: 10px;
+        }
+
+        .form-control:focus {
+            border: rgba(211, 65, 116, 1) solid 1px;
+            border-radius: 10px;
+            box-shadow: none;
+        }
+
+        i#togglePassword {
+            position: absolute;
+            transform: translate(-17px, -26px);
+            right: 0;
+        }
+
+        .social {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .social button {
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social button:nth-child(1) {
+            background-color: #2374F2;
+        }
+
+        .social button:nth-last-child(1) {
+            background-color: #DB4437;
+        }
+
+        .social button span:nth-child(1) {
+            height: 20px;
+            width: 20px;
+            padding: 15px;
+            border-radius: 50%;
+            background: #fefefe;
+            display: block;
+        }
+
+        .social button i {
+            margin-right: 10px;
+        }
+
+        .fb-login-btn {
+            display: inline-block;
+            background-color: #4267B2;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .fb-login-btn:hover {
+            background-color: #385898;
+        }
+
+        .google-login-btn {
+    display: inline-flex;
+    align-items: center;
+    background-color: #DB4437;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+
+  .google-login-btn:hover {
+    background-color: #C13505;
+  }
+
+  .google-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+    </style>
 @endsection
 
 @section('content')
-    <main role="main">
-        <section id="section_one">
-                <form id="login_form" method="POST" action="{{route('public.login')}}">
-                    @csrf
-                    @method('POST')
-                    <h3>Welcome to Play!</h3>
-                    <p class="mb-4 text-center">Please sign-in to your account</p>
+    <div class="discription-wrapper">
+        <section class="h-100 gradient-form" style="background-color: #fff;">
+            <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-50">
+                    <div class="col-xl-10 col-md-10">
+                        <div class="row g-0 justify-content-center">
+                            <div class="col-lg-8 col-md-8 mt-5">
+                                <h3 class="text-center mx-auto py-2">
+                                    Welcome to <span class="text-danger">Play</span>
+                                </h3>
+                                <form>
 
-                    <label for="username" class="required">Email or Phone Number</label>
-                    <input type="text" placeholder="Email or Phone" id="username" name="email_phone">
+                                    <!-- Email input -->
+                                    <div class=" mb-4">
+                                        <input type="email" id="form3Example3" class="form-control"
+                                            placeholder="Mobile or Email address" />
+                                    </div>
 
-                    <label for="password" class="required">Password</label>
-                    <input type="password" placeholder="Password" id="password" name="password">
+                                    <!-- Password input -->
+                                    <div class="mb-4">
+                                        <input type="password" id="password" class="form-control" placeholder="Password" />
+                                        <i class="fa fa-eye hidden-text px-2 cursor-pointer" id="togglePassword"></i>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary common-btn w-full py-2 mb-2">
+                                        Login
+                                    </button>
 
-                    <button class="btn btn-primary  common-btn" style="margin-bottom: 2%;" type="submit">Log In</button>
+                                    <div class="d-flex align-items-center justify-content-center pb-4">
+                                        <p class="mb-0 me-2" style="margin-right: 2%;">Don't have an account?</p>
+                                        <button type="button" data-mdb-button-init data-mdb-ripple-init
+                                            class="btn btn-outline-danger">Create new</button>
+                                    </div>
 
-                    <p class="text-center">New to Play? <a href="{{route('public.register')}}">Create an account</a></p>
-                    {{-- <p class="text-center">Forgot password? <a href="{{route('public.forgot_password')}}">Reset password</a></p> --}}
 
-                    {{-- for forgot password --}}
-                    <div class="social d-none">
-                        <div class="go"><i class="fab fa-google"></i> Google</div>
-                        <div class="fb"><i class="fab fa-facebook"></i> Facebook</div>
+
+
+                                    <!-- Register buttons -->
+                                    <div class="text-center social">
+                                        <p>or sign up with:</p>
+                                        <a href="#" class="fb-login-btn">Login with Facebook</a>
+                                        <a href="#" class="google-login-btn">
+                                            <img class="google-icon" src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png" alt="Google Icon" >
+                                            Login with Google
+                                          </a>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
                     </div>
-                </form>
+                </div>
+            </div>
         </section>
-    </main>
+    </div>
 @endsection
 
 

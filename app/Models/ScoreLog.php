@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Score extends Model
+class ScoreLog extends Model
 {
     use HasFactory;
-
 
     protected $fillable = [
         'msisdn',
@@ -16,7 +15,8 @@ class Score extends Model
         'game_keyword',
         'status',
         'url',
-        'date_time',
+        'play_date',
+        'play_time',
         'duration',
         'ip_address',
         'user_agent',

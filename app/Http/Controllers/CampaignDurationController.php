@@ -39,6 +39,8 @@ class CampaignDurationController extends Controller
             'status' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
         ]);
 
 
@@ -47,12 +49,18 @@ class CampaignDurationController extends Controller
             return redirect()->back();
         }
 
+        // convert 12 hour time to 24 hour time
+        $request->start_time = date("H:i", strtotime($request->start_time));
+        $request->end_time = date("H:i", strtotime($request->end_time));
+
         $campaignDuration = new CampaignDuration();
         $campaignDuration->campaign_id = $request->campaign_id;
         $campaignDuration->name = $request->name;
         $campaignDuration->status = $request->status;
         $campaignDuration->start_date = $request->start_date;
         $campaignDuration->end_date = $request->end_date;
+        $campaignDuration->start_time = $request->start_time;
+        $campaignDuration->end_time = $request->end_time;
         $campaignDuration->save();
         flash()->addSuccess('Campaign duration created successfully');
         return redirect()->back();

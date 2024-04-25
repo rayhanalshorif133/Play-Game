@@ -28,7 +28,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Notification API (Http Request): 
 //{{baseurl}}/api/score?msisdn=8801711111111&score=100&keyword=mergeDice
-
 Route::match(['get', 'post'], '/score', [ScoreController::class, 'score']);
 
 // {{baseurl}}/api/redirect?msisdn=8801711111111&keyword=mergeDice

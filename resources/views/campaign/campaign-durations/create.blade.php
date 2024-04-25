@@ -32,8 +32,16 @@
                             <input type="date" name="start_date" id="start_date" required class="form-control">
                         </div>
                         <div class="col-12 col-md-6 mb-0">
+                            <label for="start_time" class="form-label required">Start time</label>
+                            <input type="time" name="start_time" id="start_time" required class="form-control">
+                        </div>
+                        <div class="col-12 col-md-6 mb-0">
                             <label for="end_date" class="form-label required">End Date</label>
                             <input type="date" name="end_date" id="end_date" required class="form-control">
+                        </div>
+                        <div class="col-12 col-md-6 mb-0">
+                            <label for="end_time" class="form-label required">End time</label>
+                            <input type="time" name="end_time" id="end_time" required class="form-control">
                         </div>
                     </div>
                 </div>

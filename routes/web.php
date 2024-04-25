@@ -61,7 +61,7 @@ Route::middleware('auth')
     ->prefix('account')
     ->name('account.')->group(function () {
     Route::get('/', [AccountController::class, 'index'])->name('index');
-    Route::match(['get', 'post'],'/update', [AccountController::class, 'index'])->name('update');
+    Route::match(['get', 'post'],'/update', [AccountController::class, 'update'])->name('update');
 });
 
 // Campaign
@@ -159,7 +159,7 @@ Route::name('public.')
 
 // // google
 Route::get('/auth/google', [GoogleController::class,'redirectToGoogle'])->name('auth.google');
-Route::get('auth/google/callback', [GoogleController::class,'handleGoogleCallback'])->name('auth.google.callback');
+Route::get('/auth/google/callback', [GoogleController::class,'handleGoogleCallback'])->name('auth.google.callback');
 
 
 // // facebook

@@ -23,3 +23,7 @@
 .custom_scrollbar::-webkit-scrollbar {
     width: 12px;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}

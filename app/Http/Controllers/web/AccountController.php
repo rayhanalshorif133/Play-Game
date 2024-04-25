@@ -31,5 +31,30 @@ class AccountController extends Controller
         return view('public.account.index', compact('auth_user'));
     }
 
+    // update 
+    public function update(Request $request)
+    {
+        $method = $request->method();
+
+        if($method == 'POST')
+        {
+        
+            if($request->msisdn == null)
+            {
+               toastr()->addError('Please enter your phone number');
+                return redirect()->back();
+            }
+
+            $auth_user = Auth::user();
+            $auth_user->msisdn = $request->msisdn;
+            $auth_user->save();
+
+            return redirect()->route('account.index');
+        }
+
+        $auth_user = Auth::user();
+        return view('public.account.update', compact('auth_user'));
+    }
+
 
 }

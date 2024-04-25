@@ -9,11 +9,15 @@ class CampaignDuration extends Model
 {
     use HasFactory;
 
+    protected $table = 'campaign_durations';
+
     protected $fillable = [
         'name',
         'campaign_id',
         'start_date',
+        'start_time',
         'end_date',
+        'end_time',
         'status'
     ];
 

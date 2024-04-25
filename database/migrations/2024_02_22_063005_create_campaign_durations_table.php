@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->bigInteger('campaign_id')->unsigned();
             $table->date('start_date');
+            $table->time('start_time');
             $table->date('end_date');
-            $table->string('status')->default('active');
+            $table->time('end_time');
+            $table->string('status')->default('1');
             $table->timestamps();
         });
     }
