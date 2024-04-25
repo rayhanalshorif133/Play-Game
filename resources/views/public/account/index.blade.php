@@ -7,8 +7,6 @@
 
 <main role="main">
 
-
-
     <!--/ Section one Star /-->
     <section id="account-panel">
       <div class="container">
@@ -20,13 +18,18 @@
         <div class="row justify-content-center mb-5">
 
           <div class="col-5 d-flex justify-content-center">
-          
+            @if(Auth::user()->avatar)
+            <img src="{{Auth::user()->avatar}}" alt="" title="" style="width: 250px; height: 350px; margin-bottom: 5%; text-align: center;">
+            @else
             <img src="{{asset('web_assets/images/account.png')}}" alt="" title="" style="width: 250px; height: 350px; margin-bottom: 5%; text-align: center;">
+            @endif
           </div>
         <div class="col-12">
 
           <p class="text-center font-bold" style="font-size: 1.5rem;">{{ Auth::user()->msisdn }}</p>
-          <a class="btn btn-primary d-grid w-100" href="{{ route('account.update') }}">Update</a>
+          <a class="btn btn-primary common-btn w-full py-2 mb-2" href="{{ route('account.update') }}">
+            Edit Account
+          </a>
         </div>
 
         </div>

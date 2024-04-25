@@ -37,11 +37,6 @@
                     <p class="text-center">Aleady have an account? <a href="{{route('public.login')}}"> Sign in</a></p>
                     {{-- <p class="text-center">Forgot password? <a href="{{route('public.forgot_password')}}">Reset password</a></p> --}}
 
-                    {{-- for forgot password --}}
-                    <div class="social d-none">
-                        <div class="go"><i class="fab fa-google"></i> Google</div>
-                        <div class="fb"><i class="fab fa-facebook"></i> Facebook</div>
-                    </div>
                 </form>
         </section>
     </main>

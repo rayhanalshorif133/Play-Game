@@ -58,9 +58,13 @@
             margin-right: 10px;
         }
 
-        .fb-login-btn {
-            display: inline-block;
-            background-color: #4267B2;
+
+
+
+
+        .social-login-btn {
+            display: inline-flex;
+            align-items: center;
             color: #fff;
             border: none;
             padding: 10px 20px;
@@ -71,33 +75,48 @@
             transition: background-color 0.3s;
         }
 
+        .fb-login-btn {
+            background-color: #4267B2;
+        }
+
         .fb-login-btn:hover {
             background-color: #385898;
         }
 
         .google-login-btn {
-    display: inline-flex;
-    align-items: center;
-    background-color: #DB4437;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.3s;
-  }
+            background-color: #DB4437;
+        }
 
-  .google-login-btn:hover {
-    background-color: #C13505;
-  }
+        .google-login-btn:hover {
+            background-color: #C13505;
+        }
 
-  .google-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-  }
+
+
+        .social a {
+            margin-top: 20px;
+        }
+
+
+
+        .social div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            background: #ffffff;
+            margin-right: 10px;
+        }
+
+        .social div img {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 @endsection
 
@@ -112,17 +131,18 @@
                                 <h3 class="text-center mx-auto py-2">
                                     Welcome to <span class="text-danger">Play</span>
                                 </h3>
-                                <form>
-
+                                <form method="POST" action="{{ route('public.login') }}">
+                                    @csrf
+                                    @method('POST')
                                     <!-- Email input -->
                                     <div class=" mb-4">
-                                        <input type="email" id="form3Example3" class="form-control"
-                                            placeholder="Mobile or Email address" />
+                                        <input type="text" id="form3Example3" class="form-control"
+                                            placeholder="Mobile or Email address" name="email_phone"/>
                                     </div>
 
                                     <!-- Password input -->
                                     <div class="mb-4">
-                                        <input type="password" id="password" class="form-control" placeholder="Password" />
+                                        <input type="password" id="password" class="form-control" name="password" placeholder="Password" />
                                         <i class="fa fa-eye hidden-text px-2 cursor-pointer" id="togglePassword"></i>
                                     </div>
                                     <button type="submit" class="btn btn-primary common-btn w-full py-2 mb-2">
@@ -131,8 +151,7 @@
 
                                     <div class="d-flex align-items-center justify-content-center pb-4">
                                         <p class="mb-0 me-2" style="margin-right: 2%;">Don't have an account?</p>
-                                        <button type="button" data-mdb-button-init data-mdb-ripple-init
-                                            class="btn btn-outline-danger">Create new</button>
+                                        <a href="{{ route('public.register') }}" class="text-primary">Sign up</a>
                                     </div>
 
 
@@ -141,11 +160,17 @@
                                     <!-- Register buttons -->
                                     <div class="text-center social">
                                         <p>or sign up with:</p>
-                                        <a href="#" class="fb-login-btn">Login with Facebook</a>
-                                        <a href="#" class="google-login-btn">
-                                            <img class="google-icon" src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png" alt="Google Icon" >
+                                        <a href="{{ route('auth.facebook') }}" class="social-login-btn fb-login-btn">
+                                            <div><img class="social-icon"
+                                                    src="{{ asset('web_assets/images/Facebook.png') }}" alt="Google Icon">
+                                            </div>
+                                            Login with Facebook
+                                        </a>
+                                        <a href="{{ route('auth.google') }}" class="social-login-btn google-login-btn">
+                                            <div><img class="social-icon" src="{{ asset('web_assets/images/Google.png') }}"
+                                                    alt="Google Icon"></div>
                                             Login with Google
-                                          </a>
+                                        </a>
                                     </div>
                                 </form>
 
