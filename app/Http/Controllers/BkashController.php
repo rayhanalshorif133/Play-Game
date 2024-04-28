@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\GrentToken;
+use App\Models\BkashCreatePayment;
+use App\Models\CampaignDuration;
+use App\Models\BkashExecutePayment;
+use App\Models\BkashPayment;
 
 class BkashController extends Controller
 {
@@ -16,43 +21,59 @@ class BkashController extends Controller
             'app_key'		=>'2l6u3m4i01ed69foin29vp42m',
             'app_secret'	=>'1d2qur3hm323h26h6a0m5pqucka8qkaae5drfimo4vejabo032qi'
         );  
-    $header = array(
+        $header = array(
             'Content-Type:application/json',
             'username:BDGAMERS',               
             'password:B@1PtexcaQMvb'
         ); 
-    /* production */
-    $url = curl_init('https://checkout.pay.bka.sh/v1.2.0-beta/checkout/token/grant');
-    $request_data_json = json_encode($request_data);
-                 
-    curl_setopt($url,CURLOPT_HTTPHEADER, $header);
-    curl_setopt($url,CURLOPT_CUSTOMREQUEST, "POST");
-    curl_setopt($url,CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($url,CURLOPT_POSTFIELDS, $request_data_json);
-    curl_setopt($url,CURLOPT_FOLLOWLOCATION, 1);
-    curl_setopt($url, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
-    curl_setopt($url, CURLOPT_TIMEOUT, 30);
-    $response = curl_exec($url);
-    curl_close($url);
+        /* production */
+        $url = curl_init('https://checkout.pay.bka.sh/v1.2.0-beta/checkout/token/grant');
+        $request_data_json = json_encode($request_data);
 
-    $response = json_decode($response, true);
+        curl_setopt($url,CURLOPT_HTTPHEADER, $header);
+        curl_setopt($url,CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($url,CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($url,CURLOPT_POSTFIELDS, $request_data_json);
+        curl_setopt($url,CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($url, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+        curl_setopt($url, CURLOPT_TIMEOUT, 30);
+        $response = curl_exec($url);
+        curl_close($url);
 
-    session()->put('bkash_token', $response['id_token']);
+        $response = json_decode($response, true);
+
+
+        session()->put('bkash_token', $response['id_token']);
+
+        $currentDateTime = new \DateTime();
+        $currentDateTime->modify('+' . ($response['expires_in'] + 1) . ' seconds');
+
+        $grentToken = new GrentToken();
+        $grentToken->id_token = $response['id_token'];
+        $grentToken->token_type = $response['token_type'];
+        $grentToken->expires_in = $response['expires_in'];
+        $grentToken->expired_time = $currentDateTime->format('H:i:s');
+        $grentToken->refresh_token = $response['refresh_token'];
+        $grentToken->created_date = date('Y-m-d');
+        $grentToken->created_time = date('H:i:s');
+        $grentToken->save();
 
         return $response['id_token'];
     }
 
-    public function createPayment(Request $request,$msisdn)
+    public function createPayment(Request $request,$msisdn,$campaignDurationId)
     {
         $this->getToken();
 
         $id_token = session()->get('bkash_token');
+        $grentToken = GrentToken::select()->where('id_token',$id_token)->first();
+        $getCampaignDuration = CampaignDuration::find($campaignDurationId);
 
 		$request_data=array(
-				'amount'				=> 01,
+				'amount'				=> $getCampaignDuration->amount,
 				'currency'				=> 'BDT',
 				'intent'				=> 'sale',
-				'merchantInvoiceNumber'	=> "10192930"
+				'merchantInvoiceNumber'	=> $this->merchantInvoiceNumber()
 		);   
 
                
@@ -77,8 +98,39 @@ class BkashController extends Controller
 
         $response = json_decode($response, true);
 
+        $bkashCreatePayment = new BkashCreatePayment();
+        $bkashCreatePayment->msisdn = $msisdn;
+        $bkashCreatePayment->campaign_duration_id = $campaignDurationId;
+        $bkashCreatePayment->grent_token_id = $grentToken->id;
+        $bkashCreatePayment->paymentID = $response['paymentID'];
+        $bkashCreatePayment->orgLogo = $response['orgLogo'];
+        $bkashCreatePayment->orgName = $response['orgName'];
+        $bkashCreatePayment->transactionStatus = $response['transactionStatus'];
+        $bkashCreatePayment->amount = $response['amount'];
+        $bkashCreatePayment->status = 0;
+        $bkashCreatePayment->currency = $response['currency'];
+        $bkashCreatePayment->merchantInvoiceNumber = $response['merchantInvoiceNumber'];
+        $bkashCreatePayment->hash = $response['hash'];
+        $bkashCreatePayment->createDateTime = $response['createTime'];
+        $bkashCreatePayment->response = json_encode($response);
+        $bkashCreatePayment->save();
+
+
         return $response;
 
+    }
+
+
+    protected function merchantInvoiceNumber(){
+
+        $merchantInvoiceNumber = rand(1111111,9999999);
+        $findBkashCreatePayment = BkashCreatePayment::select()->where('merchantInvoiceNumber', $merchantInvoiceNumber)->first();
+
+        if($findBkashCreatePayment){
+            $this->merchantInvoiceNumber();
+        }
+
+        return $merchantInvoiceNumber;
     }
 
     public function executePayment(Request $request,$msisdn, $paymentID)
@@ -104,10 +156,55 @@ class BkashController extends Controller
 
         $response = json_decode($response, true);
 
+        if($response){
+            $bkashExecutePayment = new BkashExecutePayment();
+            $bkashExecutePayment->paymentID = $response['paymentID']? $response['paymentID'] : null;
+            $bkashExecutePayment->createTime = $response['createTime'];
+            $bkashExecutePayment->createTime = $response['createTime'];
+            $bkashExecutePayment->updateTime = $response['updateTime'];
+            $bkashExecutePayment->trxID = $response['trxID'];
+            $bkashExecutePayment->transaction_status = $response['transactionStatus'];
+            $bkashExecutePayment->amount = $response['amount'];
+            $bkashExecutePayment->currency = $response['currency'];
+            $bkashExecutePayment->intent = $response['intent'];
+            $bkashExecutePayment->merchantInvoiceNumber = $response['merchantInvoiceNumber'];
+            $bkashExecutePayment->bkash_msisdn = $response['customerMsisdn'];
+            $bkashExecutePayment->response = json_encode($response);
+            $bkashExecutePayment->save();
 
-        return $response;
+            $bkashCreatePayment = BkashCreatePayment::select()->where('paymentID',$bkashExecutePayment->paymentID)->first();
+            if($response['transactionStatus'] == 'Completed'){
+                $bkashCreatePayment->status = 1;
+                
+                $bkashPayment = new BkashPayment();
+                $bkashPayment->user_id = Auth::user()->id;
+                $bkashPayment->msisdn = '0192929';
+                $bkashPayment->bkash_msisdn = '0192929';
+                $bkashPayment->bkash_execute_payment_id = '0192929';
+                $bkashPayment->campaign_id = '0192929';
+                $bkashPayment->tournament_id = '0192929';
+                $bkashPayment->campaign_duration_id = '0192929';
+                $bkashPayment->amount = $bkashExecutePayment->amount;
+                $bkashPayment->paymentID = $bkashExecutePayment->paymentID;
+                $bkashPayment->status = '0192929';
+                $bkashPayment->date_time = '0192929';
+                $bkashPayment->message = '0192929';
+                
+            }else{
+                $bkashCreatePayment->status = 0;
+            }
+            $bkashCreatePayment->save();
+       
+            flash()->addSuccess('Successfully created payment');
+            sleep(3);          
+            return redirect()->back();
+        }
 
+        flash()->addError('Payment is not created!');
+        return redirect()->back();
     }
+
+    
 
     public function queryPayment(Request $request)
     {

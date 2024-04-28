@@ -23,6 +23,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
+                                <th>Amount</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>
                                 <th>Status</th>

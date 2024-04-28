@@ -26,7 +26,7 @@
                 request
             ) { //request object is basically the paymentRequest object, automatically pushed by the script in createRequest method
                 $.ajax({
-                    url: '/api/bkash/create-payment/' + msisdn,
+                    url: '/bkash/create-payment/' + msisdn,
                     type: 'GET',
                     contentType: 'application/json',
                     success: function(data) {

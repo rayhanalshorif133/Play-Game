@@ -42,15 +42,15 @@ class HomeController extends Controller
         $currentTime = date('H:i:s');
 
         $currentCampaignDurations = CampaignDuration::select()
-            ->where('start_date', '<=', $currentDate)
-            ->where('start_time', '<', $currentTime)
-            ->where('end_date', '>', $currentDate)
+            // ->where('start_date', '<=', $currentDate)
+            // ->where('start_time', '<', $currentTime)
+            // ->where('end_date', '>', $currentDate)
             ->get();
         
         $currentCampaignDurations->each(function($campaignDuration){
             if($campaignDuration->end_date ==  date('Y-m-d')){
                 if($campaignDuration->end_time < date('H:i:s')){
-                    unset($campaignDuration);
+                    // unset($campaignDuration);
                 }
             }
             $campaignDuration->campaign_details = Campaign::find($campaignDuration->campaign_id);
@@ -66,11 +66,6 @@ class HomeController extends Controller
             $campaignDuration->campaign_details = Campaign::find($campaignDuration->campaign_id);
             $campaignDuration->duration = $this->calculateDurationUpcoming($campaignDuration);
         });
-
-
-
-        
-
 
         return view('public.home', compact('currentCampaignDurations', 'upcomingCampaignDurations'));
     }

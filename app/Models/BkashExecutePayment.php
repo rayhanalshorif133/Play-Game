@@ -5,28 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BkashCreatePayment extends Model
+class BkashExecutePayment extends Model
 {
     use HasFactory;
 
-    protected $table = 'bkash_create_payments';
+    protected $table = 'bkash_execute_payments';
 
     protected $fillable = [
-        'grent_token_id',
-        'campaign_duration_id',
         'msisdn',
+        'bkash_msisdn',
         'paymentID',
-        'orgLogo',
-        'orgName',
-        'transactionStatus',
+        'createTime',
+        'updateTime',
+        'trxID',
+        'transaction_status',
+        'amount',
         'amount',
         'currency',
         'intent',
         'merchantInvoiceNumber',
-        'status',
-        'message',
-        'hash',
+        'created_time',
         'response',
-        'createDateTime',
     ];
+
 }

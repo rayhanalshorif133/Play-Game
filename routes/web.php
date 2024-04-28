@@ -56,6 +56,9 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 Route::get('/tournament', [TournamentController::class, 'index'])->name('tournament.index');
 Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard.index');
+Route::get('/campaign-details/{campaign_id}', [PublicController::class, 'campaignDetails'])->name('campaign.campaign-details');
+Route::get('/campaign-access/{campaign_id}', [PublicController::class, 'campaignAccess'])->name('campaign.access');
+
 
 Route::middleware('auth')
     ->prefix('account')
@@ -64,9 +67,6 @@ Route::middleware('auth')
     Route::match(['get', 'post'],'/update', [AccountController::class, 'update'])->name('update');
 });
 
-// Campaign
-Route::get('/campaign-details/{campaign_id}', [CampaignController::class, 'campaignDetails'])->name('campaign.campaign-details');
-Route::get('/consent-page/{campaign_id}', [ConsentPageController::class, 'index'])->name('consent-page.index');
 
 
 Route::prefix('admin')
@@ -149,7 +149,6 @@ Route::prefix('admin')
 
 Route::name('public.')
     ->group(function () {
-        // http://127.0.0.1:8000/auth/google/callback
         Route::middleware('guest')->match(['get', 'post'],'/login', [PublicLoginController::class,'login'])->name('login');
         Route::middleware('guest')->match(['get', 'post'], '/register', [PublicLoginController::class,'register'])->name('register');
         Route::middleware('auth')->get('/logout', [PublicLoginController::class,'logout'])->name('logout');
@@ -178,11 +177,12 @@ Route::middleware('auth')->put('/save-auth-user-token', [SendNotificationControl
 Route::get('/leaderboard/{id?}',[PublicController::class,'leaderboard'])->name('public.leaderboard');
 
 
+
 // Payment Routes for bKash
 
-Route::match(['get', 'post'], '/create_payment/{msisdn}', [BkashController::class,'createPayment'])->name('bkash-create-payment');
-Route::match(['get', 'post'], '/execute_payment/{msisdn}/{paymentID}', [BkashController::class,'executePayment'])->name('bkash-execute-payment');
-Route::match(['get', 'post'], '/consent_back/{msisdn}/{trxID}', [BkashController::class,'consentBack'])->name('bkash-consent-back');
+Route::match(['get', 'post'], '/create-payment/{msisdn}/{campaign_duration_id}', [BkashController::class,'createPayment'])->name('bkash-create-payment');
+Route::match(['get', 'post'], '/execute-payment/{msisdn}/{paymentID}', [BkashController::class,'executePayment'])->name('bkash-execute-payment');
+Route::match(['get', 'post'], '/consent-back/{msisdn}/{trxID}', [BkashController::class,'consentBack'])->name('bkash-consent-back');
 
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\CampaignDuration;
 
 class PublicController extends Controller
 {
@@ -22,4 +23,25 @@ class PublicController extends Controller
         }
         return view('public.leaderboard.index');
     }
+
+    // description
+    public function campaignDetails($id)
+    {
+        $campaignDuration = CampaignDuration::find($id);
+        return view('public.description',compact('campaignDuration'));
+    } 
+    
+   
+
+    // 
+    public function campaignAccess(Request $request,$id)
+    {
+        
+        if(Auth::check()){
+            return redirect()->back();
+        }else{
+            return redirect()->route('public.login');
+        }
+    }
+
 }

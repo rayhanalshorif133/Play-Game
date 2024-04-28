@@ -19,11 +19,15 @@
 
     <!-- Custom styles for this template -->
 
+    <link href="{{ asset('web_assets/css/leaderboard-more.css') }}" rel="stylesheet">
     <link href="{{ asset('web_assets/css/style.css') }}" rel="stylesheet">
 
     <link href="{{ asset('web_assets/css/custom_style.css') }}" rel="stylesheet">
 
     <link href="{{ asset('web_assets/css/responsive_style.css') }}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <script src="https://scripts.pay.bka.sh/versions/1.2.0-beta/checkout/bKash-checkout.js"></script>
 
 
     <title>
@@ -95,8 +99,7 @@
                                     <div id="nav-content" tabindex="0">
                                         <ul class="navbar-nav bg-transparent fixed-top" id="sidebar-wrapper">
                                             <li class="nav-item active">
-                                                <a class="nav-link" href="#">
-                                                    &nbsp Home <span class="sr-only">(current)</span></a>
+                                                <a class="nav-link" href="{{route('home')}}">Home</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link darkmode" href="#" id="darkbutton"
@@ -104,23 +107,28 @@
                                                     Mode</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">&nbsp About</a>
+                                                <a class="nav-link" href="#">About</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">&nbsp FAQ</a>
+                                                <a class="nav-link" href="#">FAQ</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">&nbsp Terms & Conditions</a>
+                                                <a class="nav-link" href="#">Terms & Conditions</a>
                                             </li>
                                             @if (Auth::check())
-                                            <li class="nav-item" href="{{ route('logout') }}"
-                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                <a class="nav-link" href="#">&nbsp Logout</a>
-                                            </li>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                class="d-none">
-                                                @csrf
-                                            </form>
+                                                <li class="nav-item" href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                    <a class="nav-link" href="#">Logout</a>
+                                                </li>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                    class="d-none">
+                                                    @csrf
+                                                </form>
+                                            @else
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="{{ route('public.login') }}">&nbsp
+                                                        Login</a>
+                                                </li>
                                             @endif
                                         </ul>
 
@@ -145,10 +153,10 @@
                                     <img src="{{ asset('web_assets/images/logo.png') }}"
                                         style="height: 40px; width: auto;" alt="" title="">
                                 </a>
-                                <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+                                <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                                     <ul class="navbar-nav">
                                         <li class="nav-item active">
-                                            <a class="nav-link" href="#">
+                                            <a class="nav-link" href="{{route('home')}}">
                                                 &nbsp Home <span class="sr-only">(current)</span></a>
                                         </li>
 
@@ -162,14 +170,22 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="#">&nbsp Terms & Conditions</a>
                                         </li>
-                                        <li class="nav-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            <a class="nav-link" href="#">&nbsp Logout</a>
-                                        </li>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
-                                            @csrf
-                                        </form>
+                                        @if (Auth::check())
+                                            <li class="nav-item" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                <a class="nav-link" href="#">&nbsp Logout</a>
+                                            </li>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                class="d-none">
+                                                @csrf
+                                            </form>
+                                        @else
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ route('public.login') }}">&nbsp
+                                                    Login</a>
+                                            </li>
+                                        @endif
+
                                     </ul>
                                 </div>
                             </nav>
@@ -233,7 +249,6 @@
     <!-- Bootstrap core JavaScript
       ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -291,7 +306,19 @@
         }
 
         document.querySelector('#darkbutton').addEventListener('click', toggleDark);
+
+
+        $(".togglePassword").click(function() {
+
+            $(this).parent().find('input').attr('type', function(index, attr) {
+                return attr == 'password' ? 'text' : 'password';
+            });
+
+            $(this).toggleClass('fa-eye-slash');
+        });
     </script>
+
+    @stack('scripts')
 </body>
 
 </html>

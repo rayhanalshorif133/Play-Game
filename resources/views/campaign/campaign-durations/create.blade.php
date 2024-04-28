@@ -21,12 +21,11 @@
                                 placeholder="Enter Name">
                         </div>
                         <div class="col-12 col-md-6 mb-0">
-                            <label for="status" class="form-label required">Status</label>
-                            <select class="form-select" name="status" id="status" required>
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
-                            </select>
+                            <label for="amount" class="form-label required">Amount</label>
+                            <input type="number" id="amount" name="amount" required class="form-control"
+                                placeholder="Enter amount">
                         </div>
+                        
                         <div class="col-12 col-md-6 mb-0">
                             <label for="start_date" class="form-label required">Start Date</label>
                             <input type="date" name="start_date" id="start_date" required class="form-control">
@@ -42,6 +41,13 @@
                         <div class="col-12 col-md-6 mb-0">
                             <label for="end_time" class="form-label required">End time</label>
                             <input type="time" name="end_time" id="end_time" required class="form-control">
+                        </div>
+                        <div class="col-12 col-md-6 mb-0">
+                            <label for="status" class="form-label required">Status</label>
+                            <select class="form-select" name="status" id="status" required>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
                         </div>
                     </div>
                 </div>

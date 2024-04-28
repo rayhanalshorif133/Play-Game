@@ -143,7 +143,7 @@
                                     <!-- Password input -->
                                     <div class="mb-4">
                                         <input type="password" id="password" class="form-control" name="password" placeholder="Password" />
-                                        <i class="fa fa-eye hidden-text px-2 cursor-pointer" id="togglePassword"></i>
+                                        <i class="fa fa-eye hidden-text px-2 cursor-pointer togglePassword"></i>
                                     </div>
                                     <button type="submit" class="btn btn-primary common-btn w-full py-2 mb-2">
                                         Login

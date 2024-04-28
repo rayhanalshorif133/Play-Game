@@ -37,6 +37,7 @@ class CampaignDurationController extends Controller
             'campaign_id' => 'required',
             'name' => 'required',
             'status' => 'required',
+            'amount' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
             'start_time' => 'required',
@@ -56,6 +57,7 @@ class CampaignDurationController extends Controller
         $campaignDuration = new CampaignDuration();
         $campaignDuration->campaign_id = $request->campaign_id;
         $campaignDuration->name = $request->name;
+        $campaignDuration->amount = $request->amount;
         $campaignDuration->status = $request->status;
         $campaignDuration->start_date = $request->start_date;
         $campaignDuration->end_date = $request->end_date;
@@ -85,6 +87,7 @@ class CampaignDurationController extends Controller
                 'campaigndurations_id' => 'required',
                 'name' => 'required',
                 'status' => 'required',
+                'amount' => 'required',
                 'start_date' => 'required',
                 'end_date' => 'required',
             ]);
@@ -97,6 +100,7 @@ class CampaignDurationController extends Controller
             $campaignDuration = CampaignDuration::find($request->campaigndurations_id);
             $campaignDuration->name = $request->name;
             $campaignDuration->status = $request->status;
+            $campaignDuration->amount = $request->amount;
             $campaignDuration->start_date = $request->start_date;
             $campaignDuration->end_date = $request->end_date;
             $campaignDuration->save();

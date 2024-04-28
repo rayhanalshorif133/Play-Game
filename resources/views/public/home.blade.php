@@ -28,7 +28,7 @@
                                         <p class="card-text" style="color: red;">Time Remains: {{$campaignDuration->duration}}</p>
                                     </div>
                                     <a type="btn" class="btn  btn-outline-secondary text-white common-btn "
-                                        href="#">Play now</a>
+                                        href="{{route('campaign.campaign-details',$campaignDuration->id)}}">Play now</a>
                                 </div>
                             </div>
 
@@ -64,7 +64,7 @@
                                         <h4 class="card-title font-bold" style="font-weight: bold; font-size: 1.3rem;">
                                             {{$upcomingCampaign->campaign_details->title}} </h4>
                                         <p class="card-text " style="color: green;">Start after: {{$upcomingCampaign->duration}}</p>
-                                        <a href="#" class="btn btn-primary  common-btn">Explore now</a>
+                                        <a href="{{route('campaign.campaign-details',$upcomingCampaign->id)}}" class="btn btn-primary  common-btn">Explore now</a>
                                     </div>
                                 </div>
                             </div>

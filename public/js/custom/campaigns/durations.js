@@ -26,6 +26,13 @@ $(document).ready(function() {
             },
             {
                 render: function(data, type, row) {
+                    return row.amount;
+                },
+                targets: 0,
+                width: "auto",
+            },
+            {
+                render: function(data, type, row) {
                     return row.start_date;
                 },
                 targets: 0,

@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('bkash_create_payments', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger('grent_token_id')->nullable();
+            $table->bigInteger('campaign_duration_id')->nullable();
             $table->string('msisdn')->nullable();
             $table->string('paymentID')->nullable();
-            $table->string('createTime')->nullable();
             $table->string('orgLogo')->nullable();
             $table->string('orgName')->nullable();
             $table->string('transactionStatus')->nullable();
@@ -25,9 +25,10 @@ return new class extends Migration
             $table->string('intent')->nullable();
             $table->string('merchantInvoiceNumber')->nullable();
             $table->string('status')->nullable();
-            $table->date('created_date')->nullable();
-            $table->time('created_time')->nullable();
+            $table->text('hash')->nullable();
+            $table->json('response')->nullable();
             $table->longText('message')->nullable();
+            $table->string('createDateTime')->nullable();
             $table->timestamps();
         });
     }

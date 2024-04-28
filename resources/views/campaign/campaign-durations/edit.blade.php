@@ -16,12 +16,17 @@
                     <input type="hidden" id="update_campaigndurations_id" name="campaigndurations_id">
                     <div class="row g-2 mb-2">
                         <div class="col-12 col-md-6 mb-0">
-                            <label for="name" class="form-label required">Name</label>
+                            <label for="update_name" class="form-label required">Name</label>
                             <input type="text" id="update_name" name="name" required class="form-control"
                                 placeholder="Enter Name">
                         </div>
                         <div class="col-12 col-md-6 mb-0">
-                            <label for="status" class="form-label required">Status</label>
+                            <label for="update_amount" class="form-label required">Amount</label>
+                            <input type="number" id="update_amount" name="amount" required class="form-control"
+                                placeholder="Enter amount">
+                        </div>
+                        <div class="col-12 col-md-6 mb-0">
+                            <label for="update_status" class="form-label required">Status</label>
                             <select class="form-select" name="status" id="update_status" required>
                                 <option value="active">Active</option>
                                 <option value="inactive">Inactive</option>

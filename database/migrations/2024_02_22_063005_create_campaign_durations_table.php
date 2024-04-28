@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('campaign_durations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->float('amount');
             $table->bigInteger('campaign_id')->unsigned();
             $table->date('start_date');
             $table->time('start_time');
