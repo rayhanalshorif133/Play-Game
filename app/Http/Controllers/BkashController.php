@@ -8,6 +8,9 @@ use App\Models\BkashCreatePayment;
 use App\Models\CampaignDuration;
 use App\Models\BkashExecutePayment;
 use App\Models\BkashPayment;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+
 
 class BkashController extends Controller
 {
@@ -61,8 +64,11 @@ class BkashController extends Controller
         return $response['id_token'];
     }
 
-    public function createPayment(Request $request,$msisdn,$campaignDurationId)
+    public function createPayment(Request $request,$msisdn, $campaignDurationId)
     {
+
+       
+
         $this->getToken();
 
         $id_token = session()->get('bkash_token');
@@ -156,6 +162,14 @@ class BkashController extends Controller
 
         $response = json_decode($response, true);
 
+
+        // if(isset($response['errorCode'])){
+        //     // Session::flash('message', 'The payment execution has already been completed');
+        //     // Session::flash('status', 'Success');
+        //     return redirect()->back();
+        // }
+
+
         if($response){
             $bkashExecutePayment = new BkashExecutePayment();
             $bkashExecutePayment->paymentID = $response['paymentID']? $response['paymentID'] : null;
@@ -169,33 +183,38 @@ class BkashController extends Controller
             $bkashExecutePayment->intent = $response['intent'];
             $bkashExecutePayment->merchantInvoiceNumber = $response['merchantInvoiceNumber'];
             $bkashExecutePayment->bkash_msisdn = $response['customerMsisdn'];
+            $bkashExecutePayment->msisdn = $msisdn;
             $bkashExecutePayment->response = json_encode($response);
             $bkashExecutePayment->save();
 
             $bkashCreatePayment = BkashCreatePayment::select()->where('paymentID',$bkashExecutePayment->paymentID)->first();
+            $campaignDuration = CampaignDuration::select()->where('id',$bkashCreatePayment->campaign_duration_id)->first();
             if($response['transactionStatus'] == 'Completed'){
                 $bkashCreatePayment->status = 1;
                 
                 $bkashPayment = new BkashPayment();
                 $bkashPayment->user_id = Auth::user()->id;
-                $bkashPayment->msisdn = '0192929';
-                $bkashPayment->bkash_msisdn = '0192929';
-                $bkashPayment->bkash_execute_payment_id = '0192929';
-                $bkashPayment->campaign_id = '0192929';
+                $bkashPayment->msisdn = $msisdn;
+                $bkashPayment->bkash_msisdn = $bkashExecutePayment->bkash_msisdn;
+                $bkashPayment->bkash_execute_payment_id = $bkashExecutePayment->id;
+                $bkashPayment->campaign_id = $campaignDuration->campaign_id;
                 $bkashPayment->tournament_id = '0192929';
-                $bkashPayment->campaign_duration_id = '0192929';
+                $bkashPayment->campaign_duration_id = $campaignDuration->id;
                 $bkashPayment->amount = $bkashExecutePayment->amount;
                 $bkashPayment->paymentID = $bkashExecutePayment->paymentID;
-                $bkashPayment->status = '0192929';
-                $bkashPayment->date_time = '0192929';
-                $bkashPayment->message = '0192929';
+                $bkashPayment->status = '1';
+                $bkashPayment->date_time = date('Y-m-d H:i:s');
+                $bkashPayment->message = 'success';
+                $bkashPayment->save();
                 
             }else{
                 $bkashCreatePayment->status = 0;
             }
             $bkashCreatePayment->save();
        
-            flash()->addSuccess('Successfully created payment');
+            // flash()->addSuccess('Payment created successfully');
+            Session::flash('message', 'Payment created successfully');
+            Session::flash('status', 'Success');
             sleep(3);          
             return redirect()->back();
         }

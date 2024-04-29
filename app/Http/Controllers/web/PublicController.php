@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CampaignDuration;
+use App\Models\BkashPayment;
 
 class PublicController extends Controller
 {
@@ -28,7 +29,18 @@ class PublicController extends Controller
     public function campaignDetails($id)
     {
         $campaignDuration = CampaignDuration::find($id);
-        return view('public.description',compact('campaignDuration'));
+        $hasAlreadyPayment = false;
+        if(Auth::check()){
+            $hasPayment = BkashPayment::select()
+            ->where('campaign_duration_id',$id)
+            ->where('msisdn',Auth::user()->msisdn)
+            ->first();
+            if($hasPayment){
+                $hasAlreadyPayment = true; 
+            }
+        }
+        
+        return view('public.description',compact('campaignDuration','hasAlreadyPayment'));
     } 
     
    

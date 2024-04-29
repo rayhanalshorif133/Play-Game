@@ -2,19 +2,22 @@ body {
   font-family: "Poppins", sans-serif;
   background-color: #fff;
 }
+
 /* .wrapper{
   width: 90%;
   width: 1024px;
   margin: 0 auto;
 } */
-.menu-panel{
+.menu-panel {
   width: 60%;
   width: 1190px;
   margin: 0 auto;
 }
+
 header {
   border-bottom: #ccc solid 2px;
 }
+
 #mobile-nav-panel .bg-light {
   /* background-color: #000 !important; */
   /* z-index: -9999; */
@@ -227,6 +230,10 @@ header {
   margin-left: 15px;
 }
 
+.paymentSuccessAlert {
+  margin-top: 3rem;
+}
+
 #nav-container:focus-within #nav-content {
   transform: none;
 }
@@ -280,7 +287,7 @@ section.nav-top-item.fixedNav {
   /* color:#000; */
   /* width: 48%; */
 
-  background: linear-gradient(45deg,  rgba(244,166,97,1), rgba(211,65,116,1));
+  background: linear-gradient(45deg, rgba(244, 166, 97, 1), rgba(211, 65, 116, 1));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 600;
@@ -313,6 +320,7 @@ section.nav-top-item.fixedNav {
   background: #e7d184;
   cursor: pointer;
 }
+
 .campain-body {
   border: #ccc solid 1px;
   border-radius: 10px;
@@ -350,6 +358,7 @@ section.nav-top-item.fixedNav {
 #footer-menu-panel nav ul li {
   list-style-type: none;
 }
+
 #footer-menu-panel .navbar {
   overflow: hidden;
   background-color: #fff;
@@ -403,14 +412,13 @@ section.nav-top-item.fixedNav {
 
 #footer-menu-panel .footerbody a:hover {
   color: #cd2f78;
-} 
+}
 
 /* ----------------------------------bootstrap footer */
-#footer-menu-panel .navbar
-
- #account-panel{
+#footer-menu-panel .navbar #account-panel {
   margin-top: 5%;
 }
+
 /* =========================================
                     Dark css 
 ===========================================*/
@@ -477,19 +485,22 @@ ul.footerbody li a {
 
 }
 
-.bodyDark  #account-panel p{
+.bodyDark #account-panel p {
   color: #fff;
 }
 
-.bodyDark  #account-panel{
+.bodyDark #account-panel {
   margin-top: 15%;
 }
+
 section#account-panel {
   margin-top: 6%;
 }
-section#tournament-panel{
+
+section#tournament-panel {
   margin-top: 6%;
 }
+
 /* =============================================
     Sign in / Sign up
 */
@@ -499,6 +510,7 @@ figure.site-img {
   margin-bottom: 15%;
   margin-top: 13%;
 }
+
 /* =============================================
     Description
 */
@@ -519,32 +531,38 @@ img.img-fluid.blank-img {
 }
 
 
-.description{
-  margin-top: 50px;
+.description {
+  margin-top: 10px;
 }
 
-.description .logo{
-  width: 250px !important;
+.description .logo {
+  width: 550px !important;
+  height: 310px;
 }
 
-.description .play_btn{
+.description .play_btn {
   padding: 6px 30px;
 }
 
-.description .icon{
-  width: 20px!important;
+.description .icon {
+  width: 20px !important;
 }
 
-.description .banner{
+.description .banner {
   width: 320px !important;
   height: 300px !important;
 }
 
-.mt-10{
+.description .banner_1st {
+  height: 180px !important;
+  width: 100%;
+}
+
+.mt-10 {
   margin-top: 3.5rem;
 }
 
-.common-bg{
+.common-bg {
   background: rgb(211, 65, 116);
   background: linear-gradient(90deg, rgba(211, 65, 116, 1) 0%, rgba(244, 166, 97, 1) 100%);
 }
@@ -556,50 +574,54 @@ img.img-fluid.blank-img {
 /* ================================Custom Responsive ============================= */
 
 
-@media screen and (min-width: 2560px) {
+@media screen and (min-width: 2560px) {}
 
-}
 @media screen and (max-width: 1600px) {
-  .description-play-btn {    
+  .description-play-btn {
     top: 40%;
     left: 48%;
-}
+  }
 }
 
 @media screen and (max-width: 1500px) {
-  .description-btn{  
+  .description-btn {
     left: 48%;
     top: 35%;
   }
+
   #leader-lod-btn {
     left: 40%;
     margin-top: 7%;
-}
-#description-bottom-img {
-  margin-top: 12%;
-  left: 40%;
-}
+  }
+
+  #description-bottom-img {
+    margin-top: 12%;
+    left: 40%;
+  }
 
 }
 
 @media screen and (max-width: 1400px) {
-  #footer-menu-panel .navbar {    
+  #footer-menu-panel .navbar {
     width: 85%;
   }
-  .description-play-btn {    
+
+  .description-play-btn {
     left: 50%;
-}
+  }
 
 }
 
 @media screen and (max-width: 1280px) {
-  .description-btn{  
+  .description-btn {
     left: 48%;
     top: 35%;
   }
+
   #leader-lod-btn {
     margin-top: 10%;
-}
+  }
+
   #footer-menu-panel .navbar {
     width: 90%;
   }
@@ -615,48 +637,55 @@ img.img-fluid.blank-img {
     background-color: #fff;
     box-shadow: #ccc 0px 1px 0px;
     /* border-bottom: #ccc solid; */
-}
-#footer-menu-panel .navbar {
+  }
+
+  #footer-menu-panel .navbar {
     width: 90%;
   }
+
   header {
     border-bottom: none;
-}
-#description-bottom-img {
-  margin-top: 16%;
-}
+  }
 
-.leaderboard_title{
-  padding: 0 10px;
-}
+  #description-bottom-img {
+    margin-top: 16%;
+  }
+
+  .leaderboard_title {
+    padding: 0 10px;
+  }
 }
 
 
 @media screen and (max-width: 990px) {
-  .wrapper{
-    width: 100%;  
+  .wrapper {
+    width: 100%;
   }
+
   section.nav-top-item {
     margin-bottom: 3%;
-}
+  }
+
   .title-a {
     margin-top: 20%;
   }
+
   #leader-lod-btn {
     margin-top: 13%;
     left: 33%;
-}
+  }
 
   body.bodyDark .top-menu-bg {
     box-shadow: #898484 0px 1px 0px;
-}
-#footer-menu-panel .navbar {
-  width: 100%;
-}
+  }
 
-.leaderboard_title{
-  padding: 0 10px;
-}
+  #footer-menu-panel .navbar {
+    width: 100%;
+  }
+
+  .leaderboard_title {
+    padding: 0 10px;
+  }
 
 
 }
@@ -668,7 +697,7 @@ img.img-fluid.blank-img {
     left: 33%;
   }
 
-  .leaderboard_title{
+  .leaderboard_title {
     padding: 0 10px;
   }
 }
@@ -676,42 +705,79 @@ img.img-fluid.blank-img {
 @media screen and (max-width: 769px) {
   section#account-panel {
     margin-top: 10%;
-}
-section#tournament-panel{
-  margin-top: 10%;
+  }
+
+  section#tournament-panel {
+    margin-top: 10%;
+  }
+
+  .leaderboard_title {
+    padding: 0 10px;
+  }
+
+  .description {
+    margin-top: 68px!important;
+  }
+  
+  .description .logo {
+    width: 500px !important;
+    height: 235px;
+  }
+
 }
 
-.leaderboard_title{
-  padding: 0 10px;
-}
+@media screen and (max-width: 575px) {
+  .description {
+    margin-top: 68px!important;
+  }
+  
+  .description .logo {
+    width: 315px !important;
+    height: 220px;
+  }
+
 }
 
 @media screen and (max-width: 425px) {
 
   .leaderbord {
     margin: 10px 0;
-}
+  }
+
+
+  .description {
+    margin-top: 68px!important;
+  }
+  
+  .description .logo {
+    width: 315px !important;
+    height: 220px;
+  }
 
 
 
+  #leader-lod-btn {
+    margin-top: 20%;
+  }
 
-#leader-lod-btn {
-  margin-top: 20%;
-}
   .leaderbord {
     width: 98.5%;
     font-size: 0.9rem;
   }
-  .leaderbord img{
+
+  .leaderbord img {
     width: 18%;
   }
-  section#tournament-panel{
+
+  section#tournament-panel {
     margin-top: 16%;
   }
 
-  .leaderboard_title{
+  .leaderboard_title {
     padding: 0 12px;
   }
+
+
 
 }
 
@@ -720,24 +786,32 @@ section#tournament-panel{
   .common-btn {
     width: 80%;
   }
+
   #description-bottom-img {
     margin-top: 55%;
-}
+  }
 
-.leaderboard_title{
-  padding: 0 10px;
-}
+  .leaderboard_title {
+    padding: 0 10px;
+  }
+
+
 
 }
 
 @media screen and (max-width:360px) {
-  .leaderboard_title{
+  .leaderboard_title {
     padding: 0 7px;
+  }
+
+  .paymentSuccessAlert {
+    margin-top: 15%;
   }
 }
 
 @media screen and (max-width:320px) {
-  .leaderboard_title{
+  .leaderboard_title {
     padding: 0 5px;
   }
+
 }

@@ -43,6 +43,17 @@
                             <input type="time" name="end_time" id="end_time" required class="form-control">
                         </div>
                         <div class="col-12 col-md-6 mb-0">
+                            <label for="status" class="form-label required">Select a Game</label>
+                            <select class="form-select" name="status" id="status" required>
+                                <option value="" disabled  selected>
+                                    Select a Game    
+                                </option>
+                                @foreach($games as $game)
+                                <option value="{{$game->id}}">{{$game->title}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-6 mb-0">
                             <label for="status" class="form-label required">Status</label>
                             <select class="form-select" name="status" id="status" required>
                                 <option value="active">Active</option>

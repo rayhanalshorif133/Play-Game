@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\CampaignDuration;
 use App\Models\Campaign;
+use App\Models\Game;
 use Yajra\DataTables\Facades\DataTables;
 
 class CampaignDurationController extends Controller
@@ -23,7 +24,8 @@ class CampaignDurationController extends Controller
         }
 
         $campaign = Campaign::find($campaign_id);
-        return view('campaign.campaign-durations.show', compact('campaign'));
+        $games = Game::all();
+        return view('campaign.campaign-durations.show', compact('campaign','games'));
     }
 
 

@@ -17,5 +17,6 @@ class Game extends Model
         'keyword',
         'url',
         'status',
+
     ];
 }

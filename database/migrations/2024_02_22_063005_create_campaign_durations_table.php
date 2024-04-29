@@ -16,10 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->float('amount');
             $table->bigInteger('campaign_id')->unsigned();
-            $table->date('start_date');
-            $table->time('start_time');
-            $table->date('end_date');
-            $table->time('end_time');
+            $table->dateTime('start_date_time');
+            $table->dateTime('end_date_time');
+            $table->bigInteger('game_id')->unsigned();
             $table->string('status')->default('1');
             $table->timestamps();
         });

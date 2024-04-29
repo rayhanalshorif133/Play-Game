@@ -1,23 +1,45 @@
 @extends('layouts.app_public')
 
 @section('content')
-    <div class="mx-auto text-center description">
+    @if (Session::has('status'))
+        <div class="container paymentSuccessAlert">
+            <div class="alert d-flex justify-content-between alert-success fade show" role="alert">
+                <div class="mt-2">
+                    <strong>Payment Success!</strong> {{ Session::get('message')}}
+                </div>
+                <div class="paymentSuccessAlertCancel">
+                    <button class="btn">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    <div class="mx-auto text-center container description">
         <img src="{{ asset('images/des.png') }}" alt="" class="my-4 logo" />
         <div>
+            @if (Auth::check())
+                <input id="GET_MSISDN" class="d-none" value="{{ Auth::user()->msisdn }}" />
+                <input id="GET_CampaignDurationID" class="d-none" value="{{ $campaignDuration->id }}" />
 
-            
-            @if(Auth::check())
-                <input id="GET_MSISDN" class="d-none" value="{{Auth::user()->msisdn}}"/>
-                <input id="GET_CampaignDurationID" class="d-none" value="{{$campaignDuration->id}}"/>
+                @if($hasAlreadyPayment == false)
                 <button class="btn btn-primary common-btn play_btn" id="bKash_button">
                     Play
                 </button>
+                @else
+                <a href="{{$campaignDuration->gameURL($campaignDuration->game_id)}}" class="btn btn-primary common-btn play_btn">
+                    Play Now
+                </a>
+                @endif
             @else
-            <a href="{{ route('campaign.access', $campaignDuration->id) }}" class="btn btn-primary common-btn play_btn">
-                Play
-            </a>
+                <a href="{{ route('campaign.access', $campaignDuration->id) }}" class="btn btn-primary common-btn play_btn">
+                    Play
+                </a>
             @endif
-            
+            {{-- <a href="{{$campaignDuration->gameURL($campaignDuration->game_id)}}" class="btn btn-primary common-btn play_btn">
+                Free To Play
+            </a> --}}
         </div>
         <div class="py-4">
             <a href="{{ route('public.leaderboard', $campaignDuration->id) }}" class="btn btn-primary  leaderbord mx-2">
@@ -39,7 +61,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <script src="https://scripts.pay.bka.sh/versions/1.2.0-beta/checkout/bKash-checkout.js"></script>
-    
+
     <script>
         var msisdn = $("#GET_MSISDN").val();
         var inv_no = Math.floor((Math.random() * 100000) + 1);
@@ -55,7 +77,8 @@
                 request
             ) { //request object is basically the paymentRequest object, automatically pushed by the script in createRequest method
                 $.ajax({
-                    url: 'http://ttalksdp.b2mwap.com/create-payment/' + msisdn + '/' + campaignDurationID,
+                    url: 'http://ttalksdp.b2mwap.com/create-payment/' + msisdn + '/' +
+                        campaignDurationID,
                     type: 'GET',
                     contentType: 'application/json',
                     success: function(data) {
@@ -87,6 +110,12 @@
             onClose: function() {
                 //alert('User has clicked the close button');
             }
+        });
+
+        $(document).ready(function() {
+            $(".paymentSuccessAlertCancel").click(() => {
+                $(".paymentSuccessAlert").addClass('d-none');
+            });
         });
     </script>
 @endpush

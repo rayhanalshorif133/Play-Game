@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Database\Seeders\DatabaseSeeder;
 
 class CreateScoreLogsTable extends Migration
 {
@@ -31,6 +32,10 @@ class CreateScoreLogsTable extends Migration
             $table->string('platform')->nullable(); 
             $table->timestamps();
         });
+
+
+        $dbSeeder = new DatabaseSeeder();
+        $dbSeeder->run();
     }
 
     /**

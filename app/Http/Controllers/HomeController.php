@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Campaign;
 use App\Models\CampaignDuration;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -38,18 +39,16 @@ class HomeController extends Controller
     public function home()
     {
 
-        $currentDate = date('Y-m-d');
-        $currentTime = date('H:i:s');
+        $currentDate = Carbon::now()->toDateTimeString(); //
 
         $currentCampaignDurations = CampaignDuration::select()
-            // ->where('start_date', '<=', $currentDate)
-            // ->where('start_time', '<', $currentTime)
-            // ->where('end_date', '>', $currentDate)
+            ->where('start_date_time', '<=', $currentDate)
+            ->where('end_date_time', '>', $currentDate)
             ->get();
         
         $currentCampaignDurations->each(function($campaignDuration){
-            if($campaignDuration->end_date ==  date('Y-m-d')){
-                if($campaignDuration->end_time < date('H:i:s')){
+            if($campaignDuration->end_date_time ==  date('Y-m-d')){
+                if($campaignDuration->start_date_time < date('H:i:s')){
                     // unset($campaignDuration);
                 }
             }
@@ -59,7 +58,7 @@ class HomeController extends Controller
 
         // upcomingCampaignDurations
         $upcomingCampaignDurations = CampaignDuration::select()
-        ->where('start_date', '>', $currentDate)
+        ->where('start_date_time', '>', $currentDate)
         ->get();
         
         $upcomingCampaignDurations->each(function($campaignDuration){
@@ -76,7 +75,7 @@ class HomeController extends Controller
         $cuttentDate = date('Y-m-d');
         $currentTime = date('H:i:s');
         $start = strtotime($cuttentDate . ' ' . $currentTime);
-        $end = strtotime($campaignDuration->start_date . ' ' . $campaignDuration->start_time);
+        $end = strtotime($campaignDuration->start_date_time);
         $diff = $end - $start;
         $days = floor($diff / (60 * 60 * 24));
         $hours = floor(($diff - $days * 60 * 60 * 24) / (60 * 60));
@@ -90,7 +89,7 @@ class HomeController extends Controller
         $cuttentDate = date('Y-m-d');
         $currentTime = date('H:i:s');
         $start = strtotime($cuttentDate . ' ' . $currentTime);
-        $end = strtotime($campaignDuration->end_date . ' ' . $campaignDuration->end_time);
+        $end = strtotime($campaignDuration->end_date_time);
         $diff = $end - $start;
         $days = floor($diff / (60 * 60 * 24));
         $hours = floor(($diff - $days * 60 * 60 * 24) / (60 * 60));

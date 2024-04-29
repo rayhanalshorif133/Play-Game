@@ -26,21 +26,21 @@ $(document).ready(function() {
             },
             {
                 render: function(data, type, row) {
-                    return row.amount;
+                    return row.amount + " Tk";
                 },
                 targets: 0,
                 width: "auto",
             },
             {
                 render: function(data, type, row) {
-                    return row.start_date;
+                    return row.end_date_time;
                 },
                 targets: 0,
                 width: "auto",
             },
             {
                 render: function(data, type, row) {
-                    return row.end_date;
+                    return row.end_date_time;
                 },
                 targets: 0,
                 width: "auto",

@@ -24,8 +24,8 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Amount</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
+                                <th>Start Date Time</th>
+                                <th>End Date Time</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>

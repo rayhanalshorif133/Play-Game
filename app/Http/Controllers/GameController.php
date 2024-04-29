@@ -25,6 +25,7 @@ class GameController extends Controller
 
 
 
+
         if ($validator->fails()) {
             flash()->addError($validator->errors()->first());
             return redirect()->back();
@@ -33,15 +34,24 @@ class GameController extends Controller
             
             $game = new Game();
             $game->title = $request->title;
+            if ($request->banner) {
+                $banner = $request->file('banner');
+                $image_name = time() . '_' . $banner->getClientOriginalName();
+                $banner->move(public_path('/images/game'), $image_name);
+                $game->banner = '/images/game/' . $image_name;
+            }else{
+                $game->banner = null;
+            }
             $game->keyword = $request->keyword;
             $game->url = $request->url;
             $game->description = $request->description;
+            $game->status = 0;
             $game->save();
 
             flash()->addSuccess('Game created successfully');
-            return redirect()->route('game.index');
+            return redirect()->back();
         } catch (\Throwable $th) {
-            flash()->error($th->getMessage());
+            flash()->addError($th->getMessage());
             return redirect()->back();
         }
     }

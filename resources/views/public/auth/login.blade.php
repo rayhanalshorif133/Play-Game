@@ -117,6 +117,15 @@
             align-items: center;
             justify-content: center;
         }
+
+        .social-login-btn{
+            transition: font-size 0.5s ease;
+        }
+
+        .social-login-btn:hover{
+            color: #fff;
+            font-size: 18px;
+        }
     </style>
 @endsection
 
@@ -167,8 +176,10 @@
                                             Login with Facebook
                                         </a>
                                         <a href="{{ route('auth.google') }}" class="social-login-btn google-login-btn">
-                                            <div><img class="social-icon" src="{{ asset('web_assets/images/Google.png') }}"
-                                                    alt="Google Icon"></div>
+                                            <div>
+                                                <img class="social-icon" src="{{ asset('web_assets/images/Google.png') }}"
+                                                    alt="Google Icon">
+                                            </div>
                                             Login with Google
                                         </a>
                                     </div>

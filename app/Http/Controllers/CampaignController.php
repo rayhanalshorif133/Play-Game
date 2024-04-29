@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Campaign;
+use App\Models\Game;
 use Yajra\DataTables\Facades\DataTables;
 
 class CampaignController extends Controller
@@ -21,7 +22,8 @@ class CampaignController extends Controller
              ->rawColumns(['action'])
              ->toJson();
         }
-        return view('campaign.index');
+        $games = Game::all();
+        return view('campaign.index',compact('games'));
     }
 
     // fetchCampaign
