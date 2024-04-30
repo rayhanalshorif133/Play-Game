@@ -34,5 +34,5 @@
 @endsection
 
 @push('scripts')
-    {{-- <script src="{{ asset('js/custom/campaigns/index.js') }}"></script> --}}
+    <script src="{{ asset('js/custom/game.js') }}"></script>
 @endpush

@@ -87,7 +87,7 @@ class CampaignController extends Controller
                 $thumbnail = $request->file('thumbnail');
                 $thumbnail_name = time() . '_' . $thumbnail->getClientOriginalName();
                 $thumbnail->move(public_path('/images/campaign/thumbnail'), $thumbnail_name);
-                $thumbnail_name = 'images/campaign/thumbnail/' . $thumbnail_name;
+                $thumbnail_name = '/images/campaign/thumbnail/' . $thumbnail_name;
                 $campaign->thumbnail = $thumbnail_name;
             }
 
@@ -95,7 +95,7 @@ class CampaignController extends Controller
                 $banner = $request->file('banner');
                 $banner_name = time() . '_' . $banner->getClientOriginalName();
                 $banner->move(public_path('/images/campaign/banner'), $banner_name);
-                $banner_name = 'images/campaign/banner/' . $banner_name;
+                $banner_name = '/images/campaign/banner/' . $banner_name;
                 $campaign->banner = $banner_name;
             }
 

@@ -35,6 +35,8 @@ class CampaignDurationController extends Controller
     {
        try {
 
+        
+
         $validator = Validator::make($request->all(), [
             'campaign_id' => 'required',
             'name' => 'required',
@@ -53,18 +55,22 @@ class CampaignDurationController extends Controller
         }
 
         // convert 12 hour time to 24 hour time
-        $request->start_time = date("H:i", strtotime($request->start_time));
-        $request->end_time = date("H:i", strtotime($request->end_time));
+        // 2024-04-29 14:47:18
+        $start_datetime = $request->start_date . ' ' . $request->start_time;
+        $start_datetime = date("Y-m-d H:i:s", strtotime($start_datetime));
+
+        $end_dateTime = $request->end_date . ' ' . $request->end_time;
+        $end_dateTime = date("Y-m-d H:i:s", strtotime($end_dateTime));
+
 
         $campaignDuration = new CampaignDuration();
         $campaignDuration->campaign_id = $request->campaign_id;
         $campaignDuration->name = $request->name;
         $campaignDuration->amount = $request->amount;
         $campaignDuration->status = $request->status;
-        $campaignDuration->start_date = $request->start_date;
-        $campaignDuration->end_date = $request->end_date;
-        $campaignDuration->start_time = $request->start_time;
-        $campaignDuration->end_time = $request->end_time;
+        $campaignDuration->game_id = $request->game_id;
+        $campaignDuration->start_date_time = $start_datetime;
+        $campaignDuration->end_date_time = $end_dateTime;
         $campaignDuration->save();
         flash()->addSuccess('Campaign duration created successfully');
         return redirect()->back();

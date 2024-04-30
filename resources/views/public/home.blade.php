@@ -7,23 +7,24 @@
     <main role="main">
         <!--/ Section one Star /-->
         <section id="section_one">
-            <div class="container">
+            <div class="container  mt-5">
                 <div class="wrap-one  d-flex justify-content-between">
                     <div class="title-box">
                         <h2 class="title-a">Current Campaign</h2>
                     </div>
                 </div>
-                <div class="row ">
+                <div class="row">
                     @foreach($currentCampaignDurations as $campaignDuration)
                     <div class="col-md-4 col-sm-12">
                         <div class="card my-4 box-shadow">
-                            <img class="card-img-top" src="{{ asset('web_assets/images/current_campaing_img1.png') }}"
+                            <img class="card-img img-fluid" style="height: 250px; width:350px" src="{{ asset($campaignDuration->game->banner) }}"
                                 alt="Card image cap">
                             <div class="card-body" style="padding-left: 10px;">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group" style="display: block !important;">
                                         <h4 class="font-bold" style="font-size: 1.2rem;font-weight: bold;">
-                                            {{$campaignDuration->campaign_details->title}}    
+                                            {{$campaignDuration->campaign->title}}
+                                            ({{$campaignDuration->name}})
                                         </h4>
                                         <p class="card-text" style="color: red;">Time Remains: {{$campaignDuration->duration}}</p>
                                     </div>
@@ -55,14 +56,16 @@
                             <div class="row row-cols-1 row-cols-sm-2">
                                 <div class="col-6">
                                     <figure style="margin: 0px;">
-                                        <img class="card-img" src="{{ asset('web_assets/images/turnament_img1.png') }}"
+                                        <img class="card-img img-fluid" src="{{ asset($upcomingCampaign->game->banner) }}"
                                             alt="Card image" />
                                     </figure>
                                 </div>
                                 <div class="col-6" style="margin-top: 6%;">
                                     <div class="card-body-right">
                                         <h4 class="card-title font-bold" style="font-weight: bold; font-size: 1.3rem;">
-                                            {{$upcomingCampaign->campaign_details->title}} </h4>
+                                            {{$upcomingCampaign->campaign->title}}
+                                            ({{$upcomingCampaign->name}})
+                                        </h4>
                                         <p class="card-text " style="color: green;">Start after: {{$upcomingCampaign->duration}}</p>
                                         <a href="{{route('campaign.campaign-details',$upcomingCampaign->id)}}" class="btn btn-primary  common-btn">Explore now</a>
                                     </div>

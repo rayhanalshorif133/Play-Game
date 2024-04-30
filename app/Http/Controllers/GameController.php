@@ -5,11 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Game;
 use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\Facades\DataTables;
 
 class GameController extends Controller
 {
     public function index()
     {
+        if (request()->ajax()) {
+            $query = Game::orderBy('created_at', 'desc')
+                ->get();
+             return DataTables::of($query)
+             ->addIndexColumn()
+             ->rawColumns(['action'])
+             ->toJson();
+        }
         return view('game.index');
     }
 

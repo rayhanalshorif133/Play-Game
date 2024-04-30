@@ -150,9 +150,9 @@
                                     </div>
 
                                     <!-- Password input -->
-                                    <div class="mb-4">
-                                        <input type="password" id="password" class="form-control" name="password" placeholder="Password" />
-                                        <i class="fa fa-eye hidden-text px-2 cursor-pointer togglePassword"></i>
+                                    <div class="mb-4 position-relative">
+                                        <input type="password" id="password" class="form-control position-relative" name="password" placeholder="Password" />
+                                        <i style="top:10px;right:10px" class="fa fa-eye position-absolute hidden-text px-2 cursor-pointer togglePassword"></i>
                                     </div>
                                     <button type="submit" class="btn btn-primary common-btn w-full py-2 mb-2">
                                         Login

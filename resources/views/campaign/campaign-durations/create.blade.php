@@ -43,8 +43,8 @@
                             <input type="time" name="end_time" id="end_time" required class="form-control">
                         </div>
                         <div class="col-12 col-md-6 mb-0">
-                            <label for="status" class="form-label required">Select a Game</label>
-                            <select class="form-select" name="status" id="status" required>
+                            <label for="game_id" class="form-label required">Select a Game</label>
+                            <select class="form-select" name="game_id" id="game_id" required>
                                 <option value="" disabled  selected>
                                     Select a Game    
                                 </option>

@@ -27,6 +27,13 @@ class CampaignDuration extends Model
     {
         return $this->belongsTo(Campaign::class);
     }
+    
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
+    }
+
+
 
 
     public function gameURL($gameID){
@@ -37,7 +44,7 @@ class CampaignDuration extends Model
         $url = '#';
         if($findGame){
             $msisdn = Auth::user()->msisdn;
-            $url = $findGame->url . '?baseurl=' . $baseURL . '&msisdn=' . $msisdn . '&keyword=mergeDice';
+            $url = $findGame->url . '?baseurl=' . $baseURL . '&msisdn=' . $msisdn . '&keyword=' . $findGame->keyword;
         }
         return $url;
     }
