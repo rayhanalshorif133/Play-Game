@@ -49,7 +49,16 @@ $(document).ready(function () {
         },
         {
             render: function (data, type, row) {
-                return 'btns';
+                return `
+                <div class="d-flex space-x-2">
+                    <button class="btn btn-info btn-sm d-flex items-center" onClick="updateGame(${row.id})" data-bs-toggle="modal" data-bs-target="#update_game" data-title="${row.title}" onClick="createCampaignDuration(${row.id})">
+                    <i class='bx bx-edit'></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm d-flex items-center createCampaignDuration" data-bs-toggle="modal" data-bs-target="#delete_game" data-title="${row.title}" onClick="createCampaignDuration(${row.id})">
+                    <i class='bx bxs-trash-alt'></i>
+                    </button>
+                </div>
+                `;
             },
             targets: 1,
             width: "auto",
@@ -58,71 +67,24 @@ $(document).ready(function () {
     });
 });
 
-const showCampaignDetails = (id) => {
-    axios.get(`/admin/campaigns/fetch/${id}`)
-        .then(response => {
-            const campaign = response.data.data;
-            if (campaign.thumbnail == null) {
-                $("#campaign-thumbnail").html('Thumbnail image is not set...!');
-            } else {
-                $("#campaign-thumbnail").html(`<img src="${campaign.thumbnail}" alt="thumbnail" class="img-fluid h-13">`);
-            }
 
-            if (campaign.banner == null) {
-                $("#campaign-banner").html('Banner image is not set...!');
-            } else {
-                $("#campaign-banner").html(`<img src="${campaign.banner}" alt="banner" class="img-fluid h-13">`);
-            }
-            $("#campaign-title").html(`<span class="text-bolder">Title: </span>${campaign.title}`);
-            var typeBg = campaign.type == 'game' ? 'bg-label-info' : 'bg-label-primary';
-            var type = `<span class="badge bg-label-info">${campaign.type}</span>`
-            $("#campaign-type").html(`<span class="text-bolder">Type: </span> ${type}`);
-
-            var statusBg = campaign.status == 1 ? 'bg-success' : 'bg-danger';
-            var statusTitle = campaign.status == 1 ? 'Active' : 'Inactive';
-            var status = `<span class="badge ${statusBg}">${statusTitle}</span>`;
-            $("#campaign-status").html(`<span class="text-bolder">Status: ${status}</span>`);
-
-            // campaign-per_question_score
-            if (campaign.per_question_score == null) {
-                $("#campaign-per_question_score").addClass('d-none');
-            } else {
-                $("#campaign-per_question_score").removeClass('d-none');
-                $("#campaign-per_question_score").html(`<span class="text-bolder">Per Question Score: </span> ${campaign.per_question_score}`);
-            }
-
-            // campaign-total_questions
-            if (campaign.total_questions == null) {
-                $("#campaign-total_questions").addClass('d-none');
-            } else {
-                $("#campaign-total_questions").removeClass('d-none');
-                $("#campaign-total_questions").html(`<span class="text-bolder">Total Questions: </span> ${campaign.total_questions}`);
-            }
-
-            // campaign-total_time_limit
-            if (campaign.total_time_limit == null) {
-                $("#campaign-total_time_limit").addClass('d-none');
-            } else {
-                $("#campaign-total_time_limit").removeClass('d-none');
-                $("#campaign-total_time_limit").html(`<span class="text-bolder">Total Time Limit: </span> ${campaign.total_time_limit} minutes`);
-            }
-
-            // campaign-createdBy
-            $("#campaign-createdBy").html(`<span class="text-bolder">Created By: </span> ${campaign.created_by.name}`);
-            $("#campaign-updatedBy").html(`<span class="text-bolder">Updated By: </span> ${campaign.updated_by.name}`);
-
-            // campaign-description
-            if (campaign.description == null) {
-                $("#campaign-description").addClass('d-none');
-            } else {
-                $("#campaign-description").removeClass('d-none');
-                $("#campaign-description").html(`<span class="text-bolder">Description: </span> ${campaign.description}`);
-            }
+const updateGame = (id) => {
+    try {
+        axios.get(`/admin/games/${id}/fetch`)
+        .then(function (response) {
+            const game = response.data.data;
+            $("#set_game_id").val(game.id);
+            $("#update_title").val(game.title);
+            $("#update_keyword").val(game.keyword);
+            $("#update_url").val(game.url);
+            $("#update_status").val(game.status);
+            $("#update_description").val(game.description);
         })
-        .catch(error => {
-            console.log(error);
-        });
+    } catch (error) {
+        
+    }
 };
+
 
 const deleteCampaign = (id) => {
     Swal.fire({
@@ -151,9 +113,6 @@ const deleteCampaign = (id) => {
     });
 }
 
-const showCampaignDuration = (id) => {
-    console.log(id);
-}
 
 const createCampaignDuration = (id) => {
     axios.get(`/admin/campaigns/fetch/${id}`)

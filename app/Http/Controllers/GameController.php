@@ -64,4 +64,27 @@ class GameController extends Controller
             return redirect()->back();
         }
     }
+
+
+    public function fetch($id){
+        $game = Game::select()->where('id', $id)->first();
+        return $this->respondWithSuccess('Successfully fetched', $game);
+    }
+
+    public function update(Request $request){
+        try {
+            $game = Game::select()->where('id', $request->id)->first();
+            $game->title = $request->title;
+            $game->keyword = $request->keyword;
+            $game->url = $request->url;
+            $game->status = $request->status;
+            $game->description = $request->description;
+            $game->save();
+            flash()->addSuccess('Game updated successfully');
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            flash()->addError($th->getMessage());
+            return redirect()->back();
+        }
+    }
 }

@@ -28,7 +28,7 @@
                                         </h4>
                                         <p class="card-text" style="color: red;">Time Remains: {{$campaignDuration->duration}}</p>
                                     </div>
-                                    <a type="btn" class="btn  btn-outline-secondary text-white common-btn "
+                                    <a type="btn" class="btn  btn-outline-secondary text-white common-btn" style="width: 150px"
                                         href="{{route('campaign.campaign-details',$campaignDuration->id)}}">Play now</a>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                                 <div class="col-6">
                                     <figure style="margin: 0px;">
                                         <img class="card-img img-fluid" src="{{ asset($upcomingCampaign->game->banner) }}"
-                                            alt="Card image" />
+                                            alt="Card image" style="height: 200px"/>
                                     </figure>
                                 </div>
                                 <div class="col-6" style="margin-top: 6%;">

@@ -130,7 +130,7 @@ Route::prefix('admin')
         ->name('games.')
         ->group(function () {
         Route::get('/', [GameController::class,'index'])->name('index');
-        Route::get('/{id}/edit', [GameController::class,'edit'])->name('edit');
+        Route::get('/{id}/fetch', [GameController::class,'fetch'])->name('fetch');
         Route::post('/store', [GameController::class,'store'])->name('store');
         Route::put('/update', [GameController::class,'update'])->name('update');
         Route::delete('/{id}', [GameController::class,'delete'])->name('delete');

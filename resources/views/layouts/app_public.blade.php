@@ -37,10 +37,7 @@
     </title>
 
     <style>
-        img {
-            width: 100px;
-            height: 100%;
-        }
+      
 
         .how-section1 {
             margin-top: -15%;
@@ -133,7 +130,7 @@
                                         </ul>
 
                                     </div>
-                                    <a class="navbar-brand text-left d-block " href="#"
+                                    <a class="navbar-brand text-left d-block " href="{{route('home')}}"
                                         style="margin-left: 3.5%;">
                                         <img src="{{ asset('web_assets/images/logo.png') }}"
                                             style="height: 40px; width: auto;" alt="" title="">
@@ -149,7 +146,7 @@
                                     aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
                                 </button>
-                                <a class="navbar-brand" href="#">
+                                <a class="navbar-brand" href="{{route('home')}}">
                                     <img src="{{ asset('web_assets/images/logo.png') }}"
                                         style="height: 40px; width: auto;" alt="" title="">
                                 </a>

@@ -28,7 +28,8 @@ class PublicController extends Controller
     // description
     public function campaignDetails($id)
     {
-        $campaignDuration = CampaignDuration::find($id);
+        $campaignDuration = CampaignDuration::select()->where('id',$id)->first();
+        // dd($campaignDuration->campaign->banner);
         $hasAlreadyPayment = false;
         if(Auth::check()){
             $hasPayment = BkashPayment::select()

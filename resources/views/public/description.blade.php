@@ -17,7 +17,7 @@
     @endif
 
     <div class="mx-auto text-center container description">
-        <img src="{{ asset('images/des.png') }}" alt="" class="my-4 logo" />
+        <img src="{{ asset($campaignDuration->campaign->banner) }}" alt="" class="my-4 logo" />
         <div>
             @if (Auth::check())
                 <input id="GET_MSISDN" class="d-none" value="{{ Auth::user()->msisdn }}" />
@@ -52,7 +52,7 @@
                 Rules
             </a>
         </div>
-        <img src="{{ '/web_assets/images/banner.png' }}" alt="leaderboard" class="banner my-2" />
+        <img src="{{$campaignDuration->campaign->thumbnail}}" alt="thumbnail" class="banner my-2" />
     </div>
 @endsection
 

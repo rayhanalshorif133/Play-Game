@@ -28,9 +28,7 @@
             </div>
         </div>
     </div>
-
-    {{-- @include('campaign.show') --}}
-    @include('game.create')
+    @include('game.create_and_update')
 @endsection
 
 @push('scripts')
