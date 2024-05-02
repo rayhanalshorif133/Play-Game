@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use App\Models\BkashPayment;
 
 class AccountController extends Controller
 {
@@ -56,5 +57,24 @@ class AccountController extends Controller
         return view('public.account.update', compact('auth_user'));
     }
 
+
+    public function paymentHistory(){
+        
+        // "msisdn" => "01818401065"
+        if(Auth::check()){
+            $auth_user = Auth::user();
+            if(!$auth_user->msisdn){
+                return redirect()->route('account.update');
+            }
+            $bkashPayments = BkashPayment::select()
+                ->where('msisdn',$auth_user->msisdn)
+                ->with('campaign','campaignDuration')
+                ->get();
+
+            return view('public.account.payment-history',compact('bkashPayments'));
+        }else{
+            return redirect()->route('public.login');
+        }
+    }
 
 }

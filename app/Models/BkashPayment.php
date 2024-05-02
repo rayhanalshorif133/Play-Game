@@ -23,4 +23,17 @@ class BkashPayment extends Model
         'date_time',
         'message',  
     ];
+
+
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class,'campaign_id');
+    }
+    public function campaignDuration()
+    {
+        return $this->belongsTo(CampaignDuration::class,'campaign_duration_id');
+    }
+    
+
+
 }

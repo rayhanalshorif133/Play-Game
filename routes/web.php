@@ -65,6 +65,7 @@ Route::middleware('auth')
     ->name('account.')->group(function () {
     Route::get('/', [AccountController::class, 'index'])->name('index');
     Route::match(['get', 'post'],'/update', [AccountController::class, 'update'])->name('update');
+    Route::get('/payment-history', [AccountController::class, 'paymentHistory'])->name('payment-history');
 });
 
 

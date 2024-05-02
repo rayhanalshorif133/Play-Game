@@ -32,7 +32,7 @@
                                 href="{{ route('account.update') }}">
                                 Edit Account
                             </a>
-                            <a class="col-12 mx-2 col-md-5 btn btn-primary common-btn w-full py-2 mb-2" href="{{ route('account.update') }}">
+                            <a class="col-12 mx-2 col-md-5 btn btn-primary common-btn w-full py-2 mb-2" href="{{ route('account.payment-history') }}">
                                 Payment History
                             </a>
                         </div>
