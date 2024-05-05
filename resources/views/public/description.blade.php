@@ -5,7 +5,7 @@
         <div class="container paymentSuccessAlert">
             <div class="alert d-flex justify-content-between alert-success fade show" role="alert">
                 <div class="mt-2">
-                    <strong>Payment Success!</strong> {{ Session::get('message')}}
+                    <strong>Payment Success!</strong> {{ Session::get('message') }}
                 </div>
                 <div class="paymentSuccessAlertCancel">
                     <button class="btn">
@@ -17,42 +17,71 @@
     @endif
 
     <div class="mx-auto text-center container description">
-        <img src="{{ asset($campaignDuration->campaign->banner) }}" alt="" class="my-4 logo" />
+        <img src="{{ asset($campaignDuration->game->banner) }}" alt="" class="my-4 logo" />
         <div>
-            @if (Auth::check())
-                <input id="GET_MSISDN" class="d-none" value="{{ Auth::user()->msisdn }}" />
-                <input id="GET_CampaignDurationID" class="d-none" value="{{ $campaignDuration->id }}" />
+            @if ($campaignDuration->start_date_time < $currentDate)
+                @if (Auth::check())
+                    <input id="GET_MSISDN" class="d-none" value="{{ Auth::user()->msisdn }}" />
+                    <input id="GET_CampaignDurationID" class="d-none" value="{{ $campaignDuration->id }}" />
 
-                @if($hasAlreadyPayment == false)
-                <button class="btn btn-primary common-btn play_btn" id="bKash_button">
-                    Play
-                </button>
+                    @if ($hasAlreadyPayment == false)
+                        <button class="btn btn-primary common-btn play_btn" id="bKash_button">
+                            Play
+                        </button>
+                    @else
+                        <a href="{{ $campaignDuration->gameURL($campaignDuration->game_id) }}"
+                            class="btn btn-primary common-btn play_btn">
+                            Play Now
+                        </a>
+                    @endif
                 @else
-                <a href="{{$campaignDuration->gameURL($campaignDuration->game_id)}}" class="btn btn-primary common-btn play_btn">
-                    Play Now
-                </a>
+                    <a href="{{ route('campaign.access', $campaignDuration->id) }}"
+                        class="btn btn-primary common-btn play_btn">
+                        Play
+                    </a>
                 @endif
-            @else
-                <a href="{{ route('campaign.access', $campaignDuration->id) }}" class="btn btn-primary common-btn play_btn">
-                    Play
-                </a>
             @endif
             {{-- <a href="{{$campaignDuration->gameURL($campaignDuration->game_id)}}" class="btn btn-primary common-btn play_btn">
                 Free To Play
             </a> --}}
         </div>
         <div class="py-4">
-            <a href="{{ route('public.leaderboard', $campaignDuration->id) }}" class="btn btn-primary  leaderbord mx-2">
-                <img src="{{ '/web_assets/images/leaderboard.png' }}" alt="leaderboard" class="icon">
-                Leaderboard
-            </a>
+            @if ($hasAlreadyPayment == true)
+                <a href="{{ route('public.leaderboard', $campaignDuration->id) }}" class="btn btn-primary  leaderbord mx-2">
+                    <img src="{{ '/web_assets/images/leaderboard.png' }}" alt="leaderboard" class="icon">
+                    Leaderboard
+                </a>
+            @endif
             <a href="leaderboard.html" class="btn btn-primary  leaderbord mx-2" data-toggle="modal"
-                data-target="#exampleModalCenter">
+                data-target="#rulesModal">
                 <img src="{{ '/web_assets/images/list.png' }}" alt="rules" class="icon">
                 Rules
             </a>
         </div>
-        <img src="{{$campaignDuration->campaign->thumbnail}}" alt="thumbnail" class="banner my-2" />
+        <img src="{{ $campaignDuration->game->banner }}" alt="thumbnail" class="banner my-2" />
+    </div>
+    <div class="modal fade" id="rulesModal" tabindex="-1" role="dialog" aria-labelledby="rulesModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header modal_header_rules">
+                    <h5 class="modal-title text-white" id="rulesModalTitle">Play rules</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ol class="list-group list-group-light list-group-numbered">
+                        <li class="list-group-item">1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+                            euismod lacus et libero pellentesque, ut elementum quam auctor.</li>
+                        <li class="list-group-item">2. Maecenas purus augue, rutrum sit amet mi molestie, posuere suscipit
+                            orci. Aenean tempor euismod orci, dapibus dignissim ex consequat in.</li>
+                        <li class="list-group-item">3. Duis pellentesque tellus a metus tempor, nec pulvinar libero
+                            vestibulum. In ac facilisis quam.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 

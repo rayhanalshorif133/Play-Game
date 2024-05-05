@@ -49,11 +49,11 @@ class HomeController extends Controller
 
         
         $currentCampaignDurations->each(function($campaignDuration){
-            if($campaignDuration->end_date_time ==  date('Y-m-d')){
-                if($campaignDuration->start_date_time < date('H:i:s')){
-                    // unset($campaignDuration);
-                }
-            }
+            // if($campaignDuration->end_date_time ==  date('Y-m-d')){
+            //     if($campaignDuration->start_date_time < date('H:i:s')){
+            //         // unset($campaignDuration);
+            //     }
+            // }
             $campaignDuration->duration = $this->calculateDuration($campaignDuration);
         });
 

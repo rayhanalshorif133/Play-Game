@@ -58,6 +58,7 @@ Route::get('/tournament', [TournamentController::class, 'index'])->name('tournam
 Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard.index');
 Route::get('/campaign-details/{campaign_id}', [PublicController::class, 'campaignDetails'])->name('campaign.campaign-details');
 Route::get('/campaign-access/{campaign_id}', [PublicController::class, 'campaignAccess'])->name('campaign.access');
+Route::get('/faq', [PublicController::class, 'faq'])->name('faq');
 
 
 Route::middleware('auth')

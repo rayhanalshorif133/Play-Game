@@ -105,10 +105,7 @@
                                                     Mode</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">About</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">FAQ</a>
+                                                <a class="nav-link" href="{{route('faq')}}">FAQ</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="#">Terms & Conditions</a>
@@ -157,12 +154,8 @@
                                             <a class="nav-link" href="{{route('home')}}">
                                                 &nbsp Home <span class="sr-only">(current)</span></a>
                                         </li>
-
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">&nbsp About</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">&nbsp FAQ</a>
+                                            <a class="nav-link" href="{{route('faq')}}">&nbsp FAQ</a>
                                         </li>
 
                                         <li class="nav-item">

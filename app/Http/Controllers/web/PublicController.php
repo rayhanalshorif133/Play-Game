@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CampaignDuration;
 use App\Models\BkashPayment;
+use Carbon\Carbon;
 
 class PublicController extends Controller
 {
@@ -28,9 +29,20 @@ class PublicController extends Controller
     // description
     public function campaignDetails($id)
     {
+        $currentDate = Carbon::now()->toDateTimeString(); 
         $campaignDuration = CampaignDuration::select()->where('id',$id)->first();
-        // dd($campaignDuration->campaign->banner);
+
+        if($campaignDuration->start_date_time > $currentDate){
+            $upcommingOrCurrent = 'upcomming';
+        }else{
+            $upcommingOrCurrent = 'current'; 
+        }
+
+
         $hasAlreadyPayment = false;
+
+
+
         if(Auth::check()){
             $hasPayment = BkashPayment::select()
             ->where('campaign_duration_id',$id)
@@ -41,7 +53,7 @@ class PublicController extends Controller
             }
         }
         
-        return view('public.description',compact('campaignDuration','hasAlreadyPayment'));
+        return view('public.description',compact('campaignDuration','hasAlreadyPayment','currentDate'));
     } 
     
    
@@ -55,6 +67,11 @@ class PublicController extends Controller
         }else{
             return redirect()->route('public.login');
         }
+    }
+
+    // 
+    public function faq(){
+        return view('public.faq');
     }
 
 }

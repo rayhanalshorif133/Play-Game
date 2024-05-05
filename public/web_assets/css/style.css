@@ -215,6 +215,11 @@ header {
   padding: 4px 5px;
 }
 
+.modal_header_rules {
+  background: rgb(211, 65, 116);
+  background: linear-gradient(90deg, rgba(211, 65, 116, 1) 0%, rgba(244, 166, 97, 1) 100%);
+}
+
 .small {
   display: flex;
   align-self: center;
