@@ -16,6 +16,7 @@ class CampaignDuration extends Model
     protected $fillable = [
         'name',
         'amount',
+        'play_type',
         'campaign_id',
         'start_date_time',
         'end_date_time',

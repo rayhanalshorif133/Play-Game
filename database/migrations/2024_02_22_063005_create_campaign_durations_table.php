@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->float('amount');
+            $table->string('play_type')->comment('campaign,tournament')->default('campaign');
             $table->bigInteger('campaign_id')->unsigned();
             $table->dateTime('start_date_time');
             $table->dateTime('end_date_time');

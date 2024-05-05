@@ -63,10 +63,12 @@ class CampaignDurationController extends Controller
         $end_dateTime = date("Y-m-d H:i:s", strtotime($end_dateTime));
 
 
+        $campaign = Campaign::find($request->campaign_id);
         $campaignDuration = new CampaignDuration();
         $campaignDuration->campaign_id = $request->campaign_id;
         $campaignDuration->name = $request->name;
         $campaignDuration->amount = $request->amount;
+        $campaignDuration->play_type = $campaign? $campaign->play_type : 'campaign';
         $campaignDuration->status = $request->status;
         $campaignDuration->game_id = $request->game_id;
         $campaignDuration->start_date_time = $start_datetime;
