@@ -12,6 +12,7 @@ class Campaign extends Model
     protected $fillable = [
         'title',
         'description',
+        'play_type',
         'thumbnail',
         'banner',
         'type',

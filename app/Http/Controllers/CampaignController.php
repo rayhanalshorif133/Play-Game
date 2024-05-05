@@ -51,6 +51,7 @@ class CampaignController extends Controller
                 'title' => 'required',
                 'type' => 'required',
                 'status' => 'required',
+                'play_type' => 'required',
             ]);
 
             if ($validator->fails()) {
@@ -76,6 +77,7 @@ class CampaignController extends Controller
             $campaign = new Campaign();
             $campaign->title = $request->title;
             $campaign->type = $request->type;
+            $campaign->play_type = $request->play_type;
             $campaign->per_q_time_limit = $request->per_q_time_limit;
             $campaign->total_time_limit = (int)$request->per_q_time_limit * (int)$request->total_questions;
             $campaign->total_questions = $request->total_questions;

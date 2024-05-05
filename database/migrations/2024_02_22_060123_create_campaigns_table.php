@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('thumbnail')->nullable();
             $table->string('banner')->nullable();
+            $table->string('play_type')->comment('campaign,tournament')->default('campaign');
             $table->string('type')->comment('quiz,game')->nullable();
             // for quiz:start
             $table->float('total_time_limit')->nullable();

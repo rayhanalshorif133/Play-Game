@@ -30,6 +30,13 @@
                                     placeholder="Enter campaign banner" />
                             </div>
                             <div class="col-12 col-lg-4 col-md-6 mb-0">
+                                <label for="play_type" class="form-label optional">play_type</label>
+                                <select id="play_type" required class="form-select" name="play_type">
+                                    <option value="campaign" selected>Campaign</option>
+                                    <option value="tournament">Tournament</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-lg-4 col-md-6 mb-0">
                                 <label for="campaign_type" class="form-label required">Type</label>
                                 <select id="campaign_type" required class="form-select" name="type">
                                     <option value="" disabled selected>Select a Type</option>
