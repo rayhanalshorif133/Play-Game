@@ -45,8 +45,23 @@ class CampaignDuration extends Model
         $url = '#';
         if($findGame){
             $msisdn = Auth::user()->msisdn;
-            $url = $findGame->url . '?baseurl=' . $baseURL . '&msisdn=' . $msisdn . '&keyword=' . $findGame->keyword;
+            $url = $findGame->url . '?msisdn=' . $msisdn . '&keyword=' . $findGame->keyword;
+            // $url = $findGame->url . '?baseurl=' . $baseURL . '&msisdn=' . $msisdn . '&keyword=' . $findGame->keyword;
         }
         return $url;
+    }
+
+    public function calculateDuration($campaignDuration)
+    {
+        $cuttentDate = date('Y-m-d');
+        $currentTime = date('H:i:s');
+        $start = strtotime($cuttentDate . ' ' . $currentTime);
+        $end = strtotime($campaignDuration->end_date_time);
+        $diff = $end - $start;
+        $days = floor($diff / (60 * 60 * 24));
+        $hours = floor(($diff - $days * 60 * 60 * 24) / (60 * 60));
+        $minutes = floor(($diff - $days * 60 * 60 * 24 - $hours * 60 * 60) / 60);
+        // return $days . 'd ' . $hours . 'h ' . $minutes . 'm';
+        return $days . 'd ' . $hours . 'h ';
     }
 }

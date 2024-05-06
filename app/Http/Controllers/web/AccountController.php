@@ -21,15 +21,17 @@ class AccountController extends Controller
     public function index(Request $request)
     {
 
-        $method = $request->method();
-
-        if($method == 'POST')
-        {
-            dd($request->all());
+        if(Auth::check()){
+            $auth_user = Auth::user();
+            $payments = BkashPayment::select()
+                ->where('msisdn',Auth::user()->msisdn)
+                ->where('status',1)
+                ->with('campaign','campaignDuration','campaignDuration.game')
+                ->get();
+            return view('public.account.index', compact('auth_user','payments'));
+        }else{
+            return redirect()->route('public.login');
         }
-
-        $auth_user = Auth::user();
-        return view('public.account.index', compact('auth_user'));
     }
 
     // update 

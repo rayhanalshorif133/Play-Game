@@ -25,7 +25,7 @@
                       <li class="nav-item " role="presentation">
                          <a class="nav-link  text-center" id="pills-weekly-tab" data-toggle="pill"
                             href="#pills-weekly" role="tab" aria-controls="pills-weekly"
-                            aria-selected="false">Weekly</a>
+                            aria-selected="false">Grand</a>
                       </li>
                    </ul>
                 </div>
@@ -58,184 +58,31 @@
                                      </div>
                                      <!-- ================================== -->
                                      <div class="score-body scroll-container">
-                                        <div class="score-part mb-3">
-                                           <div class="row row-cols-1 row-cols-sm-3">
-                                              <div class="col-3">
-                                                 <p class="number">
-                                                    01
-                                                 </p>
-                                              </div>
-                                              <div class="col-6  d-block text-center">
-                                                 <p class="second ">01710****12</p>
-                                              </div>
-
-                                              <div class="col-3  d-block text-center ">
-                                                 <p class="second ">278</p>
-                                              </div>
-
-                                           </div>
-                                        </div>
+                                       
+                                       @foreach($daily_scores as $score)
                                         <!-- ================================== -->
                                         <div class="score-part mb-3">
                                            <div class="row row-cols-1 row-cols-sm-3">
                                               <div class="col-3">
                                                  <p class="number">
-                                                    02
+                                                    {{$loop->index + 1}}
                                                  </p>
                                               </div>
                                               <div class="col-6  d-block text-center clock">
 
-                                                 <p class="second text-center ">01710****12</p>
+                                                 <p class="second text-center">
+                                                   {{hideMiddleDigits($score->msisdn)}}
+                                                 </p>
                                               </div>
 
                                               <div class="col-3  d-block text-center clock">
 
-                                                 <p class="second">277</p>
+                                                 <p class="second">{{$score->score}}</p>
                                               </div>
 
                                            </div>
                                         </div>
-
-                                        <!-- ================================== -->
-                                        <div class="score-part mb-3">
-                                           <div class="row row-cols-1 row-cols-sm-3">
-                                              <div class="col-3">
-                                                 <p class="number">
-                                                    03
-                                                 </p>
-                                              </div>
-                                              <div class="col-6  d-block text-center clock">
-
-                                                 <p class="second text-center ">01710****12</p>
-                                              </div>
-
-                                              <div class="col-3  d-block text-center clock">
-
-                                                 <p class="second">274</p>
-                                              </div>
-
-                                           </div>
-                                        </div>
-
-                                        <!-- ================================== -->
-                                        <div class="score-part mb-3">
-                                           <div class="row row-cols-1 row-cols-sm-3">
-                                              <div class="col-3">
-                                                 <p class="number">
-                                                    04
-                                                 </p>
-                                              </div>
-                                              <div class="col-6  d-block text-center">
-                                                 <p class="second ">01710****12</p>
-                                              </div>
-
-                                              <div class="col-3  d-block text-center ">
-                                                 <p class="second ">272</p>
-                                              </div>
-
-                                           </div>
-                                        </div>
-                                        <!-- ================================== -->
-                                        <div class="score-part mb-3">
-                                           <div class="row row-cols-1 row-cols-sm-3">
-                                              <div class="col-3">
-                                                 <p class="number">
-                                                    05
-                                                 </p>
-                                              </div>
-                                              <div class="col-6  d-block text-center clock">
-
-                                                 <p class="second text-center ">01710****12</p>
-                                              </div>
-
-                                              <div class="col-3  d-block text-center clock">
-
-                                                 <p class="second">270</p>
-                                              </div>
-
-                                           </div>
-                                        </div>
-
-                                        <!-- ================================== -->
-                                        <div class="score-part mb-3">
-                                           <div class="row row-cols-1 row-cols-sm-3">
-                                              <div class="col-3">
-                                                 <p class="number">
-                                                    06
-                                                 </p>
-                                              </div>
-                                              <div class="col-6  d-block text-center clock">
-
-                                                 <p class="second text-center ">01710****12</p>
-                                              </div>
-
-                                              <div class="col-3  d-block text-center clock">
-
-                                                 <p class="second">260</p>
-                                              </div>
-
-                                           </div>
-                                        </div>
-
-                                        <!-- ================================== -->
-                                        <div class="score-part mb-3">
-                                           <div class="row row-cols-1 row-cols-sm-3">
-                                              <div class="col-3">
-                                                 <p class="number">
-                                                    07
-                                                 </p>
-                                              </div>
-                                              <div class="col-6  d-block text-center">
-                                                 <p class="second ">01710****12</p>
-                                              </div>
-
-                                              <div class="col-3  d-block text-center ">
-                                                 <p class="second ">178</p>
-                                              </div>
-
-                                           </div>
-                                        </div>
-                                        <!-- ================================== -->
-                                        <div class="score-part mb-3">
-                                           <div class="row row-cols-1 row-cols-sm-3">
-                                              <div class="col-3">
-                                                 <p class="number">
-                                                    08
-                                                 </p>
-                                              </div>
-                                              <div class="col-6  d-block text-center clock">
-
-                                                 <p class="second text-center ">01710****12</p>
-                                              </div>
-
-                                              <div class="col-3  d-block text-center clock">
-
-                                                 <p class="second">250</p>
-                                              </div>
-
-                                           </div>
-                                        </div>
-
-                                        <!-- ================================== -->
-                                        <div class="score-part mb-3">
-                                           <div class="row row-cols-1 row-cols-sm-3">
-                                              <div class="col-3">
-                                                 <p class="number">
-                                                    09
-                                                 </p>
-                                              </div>
-                                              <div class="col-6  d-block text-center clock">
-
-                                                 <p class="second text-center ">01710****12</p>
-                                              </div>
-
-                                              <div class="col-3  d-block text-center clock">
-
-                                                 <p class="second">247</p>
-                                              </div>
-
-                                           </div>
-                                        </div>
+                                        @endforeach
 
 
 
@@ -272,185 +119,30 @@
                                      </div>
                                      <!-- ================================== -->
                                      <div class="score-body scroll-container">
-                                        <div class="score-part mb-3">
-                                           <div class="row row-cols-1 row-cols-sm-3">
-                                              <div class="col-3">
-                                                 <p class="number">
-                                                    01
-                                                 </p>
-                                              </div>
-                                              <div class="col-6  d-block text-center">
-                                                 <p class="second ">01310****12</p>
-                                              </div>
-
-                                              <div class="col-3  d-block text-center ">
-                                                 <p class="second ">278</p>
-                                              </div>
-
-                                           </div>
-                                        </div>
+                                       @foreach($grandly_scores as $score)
                                         <!-- ================================== -->
                                         <div class="score-part mb-3">
                                            <div class="row row-cols-1 row-cols-sm-3">
                                               <div class="col-3">
                                                  <p class="number">
-                                                    02
+                                                    {{$loop->index + 1}}
                                                  </p>
                                               </div>
                                               <div class="col-6  d-block text-center clock">
 
-                                                 <p class="second text-center ">01310****12</p>
+                                                 <p class="second text-center">
+                                                   {{hideMiddleDigits($score->msisdn)}}
+                                                 </p>
                                               </div>
 
                                               <div class="col-3  d-block text-center clock">
 
-                                                 <p class="second">277</p>
+                                                 <p class="second">{{$score->score}}</p>
                                               </div>
 
                                            </div>
                                         </div>
-
-                                        <!-- ================================== -->
-                                        <div class="score-part mb-3">
-                                           <div class="row row-cols-1 row-cols-sm-3">
-                                              <div class="col-3">
-                                                 <p class="number">
-                                                    03
-                                                 </p>
-                                              </div>
-                                              <div class="col-6  d-block text-center clock">
-
-                                                 <p class="second text-center ">01310****12</p>
-                                              </div>
-
-                                              <div class="col-3  d-block text-center clock">
-
-                                                 <p class="second">274</p>
-                                              </div>
-
-                                           </div>
-                                        </div>
-
-                                        <!-- ================================== -->
-                                        <div class="score-part mb-3">
-                                           <div class="row row-cols-1 row-cols-sm-3">
-                                              <div class="col-3">
-                                                 <p class="number">
-                                                    04
-                                                 </p>
-                                              </div>
-                                              <div class="col-6  d-block text-center">
-                                                 <p class="second ">01310****12</p>
-                                              </div>
-
-                                              <div class="col-3  d-block text-center ">
-                                                 <p class="second ">272</p>
-                                              </div>
-
-                                           </div>
-                                        </div>
-                                        <!-- ================================== -->
-                                        <div class="score-part mb-3">
-                                           <div class="row row-cols-1 row-cols-sm-3">
-                                              <div class="col-3">
-                                                 <p class="number">
-                                                    05
-                                                 </p>
-                                              </div>
-                                              <div class="col-6  d-block text-center clock">
-
-                                                 <p class="second text-center ">01310****12</p>
-                                              </div>
-
-                                              <div class="col-3  d-block text-center clock">
-
-                                                 <p class="second">270</p>
-                                              </div>
-
-                                           </div>
-                                        </div>
-
-                                        <!-- ================================== -->
-                                        <div class="score-part mb-3">
-                                           <div class="row row-cols-1 row-cols-sm-3">
-                                              <div class="col-3">
-                                                 <p class="number">
-                                                    06
-                                                 </p>
-                                              </div>
-                                              <div class="col-6  d-block text-center clock">
-
-                                                 <p class="second text-center ">01310****12</p>
-                                              </div>
-
-                                              <div class="col-3  d-block text-center clock">
-
-                                                 <p class="second">260</p>
-                                              </div>
-
-                                           </div>
-                                        </div>
-
-                                        <!-- ================================== -->
-                                        <div class="score-part mb-3">
-                                           <div class="row row-cols-1 row-cols-sm-3">
-                                              <div class="col-3">
-                                                 <p class="number">
-                                                    07
-                                                 </p>
-                                              </div>
-                                              <div class="col-6  d-block text-center">
-                                                 <p class="second ">01310****12</p>
-                                              </div>
-
-                                              <div class="col-3  d-block text-center ">
-                                                 <p class="second ">178</p>
-                                              </div>
-
-                                           </div>
-                                        </div>
-                                        <!-- ================================== -->
-                                        <div class="score-part mb-3">
-                                           <div class="row row-cols-1 row-cols-sm-3">
-                                              <div class="col-3">
-                                                 <p class="number">
-                                                    08
-                                                 </p>
-                                              </div>
-                                              <div class="col-6  d-block text-center clock">
-
-                                                 <p class="second text-center ">01310****12</p>
-                                              </div>
-
-                                              <div class="col-3  d-block text-center clock">
-
-                                                 <p class="second">250</p>
-                                              </div>
-
-                                           </div>
-                                        </div>
-
-                                        <!-- ================================== -->
-                                        <div class="score-part mb-3">
-                                           <div class="row row-cols-1 row-cols-sm-3">
-                                              <div class="col-3">
-                                                 <p class="number">
-                                                    09
-                                                 </p>
-                                              </div>
-                                              <div class="col-6  d-block text-center clock">
-
-                                                 <p class="second text-center ">01310****12</p>
-                                              </div>
-
-                                              <div class="col-3  d-block text-center clock">
-
-                                                 <p class="second">247</p>
-                                              </div>
-
-                                           </div>
-                                        </div>
-                                        <!-- ================================== -->
+                                        @endforeach
                                      </div>
                                   </div>
                                </div>

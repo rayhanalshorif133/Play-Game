@@ -21,11 +21,11 @@ class CreateBkashPaymentsTable extends Migration
             $table->string('paymentID')->nullable();
             $table->bigInteger('bkash_execute_payment_id')->unsigned();
             $table->bigInteger('campaign_id')->unsigned()->nullable();
-            $table->bigInteger('tournament_id')->unsigned()->nullable();
             $table->bigInteger('campaign_duration_id')->unsigned()->nullable();
             $table->string('amount')->nullable();
             $table->string('status')->default('0');
             $table->dateTime('date_time')->nullable();
+            $table->dateTime('end_date_time')->nullable();
             $table->string('message')->nullable();
             $table->timestamps();
         });

@@ -169,12 +169,12 @@
                                     <!-- Register buttons -->
                                     <div class="text-center social">
                                         <p>or sign up with:</p>
-                                        <a href="{{ route('auth.facebook') }}" class="social-login-btn fb-login-btn">
+                                        {{-- <a href="{{ route('auth.facebook') }}" class="social-login-btn fb-login-btn">
                                             <div><img class="social-icon"
                                                     src="{{ asset('web_assets/images/Facebook.png') }}" alt="Google Icon">
                                             </div>
                                             Login with Facebook
-                                        </a>
+                                        </a> --}}
                                         <a href="{{ route('auth.google') }}" class="social-login-btn google-login-btn">
                                             <div>
                                                 <img class="social-icon" src="{{ asset('web_assets/images/Google.png') }}"

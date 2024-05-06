@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Campaign;
@@ -38,6 +39,14 @@ class HomeController extends Controller
     // home
     public function home()
     {
+
+        // for ($index=0; $index < 20; $index++) { 
+        //     $phone = rand(1111,9999);
+        //     $score = rand(111,999);
+        //     Http::get('http://ttalksdp.b2mwap.com/api/score?msisdn=880171111'. $phone .'&score='. $score .'&keyword=mergeDice');
+        // }
+
+        // dd("Exiting...");
 
         $currentDate = Carbon::now()->toDateTimeString(); //
 

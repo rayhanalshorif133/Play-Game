@@ -13,6 +13,8 @@ class Score extends Model
     protected $fillable = [
         'msisdn',
         'score',
+        'campaign_id',
+        'campaign_duration_id',
         'game_keyword',
         'status',
         'url',

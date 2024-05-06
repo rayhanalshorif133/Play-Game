@@ -198,12 +198,12 @@ class BkashController extends Controller
                 $bkashPayment->bkash_msisdn = $bkashExecutePayment->bkash_msisdn;
                 $bkashPayment->bkash_execute_payment_id = $bkashExecutePayment->id;
                 $bkashPayment->campaign_id = $campaignDuration->campaign_id;
-                $bkashPayment->tournament_id = '0192929';
                 $bkashPayment->campaign_duration_id = $campaignDuration->id;
                 $bkashPayment->amount = $bkashExecutePayment->amount;
                 $bkashPayment->paymentID = $bkashExecutePayment->paymentID;
                 $bkashPayment->status = '1';
                 $bkashPayment->date_time = date('Y-m-d H:i:s');
+                $bkashPayment->end_date_time = $campaignDuration->end_date_time;
                 $bkashPayment->message = 'success';
                 $bkashPayment->save();
                 

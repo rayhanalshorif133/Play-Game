@@ -16,6 +16,8 @@ class CreateScoresTable extends Migration
         Schema::create('scores', function (Blueprint $table) {
             $table->id();
             $table->string('msisdn');
+            $table->bigInteger('campaign_id')->unsigned()->nullable();
+            $table->bigInteger('campaign_duration_id')->unsigned()->nullable();
             $table->string('score');
             $table->string('game_keyword');
             $table->string('status')->default('1');

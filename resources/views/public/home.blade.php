@@ -25,14 +25,15 @@
                             <div class="card my-4 box-shadow">
                                 <img class="card-img img-fluid game_image" src="{{ asset($campaignDuration->game->banner) }}"
                                     alt="Card image cap">
-                                <div class="card-body" style="padding-left: 10px;">
+                                <div class="card-body" style="padding-left: 10px;padding-bottom: 10px;">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group" style="display: block !important;">
                                             <h4 class="font-bold" style="font-size: 1.2rem;font-weight: bold;">
-                                                {{ $campaignDuration->campaign->title }}
+                                                {{ $campaignDuration->campaign->title }} <br/>
                                                 ({{ $campaignDuration->name }})
                                             </h4>
-                                            <p class="card-text" style="color: red;">Time Remains:
+                                            <p class="card-text" style="color: red;">
+                                                Time Remains:
                                                 {{ $campaignDuration->duration }}</p>
                                         </div>
                                         <a type="btn" class="btn  btn-outline-secondary text-white common-btn"
@@ -73,7 +74,7 @@
                                     <div class="col-6" style="margin-top: 6%;">
                                         <div class="card-body-right">
                                             <h4 class="card-title font-bold" style="font-weight: bold; font-size: 1.3rem;">
-                                                {{ $upcomingCampaign->campaign->title }}
+                                                {{ $upcomingCampaign->campaign->title }} <br/>
                                                 ({{ $upcomingCampaign->name }})
                                             </h4>
                                             <p class="card-text " style="color: green;">Start after:

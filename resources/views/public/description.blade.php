@@ -29,7 +29,11 @@
                             Play
                         </button>
                     @else
-                        <a href="{{ $campaignDuration->gameURL($campaignDuration->game_id) }}"
+                        {{-- <a href="{{ $campaignDuration->gameURL($campaignDuration->game_id) }}"
+                            class="btn btn-primary common-btn play_btn">
+                            Play Now
+                        </a> --}}
+                        <a href="{{ route('campaign.play-now',$campaignDuration->id) }}"
                             class="btn btn-primary common-btn play_btn">
                             Play Now
                         </a>

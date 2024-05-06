@@ -49,6 +49,7 @@ class GoogleController extends Controller
             if(Auth::user()->role == 'user' && Auth::user()->msisdn == null){
                 return redirect()->route('account.update');
             }
+            flash()->addSuccess('You have been successfully login.');
             return redirect()->intended('/home');
 
         } catch (Exception $e) {

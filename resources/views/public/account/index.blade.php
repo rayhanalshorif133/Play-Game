@@ -32,7 +32,8 @@
                                 href="{{ route('account.update') }}">
                                 Edit Account
                             </a>
-                            <a class="col-12 mx-2 col-md-5 btn btn-primary common-btn w-full py-2 mb-2" href="{{ route('account.payment-history') }}">
+                            <a class="col-12 mx-2 col-md-5 btn btn-primary common-btn w-full py-2 mb-2"
+                                href="{{ route('account.payment-history') }}">
                                 Payment History
                             </a>
                         </div>
@@ -47,72 +48,35 @@
             <div class="container">
                 <div class="wrap-one  d-flex justify-content-between">
                     <div class="title-box">
-                        <h3 class="title-a my-2">My Tournaments</h3>
+                        <h3 class="title-a my-2">My Campaigns</h3>
                     </div>
                 </div>
 
                 <div class="row">
+                    @foreach ($payments as $item)
+                        <div class="col-md-4 col-sm-12" style="margin-bottom: 3%;">
+                            <div class="campain-body">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <img class="card-img" src="{{ asset($item->campaignDuration->game->banner) }}"
+                                            alt="Card image" style="height: -webkit-fill-available;"/>
+                                    </div>
+                                    <div class="col-6" style="margin-top: 6%;">
+                                        <div class="card-body-right">
+                                            <h4 class="card-title font-bold" style="font-weight: bold; font-size: 1.2rem;">
+                                                {{$item->campaign->title}}</h4>
+                                            <p class="card-text " style="color: #ee0808;">
+                                                End in : {{$item->campaignDuration->calculateDuration($item->campaignDuration)}}
+                                            </p>
+                                            <a href="{{ route('campaign.campaign-details', $item->campaignDuration->id) }}" 
+                                                class="btn btn-primary  common-btn">Play now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
 
-                    <div class="col-md-4 col-sm-12" style="margin-bottom: 3%;">
-                        <div class="campain-body">
-                            <div class="row row-cols-1 row-cols-sm-2">
-                                <div class="col-6">
-                                    <figure style="margin: 0px;">
-                                        <img class="card-img" src="{{ asset('web_assets/images/turnament_img1.png') }}"
-                                            alt="Card image" />
-                                    </figure>
-                                </div>
-                                <div class="col-6" style="margin-top: 6%;">
-                                    <div class="card-body-right">
-                                        <h4 class="card-title font-bold" style="font-weight: bold; font-size: 1.3rem;">Snap
-                                            Card Game</h4>
-                                        <p class="card-text " style="color: green;">Starts in : 2d 1h 23m</p>
-                                        <a href="#" class="btn btn-primary  common-btn">Explore now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-12" style="margin-bottom: 3%;">
-                        <div class="campain-body">
-                            <div class="row row-cols-1 row-cols-sm-2">
-                                <div class="col-6">
-                                    <figure style="margin: 0px;">
-                                        <img class="card-img" src="{{ asset('web_assets/images/turnament_img1.png') }}"
-                                            alt="Card image" />
-                                    </figure>
-                                </div>
-                                <div class="col-6" style="margin-top: 6%;">
-                                    <div class="card-body-right">
-                                        <h4 class="card-title font-bold" style="font-weight: bold; font-size: 1.3rem;">Snap
-                                            Card Game</h4>
-                                        <p class="card-text " style="color: green;">Starts in : 2d 1h 23m</p>
-                                        <a href="#" class="btn btn-primary  common-btn">Explore now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-12">
-                        <div class="campain-body">
-                            <div class="row row-cols-1 row-cols-sm-2">
-                                <div class="col-6">
-                                    <figure style="margin: 0px;">
-                                        <img class="card-img" src="{{ asset('web_assets/images/turnament_img1.png') }}"
-                                            alt="Card image" />
-                                    </figure>
-                                </div>
-                                <div class="col-6" style="margin-top: 6%;">
-                                    <div class="card-body-right">
-                                        <h4 class="card-title font-bold" style="font-weight: bold; font-size: 1.3rem;">Snap
-                                            Card Game</h4>
-                                        <p class="card-text " style="color: green;">Starts in : 2d 1h 23m</p>
-                                        <a href="#" class="btn btn-primary  common-btn">Explore now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
 

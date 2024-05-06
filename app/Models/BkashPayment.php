@@ -21,6 +21,7 @@ class BkashPayment extends Model
         'paymentID',
         'status',
         'date_time',
+        'end_date_time',
         'message',  
     ];
 
