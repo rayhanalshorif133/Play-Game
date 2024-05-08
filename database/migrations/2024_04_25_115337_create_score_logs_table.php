@@ -20,6 +20,7 @@ class CreateScoreLogsTable extends Migration
             $table->string('score');
             $table->string('game_keyword');
             $table->string('status')->default('1');
+            $table->string('flag')->nullable();
             $table->string('url')->nullable();
             $table->date('play_date')->nullable();
             $table->time('play_time')->nullable();

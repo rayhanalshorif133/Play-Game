@@ -15,7 +15,7 @@ class GoogleController extends Controller
     public function redirectToGoogle()
     {
         return Socialite::driver('google')
-            ->redirectUrl('http://ttalksdp.b2mwap.com/auth/google/callback')
+            ->redirectUrl('https://play.b2m-tech.com/auth/google/callback')
             ->redirect();
 
     }

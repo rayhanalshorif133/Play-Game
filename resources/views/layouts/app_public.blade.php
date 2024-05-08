@@ -38,8 +38,6 @@
     </title>
 
     <style>
-      
-
         .how-section1 {
             margin-top: -15%;
             padding: 10%;
@@ -97,7 +95,7 @@
                                     <div id="nav-content" tabindex="0">
                                         <ul class="navbar-nav bg-transparent fixed-top" id="sidebar-wrapper">
                                             <li class="nav-item active">
-                                                <a class="nav-link" href="{{route('home')}}">Home</a>
+                                                <a class="nav-link" href="{{ route('home') }}">Home</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link darkmode" href="#" id="darkbutton"
@@ -105,7 +103,7 @@
                                                     Mode</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{route('faq')}}">FAQ</a>
+                                                <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="#">Terms & Conditions</a>
@@ -128,7 +126,7 @@
                                         </ul>
 
                                     </div>
-                                    <a class="navbar-brand text-left d-block " href="{{route('home')}}"
+                                    <a class="navbar-brand text-left d-block " href="{{ route('home') }}"
                                         style="margin-left: 3.5%;">
                                         <img src="{{ asset('web_assets/images/logo.png') }}"
                                             style="height: 40px; width: auto;" alt="" title="">
@@ -144,18 +142,18 @@
                                     aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
                                 </button>
-                                <a class="navbar-brand" href="{{route('home')}}">
+                                <a class="navbar-brand" href="{{ route('home') }}">
                                     <img src="{{ asset('web_assets/images/logo.png') }}"
                                         style="height: 40px; width: auto;" alt="" title="">
                                 </a>
                                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                                     <ul class="navbar-nav">
                                         <li class="nav-item active">
-                                            <a class="nav-link" href="{{route('home')}}">
+                                            <a class="nav-link" href="{{ route('home') }}">
                                                 &nbsp Home <span class="sr-only">(current)</span></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{route('faq')}}">&nbsp FAQ</a>
+                                            <a class="nav-link" href="{{ route('faq') }}">&nbsp FAQ</a>
                                         </li>
 
                                         <li class="nav-item">
@@ -237,6 +235,23 @@
             </div>
         </footer>
     </div>
+
+    <!--Start of Tawk.to Script-->
+    {{-- <script type="text/javascript">
+    document.createElement("test");
+        var Tawk_API = Tawk_API || {},
+            Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/6638a3e207f59932ab3c7750/1ht6k0bsg';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script> --}}
+    <!--End of Tawk.to Script-->
     <!-- Bootstrap core JavaScript
       ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

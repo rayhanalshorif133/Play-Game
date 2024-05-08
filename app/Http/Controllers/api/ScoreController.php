@@ -14,6 +14,19 @@ class ScoreController extends Controller
     {
 
 
+        // Usage example
+        // $dataToEncrypt = "120";
+        // $key = "B2M";
+
+        // $encryptedData = $this->encryptData($dataToEncrypt, $key);
+        // if ($encryptedData !== false) {
+        //     $dec = $this->decryptData($encryptedData, $key);
+        //     dd("Encrypted data: " . $encryptedData . "\n" . 'Decrypted data: ' . $dec);
+        // } else {
+        //     dd("Encrypted failed: ");
+        // }
+
+
         $msisdn = $request->msisdn;
         $get_score = $request->score;
         $game_keyword = $request->keyword;
@@ -31,8 +44,9 @@ class ScoreController extends Controller
             $score = Score::select('id')
                 ->where('msisdn', $msisdn)
                 ->where('game_keyword', $game_keyword)
-                ->where('date_time', 'like' , '%'.date('Y-m-d').'%')
+                ->where('created_at', 'like' , '%'.date('Y-m-d').'%')
                 ->first();
+                
             if(!$score){
                 $score = new Score();
             }else{
@@ -73,5 +87,55 @@ class ScoreController extends Controller
             dd($th->getMessage());
         }
 
+    }
+
+
+    function encryptData($data, $key)
+{
+    // Generate a random IV (Initialization Vector)
+    $ivSize = openssl_cipher_iv_length('aes-256-cbc');
+    $iv = openssl_random_pseudo_bytes($ivSize);
+
+    // Encrypt the data using AES-256-CBC cipher and PKCS7 padding
+    $encryptedData = openssl_encrypt($data, 'aes-256-cbc', $key, OPENSSL_RAW_DATA, $iv);
+
+    if ($encryptedData === false) {
+        // Handle encryption error
+        return false;
+    }
+
+    // Combine IV and encrypted data
+    $result = $iv . $encryptedData;
+
+    // Encode the result in Base64 for transport/storage
+    $result = base64_encode($result);
+
+    return $result;
+}
+
+
+
+
+    function decryptData($encryptedData, $key)
+    {
+        // Decode the Base64 encoded data
+        $encryptedData = base64_decode($encryptedData);
+
+        // Extract IV from the encrypted data
+        $ivSize = openssl_cipher_iv_length('aes-256-cbc');
+        $iv = substr($encryptedData, 0, $ivSize);
+
+        // Extract the encrypted data (excluding IV)
+        $encryptedData = substr($encryptedData, $ivSize);
+
+        // Decrypt the data using AES-256-CBC cipher and PKCS7 padding
+        $decryptedData = openssl_decrypt($encryptedData, 'aes-256-cbc', $key, OPENSSL_RAW_DATA, $iv);
+
+        if ($decryptedData === false) {
+            // Handle decryption error
+            return false;
+        }
+
+        return $decryptedData;
     }
 }

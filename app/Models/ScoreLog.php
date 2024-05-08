@@ -14,6 +14,7 @@ class ScoreLog extends Model
         'score',
         'game_keyword',
         'status',
+        'flag',
         'url',
         'play_date',
         'play_time',

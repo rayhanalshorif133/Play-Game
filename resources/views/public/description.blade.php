@@ -110,7 +110,7 @@
                 request
             ) { //request object is basically the paymentRequest object, automatically pushed by the script in createRequest method
                 $.ajax({
-                    url: 'http://ttalksdp.b2mwap.com/create-payment/' + msisdn + '/' +
+                    url: 'https://play.b2m-tech.com/create-payment/' + msisdn + '/' +
                         campaignDurationID,
                     type: 'GET',
                     contentType: 'application/json',
@@ -134,7 +134,7 @@
             },
             executeRequestOnAuthorization: function() {
 
-                const url = 'http://ttalksdp.b2mwap.com/execute-payment/' + msisdn + '/' + paymentID;
+                const url = 'https://play.b2m-tech.com/execute-payment/' + msisdn + '/' + paymentID;
 
                 setTimeout(() => {
                     window.location.href = url;

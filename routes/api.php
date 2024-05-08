@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // game_keyword
 
 
-// https://html5.b2mwap.com/bdgamers/MergeDice/?baseurl="http://ttalksdp.b2mwap.com"&msisdn=8801323174104&keyword=mergeDice
+// https://html5.b2mwap.com/bdgamers/MergeDice/?baseurl="play.b2m-tech.com"&msisdn=8801323174104&keyword=mergeDice
 
 // Notification API (Http Request):
 
@@ -36,5 +36,6 @@ Route::match(['get', 'post'], '/score', [ScoreController::class, 'score']);
 // {{baseurl}}/api/redirect?msisdn=8801711111111&keyword=mergeDice
 Route::match(['get', 'post'], '/redirect', [ScoreController::class, 'redirect']);
 
+// https://html5.b2mwap.com/bdgamers/MergeDice/?msisdn=01818401066&keyword=margeDice
 
-// http://ttalksdp.b2mwap.com/api/score?msisdn=8801711111111&score=100&keyword=mergeDice
+// play.b2m-tech.com/api/score?msisdn=01818401066&score=407&keyword=mergeDice
