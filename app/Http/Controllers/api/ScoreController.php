@@ -15,15 +15,23 @@ class ScoreController extends Controller
 
 
         // Usage example
-        // $dataToEncrypt = "120";
-        // $key = "B2M";
+        // $encryptedData = "PRXB3/mfEgqxIcyQwkMYXQ";
+        // $key = "18na21B2MDiceKad";
+        // $decryptedData = $this->decryptData($encryptedData, $key);
+        // // Perform decryption
 
+        // if ($decryptedData === false) {
+        //     dd('Decryption failed: ' . openssl_error_string());
+        // }
+        
+        // $numbers = preg_replace('/[^0-9]/', '', $decryptedData);
+        // dd($numbers);
         // $encryptedData = $this->encryptData($dataToEncrypt, $key);
+        // dd("Decrypted data:" . $dec);
         // if ($encryptedData !== false) {
-        //     $dec = $this->decryptData($encryptedData, $key);
-        //     dd("Encrypted data: " . $encryptedData . "\n" . 'Decrypted data: ' . $dec);
+        //     $dec = $this->decryptData($dataToEncrypt, $key);
         // } else {
-        //     dd("Encrypted failed: ");
+        //     dd("Encrypted Failed: ");
         // }
 
 
@@ -116,26 +124,24 @@ class ScoreController extends Controller
 
 
 
-    function decryptData($encryptedData, $key)
-    {
-        // Decode the Base64 encoded data
-        $encryptedData = base64_decode($encryptedData);
+function decryptData($encryptedData, $key)
+{
+    // Decode the encrypted data from base64
+    $encryptedData = base64_decode($encryptedData);
 
-        // Extract IV from the encrypted data
-        $ivSize = openssl_cipher_iv_length('aes-256-cbc');
-        $iv = substr($encryptedData, 0, $ivSize);
+    // Ensure the key size is valid
+    $key = substr($key, 0, 16); // Truncate to 16 bytes for 128-bit key
 
-        // Extract the encrypted data (excluding IV)
-        $encryptedData = substr($encryptedData, $ivSize);
+    // Set encryption parameters
+    $method = 'aes-128-ecb'; // AES encryption with ECB mode and 128-bit key length
 
-        // Decrypt the data using AES-256-CBC cipher and PKCS7 padding
-        $decryptedData = openssl_decrypt($encryptedData, 'aes-256-cbc', $key, OPENSSL_RAW_DATA, $iv);
+    // Perform decryption
+    $decryptedData = openssl_decrypt($encryptedData, $method, $key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING);
 
-        if ($decryptedData === false) {
-            // Handle decryption error
-            return false;
-        }
-
-        return $decryptedData;
+    if ($decryptedData === false) {
+        die('Decryption failed: ' . openssl_error_string());
     }
+
+    return $decryptedData;
+}
 }
