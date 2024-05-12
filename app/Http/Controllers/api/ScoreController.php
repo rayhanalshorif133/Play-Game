@@ -14,27 +14,6 @@ class ScoreController extends Controller
     {
 
 
-        // Usage example
-        // $encryptedData = "PRXB3/mfEgqxIcyQwkMYXQ";
-        // $key = "18na21B2MDiceKad";
-        // $decryptedData = $this->decryptData($encryptedData, $key);
-        // // Perform decryption
-
-        // if ($decryptedData === false) {
-        //     dd('Decryption failed: ' . openssl_error_string());
-        // }
-        
-        // $numbers = preg_replace('/[^0-9]/', '', $decryptedData);
-        // dd($numbers);
-        // $encryptedData = $this->encryptData($dataToEncrypt, $key);
-        // dd("Decrypted data:" . $dec);
-        // if ($encryptedData !== false) {
-        //     $dec = $this->decryptData($dataToEncrypt, $key);
-        // } else {
-        //     dd("Encrypted Failed: ");
-        // }
-
-
         $msisdn = $request->msisdn;
         $get_score = $request->score;
         $game_keyword = $request->keyword;
@@ -42,6 +21,21 @@ class ScoreController extends Controller
         if ($msisdn == null || $get_score == null || $game_keyword == null) {
             return response()->json('Invalid Request');
         }
+
+        $encryptedData = $get_score;
+        $key = "18na21B2MDiceKad";
+        $decryptedData = $this->decryptData($encryptedData, $key);
+
+        if ($decryptedData === false) {
+            return response()->json('Decryption failed..!' . openssl_error_string());
+        }
+
+
+        $numbers = preg_replace('/[^0-9]/', '', $decryptedData);
+        $get_score = (int)$numbers;
+
+
+
 
 
 

@@ -62,7 +62,6 @@ class AccountController extends Controller
 
     public function paymentHistory(){
         
-        // "msisdn" => "01818401065"
         if(Auth::check()){
             $auth_user = Auth::user();
             if(!$auth_user->msisdn){

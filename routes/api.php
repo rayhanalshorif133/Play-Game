@@ -38,4 +38,4 @@ Route::match(['get', 'post'], '/redirect', [ScoreController::class, 'redirect'])
 
 // https://html5.b2mwap.com/bdgamers/MergeDice/?msisdn=01818401066&keyword=margeDice
 
-// play.b2m-tech.com/api/score?msisdn=01818401066&score=407&keyword=mergeDice
+// play.b2m-tech.com/api/score?msisdn=01818401065&score=407&keyword=mergeDice

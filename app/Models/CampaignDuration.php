@@ -37,15 +37,15 @@ class CampaignDuration extends Model
 
 
 
-    public function gameURL($gameID){
-        $findGame = Game::find($gameID);
+    public function gameURL($campaignDuration){
+        $findGame = Game::find($campaignDuration->game_id);
         // https://html5.b2mwap.com/bdgamers/MergeDice/?baseurl="http://ttalksdp.b2mwap.com"&msisdn=8801323174104&keyword=mergeDice
 
         $baseURL = url('');
         $url = '#';
         if($findGame){
             $msisdn = Auth::user()->msisdn;
-            $url = $findGame->url . '?msisdn=' . $msisdn . '&keyword=' . $findGame->keyword;
+            $url = $findGame->url . '?msisdn=' . $msisdn . '&keyword=' . $findGame->keyword . '&camp_duration_id=' . $campaignDuration->id;
             // $url = $findGame->url . '?baseurl=' . $baseURL . '&msisdn=' . $msisdn . '&keyword=' . $findGame->keyword;
         }
         return $url;

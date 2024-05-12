@@ -87,7 +87,7 @@ class PublicController extends Controller
     public function playNow($campaign_duration_id){
         try {
             $campaignDuration = CampaignDuration::select()->where('id',$campaign_duration_id)->first();
-            $url = $campaignDuration->gameURL($campaignDuration->game_id);
+            $url = $campaignDuration->gameURL($campaignDuration);
 
             $findGame = Game::find($campaignDuration->game_id);
 
@@ -97,7 +97,7 @@ class PublicController extends Controller
                 ->where('msisdn', Auth::user()->msisdn)
                 ->where('game_keyword', $findGame->keyword)
                 ->where('campaign_id', $campaignDuration->campaign_id)
-                ->where('campaign_duration_id', $campaignDuration->campaign_duration_id)
+                ->where('campaign_duration_id', $campaignDuration->id)
                 ->first();
             if(!$score){
                 $score = new Score();
