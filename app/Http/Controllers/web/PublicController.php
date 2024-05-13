@@ -93,7 +93,7 @@ class PublicController extends Controller
 
 
             
-            $score = Score::select('id')
+            $score = Score::select()
                 ->where('msisdn', Auth::user()->msisdn)
                 ->where('game_keyword', $findGame->keyword)
                 ->where('campaign_id', $campaignDuration->campaign_id)
@@ -101,13 +101,16 @@ class PublicController extends Controller
                 ->first();
             if(!$score){
                 $score = new Score();
+                $setScore = 0;
+            }else{
+                $setScore = (int)$score->score;
             }
             
 
             $score->campaign_id = $campaignDuration->campaign_id;
             $score->campaign_duration_id = $campaignDuration->id;
             $score->msisdn = Auth::user()->msisdn;
-            $score->score = 0;
+            $score->score = $setScore;
             $score->game_keyword = $findGame->keyword;
             $score->save();
 
