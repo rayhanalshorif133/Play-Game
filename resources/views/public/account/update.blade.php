@@ -19,6 +19,14 @@
                               @method('POST')
                               <!-- Email input -->
                               <div class=" mb-4">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                                placeholder="Name" name="name" value="{{ Auth::user()->name }}">
+                              </div>
+                              <div class=" mb-4">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                placeholder="Email" name="email" value="{{ Auth::user()->email }}">
+                              </div>
+                              <div class=" mb-4">
                                 <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror"
                                 placeholder="Phone Number" name="msisdn" value="{{ Auth::user()->msisdn }}" required autocomplete="phone" autofocus>
                               </div>

@@ -50,6 +50,8 @@ class AccountController extends Controller
 
             $auth_user = Auth::user();
             $auth_user->msisdn = $request->msisdn;
+            $auth_user->name = $request->name;
+            $auth_user->email = $request->email;
             $auth_user->save();
 
             return redirect()->route('account.index');

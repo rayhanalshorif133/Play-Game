@@ -134,36 +134,24 @@
                                 <form method="POST" action="{{ route('public.register') }}">
                                     @csrf
                                     @method('POST')
-                                    <!-- Email input -->
-                                    <div class="mb-4">
-                                        <input type="text" class="form-control" placeholder="Name" id="name"
-                                            name="name">
-                                    </div>
-
                                     {{-- phone --}}
                                     <div class="mb-4">
                                         <input type="text" class="form-control" placeholder="Phone Number" id="phone"
-                                            name="phone">
-                                    </div>
-
-                                    {{-- email --}}
-                                    <div class="mb-4">
-                                        <input type="email" id="email" class="form-control" name="email"
-                                            placeholder="Email" />
+                                            name="msisdn">
                                     </div>
 
                                     {{-- password --}}
-                                    <div class="mb-4">
+                                    <div class="mb-4 position-relative">
                                         <input type="password" id="password" class="form-control" name="password"
                                             placeholder="Password" />
-                                        <i class="fa fa-eye hidden-text px-2 cursor-pointer togglePassword"></i>
+                                        <i style="top:10px;right:10px" class="fa fa-eye hidden-text px-2 cursor-pointer togglePassword position-absolute left-2"></i>
                                     </div>
 
                                     {{-- confirm password --}}
-                                    <div class="mb-4">
+                                    <div class="mb-4 position-relative">
                                         <input type="password" id="confirm_password" class="form-control"
                                             name="confirm_password" placeholder="Confirm Password" />
-                                        <i class="fa fa-eye hidden-text px-2 cursor-pointer togglePassword"></i>
+                                        <i style="top:10px;right:10px" class="fa fa-eye hidden-text px-2 cursor-pointer togglePassword position-absolute"></i>
                                     </div>
                                     <button type="submit" class="btn btn-primary common-btn w-full py-2 mb-2">
                                         Register

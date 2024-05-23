@@ -29,10 +29,6 @@
                             Play
                         </button>
                     @else
-                        {{-- <a href="{{ $campaignDuration->gameURL($campaignDuration->game_id) }}"
-                            class="btn btn-primary common-btn play_btn">
-                            Play Now
-                        </a> --}}
                         <a href="{{ route('campaign.play-now',$campaignDuration->id) }}"
                             class="btn btn-primary common-btn play_btn">
                             Play Now
@@ -45,9 +41,9 @@
                     </a>
                 @endif
             @endif
-            {{-- <a href="{{$campaignDuration->gameURL($campaignDuration->game_id)}}" class="btn btn-primary common-btn play_btn">
-                Free To Play
-            </a> --}}
+            <a href="{{$campaignDuration->gameURL($campaignDuration)}}" class="btn btn-primary trail-btn play_btn">
+                Play Trail
+            </a>
         </div>
         <div class="py-4">
             @if ($hasAlreadyPayment == true)
@@ -76,12 +72,7 @@
                 </div>
                 <div class="modal-body">
                     <ol class="list-group list-group-light list-group-numbered">
-                        <li class="list-group-item">1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-                            euismod lacus et libero pellentesque, ut elementum quam auctor.</li>
-                        <li class="list-group-item">2. Maecenas purus augue, rutrum sit amet mi molestie, posuere suscipit
-                            orci. Aenean tempor euismod orci, dapibus dignissim ex consequat in.</li>
-                        <li class="list-group-item">3. Duis pellentesque tellus a metus tempor, nec pulvinar libero
-                            vestibulum. In ac facilisis quam.</li>
+                        <li class="list-group-item">You'll be charged To {{$campaignDuration->amount}} (+vat/SD) and participart this campaign.</li>
                     </ol>
                 </div>
             </div>

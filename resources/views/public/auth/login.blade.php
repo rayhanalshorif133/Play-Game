@@ -160,7 +160,7 @@
 
                                     <div class="d-flex align-items-center justify-content-center pb-4">
                                         <p class="mb-0 me-2" style="margin-right: 2%;">Don't have an account?</p>
-                                        <a href="{{ route('public.register') }}" class="text-primary">Sign up</a>
+                                        <a href="{{ route('public.register') }}" class="text-primary">Register</a>
                                     </div>
 
 
@@ -180,7 +180,7 @@
                                                 <img class="social-icon" src="{{ asset('web_assets/images/Google.png') }}"
                                                     alt="Google Icon">
                                             </div>
-                                            Login with Google
+                                            Login with Gmail
                                         </a>
                                     </div>
                                 </form>

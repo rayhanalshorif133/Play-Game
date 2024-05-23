@@ -43,10 +43,12 @@ class CampaignDuration extends Model
 
         $baseURL = url('');
         $url = '#';
-        if($findGame){
+        if($findGame && Auth::check()){
             $msisdn = Auth::user()->msisdn;
             $url = $findGame->url . '?msisdn=' . $msisdn . '&keyword=' . $findGame->keyword . '&camp_duration_id=' . $campaignDuration->id;
             // $url = $findGame->url . '?baseurl=' . $baseURL . '&msisdn=' . $msisdn . '&keyword=' . $findGame->keyword;
+        }else{
+            $url = $findGame->url . '?keyword=' . $findGame->keyword . '&camp_duration_id=' . $campaignDuration->id; 
         }
         return $url;
     }

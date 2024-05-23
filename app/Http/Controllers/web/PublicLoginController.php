@@ -67,10 +67,7 @@ class PublicLoginController extends Controller
             }else{
 
                 $validator = Validator::make($request->all(), [
-                    'name' => 'required',
-                    'email' => 'required|email',
                     'msisdn' => 'required',
-                    'password' => 'required|confirmed'
                 ]);
 
 
@@ -80,13 +77,12 @@ class PublicLoginController extends Controller
                     return redirect()->back();
                 }
 
+
                 $user = new User();
-                $user->name = $request->name;
-                $user->email = $request->email;
                 $user->role = 'user';
                 $user->msisdn = $request->msisdn;
                 if($request->password){
-                    if($request->password != $request->password_confirmation){
+                    if($request->password != $request->confirm_password){
                         flash()->addError('Password and confirm password does not match');
                         return redirect()->back();
                     }

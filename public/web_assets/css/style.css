@@ -279,11 +279,15 @@ section.nav-top-item.fixedNav {
   border: none;
 }
 
-.leaderbord {
-  /* border-image: linear-gradient(45deg, rgba(211,65,116,1) , rgba(244,166,97,1));
-  border-image-slice: 1; */
+.trail-btn {
+  background: #034245;
+  background: linear-gradient(90deg, #034245 0%, #3be386 100%);
+  border: none;
+}
 
-  border: rgba(211, 65, 116, 1) solid 1px;
+.leaderbord {
+
+  border: #d34174 solid 1px;
   background: none;
   border-radius: 5px;
   font-size: 1rem;
