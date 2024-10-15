@@ -76,7 +76,7 @@
     overflow: hidden;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     animation: popAndGradient 5s ease-in-out infinite;
-    
+
 }
 
 
@@ -117,4 +117,36 @@
     transform: scale(1.05);
     color: #fff;
     text-decoration: none;
+}
+
+
+/* Base button styles */
+.btn {
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+/* Play button style with gradient */
+.play {
+    background: linear-gradient(45deg, #007bff, #0056b3); /* Blue gradient */
+}
+
+.play:hover {
+    background: linear-gradient(45deg, #0056b3, #007bff); /* Inverse gradient on hover */
+    transform: scale(1.05);
+}
+
+/* Play Trial button style with gradient */
+.trial {
+    background: linear-gradient(45deg, #28a745, #218838); /* Green gradient */
+}
+
+.trial:hover {
+    background: linear-gradient(45deg, #218838, #28a745); /* Inverse gradient on hover */
+    transform: scale(1.05);
 }

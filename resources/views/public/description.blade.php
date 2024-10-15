@@ -19,31 +19,12 @@
     <div class="mx-auto text-center container description">
         <img src="{{ asset($campaignDuration->game->banner) }}" alt="" class="my-4 logo" />
         <div>
-            @if ($campaignDuration->start_date_time < $currentDate)
-                @if (Auth::check())
-                    <input id="GET_MSISDN" class="d-none" value="{{ Auth::user()->msisdn }}" />
-                    <input id="GET_CampaignDurationID" class="d-none" value="{{ $campaignDuration->id }}" />
-
-                    @if ($hasAlreadyPayment == false)
-                        <button class="btn btn-primary common-btn play_btn" id="bKash_button">
-                            Play
-                        </button>
-                    @else
-                        <a href="{{ route('campaign.play-now',$campaignDuration->id) }}"
-                            class="btn btn-primary common-btn play_btn">
-                            Play Now
-                        </a>
-                    @endif
-                @else
-                    <a href="{{ route('campaign.access', $campaignDuration->id) }}"
-                        class="btn btn-primary common-btn play_btn">
-                        Play
-                    </a>
-                @endif
-            @endif
-            <a href="{{$campaignDuration->gameURL($campaignDuration)}}" class="btn btn-primary trail-btn play_btn">
-                Play Trail
-            </a>
+            <button class="btn play" id="robi_button_play">
+                Play
+            </button>
+            <button class="btn trial" id="button_trial">
+                Play Trial
+            </button>
         </div>
         <div class="py-4">
             @if ($hasAlreadyPayment == true)
@@ -85,55 +66,21 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <script src="https://scripts.pay.bka.sh/versions/1.2.0-beta/checkout/bKash-checkout.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <script>
         var msisdn = $("#GET_MSISDN").val();
         var inv_no = Math.floor((Math.random() * 100000) + 1);
         var paymentID = '';
         var campaignDurationID = $("#GET_CampaignDurationID").val();
-        bKash.init({
-            paymentMode: 'checkout', //fixed value ‘checkout’
-            paymentRequest: {
-                amount: '01', //max two decimal points allowed
-                intent: 'sale'
-            },
-            createRequest: function(
-                request
-            ) { //request object is basically the paymentRequest object, automatically pushed by the script in createRequest method
-                $.ajax({
-                    url: 'https://play.b2m-tech.com/create-payment/' + msisdn + '/' +
-                        campaignDurationID,
-                    type: 'GET',
-                    contentType: 'application/json',
-                    success: function(data) {
-                        if (data == 'Completed') {
-                            window.location.href =
-                                "https://www.google.com/?number";
-                            return 0;
-                        }
-                        if (data && data.paymentID != null) {
-                            paymentID = data.paymentID;
-                            bKash.create().onSuccess(data);
-                        } else {
-                            bKash.create().onError();
-                        }
-                    },
-                    error: function() {
-                        bKash.create().onError();
-                    }
-                });
-            },
-            executeRequestOnAuthorization: function() {
 
-                const url = 'https://play.b2m-tech.com/execute-payment/' + msisdn + '/' + paymentID;
-
-                setTimeout(() => {
-                    window.location.href = url;
-                }, 6000);
-            },
-            onClose: function() {
-                //alert('User has clicked the close button');
-            }
+        $("#robi_button_play").click(() => {
+            axios.get('https://rd.b2mwap.com/api/getToken/Snake')
+                .then((res) => {
+                    const data = res.data.data;
+                    console.log(data);
+                    // window.location.href = redirectURL;
+                })
         });
 
         $(document).ready(function() {
