@@ -29,6 +29,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <script src="https://scripts.pay.bka.sh/versions/1.2.0-beta/checkout/bKash-checkout.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 
 
     <title>
@@ -46,7 +47,8 @@
         body,
         .footer-body,
         .top-navbar {
-            background-color: white
+            background: rgb(122,19,19);
+        background: linear-gradient(90deg, rgba(122,19,19,1) 0%, rgba(227,150,150,1) 50%, rgba(122,19,19,1) 100%);
         }
 
         body.bodyDark,
@@ -79,121 +81,7 @@
 
 <body>
     <div class="wrapper">
-        <header class="sticky-top bg-white w-full">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="menu-panel">
-                        <section class="nav-top-item">
-                            <div id="nav-container">
-                                <div class="bg"></div>
-                                <div class="button " tabindex="0">
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </div>
-                                <div class="top-menu-bg">
-                                    <div id="nav-content" tabindex="0">
-                                        <ul class="navbar-nav bg-transparent fixed-top" id="sidebar-wrapper">
-                                            <li class="nav-item active">
-                                                <a class="nav-link" href="{{ route('home') }}">Home</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link darkmode" href="#" id="darkbutton"
-                                                    style="padding-left: 6px;">&nbsp Dark
-                                                    Mode</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Terms & Conditions</a>
-                                            </li>
-                                            @if (Auth::check())
-                                                <li class="nav-item" href="{{ route('logout') }}"
-                                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                    <a class="nav-link" href="#">Logout</a>
-                                                </li>
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                    class="d-none">
-                                                    @csrf
-                                                </form>
-                                            @else
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="{{ route('public.login') }}">&nbsp
-                                                        Login</a>
-                                                </li>
-                                            @endif
-                                        </ul>
-
-                                    </div>
-                                    <a class="navbar-brand text-left d-block " href="{{ route('home') }}"
-                                        style="margin-left: 3.5%;">
-                                        <img src="{{ asset('web_assets/images/logo.png') }}"
-                                            style="height: 40px; width: auto;" alt="" title="">
-                                    </a>
-                                </div>
-                                <!-- top-menu-bg -->
-                            </div>
-                        </section>
-                        <div id="mobile-nav-panel">
-                            <nav class="navbar navbar-expand-lg navbar-light top-navbar">
-                                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                    data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-                                    aria-expanded="false" aria-label="Toggle navigation">
-                                    <span class="navbar-toggler-icon"></span>
-                                </button>
-                                <a class="navbar-brand" href="{{ route('home') }}">
-                                    <img src="{{ asset('web_assets/images/logo.png') }}"
-                                        style="height: 40px; width: auto;" alt="" title="">
-                                </a>
-                                <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-                                    <ul class="navbar-nav">
-                                        <li class="nav-item active">
-                                            <a class="nav-link" href="{{ route('home') }}">
-                                                &nbsp Home <span class="sr-only">(current)</span></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('faq') }}">&nbsp FAQ</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">&nbsp Terms & Conditions</a>
-                                        </li>
-                                        @if (Auth::check())
-                                            <li class="nav-item" href="{{ route('logout') }}"
-                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                <a class="nav-link" href="#">&nbsp Logout</a>
-                                            </li>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                class="d-none">
-                                                @csrf
-                                            </form>
-                                        @else
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('public.login') }}">&nbsp
-                                                    Login</a>
-                                            </li>
-                                        @endif
-
-                                    </ul>
-                                </div>
-                            </nav>
-                        </div>
-                        <!-- mobile-nav-panel -->
-                        <!-- ================= -->
-
-                        <!-- nav-bar-panel -->
-
-                    </div>
-
-
-                </div>
-            </div>
-        </header>
-
         @yield('content')
-
-
         @php
             $route = Route::currentRouteName();
         @endphp

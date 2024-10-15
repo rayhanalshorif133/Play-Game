@@ -27,3 +27,94 @@
 .cursor-pointer {
     cursor: pointer;
 }
+
+
+.game_image {
+    width: 100% !important;
+    border-radius: 3% !important;
+}
+
+.button-container {
+    display: flex;
+    gap: 20px;
+    margin: auto !important;
+    justify-content: center;
+}
+
+.gradient-button {
+    padding: 15px 50px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    border: 2px solid #C36E6E;
+    border-radius: 15px;
+    background: #811C1C;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.gradient-button:hover {
+    transform: scale(1.05);
+}
+
+.play-now-button {
+    font-size: 18px;
+    padding: 15px 40px;
+    color: white;
+    background: linear-gradient(90deg, #FAB005, #ae7a00);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: 0.4s ease;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    animation: popAndGradient 5s ease-in-out infinite;
+    
+}
+
+
+@keyframes popAndGradient {
+    0%, 100% {
+      transform: scale(1);
+      background: linear-gradient(90deg, #FAB005, #ae7a00);
+    }
+    50% {
+      transform: scale(1.1);
+      background: linear-gradient(90deg, #FAB005, #ae7a00);
+    }
+  }
+
+.play-now-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: width 0.3s ease, height 0.3s ease, top 0.3s ease, left 0.3s ease;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.play-now-button:hover::before {
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+}
+
+.play-now-button:hover {
+    background: linear-gradient(90deg, #C26D6D, #811C1C);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+    color: #fff;
+    text-decoration: none;
+}
