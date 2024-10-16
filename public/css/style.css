@@ -1,10 +1,90 @@
-*{
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 
 }
 
-body{
+body {
+    font-family: 'Nunito', sans-serif;
     background: #5C2D91;
+}
+
+.home_container {
+    justify-content: center;
+    display: flex;
+    margin: 10% auto 0 auto;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game_title {
+    margin-bottom: 20px;
+}
+
+.game_title h1 {
+    font-size: 36px;
+    padding: 5px 0;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    color: #fff;
+}
+
+.home_container .logo img {
+    height: 252px;
+    width: 252px;
+    border-radius: 24px !important;
+}
+
+.home_container .label_container {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.home_container .label_container div {
+    display: flex;
+    position: relative;
+}
+
+.home_container .label_container div img {
+    height: auto;
+    width: 3.2rem;
+    position: absolute;
+    left: -35px;
+    top: -6px;
+}
+
+.home_container .label_container p {
+    padding: 5px 20px;
+    border-radius: 24px;
+    background: #7C49B6;
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+}
+
+.play_btn_container{
+    margin-top: 3rem;
+}
+
+.play_btn_container div{
+   width: auto !important;
+   background: linear-gradient(180deg, #70FF8A 50%, #5EDC76 50%);
+   border-radius: 32px;
+   border: 5px solid #9C4DF5;
+}
+
+.play_btn_container div a{
+    text-decoration: none;
+    cursor: pointer;
+    padding: 10px 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 36px;
+    color: #5C2D91;
+    font-weight: bolder;
+    border-radius: 32px;
 }

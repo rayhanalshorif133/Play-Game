@@ -1,38 +1,32 @@
-
-
 <?php $__env->startSection('styles'); ?>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
     <main role="main">
-        <!--/ Section one Star /-->
-        <section id="section_one">
-            <div class="container  mt-5">
-                <div class="button-container">
-                    <button class="gradient-button">
-                        <i class="fa-solid fa-gamepad" style="font-size:20px"></i>
-                        <?php
-                            $random = rand(11111,99999);
-                        ?>
-                        <?php echo e($random); ?>
 
-                    </button>
+        <div class="home_container">
+            <div class="game_title">
+                <h1>Snake Game</h1>
+            </div>
+            <div class="logo">
+                <img src="https://picsum.photos/200/200">
+            </div>
+            <div class="label_container">
+                <div>
+                    <img src="<?php echo e(asset('images/playing_hands.png')); ?>">
+                    <p>3,900,900</p>
                 </div>
-                <div style="width: 100%">
-
-                    <?php if(count($currentCampaignDurations) > 0): ?>
-                        <div class="card my-4 box-shadow mx-auto" style="width: 24rem">
-                            <img class="card-img img-fluid game_image"
-                                src="<?php echo e(asset($currentCampaignDurations[0]->game->banner)); ?>" alt="Card image cap">
-                        </div>
-                    <?php endif; ?>
-                    <div class="mx-auto" style="width: fit-content">
-                        <a href="<?php echo e(route('campaign.campaign-details', $currentCampaignDurations[0]->id)); ?>"
-                            class="play-now-button">Play Now</a>
-                    </div>
+                <div>
+                    <img src="<?php echo e(asset('images/clock.png')); ?>">
+                    <p>2d1h23m</p>
                 </div>
             </div>
-        </section>
+            <div class="play_btn_container">
+                <div>
+                    <a href="#" class="play-now-btn">Play now</a>
+                </div>
+            </div>
+        </div>
 
     </main>
 <?php $__env->stopSection(); ?>

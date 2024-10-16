@@ -20,18 +20,14 @@
     <div class="wrapper">
         <?php echo $__env->yieldContent('content'); ?>
     </div>
-
-
-
-
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 
     <script>
-        const interval = 1000;
+        const interval = 4000;
         $(() => {
             setInterval(() => {
-                location.reload();
+                // location.reload();
             }, interval);
         });
     </script>
