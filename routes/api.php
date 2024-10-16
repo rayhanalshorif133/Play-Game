@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\ScoreController;
+use App\Http\Controllers\api\PaymentController;
 use App\Http\Controllers\api\UserController;
 
 /*
@@ -36,6 +37,10 @@ Route::match(['get', 'post'], '/score', [ScoreController::class, 'score']);
 // {{baseurl}}/api/redirect?msisdn=8801711111111&keyword=mergeDice
 Route::match(['get', 'post'], '/redirect', [ScoreController::class, 'redirect']);
 
-// https://html5.b2mwap.com/bdgamers/MergeDice/?msisdn=01818401066&keyword=margeDice
 
-// play.b2m-tech.com/api/score?msisdn=01818401065&score=407&keyword=mergeDice
+
+Route::match(['get', 'post'], '/payment-create', [PaymentController::class, 'paymentCreate']);
+Route::match(['get', 'post'], '/payment-callback', [PaymentController::class, 'paymentCallback']);
+
+// https://www.google.com/?aocTransID=TR6667046925
+

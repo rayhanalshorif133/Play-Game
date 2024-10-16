@@ -71,16 +71,13 @@
     <script>
         var msisdn = $("#GET_MSISDN").val();
         var inv_no = Math.floor((Math.random() * 100000) + 1);
-        var paymentID = '';
-        var campaignDurationID = $("#GET_CampaignDurationID").val();
 
         $("#robi_button_play").click(() => {
-            axios.get('https://rd.b2mwap.com/api/getToken/Snake')
-                .then((res) => {
-                    const data = res.data.data;
-                    console.log(data);
-                    // window.location.href = redirectURL;
-                })
+            axios.post('/api/payment-create')
+                .then((response) => {
+                    const {redirectURL} = response.data.data;
+                    window.location.href = redirectURL;
+                });
         });
 
         $(document).ready(function() {

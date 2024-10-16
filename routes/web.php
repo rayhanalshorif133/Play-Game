@@ -2,10 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CampaignDurationController;
 use App\Http\Controllers\QuestionController;
@@ -15,7 +17,6 @@ use App\Http\Controllers\web\GoogleController;
 use App\Http\Controllers\web\FacebookController;
 use App\Http\Controllers\web\PublicController;
 use App\Http\Controllers\web\PublicLoginController;
-use App\Http\Controllers\web\ConsentPageController;
 use App\Http\Controllers\BkashController;
 use App\Http\Controllers\GameController;
 
@@ -181,11 +182,8 @@ Route::get('/leaderboard/{id?}',[PublicController::class,'leaderboard'])->name('
 
 
 
-// Payment Routes for bKash
-
-Route::match(['get', 'post'], '/create-payment/{msisdn}/{campaign_duration_id}', [BkashController::class,'createPayment'])->name('bkash-create-payment');
-Route::match(['get', 'post'], '/execute-payment/{msisdn}/{paymentID}', [BkashController::class,'executePayment'])->name('bkash-execute-payment');
-Route::match(['get', 'post'], '/consent-back/{msisdn}/{trxID}', [BkashController::class,'consentBack'])->name('bkash-consent-back');
+// Payment Routes for Robi
+Route::match(['get', 'post'], '/payment/{status}', [PaymentController::class,'paymentStatus'])->name('payment-status');
 
 
 
