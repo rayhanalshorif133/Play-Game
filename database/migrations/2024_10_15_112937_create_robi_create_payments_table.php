@@ -19,6 +19,7 @@ class CreateRobiCreatePaymentsTable extends Migration
             $table->string('redirectURL')->nullable(); // Add a column for redirectURL
             $table->string('spTransID')->nullable(); // Add a column for spTransID
             $table->json('response')->nullable(); // Add a column for spTransID
+            $table->dateTime('date_time')->nullable();
             $table->timestamps();
         });
     }
