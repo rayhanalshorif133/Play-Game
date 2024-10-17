@@ -59,9 +59,9 @@ class PaymentController extends Controller
             $newPayment->save();
 
             if($newPayment->status == 1) {
-                return redirect('/payment/success?newPayment='.$newPayment);
+                return redirect('/home?status=success');
             }else{
-                return redirect('/payment/failed');
+                return redirect('/home?status=failure');
             }
 
         } catch (\Throwable $th) {
