@@ -15,9 +15,9 @@
             </div>
             <div class="play_btn_container">
                 <div>
-                    <a href="#">
+                    <button id="robi_button_play">
                         Subscribe to Play
-                    </a>
+                    </button>
                 </div>
                 <div>
                     <a href="#">
@@ -33,4 +33,22 @@
 
 {{-- scripts --}}
 @push('scripts')
+<script>
+    var msisdn = $("#GET_MSISDN").val();
+    var inv_no = Math.floor((Math.random() * 100000) + 1);
+
+    $("#robi_button_play").click(() => {
+        axios.post('/api/payment-create')
+            .then((response) => {
+                const {redirectURL} = response.data.data;
+                window.location.href = redirectURL;
+            });
+    });
+
+    $(document).ready(function() {
+        $(".paymentSuccessAlertCancel").click(() => {
+            $(".paymentSuccessAlert").addClass('d-none');
+        });
+    });
+</script>
 @endpush

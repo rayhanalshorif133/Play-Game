@@ -21,6 +21,8 @@
         <?php echo $__env->yieldContent('content'); ?>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 
 
     <script>
@@ -31,6 +33,7 @@
             }, interval);
         });
     </script>
+    <?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
 
 </html>

@@ -128,6 +128,16 @@ body {
     background: linear-gradient(180deg, #E9D6FF 50%, #D5BBF2 50%);
 }
 
+.play_btn_container div button{
+    text-decoration: none;
+    cursor: pointer;
+    padding: 10px 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 24px;
+    font-weight: bolder;
+    border-radius: 28px;
+    text-align: center;
+}
 .play_btn_container div a {
     text-decoration: none;
     cursor: pointer;
@@ -139,7 +149,7 @@ body {
     text-align: center;
 }
 
-.play_btn_container div:nth-of-type(1) a{
+.play_btn_container div:nth-of-type(1) button{
     color: #fff;
 }
 
