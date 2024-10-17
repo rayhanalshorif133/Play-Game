@@ -31,11 +31,15 @@
                     <p>Tournament Rules</p>
                 </div>
             </div>
-            <div class="play_btn_container">
-                <div>
-                    <a href="#" class="play-now-btn">Play now</a>
+            @if (count($currentCampaignDurations) > 0)
+                <div class="play_btn_container">
+                    <div>
+                        <a href="{{ route('campaign.campaign-details', $currentCampaignDurations[0]->id) }}" class="play-now-btn">
+                            Play now
+                        </a>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
 
     </main>
