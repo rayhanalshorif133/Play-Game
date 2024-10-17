@@ -6,10 +6,10 @@
 
         <div class="home_container">
             <div class="game_title">
-                <h1>Snake Game</h1>
+                <img src="<?php echo e(asset('images/game_title.png')); ?>">
             </div>
             <div class="logo">
-                <img src="https://picsum.photos/200/200">
+                <img src="<?php echo e(asset('images/snake_avater.png')); ?>">
             </div>
             <div class="label_container">
                 <div>
@@ -19,6 +19,14 @@
                 <div>
                     <img src="<?php echo e(asset('images/clock.png')); ?>">
                     <p>2d1h23m</p>
+                </div>
+            </div>
+            <div class="leaderBoard_tournament_container">
+                <div>
+                    <p>Leaderboad</p>
+                </div>
+                <div>
+                    <p>Tournament Rules</p>
                 </div>
             </div>
             <div class="play_btn_container">

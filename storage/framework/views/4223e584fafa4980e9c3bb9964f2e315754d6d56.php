@@ -24,7 +24,7 @@
 
 
     <script>
-        const interval = 4000;
+        const interval = 2000;
         $(() => {
             setInterval(() => {
                 // location.reload();
