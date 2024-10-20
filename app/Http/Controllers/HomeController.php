@@ -7,22 +7,24 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Campaign;
+use App\Models\Subscription;
+use App\Models\Game;
 use App\Models\CampaignDuration;
 use Carbon\Carbon;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->handleMsisdn();
+    }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+
     public function isLoginOrNot()
     {
-        if(Auth::check()){
+        if (Auth::check()) {
             $this->middleware('auth');
-            if(Auth::user()->role == 'admin'){
+            if (Auth::user()->role == 'admin') {
                 return redirect()->route('admin.dashboard');
             }
         }
@@ -40,42 +42,46 @@ class HomeController extends Controller
     public function home()
     {
 
-        // for ($index=0; $index < 20; $index++) { 
-        //     $phone = rand(1111,9999);
-        //     $score = rand(111,999);
-        //     Http::get('http://ttalksdp.b2mwap.com/api/score?msisdn=880171111'. $phone .'&score='. $score .'&keyword=mergeDice');
-        // }
-
-        // dd("Exiting...");
 
         $currentDate = Carbon::now()->toDateTimeString(); //
 
         $currentCampaignDurations = CampaignDuration::select()
             ->where('start_date_time', '<=', $currentDate)
             ->where('end_date_time', '>', $currentDate)
-            ->where('play_type','campaign')
+            ->where('play_type', 'campaign','game')
             ->with('campaign')
             ->get();
 
-        
-        $currentCampaignDurations->each(function($campaignDuration){
+
+        $currentCampaignDurations->each(function ($campaignDuration) {
             $campaignDuration->duration = $this->calculateDuration($campaignDuration);
         });
 
 
         // upcomingCampaignDurations
         $upcomingCampaignDurations = CampaignDuration::select()
-        ->where('start_date_time', '>', $currentDate)
-        ->where('play_type','campaign')
-        ->with('campaign')
-        ->get();
-        
-        $upcomingCampaignDurations->each(function($item){
+            ->where('start_date_time', '>', $currentDate)
+            ->where('play_type', 'campaign')
+            ->with('campaign')
+            ->get();
+
+        $upcomingCampaignDurations->each(function ($item) {
             $item->duration = $this->calculateDurationUpcoming($item);
         });
 
 
-        return view('public.home', compact('currentCampaignDurations', 'upcomingCampaignDurations'));
+        $hasAlreadySubs = false;
+
+        $isSubs = Subscription::where('msisdn', '=', $this->get_msisdn())
+            ->where('status', '=', 1) // Adjust the status as needed
+            ->first();
+
+        if($isSubs){
+            $hasAlreadySubs = true;
+        }
+
+
+        return view('public.home', compact('currentCampaignDurations','hasAlreadySubs', 'upcomingCampaignDurations'));
     }
 
     // calculateDurationUpcoming
@@ -110,7 +116,7 @@ class HomeController extends Controller
     public function index()
     {
         $this->middleware('auth');
-        
+
         return view('admin.dashboard');
     }
 }

@@ -7,7 +7,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CampaignController;
-use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CampaignDurationController;
 use App\Http\Controllers\QuestionController;
@@ -183,7 +182,6 @@ Route::get('/leaderboard/{id?}',[PublicController::class,'leaderboard'])->name('
 
 
 // Payment Routes for Robi
-Route::match(['get', 'post'], '/payment/{status}', [PaymentController::class,'paymentStatus'])->name('payment-status');
 
 
 

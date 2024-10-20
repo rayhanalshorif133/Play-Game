@@ -22,7 +22,10 @@
                     </button>
                 </div>
                 <div class="btn_secondary">
-                    <a href="#">
+                    @php
+                        $game = $campaignDuration->gameURL($campaignDuration);
+                    @endphp
+                    <a  href="{{ $game }}">
                         Play Trial
                     </a>
                 </div>
@@ -35,22 +38,24 @@
 
 {{-- scripts --}}
 @push('scripts')
-<script>
-    var msisdn = $("#GET_MSISDN").val();
-    var inv_no = Math.floor((Math.random() * 100000) + 1);
+    <script>
+        var msisdn = $("#GET_MSISDN").val();
+        var inv_no = Math.floor((Math.random() * 100000) + 1);
 
-    $("#robi_button_play").click(() => {
-        axios.post('/api/payment-create')
-            .then((response) => {
-                const {redirectURL} = response.data.data;
-                window.location.href = redirectURL;
-            });
-    });
-
-    $(document).ready(function() {
-        $(".paymentSuccessAlertCancel").click(() => {
-            $(".paymentSuccessAlert").addClass('d-none');
+        $("#robi_button_play").click(() => {
+            axios.post('/api/payment-create')
+                .then((response) => {
+                    const {
+                        redirectURL
+                    } = response.data.data;
+                    window.location.href = redirectURL;
+                });
         });
-    });
-</script>
+
+        $(document).ready(function() {
+            $(".paymentSuccessAlertCancel").click(() => {
+                $(".paymentSuccessAlert").addClass('d-none');
+            });
+        });
+    </script>
 @endpush

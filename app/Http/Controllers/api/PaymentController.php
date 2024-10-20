@@ -12,6 +12,10 @@ use Carbon\Carbon;
 
 class PaymentController extends Controller
 {
+    public function __construct(){
+        $this->handleMsisdn();
+    }
+
     public function paymentCreate()
     {
         // Initialize cURL session

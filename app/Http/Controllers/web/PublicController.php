@@ -38,39 +38,25 @@ class PublicController extends Controller
     // description
     public function campaignDetails($id)
     {
-        $currentDate = Carbon::now()->toDateTimeString(); 
-        $campaignDuration = CampaignDuration::select()->where('id',$id)->first();
+        $currentDate = Carbon::now()->toDateTimeString();
+        $campaignDuration = CampaignDuration::select()->where('id',$id)->with('game')->first();
 
         if($campaignDuration->start_date_time > $currentDate){
             $upcommingOrCurrent = 'upcomming';
         }else{
-            $upcommingOrCurrent = 'current'; 
+            $upcommingOrCurrent = 'current';
         }
 
 
-        $hasAlreadyPayment = false;
+        return view('public.description',compact('campaignDuration','currentDate'));
+    }
 
 
 
-        if(Auth::check()){
-            $hasPayment = BkashPayment::select()
-            ->where('campaign_duration_id',$id)
-            ->where('msisdn',Auth::user()->msisdn)
-            ->first();
-            if($hasPayment){
-                $hasAlreadyPayment = true; 
-            }
-        }
-        
-        return view('public.description',compact('campaignDuration','hasAlreadyPayment','currentDate'));
-    } 
-    
-   
-
-    // 
+    //
     public function campaignAccess(Request $request,$id)
     {
-        
+
         if(Auth::check()){
             return redirect()->back();
         }else{
@@ -78,7 +64,7 @@ class PublicController extends Controller
         }
     }
 
-    // 
+    //
     public function faq(){
         return view('public.faq');
     }
@@ -92,7 +78,7 @@ class PublicController extends Controller
             $findGame = Game::find($campaignDuration->game_id);
 
 
-            
+
             $score = Score::select()
                 ->where('msisdn', Auth::user()->msisdn)
                 ->where('game_keyword', $findGame->keyword)
@@ -105,7 +91,7 @@ class PublicController extends Controller
             }else{
                 $setScore = (int)$score->score;
             }
-            
+
 
             $score->campaign_id = $campaignDuration->campaign_id;
             $score->campaign_duration_id = $campaignDuration->id;

@@ -28,7 +28,7 @@ class CampaignDuration extends Model
     {
         return $this->belongsTo(Campaign::class);
     }
-    
+
     public function game()
     {
         return $this->belongsTo(Game::class);
@@ -39,17 +39,7 @@ class CampaignDuration extends Model
 
     public function gameURL($campaignDuration){
         $findGame = Game::find($campaignDuration->game_id);
-        // https://html5.b2mwap.com/bdgamers/MergeDice/?baseurl="http://ttalksdp.b2mwap.com"&msisdn=8801323174104&keyword=mergeDice
-
-        $baseURL = url('');
-        $url = '#';
-        if($findGame && Auth::check()){
-            $msisdn = Auth::user()->msisdn;
-            $url = $findGame->url . '?msisdn=' . $msisdn . '&keyword=' . $findGame->keyword . '&camp_duration_id=' . $campaignDuration->id;
-            // $url = $findGame->url . '?baseurl=' . $baseURL . '&msisdn=' . $msisdn . '&keyword=' . $findGame->keyword;
-        }else{
-            $url = $findGame->url . '?keyword=' . $findGame->keyword . '&camp_duration_id=' . $campaignDuration->id; 
-        }
+        $url = $findGame->url . '?keyword=' . $findGame->keyword . '&token=' . $this->get_msisdn();
         return $url;
     }
 

@@ -4,6 +4,8 @@
     --body-bg: #EEE9F3;
     --primary-color: #5D2E90;
     --primary-color-light: #8957A8;
+    --white: #FFFFFF; /* White color for text and backgrounds */
+    --text-color: #333333; /* Dark color for text */
 }
 
 * {
@@ -140,6 +142,10 @@ body {
 }
 
 
+.play_btn_container div:nth-of-type(2) {
+    padding: 5px 0;
+}
+
 
 .play_btn_container div:nth-of-type(2) {
 
@@ -165,9 +171,9 @@ body {
 .play_btn_container div a {
     text-decoration: none;
     cursor: pointer;
-    padding: 10px 50px;
+    padding: 20px 50px;
     font-family: 'Nunito', sans-serif;
-    font-size: 36px;
+    font-size: 24px;
     font-weight: bolder;
     border-radius: 32px;
     text-align: center;
@@ -200,8 +206,6 @@ body {
 
 .payment_model {
     position: relative;
-
-
 }
 
 .payment_model .status {
@@ -224,7 +228,7 @@ body {
 }
 
 
-.payment_model .ooops_container{
+.payment_model .ooops_container {
     text-align: center;
 }
 
@@ -235,6 +239,7 @@ body {
     font-size: 56px;
     font-style: normal;
 }
+
 .payment_model .ooops_container p {
     font-family: "Nunito", sans-serif;
     font-optical-sizing: auto;
@@ -243,8 +248,8 @@ body {
     font-style: normal;
 }
 
-.payment_close_btn{
-    font-weight: 800!important;
+.payment_close_btn {
+    font-weight: 800 !important;
     font-family: "Nunito", sans-serif;
     font-optical-sizing: auto;
 }
@@ -269,12 +274,9 @@ body {
     box-shadow: none !important;
 }
 
-.payment_model {}
-
-.payment_model {}
 
 
-.back_button{
+.back_button {
     margin: 40px 0 0 40px;
     display: block;
     transition: all 0.3s ease-in-out;
@@ -282,13 +284,105 @@ body {
 
 
 .back_button i {
-    font-size: 28px; /* Icon size */
+    font-size: 28px;
+    /* Icon size */
     color: #5C2D91;
     transition: all 0.3s ease-in-out;
 }
 
 .back_button:hover i {
     transform: translateX(-10px);
+}
+
+
+.table {
+    background-color: white;
+    border-radius: 8px;
+}
+
+.table th {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.table tr:nth-child(even) {
+    background-color: var(--primary-color-light);
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+.tournament_rules,
+.leaderboard {
+    background-color: #EEE9F3 !important;
+}
+
+.tournament_rules h5,
+.leaderboard h5 {
+    font-weight: 800 !important;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-size: 24px;
+}
+
+.tournament_rules .modal-body,
+.leaderboard .modal-body {
+    padding: 2px!important;
+}
+
+.leaderboard .table{
+    margin-bottom: 0!important;
+}
+
+/* Custom Close Button Styles */
+.custom-close {
+    font-size: 1.5rem;
+
+    transition: color 0.3s ease, transform 0.3s ease;
+    border: none;
+    border-radius: 50%;
+    height: 28px;
+    width: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-close span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary-color-light);
+}
+
+.custom-close:hover {
+    color: var(--primary-color-light);
+    transform: scale(1.2);
+}
+
+
+h6 {
+    font-size: 1.2rem; /* Heading size */
+    margin-bottom: 15px; /* Margin below heading */
+    color: var(--primary-color); /* Heading color */
+}
+
+ol {
+    padding-left: 20px; /* Indent list */
+    color: var(--text-color); /* Text color for rules */
+}
+
+li {
+    margin-bottom: 10px; /* Space between list items */
+}
+
+li strong {
+    color: var(--primary-color); /* Bold text color for strong elements */
 }
 
 
@@ -331,7 +425,7 @@ body {
 
     .play_btn_container div a {
         padding: 10px 50px;
-        font-size: 28px;
+        font-size: 24px;
         border-radius: 32px;
     }
 }
