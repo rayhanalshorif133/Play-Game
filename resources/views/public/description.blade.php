@@ -5,7 +5,9 @@
 
 @section('content')
     <main role="main">
-
+        <a href="{{ route('home') }}" class="back_button">
+            <i class="fa-solid fa-circle-arrow-left"></i>
+        </a>
         <div class="home_container">
             <div class="game_title">
                 <img src="{{ asset('images/game_title.png') }}">
@@ -14,12 +16,12 @@
                 <img src="{{ asset('images/snake_avater.png') }}">
             </div>
             <div class="play_btn_container">
-                <div>
-                    <button id="robi_button_play">
+                <div class="btn_primary">
+                    <button class="btn" id="robi_button_play">
                         Subscribe to Play
                     </button>
                 </div>
-                <div>
+                <div class="btn_secondary">
                     <a href="#">
                         Play Trial
                     </a>

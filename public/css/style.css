@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 :root {
     --body-bg: #EEE9F3;
@@ -86,6 +86,7 @@ body {
     font-family: 'Nunito', sans-serif;
     color: var(--primary-color);
     font-weight: 600;
+    margin-bottom: 0;
 }
 
 .leaderBoard_tournament_container div:hover {
@@ -102,42 +103,65 @@ body {
     margin-top: 3rem;
 }
 
-.play_btn_container div {
+.btn_primary {
     width: auto !important;
     border-radius: 32px;
     border: 5px solid var(--primary-color-light);
-    transition: all 0.3s ease-in-out; /* Transition defined once */
-}
-
-.play_btn_container div:nth-of-type(1){
+    transition: all 0.3s ease-in-out;
+    /* Transition defined once */
     background: linear-gradient(180deg, #5C2D91 50%, #6B36A7 50%);
-    text-align: center;
 }
 
-.play_btn_container div:nth-of-type(1):hover {
+.btn_primary a,
+.btn_primary button {
+    color: #fff;
+}
+
+.btn_primary a:hover,
+.btn_primary button:hover {
+    color: #fff;
     background: linear-gradient(-180deg, #6B36A7 50%, #5C2D91 50%);
 }
 
-.play_btn_container div:nth-of-type(2){
+.btn_secondary {
+    width: auto !important;
+    border-radius: 32px;
+    border: 5px solid var(--primary-color-light);
+    transition: all 0.3s ease-in-out;
     background: linear-gradient(180deg, #D5BBF2 50%, #E9D6FF 50%);
+    text-align: center;
+}
+
+.btn_secondary a,
+.btn_secondary button {
+    color: #9C4DF5;
+    text-align: center;
+    font-weight: 600;
+}
+
+
+
+.play_btn_container div:nth-of-type(2) {
+
     text-align: center;
     margin: 20px 0;
 }
 
-.play_btn_container div:nth-of-type(2):hover{
-    background: linear-gradient(180deg, #E9D6FF 50%, #D5BBF2 50%);
-}
 
-.play_btn_container div button{
+
+.play_btn_container div button {
     text-decoration: none;
     cursor: pointer;
-    padding: 10px 50px;
+    padding: 6px 50px;
     font-family: 'Nunito', sans-serif;
     font-size: 24px;
     font-weight: bolder;
     border-radius: 28px;
     text-align: center;
+    background: transparent;
+    box-shadow: none;
 }
+
 .play_btn_container div a {
     text-decoration: none;
     cursor: pointer;
@@ -149,22 +173,123 @@ body {
     text-align: center;
 }
 
-.play-now-btn{
+.play-now-btn {
     color: #fff;
 }
 
-.play_btn_container div:nth-of-type(1) button{
+.play-now-btn:hover {
+    color: #e0e0e0;
+}
+
+.play_btn_container .subscribe_btn button {
     color: #fff;
 }
 
-.play_btn_container div:nth-of-type(2) a{
+.play_btn_container div:nth-of-type(2) a {
     color: #9C4DF5;
 }
 
-.play_btn_container div:hover a{
+.play_btn_container div:hover a {
     border-radius: 50px;
 }
 
+.modal-content {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.payment_model {
+    position: relative;
+
+
+}
+
+.payment_model .status {
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    /* Shift left by 50% of its own width */
+    background: #EEE9F3;
+    border-radius: 50%;
+    z-index: 9999;
+}
+
+
+
+.payment_model .status .fa-circle-check {
+    font-size: 3.5rem;
+    color: #4BB731;
+}
+
+
+.payment_model .ooops_container{
+    text-align: center;
+}
+
+.payment_model .ooops_container h1 {
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-size: 56px;
+    font-style: normal;
+}
+.payment_model .ooops_container p {
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: 24px;
+    font-style: normal;
+}
+
+.payment_close_btn{
+    font-weight: 800!important;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+}
+
+
+.payment_model .status .fa-circle-exclamation {
+    font-size: 4rem;
+    color: #FF6B6B;
+}
+
+.payment_model .content {
+    background-color: #EEE9F3;
+    position: relative;
+    border-radius: 28px;
+    top: 30px;
+    padding-bottom: 2rem;
+}
+
+.btn-check:focus+.btn,
+.btn:focus {
+    outline: 0;
+    box-shadow: none !important;
+}
+
+.payment_model {}
+
+.payment_model {}
+
+
+.back_button{
+    margin: 40px 0 0 40px;
+    display: block;
+    transition: all 0.3s ease-in-out;
+}
+
+
+.back_button i {
+    font-size: 28px; /* Icon size */
+    color: #5C2D91;
+    transition: all 0.3s ease-in-out;
+}
+
+.back_button:hover i {
+    transform: translateX(-10px);
+}
 
 
 /* media tag devices:start */
