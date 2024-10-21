@@ -107,8 +107,6 @@
         $(".tournament_rules_btn").click(() => {
             tournamentRulesModal.show();
         });
-
-
     </script>
 <?php $__env->stopPush(); ?>
 

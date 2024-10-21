@@ -98,7 +98,7 @@
                  </ol>
                  <div class="mx-auto w-full d-flex justify-content-center" style="margin-top: 2.8rem">
                     <div class="btn_secondary" style="width: 7rem!important">
-                        <button data-bs-dismiss="modal" class="btn payment_try_again_btn">Close</button>
+                        <button data-bs-dismiss="modal" class="btn">Close</button>
                     </div>
                 </div>
              </div>
