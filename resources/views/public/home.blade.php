@@ -109,5 +109,7 @@
         $(".tournament_rules_btn").click(() => {
             tournamentRulesModal.show();
         });
+
+
     </script>
 @endpush

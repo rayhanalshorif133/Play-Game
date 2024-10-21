@@ -34,9 +34,6 @@
                      <div class="btn_secondary" style="width: 7rem!important">
                          <button data-bs-dismiss="modal" class="btn payment_try_again_btn">Try Again</button>
                      </div>
-                     <div class="btn_secondary mx-2" style="width: 7rem!important">
-                         <button data-bs-dismiss="modal" class="btn payment_close_btn">Close</button>
-                     </div>
                  </div>
              </div>
          </div>
@@ -46,49 +43,33 @@
  <div class="modal fade" id="leaderboadModal" tabindex="-1" aria-labelledby="leaderboadModalLabel" aria-hidden="true">
      <div class="modal-dialog modal-dialog-centered">
          <div class="modal-content leaderboard">
-             <div class="modal-header" style="background-color: var(--primary-color); color: white;">
-                 <h5 class="modal-title" id="leaderboardModalLabel">Leaderboard</h5>
-                 <button type="button" class="close custom-close" data-bs-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                 </button>
+             <div class="modal_header">
+                 <h5 class="modal_title" id="leaderboardModalLabel">Leaderboard</h5>
+                 <div class="close_btn">
+                    <button type="button" class="close custom-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                 </div>
              </div>
-             <div class="modal-body">
-                 <table class="table">
-                     <thead>
-                         <tr>
-                             <th scope="col">#</th>
-                             <th scope="col">Name</th>
-                             <th scope="col">Score</th>
-                         </tr>
-                     </thead>
-                     <tbody>
-                         <tr>
-                             <td scope="row">1</td>
-                             <td>Alice</td>
-                             <td>1500</td>
-                         </tr>
-                         <tr>
-                             <td scope="row">2</td>
-                             <td>Bob</td>
-                             <td>1400</td>
-                         </tr>
-                         <tr>
-                             <td scope="row">3</td>
-                             <td>Charlie</td>
-                             <td>1300</td>
-                         </tr>
-                         <tr>
-                             <td scope="row">4</td>
-                             <td>David</td>
-                             <td>1200</td>
-                         </tr>
-                         <tr>
-                             <td scope="row">5</td>
-                             <td>Eve</td>
-                             <td>1100</td>
-                         </tr>
-                     </tbody>
-                 </table>
+             <div class="modal_body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>User No</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for ($index = 0; $index <100 ; $index++)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>017{{ random_int(11111111, 99999999) }}</td>
+                            <td>{{ random_int(111, 999) }}</td>
+                        </tr>
+                        @endfor
+                    </tbody>
+                </table>
              </div>
          </div>
      </div>
