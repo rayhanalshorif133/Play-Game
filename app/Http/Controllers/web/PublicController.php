@@ -13,6 +13,11 @@ use App\Models\Score;
 
 class PublicController extends Controller
 {
+    public function __construct()
+    {
+        $this->handleMsisdn();
+    }
+
     public function dashboard()
     {
         $authUser = Auth::user();
@@ -41,14 +46,10 @@ class PublicController extends Controller
         $currentDate = Carbon::now()->toDateTimeString();
         $campaignDuration = CampaignDuration::select()->where('id',$id)->with('game')->first();
 
-        if($campaignDuration->start_date_time > $currentDate){
-            $upcommingOrCurrent = 'upcomming';
-        }else{
-            $upcommingOrCurrent = 'current';
-        }
+        $msisdn = $this->get_msisdn();
 
 
-        return view('public.description',compact('campaignDuration','currentDate'));
+        return view('public.description',compact('campaignDuration','currentDate','msisdn'));
     }
 
 

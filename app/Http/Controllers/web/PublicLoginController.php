@@ -15,6 +15,7 @@ class PublicLoginController extends Controller
     // login
     public function login(Request $request)
     {
+        return redirect()->route('home');
         $method = $request->getMethod();
         if($method == 'GET'){
             return view('public.auth.login');
@@ -29,13 +30,13 @@ class PublicLoginController extends Controller
             flash()->addError('Email or Phone Number and Password is required');
             return redirect()->back();
         }
-        
+
         // check if email or phone
         $phoneORemail = $request->email_phone;
         $password = $request->password;
 
         $user = User::where('email', $phoneORemail)->orWhere('msisdn', $phoneORemail)->first();
-        
+
         if(!$user){
             flash()->addError('User not found');
             return redirect()->back();

@@ -23,9 +23,9 @@
                 </div>
                 <div class="btn_secondary">
                     @php
-                        $game = $campaignDuration->gameURL($campaignDuration);
+                        $game = $campaignDuration->gameURL($campaignDuration) . $msisdn;
                     @endphp
-                    <a  href="{{ $game }}">
+                    <a href="{{ $game }}">
                         Play Trial
                     </a>
                 </div>
@@ -33,15 +33,13 @@
         </div>
 
     </main>
+
 @endsection
 
 
 {{-- scripts --}}
 @push('scripts')
     <script>
-        var msisdn = $("#GET_MSISDN").val();
-        var inv_no = Math.floor((Math.random() * 100000) + 1);
-
         $("#robi_button_play").click(() => {
             axios.post('/api/payment-create')
                 .then((response) => {

@@ -11,6 +11,13 @@ use Yajra\DataTables\Facades\DataTables;
 
 class CampaignDurationController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->handleMsisdn();
+    }
+
+
     public function index($campaign_id)
     {
         if (request()->ajax()) {
