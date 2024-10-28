@@ -52,10 +52,8 @@ class PaymentController extends Controller
     public function paymentCallback(Request $request, $payment_id)
     {
 
-        // http://127.0.0.1:8000/api/payment/7/callback?keyword=BDG&msisdn=8801701677479&acr=OcCngbiAb6IGp5D1b2XYJ2nbjMf5izcx&type=ondemand&result=success
 
         try {
-            // $chargeData = $this->chargeStatusCheck($request->all());
 
             $newPayment = new PaymentDetails();
             $newPayment->payment_id = $payment_id;
