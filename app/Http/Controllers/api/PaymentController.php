@@ -82,7 +82,7 @@ class PaymentController extends Controller
                 } else {
                     $subscription = new Subscription();
                     $subscription->msisdn = $newPayment->msisdn;
-                    $subscription->aocTransID = $newPayment->aocTransID;
+                    $subscription->acr = $newPayment->acr;
                     $subscription->keyword = $request->keyword;
                     $subscription->status = 1;
                     $subscription->subs_date = Carbon::now();
@@ -93,7 +93,7 @@ class PaymentController extends Controller
 
                 // make log
 
-                $subUnsubsLog->robi_payment_id = $newPayment->id;
+                $subUnsubsLog->payment_id = $newPayment->id;
                 $subUnsubsLog->msisdn = $newPayment->msisdn;
                 $subUnsubsLog->type = 'subs';
                 $subUnsubsLog->keyword = $request->keyword;
@@ -112,38 +112,4 @@ class PaymentController extends Controller
     }
 
 
-    public function chargeStatusCheck($aocTransID)
-    {
-        // Initialize cURL session
-        $ch = curl_init();
-
-        // Set the URL
-        curl_setopt($ch, CURLOPT_URL, 'https://rd.b2mwap.com/api/chargeStatus/' . $aocTransID);
-
-        // Return the transfer as a string instead of outputting it directly
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-        // Execute the request and get the response
-        $response = curl_exec($ch);
-
-        // Check if any error occurred during the request
-        if (curl_errno($ch)) {
-            echo 'Error:' . curl_error($ch);
-        } else {
-            // Decode the response if it's JSON
-            $data = json_decode($response, true);
-
-            // Access the specific data from the response
-            // if (isset($data['data'])) {
-            //     $data = $data['data'];
-            //     // Uncomment and set your redirect URL if needed
-            //     // header("Location: " . $redirectURL);
-            // }
-        }
-
-
-        curl_close($ch);
-
-        return $data;
-    }
 }

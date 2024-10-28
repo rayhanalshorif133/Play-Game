@@ -11,7 +11,7 @@ class SubUnsubsLog extends Model
 
     protected $fillable = [
         'subscription_id',
-        'robi_payment_id',
+        'payment_id',
         'message',
         'msisdn',
         'type',

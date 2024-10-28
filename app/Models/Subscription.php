@@ -11,7 +11,7 @@ class Subscription extends Model
 
     protected $fillable = [
         'msisdn',
-        'aocTransID',
+        'acr',
         'keyword',
         'status',
         'subs_date',

@@ -17,7 +17,7 @@ class CreateSubUnsubsLogsTable extends Migration
             $table->id();
             $table->string('msisdn'); // The phone number
             $table->unsignedBigInteger('subscription_id')->nullable();
-            $table->unsignedBigInteger('robi_payment_id')->nullable();
+            $table->unsignedBigInteger('payment_id')->nullable();
             $table->string('type')->enum('subs', 'unsubs')->default('unsubs');
             $table->string('keyword')->nullable();
             $table->string('status')->nullable();

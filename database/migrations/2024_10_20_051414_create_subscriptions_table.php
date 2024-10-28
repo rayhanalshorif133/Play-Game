@@ -16,7 +16,7 @@ class CreateSubscriptionsTable extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->string('msisdn')->nullable()->unique();
-            $table->string('aocTransID')->nullable(); // Add a column for aocTransID
+            $table->string('acr')->nullable(); // Add a column for aocTransID
             $table->string('keyword')->nullable();
             $table->bigInteger('status')->nullable()->default(0);
             $table->string('subs_date')->nullable();
