@@ -28,7 +28,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // https://html5.b2mwap.com/bdgamers/MergeDice/?baseurl="play.b2m-tech.com"&msisdn=8801323174104&keyword=mergeDice
 
-// Notification API (Http Request):
+
+//
+
 
 //{{baseurl}}/api/score?msisdn=8801711111111&score=100&keyword=mergeDice
 Route::match(['get', 'post'], '/score', [ScoreController::class, 'score']);
@@ -40,7 +42,7 @@ Route::match(['get', 'post'], '/redirect', [ScoreController::class, 'redirect'])
 
 
 Route::match(['get', 'post'], '/payment-create', [PaymentController::class, 'paymentCreate']);
-Route::match(['get', 'post'], '/payment-callback', [PaymentController::class, 'paymentCallback']);
+Route::match(['get', 'post'], '/payment/{payment_id}/callback', [PaymentController::class, 'paymentCallback']);
 
 // https://www.google.com/?aocTransID=TR6667046925
 

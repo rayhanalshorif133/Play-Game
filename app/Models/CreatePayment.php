@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RobiCreatePayment extends Model
+class CreatePayment extends Model
 {
     use HasFactory;
 
+
+
     protected $fillable = [
-        'aocTransID',
-        'redirectURL',
-        'spTransID',
-        'response',
+        'msisdn',
+        'redirect_url',
+        'status',
         'date_time'
     ];
 }

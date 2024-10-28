@@ -17,7 +17,7 @@
             </div>
             <div class="play_btn_container">
                 <div class="btn_primary">
-                    <button class="btn" id="robi_button_play">
+                    <button class="btn" id="button_play">
                         Subscribe to Play
                     </button>
                 </div>
@@ -40,13 +40,12 @@
 {{-- scripts --}}
 @push('scripts')
     <script>
-        $("#robi_button_play").click(() => {
-            axios.post('/api/payment-create')
-                .then((response) => {
-                    const {
-                        redirectURL
-                    } = response.data.data;
-                    window.location.href = redirectURL;
+        $("#button_play").click(() => {
+            $("#button_play").text('Please Wait ...');
+            axios.get('/api/payment-create')
+                .then(function (response) {
+                    const URL = response.data.data;
+                    window.location.href = URL;
                 });
         });
 

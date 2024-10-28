@@ -4,8 +4,8 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\RobiCreatePayment;
-use App\Models\RobiPayment;
+use App\Models\CreatePayment;
+use App\Models\PaymentDetails;
 use App\Models\Subscription;
 use App\Models\SubUnsubsLog;
 use Carbon\Carbon;
@@ -20,56 +20,57 @@ class PaymentController extends Controller
     {
         // Initialize cURL session
         try {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, 'https://rd.b2mwap.com/api/getToken/Snake');
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            $response = curl_exec($ch);
-            if (curl_errno($ch)) {
-                echo 'Error:' . curl_error($ch);
-            } else {
-                $data = json_decode($response, true);
-                if (isset($data['data'])) {
-                    $data = $data['data'];
-                }
-            }
-            curl_close($ch);
 
-            $new_payment = new RobiCreatePayment();
-            $new_payment->aocTransID = $data['aocTransID'];
-            $new_payment->redirectURL = $data['redirectURL'];
-            $new_payment->spTransID = $data['spTransID'];
-            $new_payment->response = json_encode($data);
+
+
+            $msisdn = $this->get_msisdn();
+
+
+            if($msisdn){
+                $url = 'https://gpglobal.b2mwap.com/api/subscription?keyword=BDG&msisdn=' . $msisdn;
+            }
+
+            $new_payment = new CreatePayment();
+            $new_payment->msisdn = $msisdn;
             $new_payment->date_time = date('Y-m-d H:i:s');
+            $new_payment->redirect_url = $url;
             $new_payment->save();
 
-            return $this->respondWithSuccess('create payment', $data);
+
+            $callback = url('api/payment/'. $new_payment->id .'/callback');
+
+
+            $url = $url . '&success_url=' . $callback . '&failed_url=' . $callback;
+            $new_payment->redirect_url = $url;
+            $new_payment->save();
+            return $this->respondWithSuccess('create payment', $url);
         } catch (\Throwable $th) {
             return $this->respondWithError('Something went wrong', $th->getMessage());
         }
     }
 
-    public function paymentCallback(Request $request)
+    public function paymentCallback(Request $request, $payment_id)
     {
 
-        try {
-            $chargeData = $this->chargeStatusCheck($request->aocTransID);
+        // http://127.0.0.1:8000/api/payment/7/callback?keyword=BDG&msisdn=8801701677479&acr=OcCngbiAb6IGp5D1b2XYJ2nbjMf5izcx&type=ondemand&result=success
 
-            $newPayment = new RobiPayment();
-            $newPayment->code = $chargeData['code'];
-            $newPayment->response = json_encode($chargeData['data']);
-            $newPayment->aocTransID = $request->aocTransID; // Assuming you want to use this as a transaction ID
-            if($chargeData['status'] == true){
-                $newPayment->msisdn = $chargeData['data']['msisdn'];
-                $newPayment->status = $chargeData['code'] == "00" ? 1 : 0;
-                $newPayment->amount = $chargeData['data']['totalAmountCharged'];
-                $newPayment->transaction_id = $chargeData['data']['clientCorrelator'];
-                $newPayment->chargeStatus = $chargeData['data']['transactionOperationStatus'];
-            }else{
-                $newPayment->status = 0;
-                $newPayment->chargeStatus = false;
-            }
-            $newPayment->date_time = date('Y-m-d H:i:s'); // Current date and time
+        try {
+            // $chargeData = $this->chargeStatusCheck($request->all());
+
+            $newPayment = new PaymentDetails();
+            $newPayment->payment_id = $payment_id;
+            $newPayment->keyword = $request->keyword;
+            $newPayment->msisdn = $request->msisdn;
+            $newPayment->acr = $request->acr;
+            $newPayment->status = $request->result == 'success' ? 1 : 0;
+            $newPayment->type = $request->type;
+            $newPayment->result = $request->result;
+            $newPayment->response = json_encode($request->all());
+            $newPayment->date_time = date('Y-m-d H:i:s');
             $newPayment->save();
+
+
+            return redirect('/home?status=success');
 
 
 
@@ -84,7 +85,7 @@ class PaymentController extends Controller
                     $subscription = new Subscription();
                     $subscription->msisdn = $newPayment->msisdn;
                     $subscription->aocTransID = $newPayment->aocTransID;
-                    $subscription->keyword = 'Snake';
+                    $subscription->keyword = $request->keyword;
                     $subscription->status = 1;
                     $subscription->subs_date = Carbon::now();
                     $subscription->unsubs_date = null;
@@ -97,7 +98,7 @@ class PaymentController extends Controller
                 $subUnsubsLog->robi_payment_id = $newPayment->id;
                 $subUnsubsLog->msisdn = $newPayment->msisdn;
                 $subUnsubsLog->type = 'subs';
-                $subUnsubsLog->keyword = 'Snake';
+                $subUnsubsLog->keyword = $request->keyword;
                 $subUnsubsLog->status = 1;
                 $subUnsubsLog->message = 'ok';
                 $subUnsubsLog->date_time = Carbon::now();
@@ -108,7 +109,7 @@ class PaymentController extends Controller
                 return redirect('/home?status=failure');
             }
         } catch (\Throwable $th) {
-            return $this->respondWithError('error to payment callback api', $th->getMessage());
+            return redirect('/home?status=failure');
         }
     }
 
