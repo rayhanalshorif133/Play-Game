@@ -16,18 +16,11 @@ class UserSeeder extends Seeder
     {
 
         User::truncate();
-        User::create([
-            'name' => 'Super Admin',
-            'email' => 'b2m-super-admin@gmail.com',
-            'password' => Hash::make('password'),
-            'role' => 'super-admin',
-            'status' => 'active',
-        ]);
 
         User::create([
             'name' => 'Admin',
             'email' => 'b2m-admin@gmail.com',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('b2m@1234'),
             'role' => 'admin',
             'status' => 'active',
         ]);

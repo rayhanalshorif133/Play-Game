@@ -1,195 +1,394 @@
-<?php $__env->startSection('styles'); ?>
+<!DOCTYPE html>
+<html lang="en">
+<!-- coding by Gogila._ -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-Up/Login Form | @Gogila._</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
-        /* ----------------------- */
-        .form-control {
-            border: rgba(211, 65, 116, 1) solid 1px;
-            border-radius: 10px;
+        /* POPPINS FONT */
+
+        @import  url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+        * {
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+            font-family: "Poppins", sans-serif;
         }
 
-        .form-control:focus {
-            border: rgba(211, 65, 116, 1) solid 1px;
-            border-radius: 10px;
-            box-shadow: none;
+        /* ===== COLOR VARIABLES ===== */
+
+        :root {
+            --primary-color: #6657f4;
+
+            --second-color: #ffffff;
+
+            --black-color: #000000;
         }
 
-        i#togglePassword {
+        /* ===== BODY - BACKGROUND IMAGE ===== */
+
+        body {
+            background: #9a90f5;
+        }
+
+        /* ===== Reusable CSS ===== */
+
+        a {
+            text-decoration: none;
+            color: var(--second-color);
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== WRAPPER ===== */
+
+        .wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .login-box {
+            position: relative;
+            width: 450px;
+            border: 3px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 7.5em 2.5em 4em 2.5em;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-header {
             position: absolute;
-            transform: translate(-17px, -26px);
-            right: 0;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-color);
+            width: 224px;
+            height: 70px;
+            border-radius: 0 0 20px 20px;
         }
 
-        .social {
+        .login-header span {
+            font-size: 30px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .login-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -30px;
+            width: 30px;
+            height: 30px;
+            border-top-right-radius: 50%;
+            background: transparent;
+            box-shadow: 15px 0 0 0 var(--primary-color);
+        }
+
+        .login-header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -30px;
+            width: 30px;
+            height: 30px;
+            border-top-left-radius: 50%;
+            background: transparent;
+            box-shadow: -15px 0 0 0 var(--primary-color);
+        }
+
+        .input_box {
+            position: relative;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            margin: 20px 0;
+            transition: 0.2s ease-in-out;
         }
 
-        .social button {
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            padding: 10px 20px;
-            margin: 10px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .icon:hover {
+            font-size: 24px;
         }
 
-        .social button:nth-child(1) {
-            background-color: #2374F2;
-        }
-
-        .social button:nth-last-child(1) {
-            background-color: #DB4437;
-        }
-
-        .social button span:nth-child(1) {
-            height: 20px;
-            width: 20px;
-            padding: 15px;
-            border-radius: 50%;
-            background: #fefefe;
-            display: block;
-        }
-
-        .social button i {
-            margin-right: 10px;
-        }
-
-
-
-
-
-        .social-login-btn {
-            display: inline-flex;
-            align-items: center;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
+        .input-field {
+            width: 100%;
+            height: 55px;
             font-size: 16px;
-            border-radius: 5px;
+            background: transparent;
+            color: #000000;
+            padding-inline: 20px 50px;
+            border: 2px solid var(--primary-color);
+            border-radius: 30px;
+            outline: none;
+        }
+
+        #user {
+            margin-bottom: 10px;
+        }
+
+        .label {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            transition: 0.2s ease-in-out;
+        }
+
+        .input-field:focus~.label,
+        .input-field:valid~.label {
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 14px;
+            background-color: var(--primary-color);
+            border-radius: 30px;
+            color: rgb(255, 255, 255);
+            padding: 0 10px;
+        }
+
+        .icon {
+            position: absolute;
+            top: 18px;
+            right: 25px;
+            font-size: 20px;
             cursor: pointer;
+        }
+
+        .bx-hide {
+            content: "\eb2c";
+            /* Hide icon */
+        }
+
+        .bx-show {
+            content: "\eb25";
+            /* Show icon */
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+        }
+
+        .input-submit {
+            width: 100%;
+            height: 50px;
+            background: #6657f4;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+        }
+
+        .input-submit:hover {
+            background: #1d0db2;
+            letter-spacing: 3px;
+        }
+
+        .register {
+            text-align: center;
+        }
+
+        .register a {
+            font-weight: 500;
+        }
+
+        a {
+            color: #6657f4;
+        }
+
+        @media  only screen and (max-width: 564px) {
+            .wrapper {
+                padding: 20px;
+            }
+
+            .login-box {
+                padding: 7.5em 1.5em 4em 2.5em;
+            }
+        }
+
+        /* For tablets and larger phones */
+        @media  only screen and (max-width: 1024px) {
+            .wrapper {
+                padding: 50px;
+            }
+
+            .login-box {
+                width: 80%;
+                /* Adjust width */
+                padding: 5em 1.5em 3em 1.5em;
+                /* Adjust padding */
+            }
+
+            .modal-content {
+                width: 70%;
+                /* Adjust modal width */
+            }
+        }
+
+        /* For smaller screens like phones */
+        @media  only screen and (max-width: 564px) {
+            .wrapper {
+                padding: 15px;
+            }
+
+            .login-box {
+                padding: 7.5em 1.5em 4em 2.5em;
+            }
+
+            .modal-content {
+                width: 90%;
+                /* Adjust modal width */
+            }
+
+            .remember-forgot {
+                font-size: 11px;
+                margin: 0 10px;
+            }
+
+            /* Hide the default checkbox */
+            input[type="checkbox"] {
+                width: 11px;
+                /* Set width */
+                height: 11px;
+                /* Set height */
+            }
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
             text-decoration: none;
-            transition: background-color 0.3s;
+            cursor: pointer;
         }
 
-        .fb-login-btn {
-            background-color: #4267B2;
+        .alert-danger {
+            color: #ffffff;
+            background-color: #ff4d4d;
+            border: 1px solid #ff1a1a;
+            border-radius: 5px;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            max-width: 500px;
+            margin: 10px auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
 
-        .fb-login-btn:hover {
-            background-color: #385898;
-        }
-
-        .google-login-btn {
-            background-color: #DB4437;
-        }
-
-        .google-login-btn:hover {
-            background-color: #C13505;
-        }
-
-
-
-        .social a {
-            margin-top: 20px;
-        }
-
-
-
-        .social div {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 30px;
-            width: 30px;
-            border-radius: 50%;
-            background: #ffffff;
-            margin-right: 10px;
-        }
-
-        .social div img {
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .social-login-btn{
-            transition: font-size 0.5s ease;
-        }
-
-        .social-login-btn:hover{
-            color: #fff;
-            font-size: 18px;
+        .alert-danger:hover {
+            background-color: #ff1a1a;
+            border-color: #ff0000;
         }
     </style>
-<?php $__env->stopSection(); ?>
+</head>
 
-<?php $__env->startSection('content'); ?>
-    <div class="discription-wrapper">
-        <section class="h-100 gradient-form" style="background-color: #fff;">
-            <div class="container py-5 h-100">
-                <div class="row d-flex justify-content-center align-items-center h-50">
-                    <div class="col-xl-10 col-md-10">
-                        <div class="row g-0 justify-content-center">
-                            <div class="col-lg-8 col-md-8 mt-5">
-                                <h3 class="text-center mx-auto py-2">
-                                    Welcome to <span class="text-danger">Play</span>
-                                </h3>
-                                <form method="POST" action="<?php echo e(route('public.login')); ?>">
-                                    <?php echo csrf_field(); ?>
-                                    <?php echo method_field('POST'); ?>
-                                    <!-- Email input -->
-                                    <div class=" mb-4">
-                                        <input type="text" id="form3Example3" class="form-control"
-                                            placeholder="Mobile or Email address" name="email_phone"/>
-                                    </div>
+<body>
+    <div class="wrapper">
 
-                                    <!-- Password input -->
-                                    <div class="mb-4 position-relative">
-                                        <input type="password" id="password" class="form-control position-relative" name="password" placeholder="Password" />
-                                        <i style="top:10px;right:10px" class="fa fa-eye position-absolute hidden-text px-2 cursor-pointer togglePassword"></i>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary common-btn w-full py-2 mb-2">
-                                        Login
-                                    </button>
-
-                                    <div class="d-flex align-items-center justify-content-center pb-4">
-                                        <p class="mb-0 me-2" style="margin-right: 2%;">Don't have an account?</p>
-                                        <a href="<?php echo e(route('public.register')); ?>" class="text-primary">Register</a>
-                                    </div>
-
-
-
-
-                                    <!-- Register buttons -->
-                                    <div class="text-center social">
-                                        <p>or sign up with:</p>
-                                        
-                                        <a href="<?php echo e(route('auth.google')); ?>" class="social-login-btn google-login-btn">
-                                            <div>
-                                                <img class="social-icon" src="<?php echo e(asset('web_assets/images/Google.png')); ?>"
-                                                    alt="Google Icon">
-                                            </div>
-                                            Login with Gmail
-                                        </a>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <form class="login-box" method="POST" action="<?php echo e(route('public.login')); ?>">
+            <?php echo csrf_field(); ?>
+            <?php echo method_field('POST'); ?>
+            <div class="login-header">
+                <span>Admin Login</span>
             </div>
-        </section>
+            <?php if(session('error')): ?>
+                <div class="alert alert-danger"><?php echo e(session('error')); ?></div>
+            <?php endif; ?>
+            <div class="input_box">
+                <input type="email" id="user" class="input-field" name="email" required>
+                <label for="user" class="label">Email</label>
+                <i class="bx bx-user icon"></i>
+            </div>
+            <div class="input_box">
+                <input type="password" name="password" id="pass" class="input-field" required>
+                <label for="pass" class="label">Password</label>
+                <i class="bx bx-lock-alt icon" id="togglePassword"></i>
+            </div>
+            <div id="passwordStrength" class="password-strength"></div>
+
+            <div class="input_box">
+                <input type="submit" class="input-submit" value="Login" onclick="handleLogin()">
+            </div>
+        </form>
     </div>
-<?php $__env->stopSection(); ?>
 
 
 
-<?php $__env->startPush('scripts'); ?>
-<?php $__env->stopPush(); ?>
+    <script>
+        document
 
-<?php echo $__env->make('layouts.app_public', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Rayhan\Development\Play-Game\resources\views/public/auth/login.blade.php ENDPATH**/ ?>
+            .getElementById("togglePassword")
+
+            .addEventListener("click", function() {
+                const passwordField = document.getElementById("pass");
+
+                const type =
+                    passwordField.getAttribute("type") === "password" ? "text" : "password";
+
+                passwordField.setAttribute("type", type);
+
+                this.classList.toggle("bx-hide");
+
+                this.classList.toggle("bx-show");
+            });
+    </script>
+
+</body>
+
+</html>
+<?php /**PATH D:\Rayhan\Development\Play-Game\resources\views/public/auth/login.blade.php ENDPATH**/ ?>

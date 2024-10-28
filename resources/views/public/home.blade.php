@@ -95,10 +95,8 @@
         $(".payment_try_again_btn").click(() => {
             axios.post('/api/payment-create')
                 .then((response) => {
-                    const {
-                        redirectURL
-                    } = response.data.data;
-                    window.location.href = redirectURL;
+                    const url = response.data.data;
+                    window.location.href = url;
                 });
         });
 

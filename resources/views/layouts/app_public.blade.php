@@ -24,6 +24,7 @@
         @yield('content')
     </div>
 
+
     <footer class="mt-4">
         <div class="lottie_banner">
             <lottie-player class="lottie-player" src="{{ asset('images/banner.json') }}" background="transparent" speed="1" loop autoplay>

@@ -68,7 +68,6 @@ class PaymentController extends Controller
             $newPayment->save();
 
 
-            return redirect('/home?status=success');
 
 
 
@@ -103,7 +102,15 @@ class PaymentController extends Controller
                 $subUnsubsLog->save();
                 return redirect('/home?status=success');
             } else {
-                //  make log with resion
+                $subUnsubsLog = new SubUnsubsLog();
+                $subUnsubsLog->payment_id = $newPayment->id;
+                $subUnsubsLog->msisdn = $newPayment->msisdn;
+                $subUnsubsLog->type = 'subs';
+                $subUnsubsLog->keyword = $request->keyword;
+                $subUnsubsLog->status = 0;
+                $subUnsubsLog->message = 'Failed to Payment or cancel payment';
+                $subUnsubsLog->date_time = Carbon::now();
+                $subUnsubsLog->save();
                 return redirect('/home?status=failure');
             }
         } catch (\Throwable $th) {
