@@ -112,18 +112,15 @@ class PublicLoginController extends Controller
 
                 if($request->password){
                     if($request->password != $request->password_confirmation){
-                        flash()->addError('Password and confirm password does not match');
                         return redirect()->back();
                     }
                     $user->password = Hash::make($request->password);
                 }
                 $user->save();
-                flash()->addSuccess('Profile successfully updated');
                 return redirect()->back();
             }
 
         } catch (\Throwable $th) {
-            flash()->addError($th->getMessage());
             return redirect()->back();
         }
     }
