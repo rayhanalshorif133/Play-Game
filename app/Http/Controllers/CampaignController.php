@@ -4,26 +4,38 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Campaign;
+use App\Models\CampaignDuration;
 use App\Models\Game;
+use Carbon\Carbon;
 use Yajra\DataTables\Facades\DataTables;
 
 class CampaignController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        if (request()->ajax()) {
-            $query = Campaign::orderBy('created_at', 'desc')
-                ->with('createdBy')
-                ->get();
-             return DataTables::of($query)
-             ->addIndexColumn()
-             ->rawColumns(['action'])
-             ->toJson();
+
+        $campaign = Campaign::orderBy('created_at', 'desc')->with('campaignDuration')->first();
+        $campaignDuration = CampaignDuration::select()->where('campaign_id', $campaign->id)->first();
+        $games = Game::first();
+        if($request->method() == 'GET'){
+            return view('campaign.index',compact('campaign','games','campaignDuration'));
+        }else{
+            $start_date = $request->start_date;
+            $start_time = $request->start_time;
+            $end_date = $request->end_date;
+            $end_time = $request->end_time;
+
+            $startDateTime = Carbon::createFromFormat('Y-m-d H:i', "$start_date $start_time");
+            $end_date_time = Carbon::createFromFormat('Y-m-d H:i', "$end_date $end_time");
+            $campaignDuration->start_date_time = $startDateTime->toDateTimeString();
+            $campaignDuration->end_date_time = $end_date_time->toDateTimeString();
+            $campaignDuration->save();
+            Session::flash('success', 'Campaign Duration Time Updated Successfully');
+            return redirect()->back();
         }
-        $games = Game::all();
-        return view('campaign.index',compact('games'));
     }
 
     // fetchCampaign
@@ -231,7 +243,7 @@ class CampaignController extends Controller
 
 
 
-    // playNow 
+    // playNow
     public function campaignDetails($campaign_id)
     {
         if(Auth::check()){

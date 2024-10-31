@@ -42,7 +42,7 @@ class CampaignDurationController extends Controller
     {
        try {
 
-        
+
 
         $validator = Validator::make($request->all(), [
             'campaign_id' => 'required',
