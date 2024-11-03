@@ -9,11 +9,11 @@
             <i class="fa-solid fa-circle-arrow-left"></i>
         </a>
         <div class="home_container p-5">
-            <div class="game_title">
-                <img src="{{ asset('images/game_title.png') }}">
+            <div class="game_title mt-5">
+                {{ $game->title }}
             </div>
             <div class="logo">
-                <img src="{{ asset('images/snake_avater.png') }}">
+                <img src="{{ asset($game->banner) }}">
             </div>
             <div class="play_btn_container">
                 <div class="btn_primary">

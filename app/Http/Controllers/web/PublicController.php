@@ -45,11 +45,12 @@ class PublicController extends Controller
     {
         $currentDate = Carbon::now()->toDateTimeString();
         $campaignDuration = CampaignDuration::select()->where('id',$id)->with('game')->first();
+        $game = Game::select()->first();
 
         $msisdn = $this->get_msisdn();
 
 
-        return view('public.description',compact('campaignDuration','currentDate','msisdn'));
+        return view('public.description',compact('game','campaignDuration','currentDate','msisdn'));
     }
 
 
