@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Campaign;
 use App\Models\Subscription;
 use App\Models\Game;
+use App\Models\Score;
 use App\Models\CampaignDuration;
 use Carbon\Carbon;
 
@@ -67,13 +68,17 @@ class HomeController extends Controller
         $isSubs = Subscription::where('msisdn', '=', $this->get_msisdn())
             ->where('status', '=', 1)
             ->first();
+        $subscription = Subscription::select()->where('status', '1')->count();
 
         if ($isSubs) {
             $hasAlreadySubs = true;
         }
 
-
-        return view('public.home', compact('game', 'campaignDuration', 'hasAlreadySubs'));
+        $scores = Score::select('msisdn', DB::raw('SUM(score) as total_score'))
+                ->groupBy('msisdn')
+                ->orderBy('total_score', 'desc')
+                ->get();
+        return view('public.home', compact('scores','game','subscription', 'campaignDuration', 'hasAlreadySubs'));
     }
 
     // calculateDurationUpcoming

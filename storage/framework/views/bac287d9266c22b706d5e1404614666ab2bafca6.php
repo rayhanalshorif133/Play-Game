@@ -15,7 +15,7 @@
             <div class="label_container">
                 <div>
                     <img src="<?php echo e(asset('images/playing_hands.png')); ?>">
-                    <p>3,900,900</p>
+                    <p><?php echo e($subscription); ?></p>
                 </div>
                 <div>
                     <img src="<?php echo e(asset('images/clock.png')); ?>">

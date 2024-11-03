@@ -60,15 +60,21 @@
                              <th>Score</th>
                          </tr>
                      </thead>
-                     <tbody>
-                         @for ($index = 0; $index < 100; $index++)
-                             <tr>
-                                 <td>{{ $index + 1 }}</td>
-                                 <td>017{{ random_int(11111111, 99999999) }}</td>
-                                 <td>{{ random_int(111, 999) }}</td>
-                             </tr>
-                         @endfor
-                     </tbody>
+                     @if (count($scores) == 0)
+                         <tbody>
+                            <tr><td>No data found</td></tr>
+                         </tbody>
+                     @else
+                         <tbody>
+                             @foreach ($scores as $index => $item)
+                                 <tr>
+                                     <td>{{ $index + 1 }}</td>
+                                     <td>{{ $item->msisdn }}</td>
+                                     <td>{{ $item->total_score }}</td>
+                                 </tr>
+                             @endforeach
+                         </tbody>
+                     @endif
                  </table>
              </div>
          </div>
@@ -97,10 +103,10 @@
                      <li>আয়োজকদের অধিকার: নিয়ম পরিবর্তনের অধিকার আয়োজকদের।</li>
                  </ol>
                  <div class="mx-auto w-full d-flex justify-content-center" style="margin-top: 2.8rem">
-                    <div class="btn_secondary" style="width: 7rem!important">
-                        <button data-bs-dismiss="modal" class="btn">Close</button>
-                    </div>
-                </div>
+                     <div class="btn_secondary" style="width: 7rem!important">
+                         <button data-bs-dismiss="modal" class="btn">Close</button>
+                     </div>
+                 </div>
              </div>
          </div>
      </div>

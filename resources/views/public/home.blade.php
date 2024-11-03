@@ -16,7 +16,7 @@
             <div class="label_container">
                 <div>
                     <img src="{{ asset('images/playing_hands.png') }}">
-                    <p>3,900,900</p>
+                    <p>{{ $subscription }}</p>
                 </div>
                 <div>
                     <img src="{{ asset('images/clock.png') }}">
