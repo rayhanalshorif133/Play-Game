@@ -19,4 +19,9 @@ class Game extends Model
         'status',
 
     ];
+
+    public function URL($game){
+        $url = $game->url . '?token=' . $this->get_msisdn() . '&keyword=' . $game->keyword;
+        return $url;
+    }
 }

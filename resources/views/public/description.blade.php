@@ -8,7 +8,7 @@
         <a href="{{ route('home') }}" class="back_button">
             <i class="fa-solid fa-circle-arrow-left"></i>
         </a>
-        <div class="home_container">
+        <div class="home_container p-5">
             <div class="game_title">
                 <img src="{{ asset('images/game_title.png') }}">
             </div>

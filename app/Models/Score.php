@@ -13,18 +13,8 @@ class Score extends Model
     protected $fillable = [
         'msisdn',
         'score',
-        'campaign_id',
-        'campaign_duration_id',
         'game_keyword',
         'status',
-        'url',
         'date_time',
-        'duration',
-        'ip_address',
-        'user_agent',
-        'referrer',
-        'device',
-        'browser',
-        'platform',
     ];
 }

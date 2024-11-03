@@ -271,3 +271,16 @@ input[type='number']::-webkit-outer-spin-button {
 .js-center{
     justify-content: center;
 }
+
+.image_container{
+    height: 300px;
+    width: 250px;
+}
+
+.alert-success {
+    background-color: #e8fadf;
+    border-color: #d4f5c3;
+    color: #017700!important;
+}
+
+

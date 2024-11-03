@@ -37,6 +37,23 @@ body {
     margin: 8rem auto 0 auto;
     flex-direction: column;
     align-items: center;
+    border: 5px solid var(--primary-color);
+    width: fit-content;
+    height: auto;
+    border-radius: 10px;
+    background-color: #ecdff8;
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.2), /* Large soft shadow */
+        0 0 25px rgba(93, 46, 144, 0.4); /* Colorful glow */
+    transition: all 0.3s ease;
+    transition: transform 0.3s;
+}
+
+.home_container:hover {
+    box-shadow:
+        0 10px 20px rgba(0, 0, 0, 0.3), /* Darker shadow on hover */
+        0 0 30px rgba(93, 46, 144, 0.6); /* Stronger glow on hover */
+    transform: scale(1.01); /* Slightly scale up */
 }
 
 .game_title {
@@ -449,6 +466,14 @@ body {
 
 .leaderboard .table {
     margin-bottom: 0 !important;
+}
+
+.game_title{
+    font-size: 32px;
+    font-weight: 800 !important;
+    font-family: "Nunito", sans-serif;
+    color: var(--primary-color);
+    font-optical-sizing: auto;
 }
 
 

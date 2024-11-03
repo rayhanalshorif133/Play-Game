@@ -140,14 +140,6 @@ Route::name('public.')
         Route::middleware('auth')->match(['get', 'put'], '/profile', [PublicLoginController::class, 'profile'])->name('user.profile');
     });
 
-// // google
-Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
-Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('auth.google.callback');
-
-
-// // facebook
-Route::get('/auth/facebook', [FacebookController::class, 'redirectToFacebook'])->name('auth.facebook');
-Route::get('/auth/facebook/callback', [FacebookController::class, 'handleFacebookCallback'])->name('auth.facebook.callback');
 
 
 

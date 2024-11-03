@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 
-<html lang="en" class="light-style layout-menu-fixed transition"
-dir="ltr" data-theme="theme-default"
-data-assets-path="../assets/"
-data-template="vertical-menu-template-free">
+<html lang="en" class="light-style layout-menu-fixed transition" dir="ltr" data-theme="theme-default"
+    data-assets-path="../assets/" data-template="vertical-menu-template-free">
 
 <head>
     <meta charset="utf-8" />
@@ -71,6 +69,7 @@ data-template="vertical-menu-template-free">
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
+
                     @yield('content')
                     <!-- / Content -->
                     <!-- Footer -->

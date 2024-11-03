@@ -20,7 +20,7 @@ class CreateGamesTable extends Migration
             $table->string('description')->nullable();
             $table->string('keyword')->unique();
             $table->string('url')->nullable();
-            $table->string('status')->default('1');
+            $table->bigInteger('status')->default(1);
             $table->timestamps();
         });
     }

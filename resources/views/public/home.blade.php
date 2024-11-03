@@ -7,11 +7,11 @@
     <main role="main">
 
         <div class="home_container">
-            <div class="game_title">
-                <img src="{{ asset('images/game_title.png') }}">
+            <div class="game_title mt-5">
+                {{ $game->title }}
             </div>
             <div class="logo">
-                <img src="{{ asset('images/snake_avater.png') }}">
+                <img src="{{ asset($game->banner) }}">
             </div>
             <div class="label_container">
                 <div>
@@ -20,7 +20,23 @@
                 </div>
                 <div>
                     <img src="{{ asset('images/clock.png') }}">
-                    <p>2d1h23m</p>
+
+                    @if($campaignDuration->type == 'expired')
+                    <p>Expired</p>
+                    @elseif($campaignDuration->type == 'upcoming')
+                    <p>Start in
+                        <span class="time">
+                            {{ $campaignDuration->duration }}
+                        </span>
+                    </p>
+                    @else
+                    <p>Expired in
+                        <span class="time">
+                            {{ $campaignDuration->duration }}
+                        </span>
+                    </p>
+                    @endif
+
                 </div>
             </div>
             <div class="leaderBoard_tournament_container">
@@ -31,20 +47,19 @@
                     <p class="tournament_rules_btn">Tournament Rules</p>
                 </div>
             </div>
-            @if (count($currentCampaignDurations) > 0)
-                <div class="play_btn_container">
+            @if ($campaignDuration)
+                @php
+                    $game_url = $game->URL($game);
+                @endphp
+                <div class="play_btn_container mb-4">
                     <div class="btn_primary">
                         @if ($hasAlreadySubs)
-                            @php
-                                $game = $currentCampaignDurations[0]->gameURL($currentCampaignDurations[0]);
-                            @endphp
-                            <a class="btn" href="{{ $game }}">
+                            <a class="btn" href="{{ $game_url }}">
                                 Play now
-
                             </a>
                         @else
                             <a class="btn"
-                                href="{{ route('campaign.campaign-details', $currentCampaignDurations[0]->id) }}">
+                                href="{{ route('campaign.campaign-details', $campaignDuration->id) }}">
                                 Play now
                             </a>
                         @endif
@@ -53,6 +68,13 @@
             @endif
 
 
+            <footer class="mt-4">
+                <div class="lottie_banner">
+                    <lottie-player class="lottie-player" src="{{ asset('images/banner.json') }}" background="transparent"
+                        speed="1" loop autoplay>
+                    </lottie-player>
+                </div>
+            </footer>
 
         </div>
 

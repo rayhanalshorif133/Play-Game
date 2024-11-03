@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('styles'); ?>
 <?php $__env->stopSection(); ?>
 
@@ -7,11 +5,12 @@
     <main role="main">
 
         <div class="home_container">
-            <div class="game_title">
-                <img src="<?php echo e(asset('images/game_title.png')); ?>">
+            <div class="game_title mt-5">
+                <?php echo e($game->title); ?>
+
             </div>
             <div class="logo">
-                <img src="<?php echo e(asset('images/snake_avater.png')); ?>">
+                <img src="<?php echo e(asset($game->banner)); ?>">
             </div>
             <div class="label_container">
                 <div>
@@ -20,7 +19,25 @@
                 </div>
                 <div>
                     <img src="<?php echo e(asset('images/clock.png')); ?>">
-                    <p>2d1h23m</p>
+
+                    <?php if($campaignDuration->type == 'expired'): ?>
+                    <p>Expired</p>
+                    <?php elseif($campaignDuration->type == 'upcoming'): ?>
+                    <p>Start in
+                        <span class="time">
+                            <?php echo e($campaignDuration->duration); ?>
+
+                        </span>
+                    </p>
+                    <?php else: ?>
+                    <p>Expired in
+                        <span class="time">
+                            <?php echo e($campaignDuration->duration); ?>
+
+                        </span>
+                    </p>
+                    <?php endif; ?>
+
                 </div>
             </div>
             <div class="leaderBoard_tournament_container">
@@ -31,20 +48,19 @@
                     <p class="tournament_rules_btn">Tournament Rules</p>
                 </div>
             </div>
-            <?php if(count($currentCampaignDurations) > 0): ?>
-                <div class="play_btn_container">
+            <?php if($campaignDuration): ?>
+                <?php
+                    $game_url = $game->URL($game);
+                ?>
+                <div class="play_btn_container mb-4">
                     <div class="btn_primary">
                         <?php if($hasAlreadySubs): ?>
-                            <?php
-                                $game = $currentCampaignDurations[0]->gameURL($currentCampaignDurations[0]);
-                            ?>
-                            <a class="btn" href="<?php echo e($game); ?>">
+                            <a class="btn" href="<?php echo e($game_url); ?>">
                                 Play now
-
                             </a>
                         <?php else: ?>
                             <a class="btn"
-                                href="<?php echo e(route('campaign.campaign-details', $currentCampaignDurations[0]->id)); ?>">
+                                href="<?php echo e(route('campaign.campaign-details', $campaignDuration->id)); ?>">
                                 Play now
                             </a>
                         <?php endif; ?>
@@ -53,6 +69,13 @@
             <?php endif; ?>
 
 
+            <footer class="mt-4">
+                <div class="lottie_banner">
+                    <lottie-player class="lottie-player" src="<?php echo e(asset('images/banner.json')); ?>" background="transparent"
+                        speed="1" loop autoplay>
+                    </lottie-player>
+                </div>
+            </footer>
 
         </div>
 
