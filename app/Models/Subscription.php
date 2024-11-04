@@ -12,6 +12,7 @@ class Subscription extends Model
     protected $fillable = [
         'msisdn',
         'acr',
+        'campaign_id',
         'keyword',
         'status',
         'subs_date',

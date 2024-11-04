@@ -5,7 +5,7 @@ namespace App\Http\Controllers\web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\CampaignDuration;
+use App\Models\Campaign;
 use App\Models\Game;
 use App\Models\BkashPayment;
 use Carbon\Carbon;
@@ -44,13 +44,13 @@ class PublicController extends Controller
     public function campaignDetails($id)
     {
         $currentDate = Carbon::now()->toDateTimeString();
-        $campaignDuration = CampaignDuration::select()->where('id',$id)->with('game')->first();
+        $campaign = Campaign::select()->where('id',$id)->first();
         $game = Game::select()->first();
 
         $msisdn = $this->get_msisdn();
 
 
-        return view('public.description',compact('game','campaignDuration','currentDate','msisdn'));
+        return view('public.description',compact('game','campaign','currentDate','msisdn'));
     }
 
 

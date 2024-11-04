@@ -23,7 +23,7 @@
                 </div>
                 <div class="btn_secondary">
                     @php
-                        $game = $campaignDuration->gameURL($campaignDuration) . $msisdn;
+                        $game = $campaign->gameURL($campaign,$msisdn);
                     @endphp
                     <a href="{{ $game }}">
                         Play Trial

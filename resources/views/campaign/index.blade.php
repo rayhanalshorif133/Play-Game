@@ -3,48 +3,138 @@
 @section('content')
     <div class="px-3 container-p-y">
         <div class="row p-1rem">
-            <div class="card pb-2">
-                <div class="d-flex justify-content-between px-2">
-                    <h5 class="card-header">Campaigns Details</h5>
+            <div class="card">
+                <h5 class="card-header">Campaigns List</h5>
+                <div class="table-responsive overflow-x">
+                    <table class="table table-striped" id="campaignsTableId">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Start Date & Time</th>
+                                <th scope="col">End Date & Time</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0">
+                        </tbody>
+                    </table>
                 </div>
-                @if (session('success'))
-                    <div class="alert alert-primary">
-                        {{ session('success') }}
-                    </div>
-                @endif
-                <form action="{{ route('admin.campaigns') }}" method="POST">
-                    @method('PUT')
-                    @csrf
-                    <div class="row px-5">
-                        @php
-                            use Carbon\Carbon;
-                            $startDate = Carbon::parse($campaignDuration->start_date_time)->toDateString(); // Outputs: 2024-10-29
-                            $endDate = Carbon::parse($campaignDuration->end_date_time)->toDateString(); // Outputs: 2024-11-02
-                            $startTime = Carbon::parse($campaignDuration->start_date_time)->toTimeString(); // Outputs: 2024-10-29
-                            $startTime = \Carbon\Carbon::parse($startTime)->format('H:i');
-                            $endTime = Carbon::parse($campaignDuration->end_date_time)->toTimeString(); // Outputs: 2024-11-02
-                            $endTime = \Carbon\Carbon::parse($endTime)->format('H:i');
-                        @endphp
-                        <div class="col-12 col-md-6 mb-1">
-                            Start Date & Time:
-                            <input type="date" class="form-control my-2" name="start_date" value="{{ $startDate }}" />
-                            <input type="time" class="form-control my-2" name="start_time" value="{{ $startTime }}" />
-                        </div>
-                        <div class="col-12 col-md-6 mb-1">
-                            End Date & Time:
-                            <input type="date" class="form-control my-2" name="end_date" value="{{ $endDate }}" />
-                            <input type="time" class="form-control my-2" name="end_time" value="{{ $endTime }}" />
-                        </div>
-                    </div>
-                    <div class="px-5">
-                        <button type="submit" class="btn btn-sm btn-primary">Update</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('js/custom/campaigns/index.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            var url = '/admin/campaigns';
+            $('#campaignsTableId').DataTable({
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                ajax: url,
+                columns: [{
+                        render: function(data, type, row) {
+                            return row.DT_RowIndex;
+                        },
+                        targets: 0,
+                        className: 'fit-content' // Add a custom class
+                    },
+                    {
+                        render: function(data, type, row) {
+                            return row.name;
+                        },
+                        targets: 0,
+                        className: 'fit-content' // Add a custom class
+                    },
+                    {
+                        render: function(data, type, row) {
+                            return row.amount + ' tk';
+                        },
+                        targets: 0,
+                        className: 'fit-content' // Add a custom class
+                    },
+                    {
+                        render: function(data, type, row) {
+                            const formattedDateTime = moment(row.start_date_time).format(
+                                "DD-MM-YYYY HH:mm:ss");
+                            return formattedDateTime;
+                        },
+                        targets: 0,
+                        className: 'fit-content' // Add a custom class
+                    },
+                    {
+                        render: function(data, type, row) {
+                            const formattedDateTime = moment(row.end_date_time).format(
+                                "DD-MM-YYYY HH:mm:ss");
+                            return formattedDateTime;
+                        },
+                        targets: 0,
+                        className: 'fit-content' // Add a custom class
+                    },
+                    {
+                        render: function(data, type, row) {
+                            const status = row.status;
+                            if (status == 1) {
+                                return `<span class="badge bg-label-success cursor-pointer " onClick="handleStatus(${row.id})">Active</span>`; // Customize the style as needed
+                            } else {
+                                return `<span class="badge bg-label-danger cursor-pointer" onClick="handleStatus(${row.id})">Inactive</span>`; // Or any other status representation
+                            }
+                        },
+                        targets: 0,
+                        className: 'fit-content' // Add a custom class
+                    },
+                    {
+                        render: function(data, type, row) {
+                            return '<button type="button" class="btn btn-sm btn-primary">Edit</button>';
+                        },
+                        targets: 0,
+                        className: 'fit-content' // Add a custom class
+                    }
+                ],
+            });
+        });
+
+
+        const handleStatus = (id) => {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want to change this campaign's status..!!!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, change it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.put(`/admin/campaigns/?type=status&id=${id}`)
+                    .then(response => {
+                            console.log(response.data)
+                            const status = response.data.status;
+                            const message = response.data.message;
+                            if(status == false){
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Oops...",
+                                    text: message,
+                                });
+                                return false;
+                            }
+                            Swal.fire(
+                                'Updated!',
+                                'Campaign has been updated.',
+                                'success'
+                            );
+                            $('#campaignsTableId').DataTable().ajax.reload();
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                }
+            });
+        };
+    </script>
 @endpush

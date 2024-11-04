@@ -15,6 +15,7 @@ class CreateSubscriptionsTable extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('campaign_id')->nullable();
             $table->string('msisdn')->nullable()->unique();
             $table->string('acr')->nullable(); // Add a column for aocTransID
             $table->string('keyword')->nullable();

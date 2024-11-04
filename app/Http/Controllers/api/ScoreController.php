@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Score;
 use App\Models\ScoreLog;
+use App\Models\Subscription;
+
 
 class ScoreController extends Controller
 {
@@ -14,41 +16,51 @@ class ScoreController extends Controller
     {
 
 
-        $msisdn = $request->msisdn;
-        $get_score = $request->score;
-        $game_keyword = $request->keyword;
 
-        if ($msisdn == null || $get_score == null || $game_keyword == null) {
-            return response()->json('Invalid Request, required msisdn, keyword and score');
+        // https://gp.bdgamers.club/api/score?pengenal=WZg2HO8I784/3v/CF6K2yX4Bd82fcp56h+jN25jCOr0vpELtmWgzblxVBk/SnvVV&puntaje=MklWAU625P3Xstu4nTddZFkmQAoWwfW/xXOyc6/NQ88=
+        $pengenal = $request->pengenal;
+        $puntaje = $request->puntaje;
+
+        
+        if ($pengenal == null || $puntaje == null) {
+            return response()->json('Invalid Request, required pengenal and puntaje');
         }
-
-        // $encryptedData = $get_score;
-        // $key = "18na21B2MDiceKad";
-        // $decryptedData = $this->decryptData($encryptedData, $key);
-
-        // if ($decryptedData === false) {
-        //     return response()->json('Decryption failed..!' . openssl_error_string());
-        // }
-
-
-        // $numbers = preg_replace('/[^0-9]/', '', $decryptedData);
-        // $get_score = (int)$numbers;
-
-
-
-
-
+        
+        $key = "B2M_T3chN0l0g!@$";
+        $modifiedString = str_replace(' ', '+', $pengenal);
+        $modifiedStringPuntaje = str_replace(' ', '+', $puntaje);
+        $pengenals = $this->decrypt($modifiedString, $key);
+        $parts = explode('_', $pengenals);
+        $game_keyword = $parts[1] ?? "0";
+        $msisdn = $parts[0] ?? "0";
+        $get_score = $this->decrypt($modifiedStringPuntaje, $key);
+        
 
         try {
+
+
+
+
+            $isSubs = Subscription::where('msisdn', '=',  $msisdn)
+            ->where('status', '=', 1)
+            ->first();
+
+
 
 
             $score = new Score();
             $score->msisdn = $msisdn;
             $score->score = $get_score;
-            $score->game_keyword = $game_keyword;
-            $score->status = 1;
+            $score->keyword = $game_keyword;
+            if($isSubs){
+                $score->status = 1;
+            }else{
+                $score->status = 0;
+            }
             $score->date_time = date('Y-m-d H:i:s');
             $score->save();
+
+            
 
 
 
@@ -66,57 +78,37 @@ class ScoreController extends Controller
             // $ScoreLog->referrer = $request->header('referer');
             // $ScoreLog->save();
 
+
             return response()->json('Success');
         } catch (\Throwable $th) {
-            return response()->json('Failure');
+            return response()->json($th->getMessage());
         }
     }
 
 
-    function encryptData($data, $key)
+
+    public function decrypt($encryptedText, $encryptionKey)
     {
-        // Generate a random IV (Initialization Vector)
-        $ivSize = openssl_cipher_iv_length('aes-256-cbc');
-        $iv = openssl_random_pseudo_bytes($ivSize);
+        // Decode the base64 encoded string
+        $fullCipher = base64_decode($encryptedText);
 
-        // Encrypt the data using AES-256-CBC cipher and PKCS7 padding
-        $encryptedData = openssl_encrypt($data, 'aes-256-cbc', $key, OPENSSL_RAW_DATA, $iv);
-
-        if ($encryptedData === false) {
-            // Handle encryption error
-            return false;
+        if (strlen($fullCipher) < 16) {
+            // If the cipher is too short, something went wrong
+            error_log("Encrypted text length is too short. Decryption failed.");
+            return null;
         }
 
-        // Combine IV and encrypted data
-        $result = $iv . $encryptedData;
+        // Extract the IV and the encrypted bytes
+        $iv = substr($fullCipher, 0, 16);  // The first 16 bytes are the IV
+        $encryptedBytes = substr($fullCipher, 16);  // The rest is the encrypted data
 
-        // Encode the result in Base64 for transport/storage
-        $result = base64_encode($result);
+        // Decrypt the data
+        $decryptedBytes = openssl_decrypt($encryptedBytes, 'aes-128-cbc', $encryptionKey, OPENSSL_RAW_DATA, $iv);
 
-        return $result;
-    }
-
-
-
-
-    function decryptData($encryptedData, $key)
-    {
-        // Decode the encrypted data from base64
-        $encryptedData = base64_decode($encryptedData);
-
-        // Ensure the key size is valid
-        $key = substr($key, 0, 16); // Truncate to 16 bytes for 128-bit key
-
-        // Set encryption parameters
-        $method = 'aes-128-ecb'; // AES encryption with ECB mode and 128-bit key length
-
-        // Perform decryption
-        $decryptedData = openssl_decrypt($encryptedData, $method, $key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING);
-
-        if ($decryptedData === false) {
-            die('Decryption failed: ' . openssl_error_string());
+        if ($decryptedBytes === false) {
+            error_log("Error during decryption: " . openssl_error_string());
+            return null;
         }
-
-        return $decryptedData;
+        return $decryptedBytes;
     }
 }

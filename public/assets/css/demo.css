@@ -283,4 +283,186 @@ input[type='number']::-webkit-outer-spin-button {
     color: #017700!important;
 }
 
+#campaignsTableId_wrapper{
+    position: relative;
+}
+
+#campaignsTableId{
+    margin-top: 10px !important;
+}
+
+#campaignsTableId_filter{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+
+.dataTables_paginate{
+    position: absolute;
+    bottom: 1.4rem;
+    right: 0;
+}
+
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+    margin: 2px 0;
+    white-space: nowrap;
+    justify-content: flex-end;
+}
+
+.dataTables_paginate a.paginate_button {
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    color: #333;
+}
+
+.dataTables_paginate a.paginate_button:hover{
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+}
+
+.dataTables_paginate a.paginate_button.current {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.dataTables_paginate a.paginate_button.disabled {
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+/* Style the dropdown container */
+.dataTables_length label {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+/* Style the select dropdown */
+.dataTables_length select {
+    padding: 6px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    background-color: #fff;
+    transition: border-color 0.3s;
+    cursor: pointer;
+}
+
+/* Add focus effect */
+.dataTables_length select:focus {
+    border-color: #007bff; /* Customize to match your theme */
+}
+
+/* Optional: Hover effect */
+.dataTables_length select:hover {
+    border-color: #0056b3;
+}
+
+/* Responsive styling */
+@media (max-width: 600px) {
+    .dataTables_length label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .dataTables_length select {
+        width: 100%;
+    }
+}
+
+
+.bg-label-success {
+    background-color: #73ff2d !important;
+    color: #316117 !important;
+    border-radius: 3px !important;
+    font-weight: 900;
+
+}
+
+.fit-content {
+    width: fit-content; /* Use fit-content for the column */
+    min-width: 100px; /* Optional: Set a minimum width */
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+/* Style the information text */
+.dataTables_info {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+/* Add spacing around the information text */
+.dataTables_info {
+    margin: 10px 0;
+}
+
+/* Optional: Change text color and background for accessibility */
+.dataTables_info {
+    color: #2c3e50; /* Darker text color */
+    background-color: #eaf2f8; /* Light blue background */
+}
+
+/* Responsive alignment: center text in smaller screens */
+@media (max-width: 600px) {
+    .dataTables_info {
+        text-align: center;
+        width: 100%;
+        margin: 10px auto;
+    }
+}
+
+
+/* Style the search container */
+.dataTables_filter {
+
+}
+
+/* Style the "Search:" label */
+.dataTables_filter label {
+    color: #333;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+/* Style the search input field */
+.dataTables_filter input[type="search"] {
+    padding: 6px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+/* Input focus effect */
+.dataTables_filter input[type="search"]:focus {
+    border-color: #007bff; /* Adjust color to match your theme */
+}
+
+/* Responsive design: Center the filter on smaller screens */
+@media (max-width: 600px) {
+    .dataTables_filter {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dataTables_filter label {
+        margin-bottom: 5px;
+    }
+}
 

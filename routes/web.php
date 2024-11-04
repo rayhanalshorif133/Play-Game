@@ -87,7 +87,7 @@ Route::prefix('admin')
             });
 
         // campaign
-        Route::match(['get', 'put'], '/campaigns', [CampaignController::class, 'index'])->name('campaigns');
+        Route::match(['get', 'put','post','delete'], '/campaigns', [CampaignController::class, 'index'])->name('campaigns');
 
 
         // campaign_durations

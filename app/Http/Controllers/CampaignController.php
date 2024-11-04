@@ -17,12 +17,31 @@ class CampaignController extends Controller
     public function index(Request $request)
     {
 
-        $campaign = Campaign::orderBy('created_at', 'desc')->with('campaignDuration')->first();
-        $campaignDuration = CampaignDuration::select()->where('campaign_id', $campaign->id)->first();
         $games = Game::first();
-        if($request->method() == 'GET'){
-            return view('campaign.index',compact('campaign','games','campaignDuration'));
-        }else{
+        if ($request->method() == 'GET') {
+            if (request()->ajax()) {
+                $query = Campaign::orderBy('created_at', 'desc')->get();
+                return DataTables::of($query)->addIndexColumn()->toJson();
+            }
+            return view('campaign.index', compact('games'));
+        } elseif ($request->method() == 'POST') {
+        } elseif ($request->method() == 'PUT') {
+            if ($request->type == 'status') {
+
+                $get_is_another_active = Campaign::select()
+                    ->where('status', 1)
+                    ->where('id','!=', $request->id)->first();
+                if($get_is_another_active){
+                    return $this->respondWithError('Another Campaign is actived, Please inactive the others active campaign');
+                }
+
+
+                $campaign = Campaign::select()->where('id', $request->id)->first();
+                $campaign->status = $campaign->status == 1 ? 0 : 1;
+                $campaign->save();
+                return $this->respondWithSuccess('yes status', $request->all());
+            }
+        } else {
             $start_date = $request->start_date;
             $start_time = $request->start_time;
             $end_date = $request->end_date;
@@ -43,7 +62,7 @@ class CampaignController extends Controller
     {
         $campaign = Campaign::select()
             ->where('id', $id)
-            ->with('createdBy','updatedBy')
+            ->with('createdBy', 'updatedBy')
             ->first();
         return $this->respondWithSuccess('Campaign fetched successfully.', $campaign);
     }
@@ -57,7 +76,8 @@ class CampaignController extends Controller
         return view('campaign.create');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         try {
             $validator = Validator::make($request->all(), [
                 'title' => 'required',
@@ -73,7 +93,7 @@ class CampaignController extends Controller
 
 
             // type
-            if($request->type == 'quiz'){
+            if ($request->type == 'quiz') {
                 $validator = Validator::make($request->all(), [
                     'total_questions' => 'required',
                     'per_question_score' => 'required',
@@ -118,7 +138,6 @@ class CampaignController extends Controller
             $campaign->save();
             toastr()->addSuccess('Campaign added successfully.');
             return redirect()->route('admin.campaigns.index');
-
         } catch (\Throwable $th) {
             toastr()->addError($th->getMessage());
             return redirect()->route('admin.campaigns.index');
@@ -130,7 +149,7 @@ class CampaignController extends Controller
     {
         $campaign = Campaign::select()
             ->where('id', $id)
-            ->with('createdBy','updatedBy')
+            ->with('createdBy', 'updatedBy')
             ->first();
         return view('campaign.edit', compact('campaign'));
     }
@@ -152,7 +171,7 @@ class CampaignController extends Controller
 
 
             // type
-            if($request->type == 'quiz'){
+            if ($request->type == 'quiz') {
                 $validator = Validator::make($request->all(), [
                     'total_time_limit' => 'required',
                     'total_questions' => 'required',
@@ -162,7 +181,7 @@ class CampaignController extends Controller
                     toastr()->addError($validator->errors()->first());
                     return redirect()->back();
                 }
-            }else{
+            } else {
                 $request->total_time_limit = null;
                 $request->total_questions = null;
                 $request->per_question_score = null;
@@ -211,7 +230,6 @@ class CampaignController extends Controller
             $campaign->save();
             toastr()->addSuccess('Campaign updated successfully.');
             return redirect()->route('admin.campaigns.index');
-
         } catch (\Throwable $th) {
             toastr()->addError($th->getMessage());
             return redirect()->route('admin.campaigns.index');
@@ -246,9 +264,9 @@ class CampaignController extends Controller
     // playNow
     public function campaignDetails($campaign_id)
     {
-        if(Auth::check()){
-            return view('public.campaign.details',compact('campaign_id'));
-        }else{
+        if (Auth::check()) {
+            return view('public.campaign.details', compact('campaign_id'));
+        } else {
             return redirect()->route('public.login');
         }
     }

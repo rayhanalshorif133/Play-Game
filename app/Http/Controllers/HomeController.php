@@ -48,20 +48,21 @@ class HomeController extends Controller
         $game = Game::select()->first();
         $currentDate = Carbon::now()->toDateTimeString(); //
 
-        $campaignDuration = CampaignDuration::select()
-            ->where('play_type', 'campaign', 'game')
-            ->with('campaign')
-            ->first();
-        if ($campaignDuration->start_date_time <= $currentDate && $campaignDuration->end_date_time >= $currentDate) {
-            $campaignDuration->type = 'current'; // The campaign is currently active
-            $campaignDuration->duration = $this->calculateDuration($campaignDuration);
-        } else if ($campaignDuration->start_date_time > $currentDate) {
-            $campaignDuration->type = 'upcoming'; // The campaign is set to start in the future
-            $campaignDuration->duration = $this->calculateDurationUpcoming($campaignDuration);
-        } else if($campaignDuration->end_date_time < $currentDate){
-            $campaignDuration->type = 'expired'; // The campaign has ended
-            $campaignDuration->duration = null;
+
+
+        $campaign = Campaign::select()->where('status', 1)->first();
+        if ($campaign && $campaign->start_date_time <= $currentDate && $campaign->end_date_time >= $currentDate) {
+            $campaign->type = 'current'; // The campaign is currently active
+            $campaign->duration = $this->calculateDuration($campaign);
+        } else if ($campaign && $campaign->start_date_time > $currentDate) {
+            $campaign->type = 'upcoming'; // The campaign is set to start in the future
+            $campaign->duration = $this->calculateDurationUpcoming($campaign);
+        } else if($campaign && $campaign->end_date_time < $currentDate){
+            $campaign->type = 'expired'; // The campaign has ended
+            $campaign->duration = null;
         }
+
+
 
         $hasAlreadySubs = false;
 
@@ -75,10 +76,11 @@ class HomeController extends Controller
         }
 
         $scores = Score::select('msisdn', DB::raw('SUM(score) as total_score'))
+                ->where('status', '=', 1)
                 ->groupBy('msisdn')
                 ->orderBy('total_score', 'desc')
                 ->get();
-        return view('public.home', compact('scores','game','subscription', 'campaignDuration', 'hasAlreadySubs'));
+        return view('public.home', compact('scores','game','subscription', 'campaign', 'hasAlreadySubs'));
     }
 
     // calculateDurationUpcoming

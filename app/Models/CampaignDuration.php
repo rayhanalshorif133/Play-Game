@@ -37,11 +37,7 @@ class CampaignDuration extends Model
 
 
 
-    public function gameURL($campaignDuration){
-        $findGame = Game::find($campaignDuration->game_id);
-        $url = $findGame->url . '?keyword=' . $findGame->keyword . '&token=';
-        return $url;
-    }
+
 
     public function calculateDuration($campaignDuration)
     {

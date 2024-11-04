@@ -21,18 +21,18 @@
                 <div>
                     <img src="{{ asset('images/clock.png') }}">
 
-                    @if($campaignDuration->type == 'expired')
+                    @if($campaign && $campaign->type == 'expired')
                     <p>Expired</p>
-                    @elseif($campaignDuration->type == 'upcoming')
+                    @elseif($campaign && $campaign->type == 'upcoming')
                     <p>Start in
                         <span class="time">
-                            {{ $campaignDuration->duration }}
+                            {{ $campaign->duration }}
                         </span>
                     </p>
                     @else
                     <p>Expired in
                         <span class="time">
-                            {{ $campaignDuration->duration }}
+                            {{ $campaign && $campaign->duration }}
                         </span>
                     </p>
                     @endif
@@ -47,7 +47,7 @@
                     <p class="tournament_rules_btn">Tournament Rules</p>
                 </div>
             </div>
-            @if ($campaignDuration)
+            @if ($campaign)
                 @php
                     $game_url = $game->URL($game);
                 @endphp
@@ -59,7 +59,7 @@
                             </a>
                         @else
                             <a class="btn"
-                                href="{{ route('campaign.campaign-details', $campaignDuration->id) }}">
+                                href="{{ route('campaign.campaign-details', $campaign->id) }}">
                                 Play now
                             </a>
                         @endif

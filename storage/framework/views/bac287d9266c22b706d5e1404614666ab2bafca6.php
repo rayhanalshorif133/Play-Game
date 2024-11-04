@@ -20,19 +20,19 @@
                 <div>
                     <img src="<?php echo e(asset('images/clock.png')); ?>">
 
-                    <?php if($campaignDuration->type == 'expired'): ?>
+                    <?php if($campaign && $campaign->type == 'expired'): ?>
                     <p>Expired</p>
-                    <?php elseif($campaignDuration->type == 'upcoming'): ?>
+                    <?php elseif($campaign && $campaign->type == 'upcoming'): ?>
                     <p>Start in
                         <span class="time">
-                            <?php echo e($campaignDuration->duration); ?>
+                            <?php echo e($campaign->duration); ?>
 
                         </span>
                     </p>
                     <?php else: ?>
                     <p>Expired in
                         <span class="time">
-                            <?php echo e($campaignDuration->duration); ?>
+                            <?php echo e($campaign && $campaign->duration); ?>
 
                         </span>
                     </p>
@@ -48,7 +48,7 @@
                     <p class="tournament_rules_btn">Tournament Rules</p>
                 </div>
             </div>
-            <?php if($campaignDuration): ?>
+            <?php if($campaign): ?>
                 <?php
                     $game_url = $game->URL($game);
                 ?>
@@ -60,7 +60,7 @@
                             </a>
                         <?php else: ?>
                             <a class="btn"
-                                href="<?php echo e(route('campaign.campaign-details', $campaignDuration->id)); ?>">
+                                href="<?php echo e(route('campaign.campaign-details', $campaign->id)); ?>">
                                 Play now
                             </a>
                         <?php endif; ?>
