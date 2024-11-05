@@ -64,6 +64,7 @@ class HomeController extends Controller
 
 
 
+
         $hasAlreadySubs = false;
 
         $isSubs = Subscription::where('msisdn', '=', $this->get_msisdn())

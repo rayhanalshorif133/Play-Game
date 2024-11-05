@@ -283,6 +283,7 @@ input[type='number']::-webkit-outer-spin-button {
     color: #017700!important;
 }
 
+#subscriberTableId_wrapper,
 #leaderboardScoreLogs_wrapper,
 #campaignsTableId_wrapper{
     position: relative;
@@ -292,6 +293,8 @@ input[type='number']::-webkit-outer-spin-button {
     margin-top: 10px !important;
 }
 
+
+#subscriberTableId_filter,
 #leaderboardScoreLogs_filter,
 #campaignsTableId_filter{
     position: absolute;
@@ -416,6 +419,8 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     white-space: nowrap; /* Prevent text from wrapping */
 }
 
+
+#subscriberTableId,
 #leaderboardScoreLogs,
 #campaignsTableId{
     width: 100% !important;

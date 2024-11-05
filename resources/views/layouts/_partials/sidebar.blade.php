@@ -31,10 +31,10 @@
                 <div data-i18n="Analytics" class="text-semibold">Dashboard</div>
             </a>
         </li>
-        <li class="menu-item @if ($currentRoute == 'admin.user.index') active open @endif">
-            <a href="{{ route('admin.user.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-user @if ($currentRoute == 'admin.user.index') selectedIconPopup @endif"></i>
-                <div data-i18n="Analytics" class="text-semibold">Users</div>
+        <li class="menu-item @if ($currentRoute == 'admin.subscribers') active open @endif">
+            <a href="{{ route('admin.subscribers') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user @if ($currentRoute == 'admin.subscribers') selectedIconPopup @endif"></i>
+                <div data-i18n="Analytics" class="text-semibold">Subscribers</div>
             </a>
         </li>
         <li class="menu-item @if (

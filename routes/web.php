@@ -18,6 +18,7 @@ use App\Http\Controllers\web\PublicController;
 use App\Http\Controllers\web\PublicLoginController;
 use App\Http\Controllers\BkashController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\SubscriptionController;
 
 use App\Http\Controllers\web\TournamentController;
 use App\Http\Controllers\web\LeaderboardController;
@@ -87,7 +88,8 @@ Route::prefix('admin')
             });
 
         // campaign
-        Route::match(['get', 'put','post','delete'], '/campaigns', [CampaignController::class, 'index'])->name('campaigns');
+        Route::match(['get', 'put', 'post', 'delete'], '/campaigns', [CampaignController::class, 'index'])->name('campaigns');
+        Route::match(['get'], '/subscribers', [SubscriptionController::class, 'index'])->name('subscribers');
 
 
         // campaign_durations

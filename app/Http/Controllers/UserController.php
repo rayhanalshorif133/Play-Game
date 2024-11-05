@@ -3,26 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Yajra\DataTables\Facades\DataTables;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
-    {
-        if (request()->ajax()) {
-            $query = User::orderBy('created_at', 'desc')
-                ->where('id', '!=', auth()->user()->id)
-                ->get();
-             return DataTables::of($query)
-             ->addIndexColumn()
-             ->rawColumns(['action'])
-             ->toJson();
-        }
-        return view('user.index');
-    }
 
     // store
     public function store(Request $request)
@@ -37,7 +23,6 @@ class UserController extends Controller
             ]);
 
             if ($validator->fails()) {
-                toastr()->addError($validator->errors()->first());
                 return redirect()->back();
             }
 
@@ -48,10 +33,9 @@ class UserController extends Controller
             $user->status = $request->status;
             $user->password = Hash::make($request->password);
             $user->save();
-            toastr()->addSuccess('User added successfully.');
+
             return redirect()->route('admin.user.index');
         }catch(\Exception $e){
-            toastr()->addError($e->getMessage());
             return redirect()->route('admin.user.index');
         }
     }
@@ -85,7 +69,6 @@ class UserController extends Controller
             ]);
 
             if ($validator->fails()) {
-                toastr()->addError($validator->errors()->first());
                 return redirect()->back();
             }
 
@@ -96,14 +79,11 @@ class UserController extends Controller
                 $user->role = $request->role;
                 $user->status = $request->status;
                 $user->save();
-                toastr()->addSuccess('User updated successfully.');
                 return redirect()->route('admin.user.index');
             }else{
-                toastr()->addError('User not found.');
                 return redirect()->route('admin.user.index');
             }
         }catch(\Exception $e){
-            toastr()->addError($e->getMessage());
             return redirect()->route('admin.user.index');
         }
     }

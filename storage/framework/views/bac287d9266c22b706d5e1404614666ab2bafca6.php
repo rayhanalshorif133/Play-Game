@@ -32,7 +32,7 @@
                     <?php else: ?>
                     <p>Expired in
                         <span class="time">
-                            <?php echo e($campaign && $campaign->duration); ?>
+                            <?php echo e($campaign->duration); ?>
 
                         </span>
                     </p>

@@ -32,7 +32,7 @@
                     @else
                     <p>Expired in
                         <span class="time">
-                            {{ $campaign && $campaign->duration }}
+                            {{ $campaign->duration }}
                         </span>
                     </p>
                     @endif
