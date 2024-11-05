@@ -19,4 +19,7 @@ class Score extends Model
         'status',
         'date_time',
     ];
+
+
+
 }

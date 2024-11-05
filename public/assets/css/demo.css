@@ -283,6 +283,7 @@ input[type='number']::-webkit-outer-spin-button {
     color: #017700!important;
 }
 
+#leaderboardScoreLogs_wrapper,
 #campaignsTableId_wrapper{
     position: relative;
 }
@@ -291,6 +292,7 @@ input[type='number']::-webkit-outer-spin-button {
     margin-top: 10px !important;
 }
 
+#leaderboardScoreLogs_filter,
 #campaignsTableId_filter{
     position: absolute;
     top: 0;
@@ -365,6 +367,29 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     border-color: #0056b3;
 }
 
+
+.filterByCampaignContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filterByCampaignContainer label{
+    display: flex;
+    justify-content: center;
+    width: 10rem;
+    align-items: center;
+}
+
+.filterByCampaignContainer select{
+    width: fit-content;
+    height: fit-content;
+}
+
+.filterByCampaignContainer button{
+    margin: 0 5px;
+}
+
 /* Responsive styling */
 @media (max-width: 600px) {
     .dataTables_length label {
@@ -389,6 +414,11 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     width: fit-content; /* Use fit-content for the column */
     min-width: 100px; /* Optional: Set a minimum width */
     white-space: nowrap; /* Prevent text from wrapping */
+}
+
+#leaderboardScoreLogs,
+#campaignsTableId{
+    width: 100% !important;
 }
 
 .cursor-pointer{
@@ -428,9 +458,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 
 
 /* Style the search container */
-.dataTables_filter {
 
-}
 
 /* Style the "Search:" label */
 .dataTables_filter label {

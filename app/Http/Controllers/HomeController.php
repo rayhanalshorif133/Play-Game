@@ -57,7 +57,7 @@ class HomeController extends Controller
         } else if ($campaign && $campaign->start_date_time > $currentDate) {
             $campaign->type = 'upcoming'; // The campaign is set to start in the future
             $campaign->duration = $this->calculateDurationUpcoming($campaign);
-        } else if($campaign && $campaign->end_date_time < $currentDate){
+        } else if ($campaign && $campaign->end_date_time < $currentDate) {
             $campaign->type = 'expired'; // The campaign has ended
             $campaign->duration = null;
         }
@@ -76,11 +76,13 @@ class HomeController extends Controller
         }
 
         $scores = Score::select('msisdn', DB::raw('SUM(score) as total_score'))
-                ->where('status', '=', 1)
-                ->groupBy('msisdn')
-                ->orderBy('total_score', 'desc')
-                ->get();
-        return view('public.home', compact('scores','game','subscription', 'campaign', 'hasAlreadySubs'));
+            ->join('campaigns', 'campaigns.id', '=', 'scores.campaign_id')
+            ->where('scores.status', '=', 1)
+            ->where('campaigns.status', '=', 1)
+            ->groupBy('msisdn','campaign_id','campaigns.status')
+            ->orderBy('total_score', 'desc')
+            ->get();
+        return view('public.home', compact('scores', 'game', 'subscription', 'campaign', 'hasAlreadySubs'));
     }
 
     // calculateDurationUpcoming

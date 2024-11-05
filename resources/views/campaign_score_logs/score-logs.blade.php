@@ -9,13 +9,8 @@
                         Campaign Score Logs
                     </h5>
                     <div class="d-flex filterByCampaignContainer">
-                        <label for="campaignSelect">Select Campaign</label>
-                        <select class="form-select" id="campaignSelect">
-                            <option value="0" selected disabled>Choice a option</option>
-                            @foreach ($campaigns as $item)
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
+                        <label for="dateSelect" class="me-2">Select Date</label>
+                        <input type="date" id="dateSelect" class="form-control"/>
                         <button type="button" class="btn btn-sm btn-primary" id="btnSearch">Search</button>
                     </div>
                 </div>
@@ -26,7 +21,8 @@
                                 <th>#</th>
                                 <th>Campaign name</th>
                                 <th>msisdn</th>
-                                <th>Total Score</th>
+                                <th>Score</th>
+                                <th>Date</th>
                             </tr>
                         </thead>
                     </table>
@@ -41,11 +37,11 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            var url = '/admin/campaign-score-logs';
+            var url = '/admin/score-logs';
             handleDataTable(url);
             $("#btnSearch").click(() => {
-                const selected_campaign = $('#campaignSelect').val();
-                url = '/admin/campaign-score-logs?campaign_id=' + selected_campaign;
+                const date = $('#dateSelect').val();
+                url = '/admin/score-logs?date=' + date;
                 handleDataTable(url);
             });
         });
@@ -72,7 +68,7 @@
                     },
                     {
                         render: function(data, type, row) {
-                            return row.camp_name;
+                            return row.name;
                         },
                         targets: 0,
                         className: 'fit-content' // Add a custom class
@@ -86,11 +82,19 @@
                     },
                     {
                         render: function(data, type, row) {
-                            return row.total_score;
+                            return row.score;
                         },
                         targets: 0,
                         className: 'fit-content' // Add a custom class
                     },
+                    {
+                        render: function(data, type, row) {
+                            return row.date_time;
+                        },
+                        targets: 0,
+                        className: 'fit-content' // Add a custom class
+                    },
+
                 ],
             });
         };

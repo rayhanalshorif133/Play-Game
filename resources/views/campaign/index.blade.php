@@ -4,7 +4,12 @@
     <div class="px-3 container-p-y">
         <div class="row p-1rem">
             <div class="card">
-                <h5 class="card-header">Campaigns List</h5>
+
+                <div class="d-flex justify-content-between px-2">
+                    <h5 class="card-header">Campaigns List</h5>
+                    <button class="btn btn-primary btn-sm d-block d-flex my-2 createNewUser" data-bs-toggle="modal"
+                        data-bs-target="#createNewUserinfo">Add User</button>
+                </div>
                 <div class="table-responsive overflow-x">
                     <table class="table table-striped" id="campaignsTableId">
                         <thead>
@@ -111,11 +116,11 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     axios.put(`/admin/campaigns/?type=status&id=${id}`)
-                    .then(response => {
+                        .then(response => {
                             console.log(response.data)
                             const status = response.data.status;
                             const message = response.data.message;
-                            if(status == false){
+                            if (status == false) {
                                 Swal.fire({
                                     icon: "error",
                                     title: "Oops...",

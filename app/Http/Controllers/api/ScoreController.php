@@ -21,11 +21,11 @@ class ScoreController extends Controller
         $pengenal = $request->pengenal;
         $puntaje = $request->puntaje;
 
-        
+
         if ($pengenal == null || $puntaje == null) {
             return response()->json('Invalid Request, required pengenal and puntaje');
         }
-        
+
         $key = "B2M_T3chN0l0g!@$";
         $modifiedString = str_replace(' ', '+', $pengenal);
         $modifiedStringPuntaje = str_replace(' ', '+', $puntaje);
@@ -34,7 +34,7 @@ class ScoreController extends Controller
         $game_keyword = $parts[1] ?? "0";
         $msisdn = $parts[0] ?? "0";
         $get_score = $this->decrypt($modifiedStringPuntaje, $key);
-        
+
 
         try {
 
@@ -51,7 +51,7 @@ class ScoreController extends Controller
             $score = new Score();
             $score->msisdn = $msisdn;
             $score->score = $get_score;
-            $score->keyword = $game_keyword;
+            $score->game_keyword = $game_keyword;
             if($isSubs){
                 $score->status = 1;
             }else{
@@ -60,7 +60,7 @@ class ScoreController extends Controller
             $score->date_time = date('Y-m-d H:i:s');
             $score->save();
 
-            
+
 
 
 

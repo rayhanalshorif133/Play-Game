@@ -94,6 +94,7 @@ Route::prefix('admin')
 
         // campaign_score_logs
         Route::middleware('auth')->get('campaign-score-logs/', [CampaignScoreLogController::class, 'index'])->name('campaign-score-logs.index');
+        Route::middleware('auth')->get('score-logs/', [CampaignScoreLogController::class, 'scoreLogs'])->name('score-logs.index');
 
         // Question
         Route::middleware('auth')
