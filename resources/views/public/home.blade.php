@@ -57,16 +57,26 @@
                 </div>
             </div>
             @if ($campaign)
-                @php
-                    $game_url = $game->URL($game);
-                @endphp
+
                 <div class="play_btn_container mb-4">
                     @if ($user)
-                        <div class="btn_primary">
-                            <a class="btn" href="{{ route('campaign.campaign-details', $campaign->id) }}">
-                                Play now
-                            </a>
-                        </div>
+                        @php
+                            $game_url = $game->URL($game, $user->msisdn);
+                        @endphp
+                        @if ($hasAlreadySubs)
+                            {{-- cng --}}
+                            <div class="btn_primary">
+                                <a class="btn" href="{{ $game_url }}">
+                                    Play now
+                                </a>
+                            </div>
+                        @else
+                            <div class="btn_primary">
+                                <a class="btn" href="{{ route('campaign.campaign-details', $campaign->id) }}">
+                                    Play now
+                                </a>
+                            </div>
+                        @endif
                     @else
                         <div class="btn_primary" id="play_now_login">
                             <a class="btn">Play Now</a>

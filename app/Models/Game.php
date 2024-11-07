@@ -20,8 +20,8 @@ class Game extends Model
 
     ];
 
-    public function URL($game){
-        $payload = 'keyword=' . $game->keyword . '&token=' . $this->get_msisdn();
+    public function URL($game, $msisdn){
+        $payload = 'keyword=' . $game->keyword . '&token=' . $msisdn;
         $url = $game->url . '?' . $payload;
         return $url;
     }
