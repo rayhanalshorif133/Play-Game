@@ -48,6 +48,24 @@ body {
     position: relative;
 }
 
+/* remove increment and decrement btn from input number */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+   -webkit-appearance: none;
+   margin: 0;
+}
+
+.forgot_passBtn {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-family: "Nunito", sans-serif;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    transition: transform 0.3s;
+    padding: 5px 0px;
+}
+
+
 .home_container {
     justify-content: center;
     display: flex;
@@ -247,6 +265,23 @@ body {
     font-family: 'Nunito', sans-serif;
     font-size: 16px;
     font-weight: 700;
+}
+
+.btn_forgot_cancel {
+    background-color: #ff3030;
+    border-color: #FF6B6B;
+    color: #fff;
+    padding: 5px 0;
+    border-radius: 5px !important;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.btn_forgot_cancel:hover {
+    background-color: #fff;
+    border-color: #ff3030;
+    color: #ff3030;
 }
 
 .btn-reg:hover {
@@ -690,6 +725,10 @@ footer {
     color: #ff3030;
     font-weight: 700;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .success_msg {
@@ -697,6 +736,10 @@ footer {
     font-size: 16px;
     color: #5D2E90;
     font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .nav_container div .active {

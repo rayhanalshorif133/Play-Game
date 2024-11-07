@@ -106,6 +106,7 @@
                     if (status == false) {
                         $(".login_error_msg").text(message);
                     } else {
+                        $(".success_msg_container").removeClass('d-none');
                         $(".success_msg").text(message);
                         setTimeout(() => {
                             window.location.reload();
@@ -166,6 +167,7 @@
                     if (status == false) {
                         $(".reg_error_msg").text(message);
                     } else {
+                        $(".success_msg_container").removeClass('d-none');
                         $(".success_msg").text(message);
                         $("#login-tab").click();
                     }
@@ -192,6 +194,43 @@
             $(".login_container").addClass('d-none');
             $(".reg_container").removeClass('d-none');
             $(this).find('button').addClass('active');
+        });
+
+
+        $(".forgot_passBtn").click(function() {
+            $(".forgot_pass_error_msg").text('');
+            $(".auth_continer").addClass('d-none');
+            $(".forgot_pass_container").removeClass('d-none');
+        });
+
+        $(".btn_forgot_cancel").click(function() {
+            $(".auth_continer").removeClass('d-none');
+            $(".forgot_pass_container").addClass('d-none');
+        });
+
+        $("#forGot_pass_submitBtn").click(function() {
+            const msisdn = $("#forgot_pass_user_msisdn").val();
+            const pass = $("#forgot_pass_user_pass").val();
+            axios.put('api/forgot-password', {
+                    msisdn,
+                    pass
+                })
+                .then(function(response) {
+                    const status = response.data.status;
+                    const message = response.data.message;
+                    console.log(status, message);
+                    if (status == false) {
+                        $(".forgot_pass_error_msg").addClass('error_msg');
+                        $(".forgot_pass_error_msg").removeClass('success_msg');
+                    } else {
+                        $(".forgot_pass_error_msg").removeClass('error_msg');
+                        $(".forgot_pass_error_msg").addClass('success_msg');
+                        setTimeout(() => {
+                            $(".btn_forgot_cancel").click();
+                        }, 2000);
+                    }
+                    $(".forgot_pass_error_msg").text(message);
+                });
         });
     </script>
 </body>

@@ -48,4 +48,5 @@ Route::match(['get', 'post'], '/payment/{payment_id}/callback', [PaymentControll
 
 Route::match(['get', 'post'], '/register', [UserController::class, 'register']);
 Route::match(['get', 'post'], '/login', [UserController::class, 'login']);
+Route::match(['get', 'put'], '/forgot-password', [UserController::class, 'forgotPassword']);
 

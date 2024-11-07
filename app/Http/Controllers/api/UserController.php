@@ -46,7 +46,7 @@ class UserController extends Controller
                 return $this->respondWithError('User not found, please register again');
             }
 
-            if($findUser->status == 0){
+            if ($findUser->status == 0) {
                 return $this->respondWithError('User is inactive, please contact the administrator');
             }
 
@@ -90,6 +90,25 @@ class UserController extends Controller
             $user->status = 1;
             $user->save();
             return $this->respondWithSuccess('Registration Success, Please login Now');
+        } catch (\Throwable $th) {
+            return $this->respondWithError($th->getMessage());
+        }
+    }
+
+    public function forgotPassword(Request $request)
+    {
+        try {
+            if (substr($request->msisdn, 0, 2) !== '88') {
+                $msisdn = '88' . $request->msisdn;
+            }
+            $findUser = User::where('msisdn', 'LIKE', '%' . $msisdn . '%')->first();
+            if ($findUser) {
+                $findUser->password = Hash::make($request->pass);
+                $findUser->save();
+                return $this->respondWithSuccess('Password successfully updated, Please login Now');
+            } else {
+                return $this->respondWithError('User not found');
+            }
         } catch (\Throwable $th) {
             return $this->respondWithError($th->getMessage());
         }
