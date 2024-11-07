@@ -48,7 +48,7 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 Route::get('/campaign-details/{campaign_id}', [PublicController::class, 'campaignDetails'])->name('campaign.campaign-details');
-Route::get('/player-profile', [PublicController::class, 'playerProfile'])->name('player-profile');
+Route::match(['get', 'PUT'],'/player-profile', [PublicController::class, 'playerProfile'])->name('player-profile');
 
 
 Route::middleware('auth')

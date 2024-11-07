@@ -7,9 +7,11 @@
     <main role="main">
 
         <div class="home_container">
-            <a href="{{ route('player-profile') }}" class="profile_container">
-                <i class="fa-solid fa-user"></i>
-            </a>
+            @if ($user)
+                <a href="{{ route('player-profile') }}" class="profile_container">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+            @endif
             <div class="game_title mt-5">
                 {{ $game->title }}
             </div>
@@ -58,25 +60,6 @@
                 @php
                     $game_url = $game->URL($game);
                 @endphp
-                <div class="d-none play_btn_container mb-4">
-                    @if ($user)
-                        <div class="btn_primary">
-                            @if ($hasAlreadySubs)
-                                <a class="btn" href="{{ $game_url }}">
-                                    Play now
-                                </a>
-                            @else
-                                <a class="btn" href="{{ route('campaign.campaign-details', $campaign->id) }}">
-                                    Play now
-                                </a>
-                            @endif
-                        </div>
-                    @else
-                        <div class="btn_primary" id="play_now_login3">
-                            <a class="btn">Play Now</a>
-                        </div>
-                    @endif
-                </div>
                 <div class="play_btn_container mb-4">
                     @if ($user)
                         <div class="btn_primary">

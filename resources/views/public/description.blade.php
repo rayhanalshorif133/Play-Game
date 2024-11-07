@@ -5,10 +5,10 @@
 
 @section('content')
     <main role="main">
-        <a href="{{ route('home') }}" class="back_button">
-            <i class="fa-solid fa-circle-arrow-left"></i>
-        </a>
         <div class="home_container p-5">
+            <a href="{{ route('home') }}" class="back_container">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
             <div class="game_title mt-5">
                 {{ $game->title }}
             </div>
