@@ -22,12 +22,8 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'google_id',
         'msisdn',
-        'avatar',
-        'facebook_id',
         'status',
-        'device_token'
     ];
 
     /**

@@ -7,21 +7,13 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CampaignController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\CampaignDurationController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\CampaignScoreLogController;
 use App\Http\Controllers\SendNotificationController;
-use App\Http\Controllers\web\GoogleController;
-use App\Http\Controllers\web\FacebookController;
 use App\Http\Controllers\web\PublicController;
 use App\Http\Controllers\web\PublicLoginController;
-use App\Http\Controllers\BkashController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\SubscriptionController;
-
-use App\Http\Controllers\web\TournamentController;
-use App\Http\Controllers\web\LeaderboardController;
 use App\Http\Controllers\web\AccountController;
 
 /*
@@ -55,12 +47,8 @@ Auth::routes();
 
 
 Route::get('/home', [HomeController::class, 'home'])->name('home');
-Route::get('/tournament', [TournamentController::class, 'index'])->name('tournament.index');
-Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard.index');
 Route::get('/campaign-details/{campaign_id}', [PublicController::class, 'campaignDetails'])->name('campaign.campaign-details');
-Route::get('/campaign-access/{campaign_id}', [PublicController::class, 'campaignAccess'])->name('campaign.access');
-Route::get('/play-now/{campaign_duration_id}', [PublicController::class, 'playNow'])->name('campaign.play-now');
-Route::get('/faq', [PublicController::class, 'faq'])->name('faq');
+Route::get('/player-profile', [PublicController::class, 'playerProfile'])->name('player-profile');
 
 
 Route::middleware('auth')

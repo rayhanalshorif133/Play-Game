@@ -32,6 +32,17 @@ class CampaignSeeder extends Seeder
             $campaign->save();
         }
 
+        $campaign = new Campaign();
+            $campaign->name = 'Title of camp' . 4;
+            $campaign->amount = 1;
+            $campaign->start_date_time = Carbon::now()->subDay(2);
+            $campaign->end_date_time = Carbon::now()->addDay(2);
+            $campaign->status = 1;
+            $campaign->description = 'Test campaign';
+            $campaign->created_by = 1;
+            $campaign->updated_by = null;
+            $campaign->save();
+
 
         $game = new Game();
         $game->title = 'Snake';

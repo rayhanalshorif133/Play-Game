@@ -68,6 +68,12 @@
         });
 
         $("#loginBtn").click(function() {
+
+            $('#reg_user_name').val('');
+            $('#reg_user_msisdn').val('');
+            $('#reg_user_password').val('');
+            $(".reg_error_msg").text('');
+
             const msisdn = $('#login_user_msisdn').val();
             const password = $('#login_user_password').val();
             $(".login_error_msg").text('');
@@ -111,6 +117,11 @@
 
         });
         $("#registerBtn").click(function() {
+
+            $('#login_user_msisdn').val('');
+            $('#login_user_password').val('');
+            $(".login_error_msg").text('');
+
             const name = $('#reg_user_name').val();
             const msisdn = $('#reg_user_msisdn').val();
             const password = $('#reg_user_password').val();

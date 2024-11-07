@@ -11,6 +11,7 @@ use App\Models\Campaign;
 use App\Models\Subscription;
 use App\Models\Game;
 use App\Models\Score;
+use App\Models\User;
 use App\Models\CampaignDuration;
 use Carbon\Carbon;
 
@@ -76,25 +77,25 @@ class HomeController extends Controller
 
         $hasAlreadySubs = false;
         $msisdn = '';
+        $user = '';
 
         if (isset($_COOKIE["player_user"])) {
             $user = $_COOKIE["player_user"];
             $user = json_decode($user, true);
             $msisdn = $user['msisdn'];
-            $GET_user = User::where('msisdn', '=',  $msisdn)->first();
-            $isSubs = Subscription::where('msisdn', '=',  $msisdn)
-                ->where('status', '=', 1)
-                ->first();
-            if ($isSubs) {
-                $hasAlreadySubs = true;
+            $user = User::where('msisdn', '=',  $msisdn)->where('status', 1)->first();
+            if ($user) {
+                $isSubs = Subscription::where('msisdn', '=',  $user->msisdn)
+                    ->where('status', '=', 1)
+                    ->first();
+                if ($isSubs) {
+                    $hasAlreadySubs = true;
+                }
+            }else{
+                setcookie("player_user", "", time() - (86400 * 1), "/");
             }
         }
         $subscription = Subscription::select()->where('status', '1')->count();
-
-
-
-
-
 
         $scores = Score::select('msisdn', DB::raw('SUM(score) as total_score'))
             ->join('campaigns', 'campaigns.id', '=', 'scores.campaign_id')

@@ -18,9 +18,9 @@
                 </div>
                 <div class="login_container">
                     <label class="my-1">Phone Number</label>
-                    <input type="text" class="form-control" id="login_user_msisdn" value="01323174104"/>
+                    <input type="text" class="form-control" id="login_user_msisdn"/>
                     <label class="my-1">Password</label>
-                    <input type="password" class="form-control" id="login_user_password" value="01323174104"/>
+                    <input type="password" class="form-control" id="login_user_password"/>
                     <span class="login_error_msg error_msg"></span>
                     <div class="my-3 w-full" id="loginBtn">
                         <button class="btn btn-sm btn-reg w-full">Login</button>

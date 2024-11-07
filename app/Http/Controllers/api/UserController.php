@@ -35,17 +35,26 @@ class UserController extends Controller
     public function login(Request $request)
     {
         try {
-            $findUser = User::select()->where('msisdn', $request->msisdn)->first();
+
+            if (substr($request->msisdn, 0, 2) !== '88') {
+                $msisdn = '88' . $request->msisdn;
+            }
+
+            $findUser = User::where('msisdn', 'LIKE', '%' . $msisdn . '%')->first();
 
             if (!$findUser) {
                 return $this->respondWithError('User not found, please register again');
+            }
+
+            if($findUser->status == 0){
+                return $this->respondWithError('User is inactive, please contact the administrator');
             }
 
             if (Hash::check($request->password, $findUser->password)) {
 
                 setcookie("player_user", $findUser, time() + (86400 * 1), "/");
                 return $this->respondWithSuccess('Successfully logged in');
-               
+
                 // After this line, the user is considered authenticated
             } else {
                 return $this->respondWithError('Wrong password, please try again');
@@ -59,15 +68,18 @@ class UserController extends Controller
     {
         try {
 
-            $findUser = User::select()->where('msisdn', $request->msisdn)->first();
+            if (substr($request->msisdn, 0, 2) !== '88') {
+                $msisdn = '88' . $request->msisdn;
+            }
+
+            $findUser = User::where('msisdn', 'LIKE', '%' . $msisdn . '%')->first();
+
 
             if ($findUser) {
                 return $this->respondWithError('User already registered');
             }
 
-            if (substr($request->msisdn, 0, 2) !== '88') {
-                $msisdn = '88' . $request->msisdn;
-            }
+
 
 
             $user = new User();
@@ -75,11 +87,11 @@ class UserController extends Controller
             $user->msisdn = $msisdn;
             $user->password = Hash::make($request->password);
             $user->role = 'player';
-            $user->status = 'active';
+            $user->status = 1;
             $user->save();
             return $this->respondWithSuccess('Registration Success, Please login Now');
         } catch (\Throwable $th) {
-            //throw $th;
+            return $this->respondWithError($th->getMessage());
         }
     }
 }
