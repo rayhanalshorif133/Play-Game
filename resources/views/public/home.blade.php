@@ -21,20 +21,24 @@
                 <div>
                     <img src="{{ asset('images/clock.png') }}">
 
-                    @if($campaign && $campaign->type == 'expired')
-                    <p>Expired</p>
-                    @elseif($campaign && $campaign->type == 'upcoming')
-                    <p>Start in
-                        <span class="time">
-                            {{ $campaign->duration }}
-                        </span>
-                    </p>
+                    @if ($campaign)
+                        @if ($campaign->type == 'expired')
+                            <p>Expired</p>
+                        @elseif($campaign->type == 'upcoming')
+                            <p>Start in
+                                <span class="time">
+                                    {{ $campaign->duration }}
+                                </span>
+                            </p>
+                        @else
+                            <p>Expired in
+                                <span class="time">
+                                    {{ $campaign->duration }}
+                                </span>
+                            </p>
+                        @endif
                     @else
-                    <p>Expired in
-                        <span class="time">
-                            {{ $campaign->duration }}
-                        </span>
-                    </p>
+                        <p>Upcoming</p>
                     @endif
 
                 </div>
@@ -52,18 +56,23 @@
                     $game_url = $game->URL($game);
                 @endphp
                 <div class="play_btn_container mb-4">
-                    <div class="btn_primary">
-                        @if ($hasAlreadySubs)
-                            <a class="btn" href="{{ $game_url }}">
-                                Play now
-                            </a>
-                        @else
-                            <a class="btn"
-                                href="{{ route('campaign.campaign-details', $campaign->id) }}">
-                                Play now
-                            </a>
-                        @endif
-                    </div>
+                    @if ($user)
+                        <div class="btn_primary">
+                            @if ($hasAlreadySubs)
+                                <a class="btn" href="{{ $game_url }}">
+                                    Play now
+                                </a>
+                            @else
+                                <a class="btn" href="{{ route('campaign.campaign-details', $campaign->id) }}">
+                                    Play now
+                                </a>
+                            @endif
+                        </div>
+                    @else
+                        <div class="btn_primary" id="play_now_login">
+                            <a class="btn">Play Now</a>
+                        </div>
+                    @endif
                 </div>
             @endif
 
@@ -79,6 +88,7 @@
         </div>
 
         @include('public.modals')
+        @include('public.reg_login_modals')
     </main>
 @endsection
 
@@ -129,5 +139,16 @@
         $(".tournament_rules_btn").click(() => {
             tournamentRulesModal.show();
         });
+
+        const highlight = $(".leaderboard .active").html();
+        const position = $(".leaderboard .active").data('position');
+
+        if (position > 7) {
+            $(".leaderboard .highlight").html(highlight);
+            $(".leaderboard .highlight").removeClass("d-none");
+            $(".leaderboard .highlight").addClass("active");
+        } else {
+            $(".leaderboard .highlight").addClass("d-none");
+        }
     </script>
 @endpush

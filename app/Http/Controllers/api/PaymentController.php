@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\CreatePayment;
 use App\Models\PaymentDetails;
 use App\Models\Subscription;
+use App\Models\Campaign;
 use App\Models\SubUnsubsLog;
 use Carbon\Carbon;
 
@@ -72,15 +73,18 @@ class PaymentController extends Controller
 
 
             if ($newPayment->status == 1) {
+                $campaign = Campaign::select()->where('status', 1)->first();
                 $existingSubscription = Subscription::where('msisdn', $newPayment->msisdn)->first();
                 $subUnsubsLog = new SubUnsubsLog();
                 if ($existingSubscription) {
                     $existingSubscription->status = 1;
+                    $existingSubscription->campaign_id = $campaign->id;
                     $existingSubscription->save();
                     $subUnsubsLog->subscription_id = $existingSubscription->id;
                 } else {
                     $subscription = new Subscription();
                     $subscription->msisdn = $newPayment->msisdn;
+                    $subscription->campaign_id = $campaign->id;
                     $subscription->acr = $newPayment->acr;
                     $subscription->keyword = $request->keyword;
                     $subscription->status = 1;

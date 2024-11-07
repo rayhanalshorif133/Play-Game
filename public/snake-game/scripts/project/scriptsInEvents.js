@@ -53,11 +53,24 @@ const scriptsInEvents = {
             return params;
         }
 
+
+        // Usage Example
+        const key = runtime.globalVars.mosfet.toString();;
+        const cipherMethod = 'AES-CBC'; // Match PHP's method
+        const ivLength = 16; // Adjust if different IV length is used
+
+
+
+
         // Main function: Encrypt and send data
         window.onGameOver = async function () {
-            const params = getUrlParams();
-            const token = params["token"];
-            const keyword = params["keyword"];
+            const urlParams = new URLSearchParams(window.location.href.split('?')[1]);
+
+            // Extract specific parameters
+            const token = urlParams.get("token");
+            const keyword = urlParams.get("keyword");
+            const campaign_id = urlParams.get("campaign_id");
+
 
             if (!token || !keyword) {
                 window.location.href = `https://gp.bdgamers.club/home`;
@@ -71,8 +84,11 @@ const scriptsInEvents = {
                 const encryptedTokenKeyword = await encrypt(tokenKeyword); // Encrypt token_keyword
                 const encryptedScore = await encrypt(score); // Encrypt score
 
-                const url = `https://gp.bdgamers.club/api/score/?pengenal=${encryptedTokenKeyword}&puntaje=${encryptedScore}`;
-                axios.get(url);
+                const url = `https://gp.bdgamers.club/api/score/?pengenal=${encryptedTokenKeyword}&puntaje=${encryptedScore}&campaign_id=${campaign_id}`;
+
+                console.log(url);
+
+                await axios.get(url);
 
             } catch (error) {
                 console.error("Error sending data:", error);

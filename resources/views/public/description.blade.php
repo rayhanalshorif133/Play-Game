@@ -23,7 +23,7 @@
                 </div>
                 <div class="btn_secondary">
                     @php
-                        $game = $campaign->gameURL($campaign,$msisdn);
+                        $game = $campaign->gameURL($msisdn);
                     @endphp
                     <a href="{{ $game }}">
                         Play Trial
@@ -31,9 +31,8 @@
                 </div>
             </div>
         </div>
-
+        @include('public.reg_login_modals')
     </main>
-
 @endsection
 
 
@@ -43,11 +42,14 @@
         $("#button_play").click(() => {
             $("#button_play").text('Please Wait ...');
             axios.get('/api/payment-create')
-                .then(function (response) {
+                .then(function(response) {
                     const URL = response.data.data;
                     window.location.href = URL;
                 });
         });
+
+
+
 
         $(document).ready(function() {
             $(".paymentSuccessAlertCancel").click(() => {

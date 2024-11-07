@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\Models\Campaign;
 use App\Models\Subscription;
@@ -45,8 +46,16 @@ class HomeController extends Controller
     {
 
 
+
+
+
+
         $game = Game::select()->first();
         $currentDate = Carbon::now()->toDateTimeString(); //
+
+        $user  = '';
+
+
 
 
 
@@ -66,24 +75,40 @@ class HomeController extends Controller
 
 
         $hasAlreadySubs = false;
+        $msisdn = '';
 
-        $isSubs = Subscription::where('msisdn', '=', $this->get_msisdn())
-            ->where('status', '=', 1)
-            ->first();
+        if (isset($_COOKIE["player_user"])) {
+            $user = $_COOKIE["player_user"];
+            $user = json_decode($user, true);
+            $msisdn = $user['msisdn'];
+            $GET_user = User::where('msisdn', '=',  $msisdn)->first();
+            $isSubs = Subscription::where('msisdn', '=',  $msisdn)
+                ->where('status', '=', 1)
+                ->first();
+            if ($isSubs) {
+                $hasAlreadySubs = true;
+            }
+        }
         $subscription = Subscription::select()->where('status', '1')->count();
 
-        if ($isSubs) {
-            $hasAlreadySubs = true;
-        }
+
+
+
+
 
         $scores = Score::select('msisdn', DB::raw('SUM(score) as total_score'))
             ->join('campaigns', 'campaigns.id', '=', 'scores.campaign_id')
             ->where('scores.status', '=', 1)
             ->where('campaigns.status', '=', 1)
-            ->groupBy('msisdn','campaign_id','campaigns.status')
+            ->groupBy('msisdn', 'campaign_id', 'campaigns.status')
             ->orderBy('total_score', 'desc')
             ->get();
-        return view('public.home', compact('scores', 'game', 'subscription', 'campaign', 'hasAlreadySubs'));
+
+
+
+
+
+        return view('public.home', compact('user', 'scores', 'msisdn', 'game', 'subscription', 'campaign', 'hasAlreadySubs'));
     }
 
     // calculateDurationUpcoming

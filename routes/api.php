@@ -44,5 +44,8 @@ Route::match(['get', 'post'], '/redirect', [ScoreController::class, 'redirect'])
 Route::match(['get', 'post'], '/payment-create', [PaymentController::class, 'paymentCreate']);
 Route::match(['get', 'post'], '/payment/{payment_id}/callback', [PaymentController::class, 'paymentCallback']);
 
-// https://www.google.com/?aocTransID=TR6667046925
+
+
+Route::match(['get', 'post'], '/register', [UserController::class, 'register']);
+Route::match(['get', 'post'], '/login', [UserController::class, 'login']);
 

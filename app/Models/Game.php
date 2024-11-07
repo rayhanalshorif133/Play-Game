@@ -21,7 +21,8 @@ class Game extends Model
     ];
 
     public function URL($game){
-        $url = $game->url . '?token=' . $this->get_msisdn() . '&keyword=' . $game->keyword;
+        $payload = 'keyword=' . $game->keyword . '&token=' . $this->get_msisdn();
+        $url = $game->url . '?' . $payload;
         return $url;
     }
 }

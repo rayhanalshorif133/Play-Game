@@ -5,7 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Score;
-use App\Models\ScoreLog;
+use App\Models\Campaign;
 use App\Models\Subscription;
 
 
@@ -40,8 +40,10 @@ class ScoreController extends Controller
 
 
 
+            $campaign = Campaign::select()->where('status', 1)->first();
 
-            $isSubs = Subscription::where('msisdn', '=',  $msisdn)
+            $subscription = Subscription::where('msisdn', '=',  $msisdn)
+            ->where('campaign_id','=', $campaign->id)
             ->where('status', '=', 1)
             ->first();
 
@@ -50,10 +52,12 @@ class ScoreController extends Controller
 
             $score = new Score();
             $score->msisdn = $msisdn;
+            $score->campaign_id = $campaign->id;
             $score->score = $get_score;
             $score->game_keyword = $game_keyword;
-            if($isSubs){
+            if($subscription){
                 $score->status = 1;
+                $score->subscription_id = $subscription->id;
             }else{
                 $score->status = 0;
             }

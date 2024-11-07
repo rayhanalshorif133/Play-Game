@@ -64,7 +64,7 @@
             <a href="{{ route('admin.campaign-score-logs.index') }}" class="menu-link">
                 <i
                     class="menu-icon tf-icons bx bxs-component @if ($currentRoute == 'admin.campaign-score-logs.index') selectedIconPopup @endif"></i>
-                <div data-i18n="Analytics" class="text-semibold">Campaign Score Logs</div>
+                <div data-i18n="Analytics" class="text-semibold">Leaderboard</div>
             </a>
         </li>
         <li class="menu-item @if ($currentRoute == 'admin.score-logs.index') active open @endif">

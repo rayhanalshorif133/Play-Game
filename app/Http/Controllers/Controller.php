@@ -71,10 +71,12 @@ class Controller extends BaseController
 
     public function get_msisdn()
     {
-        if (isset($_COOKIE['msisdn'])) {
-            // true, cookie is set
-            return $_COOKIE['msisdn'];
-        } else {
+
+        if (isset($_COOKIE["player_user"])) {
+            $user = $_COOKIE["player_user"];
+            $user = json_decode($user, true);
+            return $user['msisdn'];
+        }else {
             // false, cookie is not set
             return "";
         }

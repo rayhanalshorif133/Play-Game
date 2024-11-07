@@ -45,8 +45,9 @@
          <div class="modal-content leaderboard">
              <div class="modal_header">
                  <h5 class="modal_title" id="leaderboardModalLabel">Leaderboard</h5>
-                 <div class="close_btn">
-                     <button type="button" class="close custom-close" data-bs-dismiss="modal" aria-label="Close">
+                 <div class="close_btn" style="border-radius: 50%;">
+                     <button type="button" class="close custom-close" style="border-radius: 50%;"
+                         data-bs-dismiss="modal" aria-label="Close">
                          <span aria-hidden="true">&times;</span>
                      </button>
                  </div>
@@ -62,14 +63,19 @@
                      </thead>
                      @if (count($scores) == 0)
                          <tbody>
-                            <tr><td>No data found</td></tr>
+                             <tr>
+                                 <td>No data found</td>
+                             </tr>
                          </tbody>
                      @else
-                         <tbody>
+                         <tbody class="leaderboard">
+                             <tr class="highlight"></tr>
                              @foreach ($scores as $index => $item)
-                                 <tr>
+                                 <tr class="@if ($msisdn == $item->msisdn) active @endif"
+                                     data-position={{ $index + 1 }}>
                                      <td>{{ $index + 1 }}</td>
-                                     <td>{{ $item->msisdn }}</td>
+                                     <td>{{ substr($item->msisdn, 0, 5) . str_repeat('*', 5) . substr($item->msisdn, -3) }}
+                                     </td>
                                      <td>{{ $item->total_score }}</td>
                                  </tr>
                              @endforeach
@@ -111,3 +117,6 @@
          </div>
      </div>
  </div>
+
+
+
