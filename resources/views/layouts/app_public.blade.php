@@ -218,13 +218,13 @@
                 .then(function(response) {
                     const status = response.data.status;
                     const message = response.data.message;
-                    console.log(status, message);
                     if (status == false) {
                         $(".forgot_pass_error_msg").addClass('error_msg');
                         $(".forgot_pass_error_msg").removeClass('success_msg');
                     } else {
                         $(".forgot_pass_error_msg").removeClass('error_msg');
                         $(".forgot_pass_error_msg").addClass('success_msg');
+                        $(".success_msg_container").addClass('d-none');
                         setTimeout(() => {
                             $(".btn_forgot_cancel").click();
                         }, 2000);

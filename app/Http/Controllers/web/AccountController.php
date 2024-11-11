@@ -48,11 +48,15 @@ class AccountController extends Controller
                 return redirect()->back();
             }
 
+           
+
             $auth_user = Auth::user();
             $auth_user->msisdn = $request->msisdn;
             $auth_user->name = $request->name;
             $auth_user->email = $request->email;
             $auth_user->save();
+
+            setcookie("player_user", $auth_user, time() + (86400 * 1), "/");
 
             return redirect()->route('account.index');
         }

@@ -22,7 +22,7 @@ $(document).ready(function () {
         },
         {
             render: function (data, type, row) {
-                return row.email;
+                return row.msisdn;
             },
             targets: 0,
             width: "auto",
@@ -30,8 +30,8 @@ $(document).ready(function () {
         {
             render: function (data, type, row) {
                 var role = '';
-                row.role == 'super-admin' ? role = `<span class="badge bg-label-info">Super Admin</span>` :
-                    role = `<span class="badge bg-label-primary">Admin</span>`;
+                row.role == 'admin' ? role = `<span class="badge bg-label-info">Admin</span>` :
+                    role = `<span class="badge bg-label-primary">Player</span>`;
                 return role;
             },
             targets: 0,
@@ -40,27 +40,13 @@ $(document).ready(function () {
         {
             render: function (data, type, row) {
                 var status = "";
-                row.status == 'active' ? status = `<span class="badge bg-success">Active</span>` :
+                row.status == 1 ? status = `<span class="badge bg-success">Active</span>` :
                     status = `<span class="badge bg-danger">Inactive</span>`;
                 return status;
             },
             targets: 0,
             width: "auto",
         },
-        {
-            render: function (data, type, row) {
-                return `<div>
-                            <span class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editUserinfo" onClick="editUserInfoBtn(${row.id})">
-                                <i class='bx bx-edit-alt'></i>
-                            </span>
-                            <span class="btn btn-danger btn-sm deteleBtn" onClick="deteleBtn(${row.id})">
-                                <i class='bx bxs-trash-alt'></i>
-                            </span>
-                        </div>`;
-            },
-            targets: 0,
-            width: "auto",
-        }
         ]
     });
 

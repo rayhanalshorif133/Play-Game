@@ -5,10 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+
+    public function index()
+    {
+        if (request()->ajax()) {
+            $query = User::select()->where('role', 'player')->get();
+             return DataTables::of($query)
+             ->addIndexColumn()
+             ->toJson();
+        }
+        return view('user.index');
+    }
 
     // store
     public function store(Request $request)

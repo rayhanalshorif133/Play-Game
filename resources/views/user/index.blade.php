@@ -15,10 +15,9 @@
                             <tr>
                                 <th>#</th>
                                 <th>User Name</th>
-                                <th>Email</th>
+                                <th>Msisdn</th>
                                 <th>Role</th>
                                 <th>Status</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
                     </table>
@@ -28,8 +27,8 @@
     </div>
 
     {{-- user edit modal:start --}}
-    @include('user.create')
-    @include('user.edit')
+    {{-- @include('user.create')
+    @include('user.edit') --}}
     {{-- user edit modal:end --}}
 @endsection
 

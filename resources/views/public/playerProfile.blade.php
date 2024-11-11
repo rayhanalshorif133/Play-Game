@@ -60,7 +60,7 @@
                     <input type="text" class="form-control" name="name" id="update_user_name"
                         value="{{ $user->name }}" />
                     <label class="my-1">Phone Number</label>
-                    <input type="text" class="form-control" name="msisdn" id="update_user_msisdn"
+                    <input type="text" readonly disabled class="form-control" id="update_user_msisdn"
                         value="{{ $user->msisdn }}" />
                     <label class="my-1">Password</label>
                     <input type="password" class="form-control" name="password" id="update_user_password" />

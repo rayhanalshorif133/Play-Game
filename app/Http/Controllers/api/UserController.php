@@ -98,6 +98,7 @@ class UserController extends Controller
     public function forgotPassword(Request $request)
     {
         try {
+            $msisdn = $request->msisdn;
             if (substr($request->msisdn, 0, 2) !== '88') {
                 $msisdn = '88' . $request->msisdn;
             }

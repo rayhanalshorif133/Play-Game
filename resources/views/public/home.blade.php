@@ -83,6 +83,9 @@
                         </div>
                     @endif
                 </div>
+                <div>
+                    <p class="entry_fee">Entry Fee 10 tk + SC</p>
+                </div>
             @endif
 
 

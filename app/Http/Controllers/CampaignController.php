@@ -11,6 +11,7 @@ use App\Models\CampaignDuration;
 use App\Models\Game;
 use Carbon\Carbon;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Validation\ValidationException;
 
 class CampaignController extends Controller
 {
@@ -19,19 +20,59 @@ class CampaignController extends Controller
 
         $games = Game::first();
         if ($request->method() == 'GET') {
-            if (request()->ajax()) {
-                $query = Campaign::orderBy('created_at', 'desc')->get();
-                return DataTables::of($query)->addIndexColumn()->toJson();
+            if ($request->type == 'fetch') {
+                $campaign = Campaign::select()->where('id', $request->id)->first();
+                return $this->respondWithSuccess('Successfully fetched campaign', $campaign);
+            } else {
+                if (request()->ajax()) {
+                    $query = Campaign::orderBy('created_at', 'desc')->get();
+                    return DataTables::of($query)->addIndexColumn()->toJson();
+                }
+                return view('campaign.index', compact('games'));
             }
-            return view('campaign.index', compact('games'));
         } elseif ($request->method() == 'POST') {
+
+            try { 
+                
+                $rules = [
+                    'name' => 'required|string|max:255',
+                    'amount' => 'required|numeric',
+                    'description' => 'nullable|string',
+                    'start_date_time' => 'required|date',
+                    'end_date_time' => 'required|date|after_or_equal:start_date_time',
+                    'status' => 'required|in:active,inactive,completed,cancelled'
+                ];
+
+                // Manually create the validator instance
+                $validator = Validator::make($request->all(), $rules);
+
+                // Check if validation fails
+                if ($validator->fails()) {
+                    return $this->respondWithError('Validation errors occurred', $validator->errors());
+                }
+
+                // Create a new campaign
+                $campaign = Campaign::create([
+                    'name' => $request->name,
+                    'amount' => $request->amount,
+                    'description' => $request->description,
+                    'start_date_time' => $request->start_date_time,
+                    'end_date_time' => $request->end_date_time,
+                    'status' => $request->status,
+                ]);
+
+                return $this->respondWithSuccess('Campaign created successfully', $campaign);
+            } catch (ValidationException $e) {
+
+                return $this->respondWithError('Validation errors occurred', $e->errors());
+            }
         } elseif ($request->method() == 'PUT') {
             if ($request->type == 'status') {
 
                 $get_is_another_active = Campaign::select()
                     ->where('status', 1)
-                    ->where('id','!=', $request->id)->first();
-                if($get_is_another_active){
+                    ->where('id', '!=', $request->id)->first();
+                if ($get_is_another_active) {
                     return $this->respondWithError('Another Campaign is actived, Please inactive the others active campaign');
                 }
 
@@ -40,6 +81,18 @@ class CampaignController extends Controller
                 $campaign->status = $campaign->status == 1 ? 0 : 1;
                 $campaign->save();
                 return $this->respondWithSuccess('yes status', $request->all());
+            } else {
+                $campaign = Campaign::find($request->id);
+
+                // Update campaign attributes
+                $campaign->update([
+                    'name' => $request->name,
+                    'amount' => $request->amount,
+                    'description' => $request->description,
+                    'start_date_time' => $request->start_date_time,
+                    'end_date_time' => $request->end_date_time,
+                ]);
+                return $this->respondWithSuccess('yes update', $campaign);
             }
         } else {
             $start_date = $request->start_date;

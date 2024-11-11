@@ -43,21 +43,14 @@ class PublicController extends Controller
 
         if ($request->method() == 'PUT') {
 
-            if(!$request->name || !$request->msisdn){
-                Session::flash('error', 'Name & Phone number both are required');
+            if(!$request->name){
+                Session::flash('error', 'Name is required');
                 return redirect()->back();
             }
 
-            $user = User::find($request->user_id);  // This will return a 404 if user is not found
-
-            $msisdn = $request->msisdn;
-
-            if (substr($msisdn, 0, 2) !== '88') {
-                $msisdn = '88' . $msisdn;
-            }
-            // Update the user fields from the request
+            $user = User::find($request->user_id); 
             $user->name = $request->name;
-            $user->msisdn = $msisdn;
+            // $user->msisdn = $msisdn;
             $user->password = Hash::make($request->password);
             $user->save();
             setcookie("player_user", $user, time() + (86400 * 1), "/");
@@ -80,6 +73,17 @@ class PublicController extends Controller
                 }
             }
             return view('public.playerProfile', compact('user'));
+        }
+    }
+
+    public function checkGPNumber($number)
+    {
+        // Regex to match GP numbers
+        $firstFiveDigits = substr($number, 0, 5);
+        if($firstFiveDigits == '88013' || $firstFiveDigits == '88017'){
+            return true;
+        }else{
+            return false;
         }
     }
 }
