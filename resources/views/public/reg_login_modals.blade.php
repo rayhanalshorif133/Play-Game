@@ -30,9 +30,9 @@
                 </div>
                 <div class="reg_container d-none">
                     <label class="my-1">Name</label>
-                    <input type="number" class="form-control" id="reg_user_name" />
+                    <input type="text" class="form-control" id="reg_user_name" />
                     <label class="my-1">Phone Number</label>
-                    <input type="text" class="form-control" id="reg_user_msisdn" />
+                    <input type="number" class="form-control" id="reg_user_msisdn" />
                     <label class="my-1">Password</label>
                     <input type="password" class="form-control" id="reg_user_password" />
                     <span class="reg_error_msg error_msg"></span>
