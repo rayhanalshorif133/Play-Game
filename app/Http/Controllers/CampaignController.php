@@ -69,13 +69,6 @@ class CampaignController extends Controller
         } elseif ($request->method() == 'PUT') {
             if ($request->type == 'status') {
 
-                $get_is_another_active = Campaign::select()
-                    ->where('status', 1)
-                    ->where('id', '!=', $request->id)->first();
-                if ($get_is_another_active) {
-                    return $this->respondWithError('Another Campaign is actived, Please inactive the others active campaign');
-                }
-
 
                 $campaign = Campaign::select()->where('id', $request->id)->first();
                 $campaign->status = $campaign->status == 1 ? 0 : 1;

@@ -84,7 +84,7 @@
                     @endif
                 </div>
                 <div>
-                    <p class="entry_fee">Entry Fee 10 tk + SC</p>
+                    <p class="entry_fee">Daily Entry Fee 10 tk + SC</p>
                 </div>
             @endif
 
@@ -162,5 +162,30 @@
         } else {
             $(".leaderboard .highlight").addClass("d-none");
         }
+
+
+        $(".reg-tab").click(function() {
+            $(".nav_container div button").removeClass('active');
+            $(".login_container").addClass('d-none');
+            $(".reg_container").removeClass('d-none');
+            $(this).find('button').addClass('active');
+        });
+
+
+
+
+
+        $(".daily").click(function() {
+            $(".daily_container").removeClass('d-none');
+            $(".weekly_container").addClass('d-none');
+            $(this).find('button').addClass('active');
+            $('.weekly').find('button').removeClass('active');
+        });
+        $(".weekly").click(function() {
+            $(".daily_container").addClass('d-none');
+            $(".weekly_container").removeClass('d-none');
+            $(this).find('button').addClass('active');
+            $('.daily').find('button').removeClass('active');
+        });
     </script>
 @endpush

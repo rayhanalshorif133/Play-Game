@@ -286,6 +286,7 @@ input[type='number']::-webkit-outer-spin-button {
 #subscriberTableId_wrapper,
 #userTableId_wrapper,
 #leaderboardScoreLogs_wrapper,
+#leaderboardScoreLogsWeekly_wrapper,
 #campaignsTableId_wrapper{
     position: relative;
 }
@@ -298,6 +299,7 @@ input[type='number']::-webkit-outer-spin-button {
 #userTableId_filter,
 #subscriberTableId_filter,
 #leaderboardScoreLogs_filter,
+#leaderboardScoreLogsWeekly_filter,
 #campaignsTableId_filter{
     position: absolute;
     top: 0;

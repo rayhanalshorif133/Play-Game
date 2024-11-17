@@ -36,6 +36,10 @@ class UserController extends Controller
     {
         try {
 
+
+
+            $msisdn = $request->msisdn;
+            
             if (substr($request->msisdn, 0, 2) !== '88') {
                 $msisdn = '88' . $request->msisdn;
             }
@@ -49,6 +53,8 @@ class UserController extends Controller
             if ($findUser->status == 0) {
                 return $this->respondWithError('User is inactive, please contact the administrator');
             }
+
+            setcookie("player_user", "", time() - (86400 * 1), "/");
 
             if (Hash::check($request->password, $findUser->password)) {
 
@@ -68,6 +74,7 @@ class UserController extends Controller
     {
         try {
 
+            $msisdn = $request->msisdn;
             if (substr($request->msisdn, 0, 2) !== '88') {
                 $msisdn = '88' . $request->msisdn;
             }

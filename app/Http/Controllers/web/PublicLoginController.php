@@ -45,6 +45,7 @@ class PublicLoginController extends Controller
 
         if(Hash::check($password, $user->password)){
             Auth::login($user);
+            
             if($user->role == 'admin'){
                 return redirect()->route('admin.dashboard');
             }

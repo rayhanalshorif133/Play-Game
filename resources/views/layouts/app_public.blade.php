@@ -189,12 +189,7 @@
             $(this).find('button').addClass('active');
         });
 
-        $("#reg-tab").click(function() {
-            $(".nav_container div button").removeClass('active');
-            $(".login_container").addClass('d-none');
-            $(".reg_container").removeClass('d-none');
-            $(this).find('button').addClass('active');
-        });
+       
 
 
         $(".forgot_passBtn").click(function() {

@@ -39,7 +39,7 @@ Route::get('clear', function () {
     return 'Clear';
 });
 
-Route::get('/', [HomeController::class, 'isLoginOrNot']);
+Route::get('/', [HomeController::class, 'home']);
 Route::get('/admin', [HomeController::class, 'admin']);
 
 Auth::routes();
@@ -80,9 +80,7 @@ Route::prefix('admin')
         Route::match(['get'], '/subscribers', [SubscriptionController::class, 'index'])->name('subscribers');
 
 
-        // campaign_durations
 
-        // campaign_score_logs
         Route::middleware('auth')->get('campaign-score-logs/', [CampaignScoreLogController::class, 'index'])->name('campaign-score-logs.index');
         Route::middleware('auth')->get('score-logs/', [CampaignScoreLogController::class, 'scoreLogs'])->name('score-logs.index');
 

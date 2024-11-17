@@ -18,6 +18,22 @@
 
 }
 
+.normal_title {
+    text-align: center;
+    font-weight: 700;
+    font-size: 18px;
+    font-family: "Nunito", sans-serif;
+    color: var(--primary-color);
+}
+
+.normal_text {
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+    font-family: "Nunito", sans-serif;
+    color: #333333;
+}
+
 body {
     font-family: 'Nunito', sans-serif;
     background: var(--body-bg);
@@ -301,6 +317,34 @@ input[type='number']::-webkit-outer-spin-button {
 
 .play_btn_container div:nth-of-type(2) {
     padding: 5px 0;
+}
+
+.leaderboard_container{
+    width: 100%;
+}
+
+.leaderboard_container table{width: 100%;}
+.leaderboard_container table thead{ width: 100%; padding: 7px 0!important;}
+.leaderboard_container table thead tr th{ padding: 0px 10px!important;}
+.leaderboard_container table tbody tr td{ padding: 0px 10px!important;}
+
+.leaderboard_container table tbody{ margin: 7px 0!important;}
+
+.leaderboard_container table tr{
+    line-height:2;
+}
+
+.leaderboard_container table tbody .active {
+    background-color: var(--primary-color)!important; 
+    color: #ffffff!important; /* Light gray for even rows */
+}
+
+.leaderboard_container table tr:nth-child(even) {
+    background-color: #eccffd; /* Light gray for even rows */
+}
+
+.leaderboard_container table tr:nth-child(odd) {
+    background-color: #ffffff; /* White for odd rows */
 }
 
 

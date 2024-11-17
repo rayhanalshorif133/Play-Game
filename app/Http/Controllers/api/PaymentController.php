@@ -13,7 +13,8 @@ use Carbon\Carbon;
 
 class PaymentController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->handleMsisdn();
     }
 
@@ -27,7 +28,7 @@ class PaymentController extends Controller
             $msisdn = $this->get_msisdn();
 
 
-            if($msisdn){
+            if ($msisdn) {
                 $url = 'https://gpglobal.b2mwap.com/api/subscription?keyword=BDG&msisdn=' . $msisdn;
             }
 
@@ -38,7 +39,7 @@ class PaymentController extends Controller
             $new_payment->save();
 
 
-            $callback = url('api/payment/'. $new_payment->id .'/callback');
+            $callback = url('api/payment/' . $new_payment->id . '/callback');
 
 
             $url = $url . '&success_url=' . $callback . '&failed_url=' . $callback;
@@ -56,6 +57,7 @@ class PaymentController extends Controller
 
         try {
 
+
             $newPayment = new PaymentDetails();
             $newPayment->payment_id = $payment_id;
             $newPayment->keyword = $request->keyword;
@@ -69,18 +71,32 @@ class PaymentController extends Controller
             $newPayment->save();
 
 
+            // 
+            $findPayment = CreatePayment::find($payment_id);
+            $findPayment->status = $newPayment->status;
+            $findPayment->save();
 
 
 
-            if ($newPayment->status == 1) {
-                $campaign = Campaign::select()->where('status', 1)->first();
-                $existingSubscription = Subscription::where('msisdn', $newPayment->msisdn)->first();
-                $subUnsubsLog = new SubUnsubsLog();
-                if ($existingSubscription) {
-                    $existingSubscription->status = 1;
-                    $existingSubscription->campaign_id = $campaign->id;
-                    $existingSubscription->save();
-                    $subUnsubsLog->subscription_id = $existingSubscription->id;
+            $date = date('Y-m-d');
+
+
+
+            if ($request->result == 'success') {
+                $campaign = $this->getCurrentCampaign();
+                $subscription = Subscription::where('msisdn', $newPayment->msisdn)->whereDate('subs_date', $date)->first();
+
+
+
+                if ($subscription) {
+                    $subscription->msisdn = $newPayment->msisdn;
+                    $subscription->campaign_id = $campaign->id;
+                    $subscription->acr = $newPayment->acr;
+                    $subscription->keyword = $request->keyword;
+                    $subscription->status = 1;
+                    $subscription->subs_date = Carbon::now();
+                    $subscription->unsubs_date = null;
+                    $subscription->save();
                 } else {
                     $subscription = new Subscription();
                     $subscription->msisdn = $newPayment->msisdn;
@@ -91,8 +107,14 @@ class PaymentController extends Controller
                     $subscription->subs_date = Carbon::now();
                     $subscription->unsubs_date = null;
                     $subscription->save();
-                    $subUnsubsLog->subscription_id = $subscription->id;
                 }
+
+
+
+
+                $subUnsubsLog = new SubUnsubsLog();
+
+                $subUnsubsLog->subscription_id = $subscription->id;
 
                 // make log
 
@@ -121,6 +143,4 @@ class PaymentController extends Controller
             return redirect('/home?status=failure');
         }
     }
-
-
 }

@@ -6,6 +6,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Campaign;
+use Carbon\Carbon;
+
 
 class Controller extends BaseController
 {
@@ -80,5 +83,14 @@ class Controller extends BaseController
             // false, cookie is not set
             return "";
         }
+    }
+
+    public function getCurrentCampaign(){
+        $date = date('Y-m-d');
+        $campaign = Campaign::where('status', 1)
+            ->where('start_date', '<=', $date)
+            ->where('end_date', '>=', $date)
+            ->first();
+        return $campaign;
     }
 }

@@ -9,7 +9,7 @@
                     <div class="nav_item" id="login-tab">
                         <button class="active btn">Login</button>
                     </div>
-                    <div class="nav_item" id="reg-tab">
+                    <div class="nav_item reg-tab" id="reg-tab">
                         <button class="btn">Register</button>
                     </div>
                 </div>

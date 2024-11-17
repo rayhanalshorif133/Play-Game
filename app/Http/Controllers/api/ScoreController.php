@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Score;
 use App\Models\Campaign;
 use App\Models\Subscription;
+use Carbon\Carbon;
 
 
 class ScoreController extends Controller
@@ -39,12 +40,16 @@ class ScoreController extends Controller
         try {
 
 
+            $currentDate = Carbon::now()->toDateTimeString(); //
 
-            $campaign = Campaign::select()->where('status', 1)->first();
+            $campaign = $this->getCurrentCampaign();
+
+            $date = date('Y-m-d');
 
             $subscription = Subscription::where('msisdn', '=',  $msisdn)
             ->where('campaign_id','=', $campaign->id)
             ->where('status', '=', 1)
+            ->whereDate('subs_date', $date)
             ->first();
 
 

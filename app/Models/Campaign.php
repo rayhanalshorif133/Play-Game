@@ -38,8 +38,7 @@ class Campaign extends Model
     public function gameURL($msisdn)
     {
         $game = Game::select()->first();
-        $payload = 'keyword=' . $game->keyword . '&token=' . $msisdn;
-        $url = $game->url . '?payload=' . $payload;
+        $url = $game->url . '?keyword=' . $game->keyword . '&token=' . $msisdn;
         return $url;
     }
 }
