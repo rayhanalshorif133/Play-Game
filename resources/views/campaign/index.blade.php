@@ -41,7 +41,6 @@
                     </div>
                     <div class="modal-body">
                         <form id="createCampaignForm">
-                            <input type="text" class="form-control d-none" id="create_campaignID">
                             <div class="mb-3">
                                 <label for="create_campaignName" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="create_campaignName" name="name" required>
@@ -64,10 +63,10 @@
                             <div class="mb-3">
                                 <label for="createCampaignStatus" class="form-label">Status</label>
                                 <select class="form-select" id="createCampaignStatus" required>
-                                  <option value="1">Active</option>
-                                  <option value="0">Inactive</option>
+                                    <option value="1" selected>Active</option>
+                                    <option value="0">Inactive</option>
                                 </select>
-                              </div>
+                            </div>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -91,7 +90,8 @@
                             <input type="text" class="form-control d-none" id="update_campaignID">
                             <div class="mb-3">
                                 <label for="update_campaignName" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="update_campaignName" name="name" required>
+                                <input type="text" class="form-control" id="update_campaignName" name="name"
+                                    required>
                             </div>
                             <div class="mb-3">
                                 <label for="update_campaignAmount" class="form-label">Amount</label>
@@ -105,8 +105,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="update_endDateTime" class="form-label">End Date & Time</label>
-                                <input type="datetime-local" class="form-control" id="update_endDateTime" name="end_date"
-                                    required>
+                                <input type="datetime-local" class="form-control" id="update_endDateTime"
+                                    name="end_date" required>
                             </div>
                         </form>
                     </div>
@@ -159,18 +159,22 @@
                     },
                     {
                         render: function(data, type, row) {
-                            const formattedDateTime = moment(row.start_date_time).format(
-                                "DD-MM-YYYY HH:mm:ss");
-                            return formattedDateTime;
+                            const date = moment(row.start_date).format(
+                                "DD-MM-YYYY");
+                            let time = moment(row.start_time, "HH:mm:ss.SSSSSS").format("HH:mm:ss");
+
+                            return date + " " + time;
                         },
                         targets: 0,
                         className: 'fit-content' // Add a custom class
                     },
                     {
                         render: function(data, type, row) {
-                            const formattedDateTime = moment(row.end_date_time).format(
-                                "DD-MM-YYYY HH:mm:ss");
-                            return formattedDateTime;
+                            //console.log(row);
+                            const date = moment(row.end_date).format(
+                                "DD-MM-YYYY");
+                            let time = moment(row.end_time, "HH:mm:ss.SSSSSS").format("HH:mm:ss");
+                            return date + " " + time;
                         },
                         targets: 0,
                         className: 'fit-content' // Add a custom class
@@ -244,17 +248,19 @@
             axios.get(`/admin/campaigns?type=fetch&id=${id}`)
                 .then((response) => {
                     const data = response.data.data;
-                    console.log(data.status);
                     // Set values in the form fields
                     $('#update_campaignID').val(data.id);
                     $('#update_campaignName').val(data.name);
                     $('#update_campaignAmount').val(data.amount);
                     $('#update_campaignDescription').val(data.description);
-                    $('#update_startDateTime').val(data.start_date_time);
-                    $('#update_endDateTime').val(data.end_date_time);
+                    let start_time = moment(data.start_time, "HH:mm:ss.SSSSSS").format("HH:mm:ss");
+                    const start_date_time = data.start_date + " " + start_time;
+                    
+                    let end_time = moment(data.end_time, "HH:mm:ss.SSSSSS").format("HH:mm:ss");
+                    const end_date_time = data.end_date + " " + end_time;
+                    $('#update_startDateTime').val(start_date_time);
+                    $('#update_endDateTime').val(end_date_time);
                 });
-
-            // Retrieve form values
 
             updateCampains.show();
         };
@@ -263,20 +269,23 @@
             const createData = {
                 name: $('#create_campaignName').val(),
                 amount: $('#create_campaignAmount').val(),
-                description: $('#create_campaignDescription').val(),
                 start_date_time: $('#create_startDateTime').val(),
                 end_date_time: $('#create_endDateTime').val(),
                 status: $('#createCampaignStatus').val(),
             };
 
 
+            console.log(createData);
+            return false;
+
+
             // Send a PUT request to update the campaign
             axios.post(`/admin/campaigns`, createData)
                 .then((response) => {
                     const status = response.data.status;
-                    if(status == false){
+                    if (status == false) {
                         console.log(response.data.data);
-                    }else{
+                    } else {
                         if ($.fn.DataTable.isDataTable('#campaignsTableId')) {
                             $('#campaignsTableId').DataTable().destroy(); // Destroy the existing DataTable instance
                             handleDataTable();

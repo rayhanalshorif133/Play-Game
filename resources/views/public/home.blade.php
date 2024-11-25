@@ -16,32 +16,23 @@
                 {{ $game->title }}
             </div>
             <div class="logo">
-                <img src="{{ asset($game->banner) }}">
+                <img class="bg" src="{{ asset($game->banner) }}">
+                <img class="main_snake" src="{{ asset('images/main_snake.png') }}">
             </div>
             <div class="label_container">
                 <div>
                     <img src="{{ asset('images/playing_hands.png') }}">
-                    <p>{{ $subscription }}</p>
+                    <p>{{ $totalUser }}</p>
                 </div>
                 <div>
                     <img src="{{ asset('images/clock.png') }}">
 
                     @if ($campaign)
-                        @if ($campaign->type == 'expired')
-                            <p>Expired</p>
-                        @elseif($campaign->type == 'upcoming')
-                            <p>Start in
-                                <span class="time">
-                                    {{ $campaign->duration }}
-                                </span>
-                            </p>
-                        @else
-                            <p>Expired in
-                                <span class="time">
-                                    {{ $campaign->duration }}
-                                </span>
-                            </p>
-                        @endif
+                        <p>Expires in
+                            <span class="time">
+                                {{ $campaign->duration }}
+                            </span>
+                        </p>
                     @else
                         <p>Upcoming</p>
                     @endif
@@ -86,6 +77,9 @@
                 <div>
                     <p class="entry_fee">Daily Entry Fee 10 tk + SC</p>
                 </div>
+                <div class="price_btn_container">
+                    <button type="button" class="btn">Prize</button>
+                </div>
             @endif
 
 
@@ -126,6 +120,13 @@
         });
 
 
+        var priceShowModal = new bootstrap.Modal(document.getElementById('priceShowModal'), {
+            keyboard: false
+        });
+
+
+
+
         let url = window.location.href;
         if (url.includes("?status=success")) {
             paymentSuccessModal.show();
@@ -146,6 +147,10 @@
 
         $(".leaderboad_btn").click(() => {
             leaderboadModal.show();
+        });
+
+        $(".price_btn_container").click(() => {
+            priceShowModal.show();
         });
 
         $(".tournament_rules_btn").click(() => {
@@ -186,6 +191,15 @@
             $(".weekly_container").removeClass('d-none');
             $(this).find('button').addClass('active');
             $('.daily').find('button').removeClass('active');
+        });
+
+        $(document).ready(function() {
+            $('.togglePassword').click(function() {
+                const eyeIcon = $(this).find('i');
+                const type = $(this).parent().find('input').attr('type') === 'password' ? 'text' : 'password';
+                $(this).parent().find('input').attr('type', type);
+                eyeIcon.toggleClass('bi-eye').toggleClass('bi-eye-slash');
+            });
         });
     </script>
 @endpush

@@ -15,9 +15,26 @@ use Illuminate\Validation\ValidationException;
 
 class CampaignController extends Controller
 {
+
+    function generateCampName($startDate, $endDate)
+    {
+        // Convert to DateTime objects
+        $start = new \DateTime($startDate);
+        $end = new \DateTime($endDate);
+
+        // Format the dates as required
+        $startFormatted = $start->format('d');
+        $endFormatted = $end->format('d-m-Y');
+
+        // Return the name format
+        return "Camp - $startFormatted to $endFormatted";
+    }
+
+
     public function index(Request $request)
     {
 
+        
         $games = Game::first();
         if ($request->method() == 'GET') {
             if ($request->type == 'fetch') {
@@ -32,36 +49,23 @@ class CampaignController extends Controller
             }
         } elseif ($request->method() == 'POST') {
 
-            try { 
-                
-                $rules = [
-                    'name' => 'required|string|max:255',
-                    'amount' => 'required|numeric',
-                    'description' => 'nullable|string',
-                    'start_date_time' => 'required|date',
-                    'end_date_time' => 'required|date|after_or_equal:start_date_time',
-                    'status' => 'required|in:active,inactive,completed,cancelled'
-                ];
+            try {
 
-                // Manually create the validator instance
-                $validator = Validator::make($request->all(), $rules);
 
-                // Check if validation fails
-                if ($validator->fails()) {
-                    return $this->respondWithError('Validation errors occurred', $validator->errors());
-                }
 
-                // Create a new campaign
-                $campaign = Campaign::create([
-                    'name' => $request->name,
-                    'amount' => $request->amount,
-                    'description' => $request->description,
-                    'start_date_time' => $request->start_date_time,
-                    'end_date_time' => $request->end_date_time,
-                    'status' => $request->status,
-                ]);
+                // dd($request->all());
 
-                return $this->respondWithSuccess('Campaign created successfully', $campaign);
+                // // Create a new campaign
+                // $campaign = Campaign::create([
+                //     'name' => $request->name,
+                //     'amount' => $request->amount,
+                //     'description' => $request->description,
+                //     'start_date_time' => $request->start_date_time,
+                //     'end_date_time' => $request->end_date_time,
+                //     'status' => $request->status,
+                // ]);
+
+                return $this->respondWithSuccess('Campaign created successfully', $request->all());
             } catch (ValidationException $e) {
 
                 return $this->respondWithError('Validation errors occurred', $e->errors());

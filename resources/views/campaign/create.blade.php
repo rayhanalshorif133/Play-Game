@@ -12,11 +12,11 @@
     <div class="row px-5">
         @php
             use Carbon\Carbon;
-            $startDate = Carbon::parse($campaignDuration->start_date_time)->toDateString(); // Outputs: 2024-10-29
-            $endDate = Carbon::parse($campaignDuration->end_date_time)->toDateString(); // Outputs: 2024-11-02
-            $startTime = Carbon::parse($campaignDuration->start_date_time)->toTimeString(); // Outputs: 2024-10-29
+            $startDate = Carbon::parse($campaignDuration->start_date)->toDateString(); // Outputs: 2024-10-29
+            $endDate = Carbon::parse($campaignDuration->end_date)->toDateString(); // Outputs: 2024-11-02
+            $startTime = Carbon::parse($campaignDuration->start_date)->toTimeString(); // Outputs: 2024-10-29
             $startTime = \Carbon\Carbon::parse($startTime)->format('H:i');
-            $endTime = Carbon::parse($campaignDuration->end_date_time)->toTimeString(); // Outputs: 2024-11-02
+            $endTime = Carbon::parse($campaignDuration->end_date)->toTimeString(); // Outputs: 2024-11-02
             $endTime = \Carbon\Carbon::parse($endTime)->format('H:i');
         @endphp
         <div class="col-12 col-md-6 mb-1">

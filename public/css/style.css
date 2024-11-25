@@ -39,18 +39,18 @@ body {
     background: var(--body-bg);
 }
 
-.alert{
-    padding: 8px!important;
-    margin-top: 5px!important;
+.alert {
+    padding: 8px !important;
+    margin-top: 5px !important;
 }
 
 .alert-primary {
-    color: var(--white)!important;
-    background-color: var(--primary-color-light)!important;
-    border-color: var(--primary-color)!important;
+    color: var(--white) !important;
+    background-color: var(--primary-color-light) !important;
+    border-color: var(--primary-color) !important;
 }
 
-.alert-error{
+.alert-error {
     color: var(--white);
     background-color: #FF6B6B;
     border-color: #ff3030;
@@ -60,7 +60,7 @@ body {
     font-family: "Nunito", sans-serif;
 }
 
-.entry_fee{
+.entry_fee {
     text-align: center;
     font-weight: 700;
     font-size: 16px;
@@ -75,8 +75,8 @@ body {
 /* remove increment and decrement btn from input number */
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
-   -webkit-appearance: none;
-   margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .forgot_passBtn {
@@ -167,11 +167,54 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 
-.home_container .logo img {
+.home_container .logo {
+    position: relative;
+}
+
+.home_container .logo .bg {
     height: 252px;
     width: 252px;
     border-radius: 24px !important;
+    position: relative;
 }
+
+.home_container .logo .main_snake {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    height: 222px;
+    width: 222px;
+    /* filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5)); */
+    /* animation: wiggle 2s infinite ease-in-out; */
+}
+
+@keyframes wiggle {
+
+    0%,
+    100% {
+        /* transform: scale(2) rotate(0deg) translateX(0); */
+        transform: scale(0);
+        filter: drop-shadow(15px 15px 30px rgba(0, 0, 0, 0.7));
+       
+    }
+
+    25% {
+        transform: scale(2);
+        /* transform: scale(4) rotate(-5deg) translateX(-10px); */
+    }
+
+    50% {
+        transform: scale(4);
+        /* transform:  scale(44) rotate(5deg) translateX(10px); */
+    }
+
+    75% {
+        transform: scale(2);
+        /* transform:  scale(24) rotate(-5deg) translateX(-5px); */
+    }
+}
+
+
 
 .home_container .label_container {
     margin-top: 3rem;
@@ -215,6 +258,31 @@ input[type='number']::-webkit-outer-spin-button {
     border-radius: 32px;
     padding: 0 10px;
     margin: 0 10px;
+}
+
+.price_btn_container {
+    border: 3px solid var(--primary-color);
+    border-radius: 32px;
+    padding: 0 20px;
+    margin: 0 10px;
+}
+
+.price_btn_container button {
+    font-size: 16px;
+    font-family: 'Nunito', sans-serif;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.price_btn_container:hover {
+    border: var(--primary-color);
+    background: var(--primary-color);
+    padding: 0 20px;
+    margin: 0 10px;
+}
+
+.price_btn_container:hover button {
+    color: #fff;
 }
 
 .leaderBoard_tournament_container div p {
@@ -319,32 +387,49 @@ input[type='number']::-webkit-outer-spin-button {
     padding: 5px 0;
 }
 
-.leaderboard_container{
+.leaderboard_container {
     width: 100%;
 }
 
-.leaderboard_container table{width: 100%;}
-.leaderboard_container table thead{ width: 100%; padding: 7px 0!important;}
-.leaderboard_container table thead tr th{ padding: 0px 10px!important;}
-.leaderboard_container table tbody tr td{ padding: 0px 10px!important;}
+.leaderboard_container table {
+    width: 100%;
+}
 
-.leaderboard_container table tbody{ margin: 7px 0!important;}
+.leaderboard_container table thead {
+    width: 100%;
+    padding: 7px 0 !important;
+}
 
-.leaderboard_container table tr{
-    line-height:2;
+.leaderboard_container table thead tr th {
+    padding: 0px 10px !important;
+}
+
+.leaderboard_container table tbody tr td {
+    padding: 0px 10px !important;
+}
+
+.leaderboard_container table tbody {
+    margin: 7px 0 !important;
+}
+
+.leaderboard_container table tr {
+    line-height: 2;
 }
 
 .leaderboard_container table tbody .active {
-    background-color: var(--primary-color)!important; 
-    color: #ffffff!important; /* Light gray for even rows */
+    background-color: var(--primary-color) !important;
+    color: #ffffff !important;
+    /* Light gray for even rows */
 }
 
 .leaderboard_container table tr:nth-child(even) {
-    background-color: #eccffd; /* Light gray for even rows */
+    background-color: #eccffd;
+    /* Light gray for even rows */
 }
 
 .leaderboard_container table tr:nth-child(odd) {
-    background-color: #ffffff; /* White for odd rows */
+    background-color: #ffffff;
+    /* White for odd rows */
 }
 
 

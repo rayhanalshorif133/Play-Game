@@ -10,7 +10,7 @@
                     </h5>
                     <div class="d-flex filterByCampaignContainer">
                         <label for="dateSelect" class="me-2">Select Date</label>
-                        <input type="date" id="dateSelect" class="form-control"/>
+                        <input type="date" id="dateSelect" class="form-control" />
                         <button type="button" class="btn btn-sm btn-primary" id="btnSearch">Search</button>
                     </div>
                 </div>
@@ -19,9 +19,11 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>User name</th>
                                 <th>Campaign name</th>
                                 <th>msisdn</th>
-                                <th>Score</th>
+                                <th>Score <span id="showTotalScore"></span></th>
+                                <th>Subs Status</th>
                                 <th>Date</th>
                             </tr>
                         </thead>
@@ -47,6 +49,8 @@
         });
 
         const handleDataTable = (url) => {
+            var totalScore = 0;
+
             if ($.fn.DataTable.isDataTable('#leaderboardScoreLogs')) {
                 $('#leaderboardScoreLogs').DataTable().destroy();
             }
@@ -56,7 +60,7 @@
                 responsive: true,
                 ordering: true,
                 order: [
-                    [2, 'desc']
+                    [6, 'desc']
                 ],
                 ajax: url,
                 columns: [{
@@ -68,7 +72,13 @@
                     },
                     {
                         render: function(data, type, row) {
-                            return row.name;
+                            return row.user_name;
+                        },
+                        targets: 0,
+                        className: 'fit-content' // Add a custom class
+                    }, {
+                        render: function(data, type, row) {
+                            return row.camp_name;
                         },
                         targets: 0,
                         className: 'fit-content' // Add a custom class
@@ -89,7 +99,19 @@
                     },
                     {
                         render: function(data, type, row) {
-                            return row.date_time;
+                            var status = "";
+                            row.status == 1 ? status = `✔️<span class="d-none">active</span>` :
+                                status = `❌<span class="d-none">inactive</span>`;
+                            return status;
+                        },
+                        targets: 0,
+                        className: 'fit-content' // Add a custom class
+                    },
+                    {
+                        render: function(data, type, row) {
+                            const date = moment(row.date_time).format('ll');
+                            const time = moment(row.date_time).format('LTS');
+                            return time + ' - ' + date;
                         },
                         targets: 0,
                         className: 'fit-content' // Add a custom class
@@ -97,7 +119,19 @@
 
                 ],
             });
-        };
 
+            $('#leaderboardScoreLogs').on('draw.dt', function() {
+                const table = $('#leaderboardScoreLogs').DataTable();
+                const data = table.rows().data();
+                let totalScore = 0;
+
+                // Sum the scores
+                data.each(function(row) {
+                    totalScore += parseFloat(row.score) || 0; // Ensure numeric values
+                });
+
+                $("#showTotalScore").html(`<br/> <span>${totalScore}</span>`);
+            });
+        };
     </script>
 @endpush

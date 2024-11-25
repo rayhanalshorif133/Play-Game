@@ -57,16 +57,13 @@ class UserController extends Controller
             setcookie("player_user", "", time() - (86400 * 1), "/");
 
             if (Hash::check($request->password, $findUser->password)) {
-
                 setcookie("player_user", $findUser, time() + (86400 * 1), "/");
-                return $this->respondWithSuccess('Successfully logged in');
-
-                // After this line, the user is considered authenticated
+                return $this->respondWithSuccess('Successfully logged in');                
             } else {
                 return $this->respondWithError('Wrong password, please try again');
             }
         } catch (\Throwable $th) {
-            //throw $th;
+            return $this->respondWithError('Something went wrong, please contact the administrator');
         }
     }
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Score;
 use App\Models\Campaign;
+use App\Models\User;
 use App\Models\Subscription;
 use Carbon\Carbon;
 
@@ -13,6 +14,17 @@ use Carbon\Carbon;
 class ScoreController extends Controller
 {
     // score
+    function getCurrentUrl() {
+        // Check if HTTPS is used
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) 
+                    ? "https://" 
+                    : "http://";
+    
+        // Construct the full URL
+        $currentUrl = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    
+        return $currentUrl;
+    }
     public function score(Request $request)
     {
 
@@ -40,11 +52,17 @@ class ScoreController extends Controller
         try {
 
 
-            $currentDate = Carbon::now()->toDateTimeString(); //
 
             $campaign = $this->getCurrentCampaign();
 
             $date = date('Y-m-d');
+            $time = date('H:i:s');
+
+
+            $isInactiveUser = User::select()->where('msisdn', '=',  $msisdn)->where('status', '=', 0)->first();
+            if($isInactiveUser){
+                return response()->json('Inactive User');
+            }
 
             $subscription = Subscription::where('msisdn', '=',  $msisdn)
             ->where('campaign_id','=', $campaign->id)
@@ -53,6 +71,7 @@ class ScoreController extends Controller
             ->first();
 
 
+           
 
 
             $score = new Score();
@@ -60,32 +79,15 @@ class ScoreController extends Controller
             $score->campaign_id = $campaign->id;
             $score->score = $get_score;
             $score->game_keyword = $game_keyword;
-            if($subscription){
+            if($subscription && $time >= '10:00:00' && $time <= '23:59:59'){
                 $score->status = 1;
                 $score->subscription_id = $subscription->id;
             }else{
                 $score->status = 0;
             }
             $score->date_time = date('Y-m-d H:i:s');
+            $score->hit_url = $this->getCurrentUrl();
             $score->save();
-
-
-
-
-
-            // $ScoreLog = new ScoreLog();
-            // $ScoreLog->msisdn = $msisdn;
-            // $ScoreLog->score = $get_score;
-            // $ScoreLog->game_keyword = $game_keyword;
-            // $ScoreLog->status = 1;
-            // $ScoreLog->url = $request->url;
-            // $ScoreLog->play_time = date('H:i:s');
-            // $ScoreLog->play_date = date('Y-m-d');
-            // $ScoreLog->duration = $request->duration;
-            // $ScoreLog->ip_address = 'localhost';
-            // $ScoreLog->user_agent = $request->header('User-Agent');
-            // $ScoreLog->referrer = $request->header('referer');
-            // $ScoreLog->save();
 
 
             return response()->json('Success');

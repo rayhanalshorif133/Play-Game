@@ -13,7 +13,8 @@
                 {{ $game->title }}
             </div>
             <div class="logo">
-                <img src="{{ asset($game->banner) }}">
+                <img class="bg" src="{{ asset($game->banner) }}">
+                <img class="main_snake" src="{{ asset('images/main_snake.png') }}">
             </div>
             <div class="play_btn_container">
                 <div class="btn_primary">

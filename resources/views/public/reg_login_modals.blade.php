@@ -1,3 +1,7 @@
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Optional: Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 <div class="modal fade" id="insertUserModal" tabindex="-1" aria-labelledby="insertUserModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content tournament_rules">
@@ -21,8 +25,15 @@
                     <label class="my-1">Phone Number</label>
                     <input type="number" class="form-control" id="login_user_msisdn" />
                     <label class="my-1">Password</label>
-                    <input type="password" class="form-control" id="login_user_password" />
+
+                    <span class="password_container">
+                        <input type="password" id="login_user_password" class="password form-control">
+                        <button class="icon togglePassword">
+                            <i class="bi bi-eye-slash"></i>
+                        </button>
+                    </span>
                     <span class="login_error_msg error_msg"></span>
+
                     <div class="my-3 w-full" id="loginBtn">
                         <button class="btn btn-sm btn-reg w-full">Login</button>
                     </div>
@@ -34,7 +45,12 @@
                     <label class="my-1">Phone Number</label>
                     <input type="number" class="form-control" id="reg_user_msisdn" />
                     <label class="my-1">Password</label>
-                    <input type="password" class="form-control" id="reg_user_password" />
+                    <span class="password_container">
+                        <input type="password" id="reg_user_password" class="password form-control">
+                        <button class="icon togglePassword">
+                            <i class="bi bi-eye-slash"></i>
+                        </button>
+                    </span>
                     <span class="reg_error_msg error_msg"></span>
                     <div class="my-3 w-full" id="registerBtn">
                         <button class="btn btn-sm btn-reg w-full">Register</button>
@@ -47,7 +63,7 @@
                         <button class="active btn">Forgot Password</button>
                     </div>
                 </div>
-                <span class="forgot_pass_error_msg">asdsd</span>
+                <span class="forgot_pass_error_msg"></span>
                 <div>
                     <label class="my-1">Phone Number</label>
                     <input type="number" class="form-control" id="forgot_pass_user_msisdn" />
@@ -62,3 +78,19 @@
         </div>
     </div>
 </div>
+<style>
+
+    .password_container{
+        position: relative;
+    }
+    .password_container button {
+        position: absolute;
+        bottom: 6px;
+        border: none;
+        padding: 0;
+        margin: 0;
+        background: transparent;
+        right: 10px;
+    }
+    
+</style>

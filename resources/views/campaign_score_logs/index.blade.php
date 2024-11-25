@@ -50,6 +50,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>User name</th>
                                         <th>Campaign name</th>
                                         <th>msisdn</th>
                                         <th>Date</th>
@@ -82,10 +83,11 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>User name</th>
                                         <th>Campaign name</th>
                                         <th>msisdn</th>
                                         <th>Date</th>
-                                        <th>Total Score</th>
+                                        <th>Total Score </th>
                                     </tr>
                                 </thead>
                             </table>
@@ -150,6 +152,13 @@
                     },
                     {
                         render: function(data, type, row) {
+                            return row.user_name;
+                        },
+                        targets: 0,
+                        className: 'fit-content' // Add a custom class
+                    },
+                    {
+                        render: function(data, type, row) {
                             return row.camp_name;
                         },
                         targets: 0,
@@ -179,6 +188,8 @@
                     },
                 ],
             });
+
+         
         };
 
 
@@ -199,6 +210,13 @@
                 columns: [{
                         render: function(data, type, row) {
                             return row.DT_RowIndex;
+                        },
+                        targets: 0,
+                        className: 'fit-content' // Add a custom class
+                    },
+                    {
+                        render: function(data, type, row) {
+                            return row.user_name;
                         },
                         targets: 0,
                         className: 'fit-content' // Add a custom class
