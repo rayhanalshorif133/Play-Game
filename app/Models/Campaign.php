@@ -12,8 +12,10 @@ class Campaign extends Model
     protected $fillable = [
         'name',
         'amount',
-        'start_date_time',
-        'end_date_time',
+        'start_date',
+        'start_time',
+        'end_date',
+        'end_time',
         'status',
         'description',
         'created_by',

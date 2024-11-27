@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="d-flex justify-content-between px-2">
                     <h5 class="card-header">Campaigns List</h5>
-                    <button class="btn btn-primary btn-sm d-block d-flex my-2" data-bs-toggle="modal"
+                    <button class="btn btn-primary btn-sm d-block d-flex my-2 addCampaignBtn" data-bs-toggle="modal"
                         data-bs-target="#createCampainsModal">Add Campaign</button>
                 </div>
                 <div class="table-responsive overflow-x">
@@ -41,31 +41,34 @@
                     </div>
                     <div class="modal-body">
                         <form id="createCampaignForm">
-                            <div class="mb-3">
-                                <label for="create_campaignName" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="create_campaignName" name="name" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="create_campaignAmount" class="form-label">Amount</label>
-                                <input type="number" class="form-control" id="create_campaignAmount" name="amount"
-                                    required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="create_startDateTime" class="form-label">Start Date & Time</label>
-                                <input type="datetime-local" class="form-control" id="create_startDateTime"
-                                    name="start_date" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="create_endDateTime" class="form-label">End Date & Time</label>
-                                <input type="datetime-local" class="form-control" id="create_endDateTime" name="end_date"
-                                    required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="createCampaignStatus" class="form-label">Status</label>
-                                <select class="form-select" id="createCampaignStatus" required>
-                                    <option value="1" selected>Active</option>
-                                    <option value="0">Inactive</option>
-                                </select>
+
+
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <label for="create_startDateTime" class="form-label required">Start Date & Time</label>
+                                    <input type="datetime-local" class="form-control" id="create_startDateTime"
+                                        name="start_date" required>
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="create_endDateTime" class="form-label required">End Date & Time</label>
+                                    <input type="datetime-local" class="form-control" id="create_endDateTime"
+                                        name="end_date" required>
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="create_campaignName" class="form-label optional">Name</label>
+                                    <input type="text" class="form-control" id="create_campaignName" name="name">
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="create_campaignAmount" class="form-label optional">Amount</label>
+                                    <input type="number" class="form-control" id="create_campaignAmount" name="amount">
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="createCampaignStatus" class="form-label optional">Status</label>
+                                    <select class="form-select" id="createCampaignStatus" required>
+                                        <option value="1" selected>Active</option>
+                                        <option value="0">Inactive</option>
+                                    </select>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -90,8 +93,7 @@
                             <input type="text" class="form-control d-none" id="update_campaignID">
                             <div class="mb-3">
                                 <label for="update_campaignName" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="update_campaignName" name="name"
-                                    required>
+                                <input type="text" class="form-control" id="update_campaignName" name="name">
                             </div>
                             <div class="mb-3">
                                 <label for="update_campaignAmount" class="form-label">Amount</label>
@@ -199,6 +201,18 @@
                         className: 'fit-content' // Add a custom class
                     }
                 ],
+                rowCallback: function(row, data) {
+                    // Add a CSS class to the row based on the `type` attribute
+                    if (data.type === 'current') {
+                        $(row).css({
+                            'background-color': '#e9f7ef', // Light green background
+                            'color': '#155724', // Dark green text
+                            'font-weight': 'bold', // Bold text
+                            'border-left': '10px solid #28a745', // Green border on the left
+                            'transition': 'background-color 0.3s ease' // Smooth hover effect
+                        }); 
+                    }
+                }
             });
         };
 
@@ -255,7 +269,7 @@
                     $('#update_campaignDescription').val(data.description);
                     let start_time = moment(data.start_time, "HH:mm:ss.SSSSSS").format("HH:mm:ss");
                     const start_date_time = data.start_date + " " + start_time;
-                    
+
                     let end_time = moment(data.end_time, "HH:mm:ss.SSSSSS").format("HH:mm:ss");
                     const end_date_time = data.end_date + " " + end_time;
                     $('#update_startDateTime').val(start_date_time);
@@ -275,8 +289,6 @@
             };
 
 
-            console.log(createData);
-            return false;
 
 
             // Send a PUT request to update the campaign
@@ -296,6 +308,24 @@
         };
 
 
+        $(".addCampaignBtn").click(function(event) {
+            axios.get('/admin/fetch-campaigns?type=last-campaign')
+                .then((response) => {
+                    const data = response.data.data;
+                    const start_time = moment(data.start_time, "HH:mm:ss.SSSSSS").format("HH:mm:ss");
+                    const end_time = moment(data.end_time, "HH:mm:ss.SSSSSS").format("HH:mm:ss");
+                    const start_date = moment(data.end_date).add(1, 'day');
+                    const end_date = moment(data.end_date).add(7, 'day');
+
+                    const start_date_time = start_date.format('YYYY-MM-DD') + " " + start_time;
+                    const end_date_time = end_date.format('YYYY-MM-DD') + " " + end_time;
+
+                    $("#create_startDateTime").val(start_date_time);
+                    $("#create_endDateTime").val(end_date_time);
+                })
+        });
+
+
         const handleSubmit = () => {
             const updatedData = {
                 id: $('#update_campaignID').val(),
@@ -309,7 +339,6 @@
             // Send a PUT request to update the campaign
             axios.put(`/admin/campaigns?type=update`, updatedData)
                 .then((response) => {
-                    console.log(response.data.data);
                     if ($.fn.DataTable.isDataTable('#campaignsTableId')) {
                         $('#campaignsTableId').DataTable().destroy(); // Destroy the existing DataTable instance
                         handleDataTable();

@@ -77,6 +77,8 @@ Route::prefix('admin')
 
         // campaign
         Route::match(['get', 'put', 'post', 'delete'], '/campaigns', [CampaignController::class, 'index'])->name('campaigns');
+        Route::get('/fetch-campaigns', [CampaignController::class, 'fetchCampaigns'])->name('campaigns.fetch');
+        
         Route::match(['get'], '/subscribers', [SubscriptionController::class, 'index'])->name('subscribers');
 
 

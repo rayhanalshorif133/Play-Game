@@ -84,6 +84,18 @@ class Controller extends BaseController
             return "";
         }
     }
+    
+    public function get_channel()
+    {
+
+        if (isset($_COOKIE["channel"])) {
+            $channel = $_COOKIE["channel"];
+            return $channel;
+        }else {
+            // false, cookie is not set
+            return "";
+        }
+    }
 
     public function getCurrentCampaign(){
         $date = date('Y-m-d');

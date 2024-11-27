@@ -34,15 +34,21 @@ class CampaignController extends Controller
     public function index(Request $request)
     {
 
-        
+
         $games = Game::first();
         if ($request->method() == 'GET') {
             if ($request->type == 'fetch') {
                 $campaign = Campaign::select()->where('id', $request->id)->first();
                 return $this->respondWithSuccess('Successfully fetched campaign', $campaign);
             } else {
+                $getCurrentCamp = $this->getCurrentCampaign();
                 if (request()->ajax()) {
-                    $query = Campaign::orderBy('created_at', 'desc')->get();
+                    $query = Campaign::orderBy('created_at', 'desc')
+                        ->get()
+                        ->map(function ($campaign) use ($getCurrentCamp) {
+                            $campaign->type = ($campaign->id == $getCurrentCamp->id) ? 'current' : 'regular';
+                            return $campaign;
+                        });
                     return DataTables::of($query)->addIndexColumn()->toJson();
                 }
                 return view('campaign.index', compact('games'));
@@ -53,19 +59,25 @@ class CampaignController extends Controller
 
 
 
-                // dd($request->all());
+
+
+
+                $start_date_time = Carbon::createFromFormat('Y-m-d\TH:i',  $request->start_date_time);
+                $end_date_time = Carbon::createFromFormat('Y-m-d\TH:i',  $request->end_date_time);
 
                 // // Create a new campaign
-                // $campaign = Campaign::create([
-                //     'name' => $request->name,
-                //     'amount' => $request->amount,
-                //     'description' => $request->description,
-                //     'start_date_time' => $request->start_date_time,
-                //     'end_date_time' => $request->end_date_time,
-                //     'status' => $request->status,
-                // ]);
+                $campaign = Campaign::create([
+                    'name' => $this->generateCampName($start_date_time, $end_date_time),
+                    'amount' => $request->amount ? $request->amount : 10,
+                    'description' => $request->description,
+                    'start_date' => $start_date_time->toDateString(),
+                    'start_time' => $start_date_time->toTimeString(),
+                    'end_date' => $end_date_time->toDateString(),
+                    'end_time' => $end_date_time->toTimeString(),
+                    'status' => $request->status,
+                ]);
 
-                return $this->respondWithSuccess('Campaign created successfully', $request->all());
+                return $this->respondWithSuccess('success', 'Campaign created successfully');
             } catch (ValidationException $e) {
 
                 return $this->respondWithError('Validation errors occurred', $e->errors());
@@ -79,16 +91,25 @@ class CampaignController extends Controller
                 $campaign->save();
                 return $this->respondWithSuccess('yes status', $request->all());
             } else {
+
                 $campaign = Campaign::find($request->id);
+                $start_date_time = Carbon::createFromFormat('Y-m-d\TH:i',  $request->start_date_time);
+                $end_date_time = Carbon::createFromFormat('Y-m-d\TH:i',  $request->end_date_time);
+
 
                 // Update campaign attributes
-                $campaign->update([
-                    'name' => $request->name,
-                    'amount' => $request->amount,
-                    'description' => $request->description,
-                    'start_date_time' => $request->start_date_time,
-                    'end_date_time' => $request->end_date_time,
-                ]);
+                $campaign->name = $request->name ? $request->name : $this->generateCampName($start_date_time, $end_date_time);
+                $campaign->amount = $request->amount ? $request->amount : 10;
+                $campaign->description = $request->description;
+                $campaign->start_date = $start_date_time->toDateString();
+                $campaign->start_time = $start_date_time->toTimeString();
+                $campaign->end_date = $end_date_time->toDateString();
+                $campaign->end_time = $end_date_time->toTimeString();
+                $campaign->status = $campaign->status;
+                $campaign->save();
+
+
+
                 return $this->respondWithSuccess('yes update', $campaign);
             }
         } else {
@@ -108,6 +129,18 @@ class CampaignController extends Controller
     }
 
     // fetchCampaign
+    public function fetchCampaigns(Request $request)
+    {
+
+        if ($request->type == 'last-campaign') {
+            $campaign = Campaign::orderBy('id', 'desc')->first();
+            return $this->respondWithSuccess('Campaign fetched successfully.', $campaign);
+        } else {
+            return $this->respondWithSuccess('Campaign fetched successfully.', []);
+        }
+    }
+
+
     public function fetchCampaign($id)
     {
         $campaign = Campaign::select()

@@ -30,7 +30,6 @@ class ScoreController extends Controller
 
 
 
-        // https://gp.bdgamers.club/api/score?pengenal=WZg2HO8I784/3v/CF6K2yX4Bd82fcp56h+jN25jCOr0vpELtmWgzblxVBk/SnvVV&puntaje=MklWAU625P3Xstu4nTddZFkmQAoWwfW/xXOyc6/NQ88=
         $pengenal = $request->pengenal;
         $puntaje = $request->puntaje;
 

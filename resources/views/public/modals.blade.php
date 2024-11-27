@@ -158,14 +158,16 @@
                     <li>The Campaigns will run for 7 days.</li>
                     <li>The campaign will begin on Monday and end on Sunday.</li>
                     <li>Users need to register for the campaign every day.</li>
-                    <li>If the user plays once during the campaign, they will be considered a contender for the weekly prize and for the weekly prize, you must play for the full week.</li>
+                    <li>For the weekly prize, you must play for the full week.</li>
                     <li>Registration fee for the campaign is Tk. 10 per day.</li>
                     <li>Users can play as many times as they want during the tournament period.</li>
                     <li>The leaderboard will show the top 15 scorers and the player's current position.</li>
                     <li>The tournament will start at 10:00 AM and close at 11:59 PM each day.</li>
                 </ol>
                 <h1 class="normal_title">Help and Support</h1>
-                <h2 class="normal_text">Email: cservice@b2m-tech.com, Phone: +880 1725298711</h2>
+                <h2 class="normal_text">Email: cservice@b2m-tech.com, Phone: 
+                    <a href="tel:+8801725298711" style="text-decoration: none;color:#6B36A7">+8801725298711</a>
+                </h2>
 
 
                 <div class="mx-auto w-full d-flex justify-content-center" style="margin-top: 2.8rem">

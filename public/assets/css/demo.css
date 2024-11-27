@@ -34,6 +34,28 @@
   z-index: auto;
 }
 
+.required::after {
+    content: " *";
+    color: red;
+    font-weight: bold;
+}
+
+.optional::after {
+    content: " (optional)";
+    color: #999;
+    font-weight: normal;
+}
+
+.tk::after {
+    content: "৳";
+    color: #000;
+    font-weight: normal;
+}
+
+.highlight-current-camp{
+    background-color: #b2eed3;
+}
+
 /*
 * Content
 ******************************************************************************/

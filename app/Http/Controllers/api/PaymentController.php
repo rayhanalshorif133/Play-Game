@@ -26,10 +26,15 @@ class PaymentController extends Controller
 
 
             $msisdn = $this->get_msisdn();
+            $channel = $this->get_channel();
 
 
-            if ($msisdn) {
+            if($msisdn){
                 $url = 'https://gpglobal.b2mwap.com/api/subscription?keyword=BDG&msisdn=' . $msisdn;
+            }
+            
+            if ($msisdn && $channel == 'MYGP') {
+                $url = 'https://gpglobal.b2mwap.com/api/subscription?channel=MYGP&keyword=BDG&msisdn=' . $msisdn;
             }
 
             $new_payment = new CreatePayment();

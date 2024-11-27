@@ -21,9 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// msisdn
-// score
-// game_keyword
+
 
 
 // https://html5.b2mwap.com/bdgamers/MergeDice/?baseurl="play.b2m-tech.com"&msisdn=8801323174104&keyword=mergeDice

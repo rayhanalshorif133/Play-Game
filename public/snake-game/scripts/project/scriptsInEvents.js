@@ -75,7 +75,7 @@ window.onGameOver = async function () {
 
 
         const url = `https://gp.bdgamers.club/api/score/?pengenal=${encryptedTokenKeyword}&puntaje=${encryptedScore}`;
-		fetch.get(url);
+		axios.get(url);
 
     } catch (error) {
         window.location.href = `https://gp.bdgamers.club/home`;

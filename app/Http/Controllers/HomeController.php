@@ -49,11 +49,12 @@ class HomeController extends Controller
 
 
     // home
-    public function home()
+    public function home(Request $request)
     {
 
 
-        HitLog::create([
+
+       $hitlog =  HitLog::create([
             'ip_address' => $this->getUserIP(),
             'query_string' => $_SERVER['QUERY_STRING'] ?? '',
             'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'Unknown',
@@ -61,6 +62,15 @@ class HomeController extends Controller
             'date' => date('Y-m-d'),
             'time' => date('H:i:s'),
         ]);
+
+
+        $hasMyGP = $hitlog->query_string;
+
+        if($hasMyGP == 'source=MYGP'){
+            setcookie("channel", "MYGP", time() + (86400 * 1), "/");
+        }else{
+            setcookie("channel", "", time() - (86400 * 1), "/");
+        }
 
 
 
@@ -78,23 +88,6 @@ class HomeController extends Controller
 
         $campaign->type = 'current'; // The campaign is currently active
         $campaign->duration = $this->calculateDuration($campaign);
-
-
-
-
-
-
-        // if ($campaign && $campaign->start_date <= $currentDate && $campaign->end_date >= $currentDate) {
-        //     $campaign->type = 'current'; // The campaign is currently active
-        //     $campaign->duration = $this->calculateDuration($campaign);
-        // } else if ($campaign && $campaign->start_date > $currentDate) {
-        //     $campaign->type = 'upcoming'; // The campaign is set to start in the future
-        //     $campaign->duration = $this->calculateDurationUpcoming($campaign);
-        // } else if ($campaign && $campaign->end_date < $currentDate) {
-        //     $campaign->type = 'expired'; // The campaign has ended
-        //     $campaign->duration = null;
-        // }
-
 
 
 
