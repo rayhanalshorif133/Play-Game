@@ -80,7 +80,6 @@ class Controller extends BaseController
             $user = json_decode($user, true);
             return $user['msisdn'];
         }else {
-            // false, cookie is not set
             return "";
         }
     }

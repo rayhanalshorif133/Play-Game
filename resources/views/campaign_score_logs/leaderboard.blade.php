@@ -26,9 +26,10 @@
                             </div>
                             <div class="col-lg-4 col-12 col-sm-6 my-2">
                                 <div class="d-flex filterByCampaignContainer">
-                                    <label for="campaignSelect">Select Date</label>
+                                    <label for="selectDate">Select Date</label>
                                     <input type="date" id="selectDate" class="form-control" />
                                 </div>
+                                
                             </div>
                             <div class="col-lg-4 col-12 col-sm-6 my-2">
                                 <div class="d-flex filterByCampaignContainer">
