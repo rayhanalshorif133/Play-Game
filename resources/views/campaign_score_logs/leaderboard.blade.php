@@ -29,7 +29,7 @@
                                     <label for="selectDate">Select Date</label>
                                     <input type="date" id="selectDate" class="form-control" />
                                 </div>
-                                
+
                             </div>
                             <div class="col-lg-4 col-12 col-sm-6 my-2">
                                 <div class="d-flex filterByCampaignContainer">
@@ -41,8 +41,7 @@
                                                 value="{{ $item->id }}">{{ $item->name }}</option>
                                         @endforeach
                                     </select>
-                                    <button type="button" class="btn btn-sm btn-primary btnSearch"
-                                        data-type='weekly'>Search</button>
+                                    <button type="button" class="btn btn-sm btn-primary btnSearch">Search</button>
                                 </div>
                             </div>
                         </div>
@@ -75,8 +74,9 @@
                                             value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
-                                <button type="button" class="btn btn-sm btn-primary btnSearch"
-                                    data-type='weekly'>Search</button>
+                                <button type="button" class="btn btn-sm btn-primary btnSearch">Search</button>
+                                <button type="button" class="btn btn-sm btn-info btnExport d-none">Download <i
+                                        class='bx bxs-download'></i></button>
                             </div>
                         </div>
                         <div class="table-responsive text-nowrap scrollbar-hidden overflow-x-scroll">
@@ -109,6 +109,14 @@
             var url = '/admin/campaign-score-logs?type=daily';
             var type = 'daily';
             handleDataTable(url);
+
+            // for developers
+            type = 'weekly';
+            url = '/admin/campaign-score-logs?type=weekly';
+            handleDataTableWeekly(url);
+            $("#weekly-tab").click();
+
+
             $("#weekly-tab").click(() => {
                 type = 'weekly';
                 url = '/admin/campaign-score-logs?type=weekly';
@@ -128,7 +136,89 @@
                     handleDataTableWeekly(url);
                 }
             });
+
+            handleBtnExport();
         });
+
+
+        const handleBtnExport = () => {
+            $(".btnExport").click(() => {
+                var selected_campaign = $('#campaignSelectWeekly').val();
+                var url = '/admin/campaign-score-logs?type=reportExport' + '&campaign_id=' + selected_campaign;
+
+                axios.get(url)
+                    .then(response => {
+                        const res_data = response.data.data;
+                        const camp = res_data[0];
+                        const start_date = camp.start_date;
+                        const end_date = camp.end_date;
+                        const camp_name = camp.name;
+                        const camp_data = res_data[1];
+                        const weeklyScores = res_data[2];
+
+
+                        let startDate = moment(start_date).subtract(1, 'days').format('ll')
+
+                        const wb = XLSX.utils.book_new();
+
+
+
+                        const updatedScores = weeklyScores.map(row => {
+                            const keys = Object.keys(row);
+                            delete row[keys[0]];
+                            delete row[keys[2]];
+                            row.total_daily_payment = "               " + row[keys[5]] * 20 + " /=";
+                            return row;
+                        });
+
+
+
+                        const ws = XLSX.utils.json_to_sheet(updatedScores);
+                        const columnWidths = Object.keys(updatedScores[0] || {}).map((key) => {
+                            const maxLength = updatedScores.reduce((max, row) => {
+                                return Math.max(max, (row[key] ? row[key]
+                                    .toString().length : 0));
+                            }, key.length);
+                            return {
+                                wch: maxLength + 2
+                            };
+                        });
+
+                        ws['!cols'] = columnWidths;
+                        
+                        XLSX.utils.book_append_sheet(wb, ws, 'Weekly Report');
+
+                        camp_data.map((dailyData, index) => {
+                            const ws = XLSX.utils.json_to_sheet(dailyData);
+
+                            const columnWidths = Object.keys(dailyData[0] || {}).map((key) => {
+                                const maxLength = dailyData.reduce((max, row) => {
+                                    return Math.max(max, (row[key] ? row[key]
+                                        .toString().length : 0));
+                                }, key.length);
+                                return {
+                                    wch: maxLength + 2
+                                };
+                            });
+
+                            ws['!cols'] = columnWidths;
+
+                            startDate = moment(startDate).add(1, 'days').format('ll');
+                            const formattedDate = 'Daily- ' + startDate;
+
+                            XLSX.utils.book_append_sheet(wb, ws, formattedDate);
+                        });
+
+
+
+
+
+                        XLSX.writeFile(wb, `${camp_name}.xlsx`);
+                    }).catch(error => {
+                        console.error('Error fetching data for export:', error);
+                    });
+            });
+        };
 
         const handleDataTable = (url) => {
             if ($.fn.DataTable.isDataTable('#leaderboardScoreLogs')) {
@@ -190,7 +280,7 @@
                 ],
             });
 
-         
+
         };
 
 
