@@ -129,7 +129,16 @@ class HomeController extends Controller
             ->take(20);
 
         // For Daily campaign
-        $weekly_scores = Score::select('msisdn', DB::raw('SUM(score) as total_score'))
+        $weekly_scores = Score::select('msisdn', DB::raw('SUM(score) as total_score'),
+        DB::raw('(
+            SELECT COUNT(DISTINCT DATE(date_time)) 
+            FROM scores AS sub_scores
+            WHERE sub_scores.campaign_id = scores.campaign_id
+              AND sub_scores.msisdn = scores.msisdn
+              AND sub_scores.status = 1
+              AND sub_scores.subscription_id != ""
+              AND sub_scores.score IS NOT NULL
+        ) as participation_count'))
             ->join('campaigns', 'campaigns.id', '=', 'scores.campaign_id')
             ->where('scores.status', '=', 1)
             ->where('campaigns.id', '=', $campaign->id)
@@ -138,7 +147,14 @@ class HomeController extends Controller
             ->get()
             ->take(20);
 
-        return view('public.home', compact('user', 'scores', 'weekly_scores', 'msisdn','totalUser' ,'game', 'campaign', 'hasAlreadySubs'));
+
+        $current_date = new \DateTime(); // Current date
+        $start_date = new \DateTime($campaign->start_date); // Assuming $campaign->start_date is a valid date string
+        
+        $interval = $current_date->diff($start_date); // Calculate the interval
+        $count_days = $interval->days + 1; // Get the number of days
+
+        return view('public.home', compact('user','count_days', 'scores', 'weekly_scores', 'msisdn','totalUser' ,'game', 'campaign', 'hasAlreadySubs'));
     }
 
     // calculateDurationUpcoming

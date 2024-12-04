@@ -75,7 +75,7 @@
                                     @endforeach
                                 </select>
                                 <button type="button" class="btn btn-sm btn-primary btnSearch">Search</button>
-                                <button type="button" class="btn btn-sm btn-info btnExport d-none">Download <i
+                                <button type="button" class="btn btn-sm btn-info btnExport">Download <i
                                         class='bx bxs-download'></i></button>
                             </div>
                         </div>
@@ -109,12 +109,6 @@
             var url = '/admin/campaign-score-logs?type=daily';
             var type = 'daily';
             handleDataTable(url);
-
-            // for developers
-            type = 'weekly';
-            url = '/admin/campaign-score-logs?type=weekly';
-            handleDataTableWeekly(url);
-            $("#weekly-tab").click();
 
 
             $("#weekly-tab").click(() => {

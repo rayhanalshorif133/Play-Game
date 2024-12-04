@@ -1,4 +1,3 @@
-
 {{-- paymentSuccessModal --}}
 <div class="modal fade" id="paymentSuccessModal" tabindex="-1" aria-labelledby="paymentSuccessModalLabel"
     aria-hidden="true">
@@ -45,8 +44,11 @@
 <div class="modal fade" id="leaderboadModal" tabindex="-1" aria-labelledby="insertUserModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content tournament_rules">
-            <div class="modal-header">
-                <h5 class="modal-title" id="tournamentModalLabel">Leaderboard</h5>
+            <div class="modal-header relative">
+                <h5 class="modal-title" id="tournamentModalLabel">
+                    Leaderboard 
+                    <span class="absolute showDay">Day- {{ $count_days }}</span>
+                </h5>
             </div>
             <div class="modal-body">
                 <div class="nav_container">
@@ -69,7 +71,9 @@
                         @if (count($scores) == 0)
                             <tbody>
                                 <tr>
-                                    <td colspan="3" style="text-align: center; color: #000000;background-color: #eccffd;">No data found</td>
+                                    <td colspan="3"
+                                        style="text-align: center; color: #000000;background-color: #eccffd;">No data
+                                        found</td>
                                 </tr>
                             </tbody>
                         @else
@@ -100,14 +104,16 @@
                         <thead>
                             <tr style="padding: 0 10px">
                                 <th>Rank</th>
-                                <th>User No</th>
-                                <th>Score</th>
+                                <th class="text-center">User No</th>
+                                <th class="text-end">Score</th>
                             </tr>
                         </thead>
                         @if (count($weekly_scores) == 0)
                             <tbody>
                                 <tr>
-                                    <td colspan="3" style="text-align: center; color: #000000;background-color: #eccffd;">No data found</td>
+                                    <td colspan="3"
+                                        style="text-align: center; color: #000000;background-color: #eccffd;">No data
+                                        found</td>
                                 </tr>
                             </tbody>
                         @else
@@ -126,10 +132,19 @@
 
 
                                         </td>
-                                        <td>{{ substr($item->msisdn, 0, 5) . str_repeat('*', 5) . substr($item->msisdn, -3) }}
+                                        <td class="text-center relative">
+                                            {{ substr($item->msisdn, 0, 5) . str_repeat('*', 5) . substr($item->msisdn, -3) }}
+                                            {{-- @if ($item->participation_count == 2)
+                                                <span class="box absolute">
+                                                    {{ $item->participation_count }}
+                                                </span>
+                                            @endif      --}}
+                                            <span class="box absolute">
+                                                {{ $item->participation_count }}
+                                            </span>                                       
                                         </td>
-                                        <td class="d-flex">{{ $item->total_score }}
-
+                                        <td class="text-end">
+                                            {{ $item->total_score }}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -165,7 +180,7 @@
                     <li>The tournament will start at 10:00 AM and close at 11:59 PM each day.</li>
                 </ol>
                 <h1 class="normal_title">Help and Support</h1>
-                <h2 class="normal_text">Email: cservice@b2m-tech.com, Phone: 
+                <h2 class="normal_text">Email: cservice@b2m-tech.com, Phone:
                     <a href="tel:+8801725298711" style="text-decoration: none;color:#6B36A7">+8801725298711</a>
                 </h2>
 
@@ -180,8 +195,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="priceShowModal" tabindex="-1" aria-labelledby="priceShowModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="priceShowModal" tabindex="-1" aria-labelledby="priceShowModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content tournament_rules">
             <div class="modal-header">
@@ -189,8 +203,8 @@
             </div>
             <div class="modal-body">
                 <ol class="px-4">
-                    <li><strong>Daily Prizes:</strong> 
-                        <br/>
+                    <li><strong>Daily Prizes:</strong>
+                        <br />
                         Top 15 winner gets mobile balance Tk 20.
                     </li>
                     <li><strong>Weekly Prize:</strong></li>
@@ -200,7 +214,7 @@
                         <li>3rd Place: 1 winner gets gift voucher BDT 300</li>
                     </ul>
                 </ol>
-                
+
                 <div class="mx-auto w-full d-flex justify-content-center" style="margin-top: 2.8rem">
                     <div class="btn_secondary" style="width: 7rem!important">
                         <button data-bs-dismiss="modal" class="btn">Close</button>
